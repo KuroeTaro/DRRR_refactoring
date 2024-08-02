@@ -1,0 +1,15 @@
+love_framework_logo = {620, 255, nil, 0, 1, 1, 0}
+love_framework_logo["width"] = 360
+love_framework_logo["height"] = 360
+love_framework_logo["PLT"] = {0,0,0,0,0,0,0}
+love_framework_logo["PLD"] = {0,0,0,0,0,0,0}
+kuroe_taro_s_handicraft_logo = {620, 255, nil, 0, 1, 1, 0}
+kuroe_taro_s_handicraft_logo["width"] = 360
+kuroe_taro_s_handicraft_logo["height"] = 360
+kuroe_taro_s_handicraft_logo["PLT"] = {0,0,0,0,0,0,0}
+kuroe_taro_s_handicraft_logo["PLD"] = {0,0,0,0,0,0,0}
+disclaimer_text = {175, 125, nil, 1, 1, 1, 0}
+disclaimer_text["width"] = 1250
+disclaimer_text["height"] = 650
+disclaimer_text["PLT"] = {0,0,0,0,0,0,0}
+disclaimer_text["PLD"] = {0,0,0,0,0,0,0}

@@ -1,0 +1,30 @@
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity = {}
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity[0] = {0, 420}
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity[420] = {0, 425}
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity[425] = {1, 595}
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity[595] = {1, 600}
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity[600] = {0, 600}
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity["prpty"] = 4
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity["length"] = 600
+anim_UI_disclaimer_and_logo_scene_love_framework_logo_update_opacity["loop_type"] = false
+
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity = {}
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity[0] = {0, 240}
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity[240] = {0, 245}
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity[245] = {1, 415}
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity[415] = {1, 420}
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity[420] = {0, 420}
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity["prpty"] = 4
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity["length"] = 420
+anim_UI_disclaimer_and_logo_scene_kuroe_taro_s_handicraft_logo_update_opacity["loop_type"] = false
+
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity = {}
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity[0] = {0, 60}
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity[60] = {0, 64}
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity[64] = {1, 235}
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity[235] = {1, 240}
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity[240] = {0, 240}
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity["prpty"] = 4
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity["length"] = 240
+anim_UI_disclaimer_and_logo_scene_disclaimer_text_update_opacity["loop_type"] = false
+
