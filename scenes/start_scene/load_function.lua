@@ -5,7 +5,7 @@
 -- load_functions_table 每个thread对应一个 load function
 -- load_order_table 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
-function load_disclaimer_logos_scene_prep()
+function load_start_scene_prep()
     THREAD_TABLE = {"threads/disclaimer_and_logo_scene_thread.lua"}
     THREAD_AMOUNT = 1   -- 线程数目
     THREAD_ONCE_TABLE = {false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
