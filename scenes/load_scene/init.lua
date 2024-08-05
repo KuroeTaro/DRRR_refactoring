@@ -4,38 +4,38 @@
 function init_load_scene_obj()
     -- 场景object
     -- x y z opacity sx sy r f
-    UI_load_scene_loading_text = {1350, 800, nil, 0, 1, 1, 0, 0}
-    UI_load_scene_loading_text["width"] = 100
-    UI_load_scene_loading_text["height"] = 20
-    UI_load_scene_loading_text["FCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_loading_text["LCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_loading_text["LCD"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_loading_text["state"] = "flash_in"
+    obj_UI_load_scene_loading_text = {1350, 800, nil, 0, 1, 1, 0, 0}
+    obj_UI_load_scene_loading_text["width"] = 100
+    obj_UI_load_scene_loading_text["height"] = 20
+    obj_UI_load_scene_loading_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_loading_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_loading_text["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_loading_text["state"] = "flash_in"
 
-    UI_load_scene_loading_text["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_loading_text["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_loading_text["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_loading_text["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
 
-    UI_load_scene_type_in_mark = {1460, 798, nil, 0, 1, 1, 0, 0}
-    UI_load_scene_type_in_mark["width"] = 5
-    UI_load_scene_type_in_mark["height"] = 20
-    UI_load_scene_type_in_mark["FCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_type_in_mark["LCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_type_in_mark["state"] = "flash_in"
+    obj_UI_load_scene_type_in_mark = {1460, 798, nil, 0, 1, 1, 0, 0}
+    obj_UI_load_scene_type_in_mark["width"] = 5
+    obj_UI_load_scene_type_in_mark["height"] = 20
+    obj_UI_load_scene_type_in_mark["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_type_in_mark["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_type_in_mark["state"] = "flash_in"
 
-    UI_load_scene_type_in_mark["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_type_in_mark["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_type_in_mark["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_type_in_mark["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
 
-    UI_load_scene_dabo_trig = {1280, 800, nil, 0, 1, 1, 0, 0}
-    UI_load_scene_dabo_trig["width"] = 36
-    UI_load_scene_dabo_trig["height"] = 16
-    UI_load_scene_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_dabo_trig["state"] = "flash_in"
+    obj_UI_load_scene_dabo_trig = {1280, 800, nil, 0, 1, 1, 0, 0}
+    obj_UI_load_scene_dabo_trig["width"] = 36
+    obj_UI_load_scene_dabo_trig["height"] = 16
+    obj_UI_load_scene_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_dabo_trig["state"] = "flash_in"
 
-    UI_load_scene_dabo_trig["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    UI_load_scene_dabo_trig["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_dabo_trig["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_dabo_trig["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
 
 end
 
@@ -99,9 +99,9 @@ end
 
 
 function init_load_scene_image()
-    UI_load_scene_dabo_trig_image = love.graphics.newImage("asset/load_scene/dabo_trig.dds")
-    UI_load_scene_loading_text_image = love.graphics.newImage("asset/load_scene/loading_text.dds")
-    UI_load_scene_type_in_mark_image = love.graphics.newImage("asset/load_scene/type_in_mark.dds")
+    image_UI_load_scene_dabo_trig = love.graphics.newImage("asset/load_scene/dabo_trig.dds")
+    image_UI_load_scene_loading_text = love.graphics.newImage("asset/load_scene/loading_text.dds")
+    image_UI_load_scene_type_in_mark = love.graphics.newImage("asset/load_scene/type_in_mark.dds")
 end
 
 

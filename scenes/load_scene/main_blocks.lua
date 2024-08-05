@@ -20,23 +20,23 @@ function load_scene_flash_in()
     SCENE_TIMER = SCENE_TIMER + 1
 
     -- debug
-    -- print(UI_load_scene_dabo_trig["FCT"][1],
-    -- UI_load_scene_type_in_mark["FCT"][4],
-    -- UI_load_scene_loading_text["FCT"][4],
+    -- print(obj_UI_load_scene_dabo_trig["FCT"][1],
+    -- obj_UI_load_scene_type_in_mark["FCT"][4],
+    -- obj_UI_load_scene_loading_text["FCT"][4],
     -- SCENE_TIMER)
     
     -- 动画机的运行 每个obj的FCT和SCENE timer保持一致
-    frame_animator(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x)
-    frame_animator(UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity)
-    frame_animator(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity)
+    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x)
+    frame_animator(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity)
+    frame_animator(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity)
 
     -- 加载图像的实际线程功能
     load_asset_function_table()
 
     -- 场景出口
-    if get_frame_anim_end_state(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x) and 
-    get_frame_anim_end_state(UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity) and
-    get_frame_anim_end_state(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity) and
+    if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x) and 
+    get_frame_anim_end_state(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity) and
+    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity) and
     SCENE_TIMER >= 4 then
 
         -- 将SCENE_TIMER设为 0   
@@ -49,7 +49,7 @@ function load_scene_flash_in()
         love.audio.play(SFX_load_scene_loading_audio)
 
         -- 初始化update所需要的动画机  obj对应的FCT设为0
-        init_frame_anim_with(UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
+        init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
 
         -- 下一个场景为 load_scene_update
         current_update_block = load_scene_update
@@ -65,7 +65,7 @@ function load_scene_update()
     -- SCENE_TIMER)
 
     -- 动画机的运行 每个obj的FCT和SCENE timer保持一致
-    frame_animator(UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
+    frame_animator(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
 
     -- 加载图像的实际线程功能
     load_asset_function_table()
@@ -83,13 +83,13 @@ function load_scene_update()
         love.audio.play(SFX_load_scene_end_load_audio)
 
         -- load_scene的AE文件为准进行直接修改
-        UI_load_scene_type_in_mark[4] = 0
+        obj_UI_load_scene_type_in_mark[4] = 0
 
         -- 初始化update所需要的动画机  obj对应的FCT设为0
-        init_frame_anim_with(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_x)
-        init_frame_anim_with(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_opacity)
-        init_frame_anim_with(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_x)
-        init_frame_anim_with(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity)
+        init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_x)
+        init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_opacity)
+        init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_x)
+        init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity)
 
         -- 下一个场景为 load_scene_flash_out
         current_update_block = load_scene_flash_out
@@ -101,25 +101,25 @@ function load_scene_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
     
     -- -- debug
-    -- print(UI_load_scene_dabo_trig["FCT"][1],
-    -- UI_load_scene_dabo_trig["FCT"][4],
-    -- UI_load_scene_loading_text["FCT"][4],
+    -- print(obj_UI_load_scene_dabo_trig["FCT"][1],
+    -- obj_UI_load_scene_dabo_trig["FCT"][4],
+    -- obj_UI_load_scene_loading_text["FCT"][4],
     -- SCENE_TIMER)
 
     -- 动画机的运行 每个obj的FCT和SCENE timer保持一致
-    frame_animator(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_x)
-    frame_animator(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_opacity)
-    frame_animator(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_x)
-    frame_animator(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity)
+    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_x)
+    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_opacity)
+    frame_animator(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_x)
+    frame_animator(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity)
 
     -- 已经加载完了图像 不运行加载图像的实际线程功能
     -- load_asset_function_table()
 
     -- 场景出口
-    if get_frame_anim_end_state(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_x) and 
-    get_frame_anim_end_state(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_opacity) and
-    get_frame_anim_end_state(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_x) and
-    get_frame_anim_end_state(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity) and
+    if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_x) and 
+    get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_opacity) and
+    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_x) and
+    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity) and
     SCENE_TIMER >= 5 then
 
         -- 将SCENE_TIMER设为 0
@@ -156,7 +156,7 @@ function load_scene_prep_routine()
 
     -- 将SCENE_TIMER设为 0   所有obj的当前数据（ 场景时间 = 20 动画时间 = 0）load_scene的AE文件为准进行直接修改
     SCENE_TIMER = 0
-    UI_load_scene_dabo_trig[4] = 1
+    obj_UI_load_scene_dabo_trig[4] = 1
 
     -- 初始化flash_in所需要的动画机  obj对应的FCT设为0
     ---------------------------------------------------------------------------------
@@ -164,9 +164,9 @@ function load_scene_prep_routine()
     -- 在这里运行确保在将SCENE_TIMER == 2的时候frame animator time为2的帧数能被实际运行
     -- 很重要 不要改
     ---------------------------------------------------------------------------------
-    init_frame_anim_with(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x)
-    init_frame_anim_with(UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity)
-    init_frame_anim_with(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity)
+    init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x)
+    init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity)
+    init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity)
     love.audio.play(SFX_load_scene_start_load_audio)
 
     -- 下一个场景为 load_scene_flash_in
