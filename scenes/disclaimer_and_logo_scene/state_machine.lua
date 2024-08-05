@@ -3,7 +3,7 @@
 
 
 -- 控制 disclaimer and logo scene 唯一一个 obj 更新的状态机
-function UI_disclaimer_and_logo_scene_mid_obj_state_machine(obj)
+function UI_disclaimer_and_logo_scene_singular_state_machine(obj)
     local switch = {
 
         -- flash_in 之前的状态 如果达到第10帧则为下一个动画的第0帧 

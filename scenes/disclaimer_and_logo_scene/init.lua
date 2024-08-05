@@ -1,14 +1,14 @@
 function load_disclaimer_and_logo_scene_obj()
-    UI_disclaimer_and_logo_scene_mid_obj = {175, 125, nil, 0, 1, 1, 0, 0}
-    UI_disclaimer_and_logo_scene_mid_obj["width"] = nil
-    UI_disclaimer_and_logo_scene_mid_obj["height"] = nil
-    UI_disclaimer_and_logo_scene_mid_obj["FCT"] = {0,0,0,0,0,0,0,0}
-    UI_disclaimer_and_logo_scene_mid_obj["LCT"] = {0,0,0,0,0,0,0,0}
-    UI_disclaimer_and_logo_scene_mid_obj["LCD"] = {0,0,0,0,0,0,0,0}
-    UI_disclaimer_and_logo_scene_mid_obj["state"] = "pre_disclaimer_flash_in"
+    UI_disclaimer_and_logo_scene_singular = {175, 125, nil, 0, 1, 1, 0, 0}
+    UI_disclaimer_and_logo_scene_singular["width"] = nil
+    UI_disclaimer_and_logo_scene_singular["height"] = nil
+    UI_disclaimer_and_logo_scene_singular["FCT"] = {0,0,0,0,0,0,0,0}
+    UI_disclaimer_and_logo_scene_singular["LCT"] = {0,0,0,0,0,0,0,0}
+    UI_disclaimer_and_logo_scene_singular["LCD"] = {0,0,0,0,0,0,0,0}
+    UI_disclaimer_and_logo_scene_singular["state"] = "pre_disclaimer_flash_in"
 
-    UI_disclaimer_and_logo_scene_mid_obj["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    UI_disclaimer_and_logo_scene_mid_obj["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
+    UI_disclaimer_and_logo_scene_singular["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
+    UI_disclaimer_and_logo_scene_singular["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
 end
 
 
@@ -37,7 +37,7 @@ end
 
 
 function unload_disclaimer_and_logo_scene_obj()
-    UI_disclaimer_and_logo_scene_mid_obj = nil
+    UI_disclaimer_and_logo_scene_singular = nil
 end
 
 
@@ -74,5 +74,5 @@ function disclaimer_and_logos_scene_unload_function()
 end
 
 function disclaimer_and_logo_scene_preset_animator()
-    init_point_liner_anim_with(UI_disclaimer_and_logo_scene_mid_obj,anim_disclaimer_and_logo_scene_general_flash_in)
+    init_point_liner_anim_with(UI_disclaimer_and_logo_scene_singular,anim_disclaimer_and_logo_scene_general_flash_in)
 end

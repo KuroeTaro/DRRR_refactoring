@@ -15,7 +15,7 @@ function load_start_scene_audio()
     SFX_start_scene_to_sub_audio = love.audio.newSource("asset/start_scene/audio/to_sub.mp3","static")
 
     BGM_start_scene_FTR_high_audio = love.audio.newSource("asset/start_scene/audio/FTR_high.mp3","stream")
-    BGM_start_scene_FTR_low_audio = love.audio.newSource("asset/start_scene/audio/FTR_low.mp33","stream")
+    BGM_start_scene_FTR_low_audio = love.audio.newSource("asset/start_scene/audio/FTR_low.mp3","stream")
 
     update_SFX_volume(SFX_start_scene_click_audio)
     update_SFX_volume(SFX_start_scene_scene_out_audio)
