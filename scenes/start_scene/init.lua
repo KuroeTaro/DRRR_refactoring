@@ -57,7 +57,7 @@ end
 -- state_machine会作为功能直接包含在全局变量中 和main block sub block一样
 -- 不进行场景内加载
 ----------------------------------------------------------------------
-function disclaimer_logos_scene_unload_function()
+function unload_start_scene_all()
     unload_start_scene_obj()
     unload_start_scene_anim()
     unload_start_scene_image()

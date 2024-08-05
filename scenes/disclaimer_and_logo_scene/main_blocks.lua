@@ -13,7 +13,7 @@ function disclaimer_logos_scene_update()
         load_scene_prep_routine()
 
         -- 卸载所有资源 包括object anim image audio
-        disclaimer_and_logos_scene_unload_function()
+        unload_disclaimer_and_logo_scene_all()
 
     end
 end
