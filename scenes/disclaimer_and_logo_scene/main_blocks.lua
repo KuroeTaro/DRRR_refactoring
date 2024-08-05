@@ -2,7 +2,7 @@ function disclaimer_logos_scene_update()
     -- 场景时间更新
     SCENE_TIMER = SCENE_TIMER + 1
 
-    obj_UI_disclaimer_and_logo_scene_singular_state_machine(
+    obj_state_machine_UI_disclaimer_and_logo_scene_singular(
         obj_UI_disclaimer_and_logo_scene_singular
     )
 
