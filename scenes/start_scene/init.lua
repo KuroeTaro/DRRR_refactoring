@@ -9,9 +9,22 @@ end
 
 
 function load_start_scene_audio()
-    -- end_load_audio = love.audio.newSource("asset/load_scene/end_load.mp3","static")
-    -- loading_audio = love.audio.newSource("asset/load_scene/loading.mp3","static")
-    -- start_load_audio = love.audio.newSource("asset/load_scene/start_load.mp3","static")
+    SFX_start_scene_click_audio = love.audio.newSource("asset/start_scene/audio/click.mp3","static")
+    SFX_start_scene_scene_out_audio = love.audio.newSource("asset/start_scene/audio/scene_out.mp3","static")
+    SFX_start_scene_to_main_audio = love.audio.newSource("asset/start_scene/audio/to_main.mp3","static")
+    SFX_start_scene_to_sub_audio = love.audio.newSource("asset/start_scene/audio/to_sub.mp3","static")
+
+    BGM_start_scene_FTR_high_audio = love.audio.newSource("asset/start_scene/audio/FTR_high.mp3","stream")
+    BGM_start_scene_FTR_low_audio = love.audio.newSource("asset/start_scene/audio/FTR_low.mp33","stream")
+
+    update_SFX_volume(SFX_start_scene_click_audio)
+    update_SFX_volume(SFX_start_scene_scene_out_audio)
+    update_SFX_volume(SFX_start_scene_to_main_audio)
+    update_SFX_volume(SFX_start_scene_to_sub_audio)
+
+    update_BGM_volume(BGM_start_scene_FTR_high_audio)
+    update_BGM_volume(BGM_start_scene_FTR_low_audio)
+
 end
 
 

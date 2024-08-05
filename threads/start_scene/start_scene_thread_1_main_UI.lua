@@ -35,6 +35,6 @@ image_data[21] = love.image.newCompressedData("asset/start_scene/option/exit_to_
 image_data[22] = love.image.newCompressedData("asset/start_scene/option/breath_tag.dds")
 
 -- main logo
-image_data[23] = love.image.newCompressedData("asset/start_scene/main_logo.dds")
+image_data[23] = love.image.newCompressedData("asset/start_scene/main/main_logo.dds")
 
 love.thread.getChannel( 'image_1' ):push( image_data )

@@ -8,5 +8,5 @@ for i = 1,50 do
 end
 
 -- shutter to sub UI
-image_data[51] = love.image.newCompressedData("asset/start_scene/shutter.dds")
+image_data[51] = love.image.newCompressedData("asset/start_scene/main/shutter.dds")
 love.thread.getChannel( 'image_2' ):push( image_data )

@@ -69,7 +69,7 @@ function love.load()
 	input_load()
 	-- read save data
 	volume_read_save()
-	GAME_DURATION = {0,0,0,0,0,0}
+	game_duration_read_save()
 
 	-- non-character global variable
 -------------------------------------------------
@@ -81,7 +81,6 @@ function love.load()
 	CONSOLE_TEXT_1_ID = 1
 	CONSOLE_TEXT_2_ID = 1
 
-	GAME_MODE = 0
 
 	OPTION_TEXT_POSITION_TABLE = {700,657,728,723,684}
 	CONSOLE_TYPE_IN_MARK_POSITION_TABLE = {1065,795,815,505,565,930,1115,1110}
@@ -143,6 +142,7 @@ function love.load()
 	--	general_scene_global_variable
 	FRAMES_DRAWN = 0
 	SCENE_TIMER = -1
+	GAME_MODE = 0
 
 	-- load_scene
 	THREAD_TABLE = {}

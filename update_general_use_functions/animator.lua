@@ -109,6 +109,8 @@ end
 -- 和frame_animator一样 
 -- 
 
+-- 音频object 使用 不透明度作为音量
+
 function point_liner_animator(obj,anim)
 
     local anim_change_prop = anim["prop"]

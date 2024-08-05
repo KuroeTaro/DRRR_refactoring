@@ -106,10 +106,10 @@ end
 
 
 function init_load_scene_audio()
-    UI_load_scene_end_load_audio = love.audio.newSource("asset/load_scene/end_load.mp3","static")
-    UI_load_scene_loading_audio = love.audio.newSource("asset/load_scene/loading.mp3","static")
-    UI_load_scene_start_load_audio = love.audio.newSource("asset/load_scene/start_load.mp3","static")
-    update_SFX_volume(UI_load_scene_end_load_audio)
-    update_SFX_volume(UI_load_scene_loading_audio)
-    update_SFX_volume(UI_load_scene_start_load_audio)
+    SFX_load_scene_end_load_audio = love.audio.newSource("asset/load_scene/end_load.mp3","static")
+    SFX_load_scene_loading_audio = love.audio.newSource("asset/load_scene/loading.mp3","static")
+    SFX_load_scene_start_load_audio = love.audio.newSource("asset/load_scene/start_load.mp3","static")
+    update_SFX_volume(SFX_load_scene_end_load_audio)
+    update_SFX_volume(SFX_load_scene_loading_audio)
+    update_SFX_volume(SFX_load_scene_start_load_audio)
 end

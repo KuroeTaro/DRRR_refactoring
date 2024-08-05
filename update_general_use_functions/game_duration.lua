@@ -5,16 +5,22 @@ function game_duration_read_save()
         chunk()
         if GAME_DURATION == nil then 
             GAME_DURATION = {0,0,0,0,0,0}
+            CTO_COUNT = 0
             write_game_duration_record()
         end
     else 
         GAME_DURATION = {0,0,0,0,0,0}
+        CTO_COUNT = 0
         write_game_duration_record()
     end
 end
 
 function write_game_duration_record()
-    local chunk = "{" .. table.concat(GAME_DURATION, ", ") .. "}"
+    local chunk = "GAME_DURATION = "..
+    "{" ..table.concat(GAME_DURATION, ", ").."}" ..
+    "\n"..
+    "CTO_COUNT = ".. CTO_COUNT.. "" ..
+    "\n".. ""
     love.filesystem.write('game_duration_record.lua',chunk)
 end
 
