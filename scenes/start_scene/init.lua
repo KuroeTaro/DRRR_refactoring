@@ -1,4 +1,4 @@
-function load_start_sceneobj()
+function load_start_scene_obj()
 
 end
 
@@ -15,7 +15,7 @@ end
 
 
 
-function unload_start_sceneobj()
+function unload_start_scene_obj()
 
 end
 
@@ -43,7 +43,7 @@ end
 -- 不进行场景内加载
 ----------------------------------------------------------------------
 function disclaimer_logos_scene_unload_function()
-    unload_start_sceneobj()
+    unload_start_scene_obj()
     unload_start_scene_anim()
     unload_start_scene_image()
     unload_start_scene_asset_audio()
