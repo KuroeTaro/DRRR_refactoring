@@ -17,6 +17,13 @@ require("scenes/disclaimer_and_logo_scene/main_blocks")
 require("scenes/disclaimer_and_logo_scene/state_machine")
 require("scenes/disclaimer_and_logo_scene/sub_blocks")
 
+require("scenes/start_scene/draw_functions")
+require("scenes/start_scene/init")
+require("scenes/start_scene/load_function")
+require("scenes/start_scene/main_blocks")
+require("scenes/start_scene/state_machine")
+require("scenes/start_scene/sub_blocks")
+
 function love.run()
 	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
 

@@ -33,10 +33,10 @@ function disclaimer_logos_scene_load_function(load_order)
             -- load_disclaimer_and_logo_scene_asset_audio()
 
             -- image_table以0开头 因为AE的帧数是以0开头设计的
-            disclaimer_and_logo_image_table = {}
-            disclaimer_and_logo_image_table[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][1])
-            disclaimer_and_logo_image_table[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][2])
-            disclaimer_and_logo_image_table[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
+            UI_disclaimer_and_logo_scene_general_image_table = {}
+            UI_disclaimer_and_logo_scene_general_image_table[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][1])
+            UI_disclaimer_and_logo_scene_general_image_table[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][2])
+            UI_disclaimer_and_logo_scene_general_image_table[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
         end,
     }
     local this_function = switch[load_order]
@@ -45,5 +45,5 @@ function disclaimer_logos_scene_load_function(load_order)
 end
 
 function unload_disclaimer_and_logo_scene_image()
-    disclaimer_and_logo_image_table = nil
+    UI_disclaimer_and_logo_scene_general_image_table = nil
 end

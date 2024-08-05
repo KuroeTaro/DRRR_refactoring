@@ -98,18 +98,18 @@ function init_load_scene_anim()
 end
 
 
-function init_load_scene_asset_image()
-    dabo_trig_image = love.graphics.newImage("asset/load_scene/dabo_trig.dds")
-    loading_text_image = love.graphics.newImage("asset/load_scene/loading_text.dds")
-    type_in_mark_image = love.graphics.newImage("asset/load_scene/type_in_mark.dds")
+function init_load_scene_image()
+    UI_load_scene_dabo_trig_image = love.graphics.newImage("asset/load_scene/dabo_trig.dds")
+    UI_load_scene_loading_text_image = love.graphics.newImage("asset/load_scene/loading_text.dds")
+    UI_load_scene_type_in_mark_image = love.graphics.newImage("asset/load_scene/type_in_mark.dds")
 end
 
 
-function init_load_scene_asset_audio()
-    end_load_audio = love.audio.newSource("asset/load_scene/end_load.mp3","static")
-    loading_audio = love.audio.newSource("asset/load_scene/loading.mp3","static")
-    start_load_audio = love.audio.newSource("asset/load_scene/start_load.mp3","static")
-    update_SFX_volume(end_load_audio)
-    update_SFX_volume(loading_audio)
-    update_SFX_volume(start_load_audio)
+function init_load_scene_audio()
+    UI_load_scene_end_load_audio = love.audio.newSource("asset/load_scene/end_load.mp3","static")
+    UI_load_scene_loading_audio = love.audio.newSource("asset/load_scene/loading.mp3","static")
+    UI_load_scene_start_load_audio = love.audio.newSource("asset/load_scene/start_load.mp3","static")
+    update_SFX_volume(UI_load_scene_end_load_audio)
+    update_SFX_volume(UI_load_scene_loading_audio)
+    update_SFX_volume(UI_load_scene_start_load_audio)
 end

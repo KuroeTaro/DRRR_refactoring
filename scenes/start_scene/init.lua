@@ -8,8 +8,10 @@ function load_start_scene_anim()
 end
 
 
-function load_start_scene_asset_audio()
-
+function load_start_scene_audio()
+    -- end_load_audio = love.audio.newSource("asset/load_scene/end_load.mp3","static")
+    -- loading_audio = love.audio.newSource("asset/load_scene/loading.mp3","static")
+    -- start_load_audio = love.audio.newSource("asset/load_scene/start_load.mp3","static")
 end
 
 
@@ -25,7 +27,7 @@ function unload_start_scene_anim()
 end
 
 
-function unload_start_scene_asset_audio()
+function unload_start_scene_audio()
     
 end
 

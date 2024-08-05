@@ -46,7 +46,7 @@ function load_scene_flash_in()
 
         -- 改变audio
         love.audio.stop()
-        love.audio.play(loading_audio)
+        love.audio.play(UI_load_scene_loading_audio)
 
         -- 初始化update所需要的动画机  obj对应的FCT设为0
         init_frame_anim_with(UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
@@ -80,7 +80,7 @@ function load_scene_update()
 
         -- 改变audio
         love.audio.stop()
-        love.audio.play(end_load_audio)
+        love.audio.play(UI_load_scene_end_load_audio)
 
         -- load_scene的AE文件为准进行直接修改
         UI_load_scene_type_in_mark[4] = 0
@@ -151,8 +151,8 @@ function load_scene_prep_routine()
     -- 初始化/加载load_scene所需要的所有素材 对象 动画 图片 音频
     init_load_scene_obj()
     init_load_scene_anim()
-    init_load_scene_asset_image()
-    init_load_scene_asset_audio()
+    init_load_scene_image()
+    init_load_scene_audio()
 
     -- 将SCENE_TIMER设为 0   所有obj的当前数据（ 场景时间 = 20 动画时间 = 0）load_scene的AE文件为准进行直接修改
     SCENE_TIMER = 0
@@ -167,7 +167,7 @@ function load_scene_prep_routine()
     init_frame_anim_with(UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x)
     init_frame_anim_with(UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity)
     init_frame_anim_with(UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity)
-    love.audio.play(start_load_audio)
+    love.audio.play(UI_load_scene_start_load_audio)
 
     -- 下一个场景为 load_scene_flash_in
     current_update_block = load_scene_flash_in

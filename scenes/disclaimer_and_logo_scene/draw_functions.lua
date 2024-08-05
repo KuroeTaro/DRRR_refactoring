@@ -1,3 +1,3 @@
 function disclaimer_and_logo_scene_general_draw()
-    draw_2d_image_table(UI_disclaimer_and_logo_scene_mid_obj,disclaimer_and_logo_image_table)
+    draw_2d_image_table(UI_disclaimer_and_logo_scene_mid_obj,UI_disclaimer_and_logo_scene_general_image_table)
 end
