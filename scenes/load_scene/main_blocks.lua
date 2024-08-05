@@ -149,7 +149,7 @@ end
 function load_scene_prep_routine()
 
     -- 初始化/加载load_scene所需要的所有素材 对象 动画 图片 音频
-    init_load_scene_objects()
+    init_load_scene_obj()
     init_load_scene_anim()
     init_load_scene_asset_image()
     init_load_scene_asset_audio()

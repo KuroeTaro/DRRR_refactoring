@@ -1,7 +1,7 @@
 -- 只有load场景使用init前缀 
 -- 其他场景有load和unload配套使用
 
-function init_load_scene_objects()
+function init_load_scene_obj()
     -- 场景object
     -- x y z opacity sx sy r f
     UI_load_scene_loading_text = {1350, 800, nil, 0, 1, 1, 0, 0}

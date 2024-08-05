@@ -27,7 +27,7 @@ function disclaimer_logos_scene_load_function(load_order)
     local switch = 
     {
         [1] = function()
-            load_disclaimer_and_logo_scene_objects()
+            load_disclaimer_and_logo_scene_obj()
             load_disclaimer_and_logo_scene_anim()
             -- 本场景没有audio
             -- load_disclaimer_and_logo_scene_asset_audio()

@@ -1,4 +1,4 @@
-function load_disclaimer_and_logo_scene_objects()
+function load_disclaimer_and_logo_scene_obj()
     UI_disclaimer_and_logo_scene_mid_obj = {175, 125, nil, 0, 1, 1, 0, 0}
     UI_disclaimer_and_logo_scene_mid_obj["width"] = nil
     UI_disclaimer_and_logo_scene_mid_obj["height"] = nil
@@ -36,7 +36,7 @@ end
 
 
 
-function unload_disclaimer_and_logo_scene_objects()
+function unload_disclaimer_and_logo_scene_obj()
     UI_disclaimer_and_logo_scene_mid_obj = nil
 end
 
@@ -65,7 +65,7 @@ end
 -- 不进行场景内加载
 ----------------------------------------------------------------------
 function disclaimer_and_logos_scene_unload_function()
-    unload_disclaimer_and_logo_scene_objects()
+    unload_disclaimer_and_logo_scene_obj()
     unload_disclaimer_and_logo_scene_anim()
     unload_disclaimer_and_logo_scene_image()
 

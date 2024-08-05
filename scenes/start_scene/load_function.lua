@@ -6,15 +6,23 @@
 -- load_order_table 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
 function load_start_scene_prep()
-    THREAD_TABLE = {"threads/disclaimer_and_logo_scene_thread.lua"}
-    THREAD_AMOUNT = 1   -- 线程数目
-    THREAD_ONCE_TABLE = {false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
+    THREAD_TABLE = {
+        "threads/start_scene/start_scene_thread_1_main_UI.lua",
+        "threads/start_scene/start_scene_thread_2_main_UI_BG.lua",
+        "threads/start_scene/start_scene_thread_3_sub_UI.lua",
+    }
+    THREAD_AMOUNT = 3   -- 线程数目
+    THREAD_ONCE_TABLE = {false,false,false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     ASSET_DATA_TABLE = {}   -- 保持为nil
-    LOAD_FUNCTION_TABLE = {disclaimer_logos_scene_load_function}    -- load function table
-    LOAD_ORDER_TABLE = {1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
-    ORDER_SIZE_TABLE = {1}  -- 每个load function的最大值
-    LOAD_ONCE_TABLE = {false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
-    LOADING_FUNCTION_AMOUNT = 1 -- 和线程数相同
+    LOAD_FUNCTION_TABLE = {
+        start_scene_main_UI_load_function
+        start_scene_main_UI_BG_load_function
+        start_scene_sub_UI_load_function
+    }    -- load function table
+    LOAD_ORDER_TABLE = {1,1,1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
+    ORDER_SIZE_TABLE = {2,1,1}  -- 每个load function的最大值
+    LOAD_ONCE_TABLE = {false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
+    LOADING_FUNCTION_AMOUNT = 3 -- 和线程数相同
 
 	NEXT_UPDATE_BLOCK = disclaimer_logos_scene_update
 	NEXT_DRAW_BLOCK = disclaimer_and_logo_scene_general_draw
@@ -23,12 +31,12 @@ function load_start_scene_prep()
 end
 
 -- 分步骤将素材加载
-function disclaimer_logos_scene_load_function(load_order)
+function start_scene_main_UI_load_function(load_order)
     local switch = 
     {
         [1] = function()
-            load_disclaimer_and_logo_scene_objects()
-            load_disclaimer_and_logo_scene_anim()
+            load_start_scene_obj()
+            load_start_scene_anim()
             -- 本场景没有audio
             -- load_disclaimer_and_logo_scene_asset_audio()
 
@@ -44,6 +52,6 @@ function disclaimer_logos_scene_load_function(load_order)
 
 end
 
-function unload_disclaimer_and_logo_scene_image()
+function unload_start_scene_image()
     disclaimer_and_logo_image_table = nil
 end
