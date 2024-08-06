@@ -1,4 +1,4 @@
-function load_asset_function_table()
+function run_table_order_load()
     local i = 1
     while (i<=THREAD_AMOUNT)
     do
@@ -35,7 +35,7 @@ function load_asset_function_table()
     end
 end
 
-function init_load_asset_function_table()
+function init_order_load_table()
     THREAD_TABLE = {}
     THREAD_AMOUNT = 0
     THREAD_ONCE_TABLE = {}

@@ -31,7 +31,7 @@ function update_load_scene_flash_in()
     frame_animator(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity)
 
     -- 加载图像的实际线程功能
-    load_asset_function_table()
+    run_table_order_load()
 
     -- 场景出口
     if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x) and 
@@ -68,7 +68,7 @@ function update_load_scene_general()
     frame_animator(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
 
     -- 加载图像的实际线程功能
-    load_asset_function_table()
+    run_table_order_load()
 
     -- 场景出口
     if LOADING_FUNCTION_AMOUNT == 0 and SCENE_TIMER >= 60 then
@@ -113,7 +113,7 @@ function update_load_scene_flash_out()
     frame_animator(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity)
 
     -- 已经加载完了图像 不运行加载图像的实际线程功能
-    -- load_asset_function_table()
+    -- run_table_order_load()
 
     -- 场景出口
     if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_out_x) and 
@@ -140,7 +140,7 @@ function update_load_scene_flash_out()
 
         -- 初始化线程加载用function的输入
         -- 如果是一般的scene 需要使用 unload
-        init_load_asset_function_table()
+        init_order_load_table()
 
     end
 end
