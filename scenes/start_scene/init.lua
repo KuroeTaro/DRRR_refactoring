@@ -41,6 +41,13 @@ end
 
 
 function unload_start_scene_audio()
+    SFX_start_scene_click_audio = nil
+    SFX_start_scene_scene_out_audio = nil
+    SFX_start_scene_to_main_audio = nil
+    SFX_start_scene_to_sub_audio = nil
+
+    BGM_start_scene_FTR_high_audio = nil
+    BGM_start_scene_FTR_low_audio = nil
     
 end
 
@@ -62,6 +69,7 @@ function unload_start_scene_all()
     unload_start_scene_anim()
     unload_start_scene_image()
     unload_start_scene_asset_audio()
+    
 end
 
 function preset_animator_start_scene()
