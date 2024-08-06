@@ -6,37 +6,37 @@
 -- load_order_table 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
 function load_disclaimer_logos_scene_prep()
-    THREAD_TABLE = {"threads/disclaimer_and_logo_scene_thread.lua"}
+    THREAD_TABLE = {"threads/disclaimer_and_logos_scene/disclaimer_and_logos_scene_thread_1_general.lua"}
     THREAD_AMOUNT = 1   -- 线程数目
     THREAD_ONCE_TABLE = {false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     ASSET_DATA_TABLE = {}   -- 保持为nil
-    LOAD_FUNCTION_TABLE = {disclaimer_logos_scene_load_function}    -- load function table
+    LOAD_FUNCTION_TABLE = {order_load_disclaimer_and_logo_scene_general}    -- load function table
     LOAD_ORDER_TABLE = {1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
     ORDER_SIZE_TABLE = {1}  -- 每个load function的最大值
     LOAD_ONCE_TABLE = {false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 1 -- 和线程数相同
 
-	NEXT_UPDATE_BLOCK = disclaimer_logos_scene_update
-	NEXT_DRAW_BLOCK = disclaimer_and_logo_scene_general_draw
-    NEXT_PRESET_ANIMATOR = disclaimer_and_logo_scene_preset_animator
+	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_general
+	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_general
+    NEXT_PRESET_ANIMATOR = preset_animator_disclaimer_and_logos_scene
 
 end
 
 -- 分步骤将素材加载
-function disclaimer_logos_scene_load_function(load_order)
+function order_load_disclaimer_and_logo_scene_general(load_order)
     local switch = 
     {
         [1] = function()
-            load_disclaimer_and_logo_scene_obj()
-            load_disclaimer_and_logo_scene_anim()
+            load_disclaimer_and_logos_scene_obj()
+            load_disclaimer_and_logos_scene_anim()
             -- 本场景没有audio
-            -- load_disclaimer_and_logo_scene_asset_audio()
+            -- load_disclaimer_and_logos_scene_asset_audio()
 
             -- image_table以0开头 因为AE的帧数是以0开头设计的
-            image_table_UI_disclaimer_and_logo_scene_general = {}
-            image_table_UI_disclaimer_and_logo_scene_general[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][1])
-            image_table_UI_disclaimer_and_logo_scene_general[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][2])
-            image_table_UI_disclaimer_and_logo_scene_general[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
+            image_table_UI_disclaimer_and_logos_scene_singular = {}
+            image_table_UI_disclaimer_and_logos_scene_singular[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][1])
+            image_table_UI_disclaimer_and_logos_scene_singular[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][2])
+            image_table_UI_disclaimer_and_logos_scene_singular[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
         end,
     }
     local this_function = switch[load_order]
@@ -44,6 +44,6 @@ function disclaimer_logos_scene_load_function(load_order)
 
 end
 
-function unload_disclaimer_and_logo_scene_image()
-    image_table_UI_disclaimer_and_logo_scene_general = nil
+function unload_disclaimer_and_logos_scene_image()
+    image_table_UI_disclaimer_and_logos_scene_singular = nil
 end

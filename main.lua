@@ -10,12 +10,12 @@ require("scenes/load_scene/draw_functions")
 require("scenes/load_scene/init")
 require("scenes/load_scene/main_blocks")
 
-require("scenes/disclaimer_and_logo_scene/draw_functions")
-require("scenes/disclaimer_and_logo_scene/init")
-require("scenes/disclaimer_and_logo_scene/load_function")
-require("scenes/disclaimer_and_logo_scene/main_blocks")
-require("scenes/disclaimer_and_logo_scene/state_machine")
-require("scenes/disclaimer_and_logo_scene/sub_blocks")
+require("scenes/disclaimer_and_logos_scene/draw_functions")
+require("scenes/disclaimer_and_logos_scene/init")
+require("scenes/disclaimer_and_logos_scene/load_function")
+require("scenes/disclaimer_and_logos_scene/main_blocks")
+require("scenes/disclaimer_and_logos_scene/state_machine")
+require("scenes/disclaimer_and_logos_scene/sub_blocks")
 
 require("scenes/start_scene/draw_functions")
 require("scenes/start_scene/init")
@@ -155,12 +155,12 @@ function love.load()
 	LOAD_ONCE_TABLE = {}
     LOADING_FUNCTION_AMOUNT = 0
 
-	NEXT_UPDATE_BLOCK = disclaimer_logos_scene_update
-	NEXT_DRAW_BLOCK = disclaimer_and_logo_scene_general_draw
-	NEXT_PRESET_ANIMATOR = disclaimer_and_logo_scene_preset_animator
+	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_general
+	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_general
+	NEXT_PRESET_ANIMATOR = preset_animator_disclaimer_and_logos_scene
 
-	-- disclaimer_and_logo_scene
-	DISCLAIMER_AND_LOGO_POSITION = {
+	-- disclaimer_and_logos_scene
+	DISCLAIMER_AND_LOGOS_POSITION = {
 		{175,125},
 		{620,255},
 		{620,255},
