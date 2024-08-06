@@ -167,7 +167,7 @@ function love.load()
 	}
 ---------------------------------------------------
 
-	current_update_block = load_scene_load_pre_timer
+	current_update_block = update_load_scene_load_pre_timer
 	current_draw_block = function() end
 
 end    

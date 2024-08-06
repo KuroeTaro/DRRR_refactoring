@@ -1,6 +1,6 @@
 -- 此功能也是一个场景离开时用的场景出口示例
 
-function load_scene_load_pre_timer()
+function update_load_scene_load_pre_timer()
     -- 场景时间更新
     SCENE_TIMER = SCENE_TIMER + 1
 
@@ -16,7 +16,7 @@ function load_scene_load_pre_timer()
     end
 end
 
-function load_scene_flash_in()
+function update_load_scene_flash_in()
     SCENE_TIMER = SCENE_TIMER + 1
 
     -- debug
@@ -46,18 +46,18 @@ function load_scene_flash_in()
 
         -- 改变audio
         love.audio.stop()
-        love.audio.play(SFX_load_scene_loading_audio)
+        love.audio.play(audio_UI_SFX_load_scene_general_loading)
 
         -- 初始化update所需要的动画机  obj对应的FCT设为0
         init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
 
-        -- 下一个场景为 load_scene_update
-        current_update_block = load_scene_update
+        -- 下一个场景为 update_load_scene_loading
+        current_update_block = update_load_scene_loading
 
     end
 end
 
-function load_scene_update()
+function update_load_scene_loading()
     SCENE_TIMER = SCENE_TIMER + 1
     
     -- -- debug
@@ -80,7 +80,7 @@ function load_scene_update()
 
         -- 改变audio
         love.audio.stop()
-        love.audio.play(SFX_load_scene_end_load_audio)
+        love.audio.play(audio_UI_SFX_load_scene_general_end_load)
 
         -- load_scene的AE文件为准进行直接修改
         obj_UI_load_scene_type_in_mark[4] = 0
@@ -91,13 +91,13 @@ function load_scene_update()
         init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_x)
         init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_out_opacity)
 
-        -- 下一个场景为 load_scene_flash_out
-        current_update_block = load_scene_flash_out
+        -- 下一个场景为 update_load_scene_flash_out
+        current_update_block = update_load_scene_flash_out
 
     end
 end
 
-function load_scene_flash_out()
+function update_load_scene_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
     
     -- -- debug
@@ -167,10 +167,10 @@ function load_scene_prep_routine()
     init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x)
     init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity)
     init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity)
-    love.audio.play(SFX_load_scene_start_load_audio)
+    love.audio.play(audio_UI_SFX_load_scene_general_start_load)
 
-    -- 下一个场景为 load_scene_flash_in
-    current_update_block = load_scene_flash_in
-    current_draw_block = load_scene_general_draw
+    -- 下一个场景为 update_load_scene_flash_in
+    current_update_block = update_load_scene_flash_in
+    current_draw_block = draw_load_scene_general
     
 end

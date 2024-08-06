@@ -3,15 +3,15 @@
 -- thread_once_table thread_amount量的false
 -- asset_data_table = {}
 -- load_functions_table 每个thread对应一个 load function
--- load_order_table 全是 1
+-- CURRENT_ORDER_TABLE 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
 function load_disclaimer_logos_scene_prep()
     THREAD_TABLE = {"threads/disclaimer_and_logos_scene/disclaimer_and_logos_scene_thread_1_general.lua"}
     THREAD_AMOUNT = 1   -- 线程数目
     THREAD_ONCE_TABLE = {false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     ASSET_DATA_TABLE = {}   -- 保持为nil
-    LOAD_FUNCTION_TABLE = {order_load_disclaimer_and_logo_scene_general}    -- load function table
-    LOAD_ORDER_TABLE = {1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
+    ORDER_LOAD_TABLE = {order_load_disclaimer_and_logo_scene_general}    -- load function table
+    CURRENT_ORDER_TABLE = {1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
     ORDER_SIZE_TABLE = {1}  -- 每个load function的最大值
     LOAD_ONCE_TABLE = {false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 1 -- 和线程数相同

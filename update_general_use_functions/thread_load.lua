@@ -23,10 +23,10 @@ function load_asset_function_table()
     while (i<=THREAD_AMOUNT)
     do
         if ASSET_DATA_TABLE[i] ~= nil and LOAD_ONCE_TABLE[i] == false then
-            LOAD_FUNCTION_TABLE[i](LOAD_ORDER_TABLE[i])
-            LOAD_ORDER_TABLE[i] = LOAD_ORDER_TABLE[i] + 1
-            if LOAD_ORDER_TABLE[i] > ORDER_SIZE_TABLE[i] then 
-                LOAD_ORDER_TABLE[i] = 0
+            ORDER_LOAD_TABLE[i](CURRENT_ORDER_TABLE[i])
+            CURRENT_ORDER_TABLE[i] = CURRENT_ORDER_TABLE[i] + 1
+            if CURRENT_ORDER_TABLE[i] > ORDER_SIZE_TABLE[i] then 
+                CURRENT_ORDER_TABLE[i] = 0
                 LOAD_ONCE_TABLE[i] = true
                 LOADING_FUNCTION_AMOUNT = LOADING_FUNCTION_AMOUNT -1
             end
@@ -40,8 +40,8 @@ function init_load_asset_function_table()
     THREAD_AMOUNT = 0
     THREAD_ONCE_TABLE = {}
     ASSET_DATA_TABLE = {}
-    LOAD_FUNCTION_TABLE = {}
-    LOAD_ORDER_TABLE = {}
+    ORDER_LOAD_TABLE = {}
+    CURRENT_ORDER_TABLE = {}
     ORDER_SIZE_TABLE = {}
 	LOAD_ONCE_TABLE = {}
     LOADING_FUNCTION_AMOUNT = 0
