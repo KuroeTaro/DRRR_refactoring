@@ -51,13 +51,13 @@ function update_load_scene_flash_in()
         -- 初始化update所需要的动画机  obj对应的FCT设为0
         init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_blink_opacity)
 
-        -- 下一个场景为 update_load_scene_loading
-        current_update_block = update_load_scene_loading
+        -- 下一个场景为 update_load_scene_general
+        current_update_block = update_load_scene_general
 
     end
 end
 
-function update_load_scene_loading()
+function update_load_scene_general()
     SCENE_TIMER = SCENE_TIMER + 1
     
     -- -- debug

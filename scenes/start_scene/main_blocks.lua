@@ -1,11 +1,11 @@
-function start_scene_flash_in()
+function update_start_scene_flash_in()
 
 end
 
-function start_scene_update()
+function update_start_scene_main()
 
 end
 
-function start_scene_flash_out()
+function update_start_scene_flash_out()
 
 end

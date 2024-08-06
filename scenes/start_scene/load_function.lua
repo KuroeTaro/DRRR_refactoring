@@ -15,9 +15,9 @@ function load_start_scene_prep()
     THREAD_ONCE_TABLE = {false,false,false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     ASSET_DATA_TABLE = {}   -- 保持为nil
     ORDER_LOAD_TABLE = {
-        start_scene_main_UI_load_function,
-        start_scene_main_UI_BG_load_function,
-        start_scene_sub_UI_load_function,
+        order_load_start_scene_main_UI,
+        order_load_start_scene_main_UI_BG,
+        order_load_start_scene_sub_UI,
     }    -- load function table
     CURRENT_ORDER_TABLE = {1,1,1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
     ORDER_SIZE_TABLE = {2,1,1}  -- 每个load function的最大值
@@ -32,72 +32,72 @@ end
 
 
 -- 分步骤将素材加载
-function start_scene_main_UI_load_function(load_order)
+function order_load_start_scene_main_UI(load_order)
     local switch = 
     {
         [1] = function()
             -- image_table以0开头 因为AE的帧数是以0开头设计的
 
             -- global use shape image
-            global_dabo_trig_image = love.graphics.newImage(ASSET_DATA_TABLE[1][1])
-            global_type_in_mark_image = love.graphics.newImage(ASSET_DATA_TABLE[1][2])
+            image_UI_start_scene_global_dabo_trig = love.graphics.newImage(ASSET_DATA_TABLE[1][1])
+            image_UI_start_scene_global_type_in_mark = love.graphics.newImage(ASSET_DATA_TABLE[1][2])
 
             -- up console text image
             -- single_person
-            up_console_text_image_table = {}
-            up_console_text_image_table[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
+            image_table_UI_start_scene_up_console_text = {}
+            image_table_UI_start_scene_up_console_text[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
             -- local_two_player
-            up_console_text_image_table[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][4])
+            image_table_UI_start_scene_up_console_text[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][4])
             -- adjustment_interface
-            up_console_text_image_table[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][5])
+            image_table_UI_start_scene_up_console_text[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][5])
             -- game_duretion
-            up_console_text_image_table[3] = love.graphics.newImage(ASSET_DATA_TABLE[1][6])
+            image_table_UI_start_scene_up_console_text[3] = love.graphics.newImage(ASSET_DATA_TABLE[1][6])
             -- close_this_game
-            up_console_text_image_table[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][7])
+            image_table_UI_start_scene_up_console_text[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][7])
             -- update_controller
-            up_console_text_image_table[5] = love.graphics.newImage(ASSET_DATA_TABLE[1][8])
+            image_table_UI_start_scene_up_console_text[5] = love.graphics.newImage(ASSET_DATA_TABLE[1][8])
 
 
             -- down console text image
             -- training_mode
-            down_console_text_image_table = {}
-            down_console_text_image_table[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][9])
+            image_table_UI_start_scene_down_console_text = {}
+            image_table_UI_start_scene_down_console_text[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][9])
             -- second_controller
-            down_console_text_image_table[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][10])
+            image_table_UI_start_scene_down_console_text[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][10])
             -- some_configuration
-            down_console_text_image_table[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][11])
+            image_table_UI_start_scene_down_console_text[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][11])
             -- time_management
-            down_console_text_image_table[3] = love.graphics.newImage(ASSET_DATA_TABLE[1][12])
+            image_table_UI_start_scene_down_console_text[3] = love.graphics.newImage(ASSET_DATA_TABLE[1][12])
             -- return_to_OS
-            down_console_text_image_table[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][13])
+            image_table_UI_start_scene_down_console_text[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][13])
             -- 2P_mode_available
-            down_console_text_image_table[5] = love.graphics.newImage(ASSET_DATA_TABLE[1][14])
+            image_table_UI_start_scene_down_console_text[5] = love.graphics.newImage(ASSET_DATA_TABLE[1][14])
             -- only_one_controller
-            down_console_text_image_table[6] = love.graphics.newImage(ASSET_DATA_TABLE[1][15])
+            image_table_UI_start_scene_down_console_text[6] = love.graphics.newImage(ASSET_DATA_TABLE[1][15])
             -- two_or_more_controller
-            down_console_text_image_table[7] = love.graphics.newImage(ASSET_DATA_TABLE[1][16])
+            image_table_UI_start_scene_down_console_text[7] = love.graphics.newImage(ASSET_DATA_TABLE[1][16])
 
 
             -- option text image
             -- training
-            option_text_image_table = {}
-            option_text_image_table[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][17])
+            image_table_UI_start_scene_option_text = {}
+            image_table_UI_start_scene_option_text[0] = love.graphics.newImage(ASSET_DATA_TABLE[1][17])
             -- 2P_matching
-            option_text_image_table[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][18])
+            image_table_UI_start_scene_option_text[1] = love.graphics.newImage(ASSET_DATA_TABLE[1][18])
             -- config
-            option_text_image_table[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][19])
+            image_table_UI_start_scene_option_text[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][19])
             -- record
-            option_text_image_table[3] = love.graphics.newImage(ASSET_DATA_TABLE[1][20])
+            image_table_UI_start_scene_option_text[3] = love.graphics.newImage(ASSET_DATA_TABLE[1][20])
             -- exit_to_OS
-            option_text_image_table[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][21])
+            image_table_UI_start_scene_option_text[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][21])
 
 
             -- option breath tag
-            breath_tag_image = love.graphics.newImage(ASSET_DATA_TABLE[1][22])
+            image_UI_start_scene_breath_tag = love.graphics.newImage(ASSET_DATA_TABLE[1][22])
 
 
             -- main logo
-            main_logo_image = love.graphics.newImage(ASSET_DATA_TABLE[1][23])
+            image_UI_start_scene_main_logo = love.graphics.newImage(ASSET_DATA_TABLE[1][23])
 
         end,
         [2] = function()
@@ -111,15 +111,15 @@ function start_scene_main_UI_load_function(load_order)
 
 end
 
-function start_scene_main_UI_BG_load_function(load_order)
+function order_load_start_scene_main_UI_BG(load_order)
     local switch = 
     {
         [1] = function()
-            BG_loop_image_table = {}
+            image_table_UI_start_scene_BG_loop = {}
             for i = 0,49 do
-                BG_loop_image_table[i] = love.graphics.newImage(ASSET_DATA_TABLE[2][i+1])
+                image_table_UI_start_scene_BG_loop[i] = love.graphics.newImage(ASSET_DATA_TABLE[2][i+1])
             end
-            shutter_image = love.graphics.newImage(ASSET_DATA_TABLE[2][51])
+            image_UI_start_scene_shutter = love.graphics.newImage(ASSET_DATA_TABLE[2][51])
         end,
     }
     local this_function = switch[load_order]
@@ -127,49 +127,49 @@ function start_scene_main_UI_BG_load_function(load_order)
 
 end
 
-function start_scene_sub_UI_load_function(load_order)
+function order_load_start_scene_sub_UI(load_order)
     local switch = 
     {
         [1] = function()
 
             -- resolution text in config resolution sub UI only
-            resolution_text_image_table = {}
+            image_table_UI_start_scene_resolution_text = {}
             -- 1280_x_720
-            resolution_text_image_table[0] = love.graphics.newImage(ASSET_DATA_TABLE[3][1])
+            image_table_UI_start_scene_resolution_text[0] = love.graphics.newImage(ASSET_DATA_TABLE[3][1])
             -- 1600_x_900
-            resolution_text_image_table[1] = love.graphics.newImage(ASSET_DATA_TABLE[3][2])
+            image_table_UI_start_scene_resolution_text[1] = love.graphics.newImage(ASSET_DATA_TABLE[3][2])
             -- 1920_x_1080
-            resolution_text_image_table[2] = love.graphics.newImage(ASSET_DATA_TABLE[3][3])
+            image_table_UI_start_scene_resolution_text[2] = love.graphics.newImage(ASSET_DATA_TABLE[3][3])
             -- 2560_x_1440
-            resolution_text_image_table[3] = love.graphics.newImage(ASSET_DATA_TABLE[3][4])
+            image_table_UI_start_scene_resolution_text[3] = love.graphics.newImage(ASSET_DATA_TABLE[3][4])
             -- 3840_x_2160
-            resolution_text_image_table[4] = love.graphics.newImage(ASSET_DATA_TABLE[3][5])
+            image_table_UI_start_scene_resolution_text[4] = love.graphics.newImage(ASSET_DATA_TABLE[3][5])
             -- select_res_text
-            select_res_text_image = love.graphics.newImage(ASSET_DATA_TABLE[3][6])
+            image_UI_start_scene_select_res_text = love.graphics.newImage(ASSET_DATA_TABLE[3][6])
 
 
             -- audio text in config audio sub UI only
-            audio_bar_image = love.graphics.newImage(ASSET_DATA_TABLE[3][7])
-            audio_config_text_image = love.graphics.newImage(ASSET_DATA_TABLE[3][8])
+            image_UI_start_scene_audio_bar = love.graphics.newImage(ASSET_DATA_TABLE[3][7])
+            image_UI_start_scene_audio_config_text = love.graphics.newImage(ASSET_DATA_TABLE[3][8])
 
 
             -- controller text in config controller sub UI only
-            controller_indi_text_image = love.graphics.newImage(ASSET_DATA_TABLE[3][9])
+            image_UI_start_scene_controller_indi_text = love.graphics.newImage(ASSET_DATA_TABLE[3][9])
 
 
             -- global config menu sub UI text
-            config_menu_text_image = love.graphics.newImage(ASSET_DATA_TABLE[3][10])
+            image_UI_start_scene_config_menu_text = love.graphics.newImage(ASSET_DATA_TABLE[3][10])
 
 
             -- global config menu sub UI shape
-            bar_mark_image = love.graphics.newImage(ASSET_DATA_TABLE[3][11])
+            image_UI_start_scene_bar_mark = love.graphics.newImage(ASSET_DATA_TABLE[3][11])
 
 
             -- record text in config record sub UI only
-            game_duration_text_image = love.graphics.newImage(ASSET_DATA_TABLE[3][12])
-            game_duration_number_image_table = {}
+            image_UI_start_scene_game_duration_text = love.graphics.newImage(ASSET_DATA_TABLE[3][12])
+            image_table_UI_start_scene_game_duration_number = {}
             for i = 13,22 do
-                game_duration_number_image_table[i-13] = love.graphics.newImage(ASSET_DATA_TABLE[3][i])
+                image_table_UI_start_scene_game_duration_number[i-13] = love.graphics.newImage(ASSET_DATA_TABLE[3][i])
             end
         end,
     }
@@ -182,35 +182,35 @@ end
 function unload_start_scene_image()
 
     -- main UI
-    global_dabo_trig = nil
-    global_type_in_mark = nil
-    up_console_text = nil
-    down_console_text = nil
-    option_text = nil
-    breath_tag = nil
-    main_logo = nil
+    image_UI_start_scene_global_dabo_trig = nil
+    image_UI_start_scene_global_type_in_mark = nil
+    image_table_UI_start_scene_up_console_text = nil
+    image_table_UI_start_scene_down_console_text = nil
+    image_table_UI_start_scene_option_text = nil
+    image_UI_start_scene_breath_tag = nil
+    image_UI_start_scene_main_logo = nil
 
     -- main UI BG shutter
-    BG_loop_image_table = nil
-    shutter_image = nil
+    image_table_UI_start_scene_BG_loop = nil
+    image_UI_start_scene_shutter = nil
 
     -- resolution sub scene
-    resolution_text_image_table = nil
-    select_res_text_image = nil
+    image_table_UI_start_scene_resolution_text = nil
+    image_UI_start_scene_select_res_text = nil
 
     -- audio sub scene
-    audio_bar_image = nil
-    audio_config_text_image = nil
+    image_UI_start_scene_audio_bar = nil
+    image_UI_start_scene_audio_config_text = nil
 
     -- controller device
-    controller_indi_text_image = nil
+    image_UI_start_scene_controller_indi_text = nil
 
     -- config global
-    config_menu_text_image = nil
-    bar_mark_image = nil
+    image_UI_start_scene_config_menu_text = nil
+    image_UI_start_scene_bar_mark = nil
 
     -- record
-    game_duration_text_image = nil
-    game_duration_number_image_table = nil
+    image_UI_start_scene_game_duration_text = nil
+    image_table_UI_start_scene_game_duration_number = nil
 
 end

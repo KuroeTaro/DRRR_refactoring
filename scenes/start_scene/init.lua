@@ -64,6 +64,6 @@ function unload_start_scene_all()
     unload_start_scene_asset_audio()
 end
 
-function start_scene_preset_animator()
+function preset_animator_start_scene()
     init_point_liner_anim_with(UI_start_scene_mid_obj,anim_start_scene_general_flash_in)
 end

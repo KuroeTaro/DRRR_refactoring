@@ -58,7 +58,7 @@ preset_animator 预设动画机
     -- preset_animator_disclaimer_and_logos_scene
     -- preset_animator_        disclaimer_and_logos_scene
     -- preset_animator前缀            所属场景名
-
+    
 
 order_load 分批次加载功能
     -- disclaimer_logos_scene_load_function
