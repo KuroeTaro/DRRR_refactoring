@@ -19,7 +19,6 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["disclaimer_flash_in"] = function() 
             -- 保持运行 flash in 动画
             local anim = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity
-            local prop = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity["prop"]
             point_liner_animator(obj,anim)
             -- 如果运行完毕 跳到update状态 结束的第0帧数就跳转到 update
             if get_point_linear_anim_end_state(obj,anim) then
@@ -47,7 +46,6 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["disclaimer_flash_out"] = function() 
             -- 保持运行falsh out 动画
             local anim = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity
-            local prop = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity["prop"]
             point_liner_animator(obj,anim)
             -- 如果动画运行完成或者按下D键 设置新的flash in 动画
             -- 将position对应disclaimer的值改为logo的值
@@ -66,7 +64,6 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["kuroe_taro_s_handicraft_logo_flash_in"] = function() 
             -- 保持运行falsh in 动画
             local anim = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity
-            local prop = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity["prop"]
             point_liner_animator(obj,anim)
             -- 如果flash in 动画运行完成 跳转到 update
             if get_point_linear_anim_end_state(obj,anim) then
@@ -95,7 +92,6 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["kuroe_taro_s_handicraft_logo_flash_out"] = function() 
             -- 保持运行flash out 动画
             local anim = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity
-            local prop = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity["prop"]
             point_liner_animator(obj,anim)
             -- 如果运行完成或者按下d键 跳转到新的flash in
             -- 初始化透明度 因为坐标相同所以不改 图片改为 love2d logo
@@ -111,7 +107,6 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["love_logo_flash_in"] = function() 
             -- 保持运行 flashi in 动画
             local anim = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity
-            local prop = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity["prop"]
             point_liner_animator(obj,anim)
             -- 如果动画运行完成 则跳转到update
             if get_point_linear_anim_end_state(obj,anim) then
@@ -140,7 +135,6 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["love_logo_flash_out"] = function() 
             -- 保持运行 flash out 动画
             local anim = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity
-            local prop = anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity["prop"]
             point_liner_animator(obj,anim)
             -- 跳转到end 用于检测
             if get_point_linear_anim_end_state(obj,anim) or command_state[1]["D"] == "Pressing" then

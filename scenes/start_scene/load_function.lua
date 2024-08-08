@@ -149,8 +149,8 @@ function order_load_start_scene_sub_UI(load_order)
 
 
             -- audio text in config audio sub UI only
-            image_UI_start_scene_audio_bar = love.graphics.newImage(ASSET_DATA_TABLE[3][7])
-            image_UI_start_scene_audio_config_text = love.graphics.newImage(ASSET_DATA_TABLE[3][8])
+            image_UI_start_scene_config_audio_bar = love.graphics.newImage(ASSET_DATA_TABLE[3][7])
+            image_UI_start_scene_config_audio_text = love.graphics.newImage(ASSET_DATA_TABLE[3][8])
 
 
             -- controller text in config controller sub UI only
@@ -199,8 +199,8 @@ function unload_start_scene_image()
     image_UI_start_scene_select_res_text = nil
 
     -- audio sub scene
-    image_UI_start_scene_audio_bar = nil
-    image_UI_start_scene_audio_config_text = nil
+    image_UI_start_scene_config_audio_bar = nil
+    image_UI_start_scene_config_audio_text = nil
 
     -- controller device
     image_UI_start_scene_controller_indi_text = nil

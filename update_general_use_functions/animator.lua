@@ -144,7 +144,7 @@ function point_liner_animator(obj,anim)
         current_time = 0
     end
 
-    if  key_frame_bool ~= nil then 
+    if  key_frame_bool ~= nil and anim["fix_type"] then 
         current_value = key_frame_bool[1]
     end
 

@@ -34,10 +34,16 @@ function update_load_scene_flash_in()
     run_table_order_load()
 
     -- 场景出口
+    -- SCENE_TIMER >= 7 是为了使得audio_UI_SFX_load_scene_start_load正常播放完
+    -- ******************************************
+    -- ******************************************
+    --  这是个将来需要研究的问题
+    -- ******************************************
+    -- ******************************************
     if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_load_scene_dabo_trig_flash_in_x) and 
     get_frame_anim_end_state(obj_UI_load_scene_type_in_mark,anim_UI_load_scene_type_in_mark_flash_in_opacity) and
     get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_load_scene_loading_text_flash_in_opacity) and
-    SCENE_TIMER >= 4 then
+    SCENE_TIMER >= 7 then
 
         -- 将SCENE_TIMER设为 0   
         -- 所有obj如果动画机正常运行应该处都处于正确的位置 不进行直接修改
