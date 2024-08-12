@@ -15,7 +15,7 @@
 -- anim["length"] = 3
 -- anim["loop"] = false
 
--- 声明的时候需要先init_point_liner_anim_with
+-- 声明的时候需要先init_point_linear_anim_with
 -- 确保动画机在声明时第0帧已经被运行(一般为保持当前值不变，初始化当前值)
 -- 此时LCT对应的数是1 这只能说明第1帧是下一个要被运行的帧数 并没有被实际运行
 -- 如果LCT = anim_length + 1 则说明动画的最后一帧已经被执行完成 可以以此为依据跳出当前代码块或者状态机状态
@@ -86,7 +86,7 @@ function get_frame_anim_end_state(obj,anim)
 end
 
 
--- point_liner_animator的示例
+-- point_linear_animator的示例
 -- obj = {175, 125, nil, 0, 1, 1, 0, 0}
 -- obj["width"] = 1248
 -- obj["height"] = 648
@@ -102,7 +102,7 @@ end
 -- anim["loop"] = false
 -- anim[x][1]表示当前点位置  anim[x][2]表示下一个点所在时间
 
--- 和其他动画机一样 声明的时候需要先init_point_liner_anim_with
+-- 和其他动画机一样 声明的时候需要先init_point_linear_anim_with
 -- 确保动画机在声明时第0帧已经被运行
 -- 此时LCT对应的数是1 这只能说明第1帧是下一个要被运行的帧数 并没有被实际运行
 -- 如果LCT = anim_length + 1 则说明动画的最后一帧已经被执行完成 可以以此为依据跳出当前代码块或者状态机状态
@@ -111,7 +111,7 @@ end
 
 -- 音频object 使用 不透明度作为音量
 
-function point_liner_animator(obj,anim)
+function point_linear_animator(obj,anim)
 
     local anim_change_prop = anim["prop"]
     local anim_length = anim["length"]
@@ -161,12 +161,12 @@ function point_liner_animator(obj,anim)
 
 end
 
-function init_point_liner_anim_with(obj,anim)
+function init_point_linear_anim_with(obj,anim)
     obj["LCT"][anim["prop"]] = 0
     obj["LCD"][anim["prop"]] = 0
-    point_liner_animator(obj,anim)
+    point_linear_animator(obj,anim)
 end
-function init_point_liner_anim_with_out(obj,anim)
+function init_point_linear_anim_with_out(obj,anim)
     obj["LCT"][anim["prop"]] = 0 
     obj["LCD"][anim["prop"]] = 0
 end

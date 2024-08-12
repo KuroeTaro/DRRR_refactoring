@@ -4,6 +4,8 @@ obj 对象
     -- obj_UI_disclaimer_and_logo_scene_singular
     -- obj_        UI_       disclaimer_and_logo_scene_       singular
     -- obj前缀   obj类型             所属场景名                 obj名称
+    -- 场景object
+    -- x y z opacity sx sy r f
 
 
 anim 动画

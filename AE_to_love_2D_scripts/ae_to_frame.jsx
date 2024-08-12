@@ -28,10 +28,10 @@ if (comp && comp instanceof CompItem) {
         for (var prop in properties) {
             var property = properties[prop];
             if (property && property.numKeys > 0) {
-                var animName = "anim_" + layer.name + "_****_" + prop;
+                var animName = "anim_" + "所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_" + prop;
                 var animData = {};
                 animData["length"] = Math.round(property.keyTime(property.numKeys) * comp.frameRate) - Math.round(property.keyTime(1) * comp.frameRate);
-                animData["loop_type"] = false;
+                animData["loop"] = false;
 
                 for (var k = 1; k <= property.numKeys; k++) {
                     var keyTime = Math.round(property.keyTime(k) * comp.frameRate);
@@ -68,7 +68,7 @@ if (comp && comp instanceof CompItem) {
                 // 写入文件
                 outputFile.writeln(animName + " = {}");
                 for (var key in animData) {
-                    if (key !== "length" && key !== "loop_type") {
+                    if (key !== "length" && key !== "loop") {
                         var nextKeyTimeValue = animData[key][1];
                         if (nextKeyTimeValue === null) {
                             nextKeyTimeValue = animData["length"];
@@ -92,7 +92,8 @@ if (comp && comp instanceof CompItem) {
                     outputFile.writeln(animName + '["prpty"] = ' + '7');
                 }
                 outputFile.writeln(animName + '["length"] = ' + animData["length"]);
-                outputFile.writeln(animName + '["loop_type"] = ' + animData["loop_type"]);
+                outputFile.writeln(animName + '["loop"] = ' + animData["loop"]);
+                outputFile.writeln(animName + '["fix_type"]');
                 outputFile.writeln('');
             }
         }

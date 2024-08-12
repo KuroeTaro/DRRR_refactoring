@@ -1,0 +1,11 @@
+anim_UI_frame_start_scene_option_text_twitch_x = {}
+anim_UI_frame_start_scene_option_text_twitch_x[0] = {704, 1}
+anim_UI_frame_start_scene_option_text_twitch_x[1] = {684, 2}
+anim_UI_frame_start_scene_option_text_twitch_x[2] = {684, 3}
+anim_UI_frame_start_scene_option_text_twitch_x[3] = {724, 4}
+anim_UI_frame_start_scene_option_text_twitch_x[4] = {684, 5}
+anim_UI_frame_start_scene_option_text_twitch_x[5] = {704, 5}
+anim_UI_frame_start_scene_option_text_twitch_x["prpty"] = 1
+anim_UI_frame_start_scene_option_text_twitch_x["length"] = 5
+anim_UI_frame_start_scene_option_text_twitch_x["loop"] = false
+anim_UI_frame_start_scene_option_text_twitch_x["fix_type"] = false

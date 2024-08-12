@@ -13,21 +13,21 @@ end
 
 
 function load_disclaimer_and_logos_scene_anim()
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity = {}
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity[0] = {0, 5}
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity[5] = {1, 5}
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity["prop"] = 4
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity["length"] = 5
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity["loop"] = false
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity["fix_type"] = true
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity = {}
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity[0] = {0, 5}
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity[5] = {1, 5}
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity["prop"] = 4
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity["length"] = 5
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity["loop"] = false
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity["fix_type"] = true
 
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity = {}
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity[0] = {1, 5}
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity[5] = {0, 5}
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity["prop"] = 4
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity["length"] = 5
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity["loop"] = false
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity["fix_type"] = true
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity = {}
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity[0] = {1, 5}
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity[5] = {0, 5}
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity["prop"] = 4
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity["length"] = 5
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity["loop"] = false
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity["fix_type"] = true
 
 end
 
@@ -45,8 +45,8 @@ end
 
 
 function unload_disclaimer_and_logos_scene_anim()
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_in_opacity = nil
-    anim_UI_point_liner_disclaimer_and_logos_scene_singular_flash_out_opacity = nil
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity = nil
+    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity = nil
 end
 
 
