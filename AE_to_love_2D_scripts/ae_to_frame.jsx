@@ -61,7 +61,7 @@ if (comp && comp instanceof CompItem) {
                         keyValue = property.valueAtTime(property.keyTime(k), false);
                     }
 
-                    keyValue = keyValue.toFixed(0);
+                    keyValue = keyValue.toFixed(2);
                     animData[keyTime] = [keyValue, nextKeyTime];
                 }
 

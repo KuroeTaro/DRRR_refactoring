@@ -10,7 +10,7 @@ function init_load_scene_obj()
     obj_UI_load_scene_loading_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_loading_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_loading_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_loading_text["state"] = "flash_in"
+    obj_UI_load_scene_loading_text["state"] = "default"
 
     obj_UI_load_scene_loading_text["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_loading_text["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
@@ -21,7 +21,7 @@ function init_load_scene_obj()
     obj_UI_load_scene_type_in_mark["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_type_in_mark["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_type_in_mark["state"] = "flash_in"
+    obj_UI_load_scene_type_in_mark["state"] = "default"
 
     obj_UI_load_scene_type_in_mark["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_type_in_mark["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
@@ -32,7 +32,7 @@ function init_load_scene_obj()
     obj_UI_load_scene_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_dabo_trig["state"] = "flash_in"
+    obj_UI_load_scene_dabo_trig["state"] = "default"
 
     obj_UI_load_scene_dabo_trig["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_dabo_trig["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
@@ -43,73 +43,73 @@ end
 function init_load_scene_anim()
     -- x y z opacity sx sy r f
     -- 1 2 3 4       5  6  7 8
-    anim_UI_point_linear_load_scene_loading_text_flash_in_opacity = {}
-    anim_UI_point_linear_load_scene_loading_text_flash_in_opacity[0] = 0
-    anim_UI_point_linear_load_scene_loading_text_flash_in_opacity[4] = 1
-    anim_UI_point_linear_load_scene_loading_text_flash_in_opacity["prop"] = 4
-    anim_UI_point_linear_load_scene_loading_text_flash_in_opacity["length"] = 4
-    anim_UI_point_linear_load_scene_loading_text_flash_in_opacity["loop"] = false
-    anim_UI_point_linear_load_scene_loading_text_flash_in_opacity["fix_type"] = true
+    anim_UI_frame_load_scene_loading_text_flash_in_opacity = {}
+    anim_UI_frame_load_scene_loading_text_flash_in_opacity[0] = 0
+    anim_UI_frame_load_scene_loading_text_flash_in_opacity[4] = 1
+    anim_UI_frame_load_scene_loading_text_flash_in_opacity["prop"] = 4
+    anim_UI_frame_load_scene_loading_text_flash_in_opacity["length"] = 4
+    anim_UI_frame_load_scene_loading_text_flash_in_opacity["loop"] = false
+    anim_UI_frame_load_scene_loading_text_flash_in_opacity["fix_type"] = true
 
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x = {}
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x[0] = 1350
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x[1] = 1320
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x[3] = 1360
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x["prop"] = 1
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x["length"] = 3
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x["loop"] = false
-    anim_UI_point_linear_load_scene_loading_text_flash_out_x["fix_type"] = true
+    anim_UI_frame_load_scene_loading_text_flash_out_x = {}
+    anim_UI_frame_load_scene_loading_text_flash_out_x[0] = 1350
+    anim_UI_frame_load_scene_loading_text_flash_out_x[1] = 1320
+    anim_UI_frame_load_scene_loading_text_flash_out_x[3] = 1360
+    anim_UI_frame_load_scene_loading_text_flash_out_x["prop"] = 1
+    anim_UI_frame_load_scene_loading_text_flash_out_x["length"] = 3
+    anim_UI_frame_load_scene_loading_text_flash_out_x["loop"] = false
+    anim_UI_frame_load_scene_loading_text_flash_out_x["fix_type"] = true
 
-    anim_UI_point_linear_load_scene_loading_text_flash_out_opacity = {}
-    anim_UI_point_linear_load_scene_loading_text_flash_out_opacity[0] = 1
-    anim_UI_point_linear_load_scene_loading_text_flash_out_opacity[5] = 0
-    anim_UI_point_linear_load_scene_loading_text_flash_out_opacity["prop"] = 4
-    anim_UI_point_linear_load_scene_loading_text_flash_out_opacity["length"] = 5
-    anim_UI_point_linear_load_scene_loading_text_flash_out_opacity["loop"] = false
-    anim_UI_point_linear_load_scene_loading_text_flash_out_opacity["fix_type"] = true
+    anim_UI_frame_load_scene_loading_text_flash_out_opacity = {}
+    anim_UI_frame_load_scene_loading_text_flash_out_opacity[0] = 1
+    anim_UI_frame_load_scene_loading_text_flash_out_opacity[5] = 0
+    anim_UI_frame_load_scene_loading_text_flash_out_opacity["prop"] = 4
+    anim_UI_frame_load_scene_loading_text_flash_out_opacity["length"] = 5
+    anim_UI_frame_load_scene_loading_text_flash_out_opacity["loop"] = false
+    anim_UI_frame_load_scene_loading_text_flash_out_opacity["fix_type"] = true
 
-    anim_UI_point_linear_load_scene_type_in_mark_flash_in_opacity = {}
-    anim_UI_point_linear_load_scene_type_in_mark_flash_in_opacity[0] = 0
-    anim_UI_point_linear_load_scene_type_in_mark_flash_in_opacity[4] = 1
-    anim_UI_point_linear_load_scene_type_in_mark_flash_in_opacity["prop"] = 4
-    anim_UI_point_linear_load_scene_type_in_mark_flash_in_opacity["length"] = 4
-    anim_UI_point_linear_load_scene_type_in_mark_flash_in_opacity["loop"] = false
-    anim_UI_point_linear_load_scene_type_in_mark_flash_in_opacity["fix_type"] = true
+    anim_UI_frame_load_scene_type_in_mark_flash_in_opacity = {}
+    anim_UI_frame_load_scene_type_in_mark_flash_in_opacity[0] = 0
+    anim_UI_frame_load_scene_type_in_mark_flash_in_opacity[4] = 1
+    anim_UI_frame_load_scene_type_in_mark_flash_in_opacity["prop"] = 4
+    anim_UI_frame_load_scene_type_in_mark_flash_in_opacity["length"] = 4
+    anim_UI_frame_load_scene_type_in_mark_flash_in_opacity["loop"] = false
+    anim_UI_frame_load_scene_type_in_mark_flash_in_opacity["fix_type"] = true
 
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity = {}
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity[0] = 1
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity[10] = 0
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity[20] = 1
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity["prop"] = 4
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity["length"] = 20
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity["loop"] = true
-    anim_UI_point_linear_load_scene_type_in_mark_blink_opacity["fix_type"] = true
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity = {}
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity[0] = 1
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity[10] = 0
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity[20] = 1
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity["prop"] = 4
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity["length"] = 20
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity["loop"] = true
+    anim_UI_frame_load_scene_type_in_mark_blink_opacity["fix_type"] = true
 
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x = {}
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x[0] = 1280
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x[2] = 1250
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x[4] = 1300
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x["prop"] = 1
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x["length"] = 4
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x["loop"] = false
-    anim_UI_point_linear_load_scene_dabo_trig_flash_in_x["fix_type"] = true
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x = {}
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x[0] = 1280
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x[2] = 1250
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x[4] = 1300
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x["prop"] = 1
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x["length"] = 4
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x["loop"] = false
+    anim_UI_frame_load_scene_dabo_trig_flash_in_x["fix_type"] = true
 
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x = {}
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x[0] = 1300
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x[1] = 1280
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x[3] = 1305
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x["prop"] = 1
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x["length"] = 3
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x["loop"] = false
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_x["fix_type"] = true
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x = {}
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x[0] = 1300
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x[1] = 1280
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x[3] = 1305
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x["prop"] = 1
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x["length"] = 3
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x["loop"] = false
+    anim_UI_frame_load_scene_dabo_trig_flash_out_x["fix_type"] = true
 
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_opacity = {}
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_opacity[0] = 1
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_opacity[5] = 0
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_opacity["prop"] = 4
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_opacity["length"] = 5
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_opacity["loop"] = false
-    anim_UI_point_linear_load_scene_dabo_trig_flash_out_opacity["fix_type"] = true
+    anim_UI_frame_load_scene_dabo_trig_flash_out_opacity = {}
+    anim_UI_frame_load_scene_dabo_trig_flash_out_opacity[0] = 1
+    anim_UI_frame_load_scene_dabo_trig_flash_out_opacity[5] = 0
+    anim_UI_frame_load_scene_dabo_trig_flash_out_opacity["prop"] = 4
+    anim_UI_frame_load_scene_dabo_trig_flash_out_opacity["length"] = 5
+    anim_UI_frame_load_scene_dabo_trig_flash_out_opacity["loop"] = false
+    anim_UI_frame_load_scene_dabo_trig_flash_out_opacity["fix_type"] = true
 
 end
 

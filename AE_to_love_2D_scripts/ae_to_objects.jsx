@@ -44,13 +44,17 @@ if (comp && comp instanceof CompItem) {
             // 添加PLT和PLD信息
             var widthOutput = layerName + '["width"] = ' + formatNumber(width) + '\n';
             var heightOutput = layerName + '["height"] = ' + formatNumber(height) + '\n';
-            var pltOutput = layerName + '["PLT"] = {0,0,0,0,0,0,0}\n';
-            var pldOutput = layerName + '["PLD"] = {0,0,0,0,0,0,0}\n';
+            var fctOutput = layerName + '["FCT"] = {0,0,0,0,0,0,0}\n';
+            var lctOutput = layerName + '["LCT"] = {0,0,0,0,0,0,0}\n';
+            var lcdOutput = layerName + '["LCD"] = {0,0,0,0,0,0,0}\n';
+            var stateOutput = layerName + '["state"] = "default"\n\n';
 
             outputFile.write(widthOutput);
             outputFile.write(heightOutput);
-            outputFile.write(pltOutput);
-            outputFile.write(pldOutput);
+            outputFile.write(fctOutput);
+            outputFile.write(lctOutput);
+            outputFile.write(lcdOutput);
+            outputFile.write(stateOutput);
         }
     }
 
