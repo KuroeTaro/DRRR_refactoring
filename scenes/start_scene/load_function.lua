@@ -24,9 +24,9 @@ function load_start_scene_prep()
     LOAD_ONCE_TABLE = {false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 3 -- 和线程数相同
 
-	NEXT_UPDATE_BLOCK = function() end
-	NEXT_DRAW_BLOCK = function() end
-    NEXT_PRESET_ANIMATOR = function() end
+	NEXT_UPDATE_BLOCK = update_start_scene_flash_in
+	NEXT_DRAW_BLOCK = draw_start_scene_general
+    NEXT_PRESET_ANIMATOR = preset_animator_start_scene
 
 end
 
@@ -171,6 +171,15 @@ function order_load_start_scene_sub_UI(load_order)
             for i = 13,22 do
                 image_table_UI_start_scene_game_duration_number[i-13] = love.graphics.newImage(ASSET_DATA_TABLE[3][i])
             end
+            image_table_UI_start_scene_time_indi_barcode_A = ASSET_DATA_TABLE[3][23]
+            image_table_UI_start_scene_time_indi_barcode_C = ASSET_DATA_TABLE[3][24]
+            image_table_UI_start_scene_time_indi_barcode_H = ASSET_DATA_TABLE[3][25]
+            image_table_UI_start_scene_time_indi_barcode_O = ASSET_DATA_TABLE[3][26]
+            image_table_UI_start_scene_time_indi_barcode_P = ASSET_DATA_TABLE[3][27]
+            image_table_UI_start_scene_time_indi_barcode_S = ASSET_DATA_TABLE[3][28]
+            image_table_UI_start_scene_time_indi_barcode_slash = ASSET_DATA_TABLE[3][29]
+            image_table_UI_start_scene_time_indi_barcode_Y = ASSET_DATA_TABLE[3][30]
+
         end,
     }
     local this_function = switch[load_order]

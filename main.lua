@@ -22,7 +22,11 @@ require("scenes/start_scene/init")
 require("scenes/start_scene/load_function")
 require("scenes/start_scene/main_blocks")
 require("scenes/start_scene/state_machine")
-require("scenes/start_scene/sub_blocks")
+require("scenes/start_scene/sub_blocks/config_audio_sub_blocks")
+require("scenes/start_scene/sub_blocks/config_controller_sub_blocks")
+require("scenes/start_scene/sub_blocks/config_main_sub_blocks")
+require("scenes/start_scene/sub_blocks/config_record_sub_blocks")
+require("scenes/start_scene/sub_blocks/config_resolution_sub_blocks")
 
 function love.run()
 	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
@@ -169,6 +173,7 @@ function love.load()
 
 	current_update_block = update_load_scene_load_pre_timer
 	current_draw_block = function() end
+	state_machine_tables = {}
 
 end    
 function love.update()

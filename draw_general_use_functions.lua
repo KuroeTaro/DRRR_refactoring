@@ -26,3 +26,19 @@ function draw_2d_image_table(obejct,image_table)
     love.graphics.draw(image_table[f],x,y,r,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
 end
+
+function draw_solid(obejct)
+    local alpha = love.graphics.newCanvas(1600,900)
+    local x = resolution_correction(0)
+    local y = resolution_correction(0)
+    local s = resolution_correction(1)
+    local rgb = obejct["rgb"]
+    
+    love.graphics.setCanvas(alpha)
+    love.graphics.polygon("fill", 0,0,1600,0,1600,900,0,900)
+    love.graphics.setCanvas()
+
+    love.graphics.setColor(rgb[1],rgb[2],rgb[3], object[4])
+    love.graphics.draw(alpha,x,y,0,s,s)
+    love.graphics.setColor(1, 1, 1, 1)
+end

@@ -1,31 +1,24 @@
 function load_start_scene_obj()
 
-    -- 主界面 全覆盖
-    obj_UI_start_scene_solid_color = {800, 450, nil, 0, 1, 1, 0}
+    -- 主界面 全覆盖 solid color
+    obj_UI_start_scene_solid_color = {0, 0, 0, 0, 1, 1, 0}
     obj_UI_start_scene_solid_color["width"] = 1600
     obj_UI_start_scene_solid_color["height"] = 900
     obj_UI_start_scene_solid_color["FCT"] = {0,0,0,0,0,0,0}
     obj_UI_start_scene_solid_color["LCT"] = {0,0,0,0,0,0,0}
     obj_UI_start_scene_solid_color["LCD"] = {0,0,0,0,0,0,0}
     obj_UI_start_scene_solid_color["state"] = "default"
+    obj_UI_start_scene_solid_color["rgb"] = {7/255,19/255,31/255}
 
 
     -- record
     obj_UI_start_scene_record_100h_plus_time_indi = {600, 510, nil, 0, 1, 1, 0}
-    obj_UI_start_scene_record_100h_plus_time_indi["width"] = 500
-    obj_UI_start_scene_record_100h_plus_time_indi["height"] = 50
+    obj_UI_start_scene_record_100h_plus_time_indi["width"] = 24
+    obj_UI_start_scene_record_100h_plus_time_indi["height"] = 32
     obj_UI_start_scene_record_100h_plus_time_indi["FCT"] = {0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["LCT"] = {0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["LCD"] = {0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["state"] = "default"
-
-    obj_UI_start_scene_record_100h_plus_time_indi_alpha = {0, 0, nil, 0, 1, 1, 0}
-    obj_UI_start_scene_record_100h_plus_time_indi_alpha["width"] = 500
-    obj_UI_start_scene_record_100h_plus_time_indi_alpha["height"] = 50
-    obj_UI_start_scene_record_100h_plus_time_indi_alpha["FCT"] = {0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_100h_plus_time_indi_alpha["LCT"] = {0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_100h_plus_time_indi_alpha["LCD"] = {0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_100h_plus_time_indi_alpha["state"] = "default"
 
     obj_UI_start_scene_record_dabo_trig = {550, 400, nil, 0, 1, 1, 0}
     obj_UI_start_scene_record_dabo_trig["width"] = 36
@@ -229,7 +222,7 @@ function load_start_scene_obj()
 
 
     -- shutter 次界面
-    obj_UI_start_scene_shutter = {800, 450, nil, 1, 1, 1, 0}
+    obj_UI_start_scene_shutter = {0, 0, nil, 1, 1, 1, 0}
     obj_UI_start_scene_shutter["width"] = 1600
     obj_UI_start_scene_shutter["height"] = 900
     obj_UI_start_scene_shutter["FCT"] = {0,0,0,0,0,0,0}
@@ -303,7 +296,7 @@ function load_start_scene_obj()
 
 
     -- 背景 主界面
-    obj_UI_start_scene_noise_bg = {800, 450, nil, 1, 1, 1, 0}
+    obj_UI_start_scene_noise_bg = {0, 0, nil, 1, 1, 1, 0}
     obj_UI_start_scene_noise_bg["width"] = 1600
     obj_UI_start_scene_noise_bg["height"] = 900
     obj_UI_start_scene_noise_bg["FCT"] = {0,0,0,0,0,0,0}
@@ -719,8 +712,12 @@ function unload_start_scene_all()
     unload_start_scene_image()
     unload_start_scene_asset_audio()
     
+    
+    state_machine_tables = {}
+
 end
 
 function preset_animator_start_scene()
-    init_point_linear_anim_with(UI_start_scene_mid_obj,anim_start_scene_general_flash_in)
+    init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
+    init_point_linear_anim_with(obj_UI_start_scene_noise_bg,anim_UI_frame_start_scene_noise_bg_loop_f)
 end
