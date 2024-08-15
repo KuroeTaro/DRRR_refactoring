@@ -29,14 +29,6 @@ image_data[12] = love.image.newCompressedData("asset/start_scene/record/game_dur
 for i = 13,22 do
     image_data[i] = love.image.newCompressedData("asset/start_scene/record/number/"..(i-13)..".dds")
 end
-
-image_data[23] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/A.dds")
-image_data[24] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/C.dds")
-image_data[25] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/H.dds")
-image_data[26] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/O.dds")
-image_data[27] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/P.dds")
-image_data[28] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/S.dds")
-image_data[29] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/slash.dds")
-image_data[30] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode/Y.dds")
+image_data[23] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode.dds")
 
 love.thread.getChannel( 'image_3' ):push( image_data )

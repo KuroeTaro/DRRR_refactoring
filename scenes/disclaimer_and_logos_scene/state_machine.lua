@@ -5,7 +5,6 @@
 -- 控制 disclaimer and logos scene 唯一一个 obj 更新的状态机
 function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
     local switch = {
-
         -- flash_in 之前的状态 如果达到第10帧则为下一个动画的第0帧 
         ["pre_disclaimer_flash_in"] = function() 
             -- 如果按D或者scene timer 到达10f则进入flash_in

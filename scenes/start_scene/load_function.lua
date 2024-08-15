@@ -171,14 +171,7 @@ function order_load_start_scene_sub_UI(load_order)
             for i = 13,22 do
                 image_table_UI_start_scene_game_duration_number[i-13] = love.graphics.newImage(ASSET_DATA_TABLE[3][i])
             end
-            image_table_UI_start_scene_time_indi_barcode_A = ASSET_DATA_TABLE[3][23]
-            image_table_UI_start_scene_time_indi_barcode_C = ASSET_DATA_TABLE[3][24]
-            image_table_UI_start_scene_time_indi_barcode_H = ASSET_DATA_TABLE[3][25]
-            image_table_UI_start_scene_time_indi_barcode_O = ASSET_DATA_TABLE[3][26]
-            image_table_UI_start_scene_time_indi_barcode_P = ASSET_DATA_TABLE[3][27]
-            image_table_UI_start_scene_time_indi_barcode_S = ASSET_DATA_TABLE[3][28]
-            image_table_UI_start_scene_time_indi_barcode_slash = ASSET_DATA_TABLE[3][29]
-            image_table_UI_start_scene_time_indi_barcode_Y = ASSET_DATA_TABLE[3][30]
+            image_table_UI_start_scene_time_indi_barcode = ASSET_DATA_TABLE[3][23]
 
         end,
     }
@@ -189,7 +182,6 @@ end
 
 
 function unload_start_scene_image()
-
     -- main UI
     image_UI_start_scene_global_dabo_trig = nil
     image_UI_start_scene_global_type_in_mark = nil
@@ -221,5 +213,6 @@ function unload_start_scene_image()
     -- record
     image_UI_start_scene_game_duration_text = nil
     image_table_UI_start_scene_game_duration_number = nil
+    image_table_UI_start_scene_time_indi_barcode = nil
 
 end

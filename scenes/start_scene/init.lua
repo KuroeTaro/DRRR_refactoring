@@ -1,5 +1,4 @@
 function load_start_scene_obj()
-
     -- 主界面 全覆盖 solid color
     obj_UI_start_scene_solid_color = {0, 0, 0, 0, 1, 1, 0}
     obj_UI_start_scene_solid_color["width"] = 1600
@@ -711,7 +710,6 @@ function unload_start_scene_all()
     unload_start_scene_anim()
     unload_start_scene_image()
     unload_start_scene_asset_audio()
-    
     
     state_machine_tables = {}
 
