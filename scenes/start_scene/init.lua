@@ -336,6 +336,14 @@ function load_start_scene_anim()
     anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["loop"] = false
     anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["fix_type"] = true
 
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity = {}
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity[0] = {0, 5}
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity[5] = {0.1, 5}
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["fix_type"] = true
+
     anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity = {}
     anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity[0] = {1, 5}
     anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity[5] = {0.5, 5}
@@ -354,75 +362,23 @@ function load_start_scene_anim()
     anim_UI_point_linear_start_scene_solid_flash_in_opacity["loop"] = false
     anim_UI_point_linear_start_scene_solid_flash_in_opacity["fix_type"] = true
 
-    -- 背景帧动画
-    anim_UI_frame_start_scene_noise_bg_loop_f = {}
-    anim_UI_frame_start_scene_noise_bg_loop_f[0] = 0
-    anim_UI_frame_start_scene_noise_bg_loop_f[6] = 1
-    anim_UI_frame_start_scene_noise_bg_loop_f[12] = 2
-    anim_UI_frame_start_scene_noise_bg_loop_f[18] = 3
-    anim_UI_frame_start_scene_noise_bg_loop_f[24] = 4
-    anim_UI_frame_start_scene_noise_bg_loop_f[30] = 5
-    anim_UI_frame_start_scene_noise_bg_loop_f[36] = 6
-    anim_UI_frame_start_scene_noise_bg_loop_f[42] = 7
-    anim_UI_frame_start_scene_noise_bg_loop_f[48] = 8
-    anim_UI_frame_start_scene_noise_bg_loop_f[54] = 9
-    anim_UI_frame_start_scene_noise_bg_loop_f[60] = 10
-    anim_UI_frame_start_scene_noise_bg_loop_f[66] = 11
-    anim_UI_frame_start_scene_noise_bg_loop_f[72] = 12
-    anim_UI_frame_start_scene_noise_bg_loop_f[78] = 13
-    anim_UI_frame_start_scene_noise_bg_loop_f[84] = 14
-    anim_UI_frame_start_scene_noise_bg_loop_f[90] = 15
-    anim_UI_frame_start_scene_noise_bg_loop_f[96] = 16
-    anim_UI_frame_start_scene_noise_bg_loop_f[102] = 17
-    anim_UI_frame_start_scene_noise_bg_loop_f[108] = 18
-    anim_UI_frame_start_scene_noise_bg_loop_f[114] = 19
-    anim_UI_frame_start_scene_noise_bg_loop_f[120] = 20
-    anim_UI_frame_start_scene_noise_bg_loop_f[126] = 21
-    anim_UI_frame_start_scene_noise_bg_loop_f[132] = 22
-    anim_UI_frame_start_scene_noise_bg_loop_f[138] = 23
-    anim_UI_frame_start_scene_noise_bg_loop_f[144] = 24
-    anim_UI_frame_start_scene_noise_bg_loop_f[150] = 25
-    anim_UI_frame_start_scene_noise_bg_loop_f[156] = 26
-    anim_UI_frame_start_scene_noise_bg_loop_f[162] = 27
-    anim_UI_frame_start_scene_noise_bg_loop_f[168] = 28
-    anim_UI_frame_start_scene_noise_bg_loop_f[174] = 29
-    anim_UI_frame_start_scene_noise_bg_loop_f[180] = 30
-    anim_UI_frame_start_scene_noise_bg_loop_f[186] = 31
-    anim_UI_frame_start_scene_noise_bg_loop_f[192] = 32
-    anim_UI_frame_start_scene_noise_bg_loop_f[198] = 33
-    anim_UI_frame_start_scene_noise_bg_loop_f[204] = 34
-    anim_UI_frame_start_scene_noise_bg_loop_f[210] = 35
-    anim_UI_frame_start_scene_noise_bg_loop_f[216] = 36
-    anim_UI_frame_start_scene_noise_bg_loop_f[222] = 37
-    anim_UI_frame_start_scene_noise_bg_loop_f[228] = 38
-    anim_UI_frame_start_scene_noise_bg_loop_f[234] = 39
-    anim_UI_frame_start_scene_noise_bg_loop_f[240] = 40
-    anim_UI_frame_start_scene_noise_bg_loop_f[246] = 41
-    anim_UI_frame_start_scene_noise_bg_loop_f[252] = 42
-    anim_UI_frame_start_scene_noise_bg_loop_f[258] = 43
-    anim_UI_frame_start_scene_noise_bg_loop_f[264] = 44
-    anim_UI_frame_start_scene_noise_bg_loop_f[270] = 45
-    anim_UI_frame_start_scene_noise_bg_loop_f[276] = 46
-    anim_UI_frame_start_scene_noise_bg_loop_f[282] = 47
-    anim_UI_frame_start_scene_noise_bg_loop_f[288] = 48
-    anim_UI_frame_start_scene_noise_bg_loop_f[294] = 49
-    anim_UI_frame_start_scene_noise_bg_loop_f[300] = 0
-    anim_UI_frame_start_scene_noise_bg_loop_f["prop"] = 8
-    anim_UI_frame_start_scene_noise_bg_loop_f["length"] = 300
-    anim_UI_frame_start_scene_noise_bg_loop_f["loop"] = true
-    anim_UI_frame_start_scene_noise_bg_loop_f["fix_type"] = true
-
     
     -- option
     -- option两边的呼吸灯的呼吸透明度变化
     anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity = {}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[0] = {0, 30}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[30] = {0.13, 90}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[90] = {0.67, 120}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[120] = {0.8, 150}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[150] = {0.67, 210}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[210] = {0.13, 240}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[240] = {0, 240}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[0] = {0.10, 15}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[15] = {0.13, 30}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[30] = {0.17, 60}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[60] = {0.37, 85}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[85] = {0.69, 100}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[100] = {0.78, 120}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[120] = {0.80, 140}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[140] = {0.78, 155}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[155] = {0.69, 180}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[180] = {0.37, 210}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[210] = {0.17, 225}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[225] = {0.13, 240}
+    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[240] = {0.10, 240}
     anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity["prop"] = 4
     anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity["length"] = 240
     anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity["loop"] = true
@@ -455,9 +411,9 @@ function load_start_scene_anim()
 
     -- console type in mark 闪烁动画
     anim_UI_frame_start_scene_console_type_in_mark_blink_opacity = {}
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[0] = {0.00, 20}
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[20] = {1.00, 40}
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[40] = {0.00, 40}
+    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[0] = 0
+    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[20] = 1
+    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[40] = 0
     anim_UI_frame_start_scene_console_type_in_mark_blink_opacity["prop"] = 4
     anim_UI_frame_start_scene_console_type_in_mark_blink_opacity["length"] = 40
     anim_UI_frame_start_scene_console_type_in_mark_blink_opacity["loop"] = true
@@ -719,6 +675,6 @@ end
 
 function preset_start_scene()
     init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
-    init_frame_anim_with(obj_UI_start_scene_noise_bg,anim_UI_frame_start_scene_noise_bg_loop_f)
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     love.audio.play(general_start_scene_FTR_high_audio)
 end

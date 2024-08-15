@@ -83,3 +83,6 @@ state_machine 状态机
     -- state_machine_         UI_          disclaimer_and_logo_scene_         singular
     -- state_machine前缀   所属Object类型           所属场景名               状态机所属obj名称
 
+sub_blocks
+    -- sub_blocks_         UI_          disclaimer_and_logo_scene_         singular
+    -- state_machine前缀   所属Object类型           所属场景名               状态机所属obj名称
