@@ -27,12 +27,12 @@ function draw_2d_image_table(obejct,image_table)
     love.graphics.setColor(1, 1, 1, 1)
 end
 
-function draw_solid(obejct)
+function draw_solid(object)
     local alpha = love.graphics.newCanvas(1600,900)
     local x = resolution_correction(0)
     local y = resolution_correction(0)
     local s = resolution_correction(1)
-    local rgb = obejct["rgb"]
+    local rgb = object["rgb"]
     
     love.graphics.setCanvas(alpha)
     love.graphics.polygon("fill", 0,0,1600,0,1600,900,0,900)

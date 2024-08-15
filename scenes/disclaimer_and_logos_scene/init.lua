@@ -78,6 +78,6 @@ function unload_disclaimer_and_logos_scene_all()
     state_machine_tables = {}
 end
 
-function preset_animator_disclaimer_and_logos_scene()
+function preset_disclaimer_and_logos_scene()
     -- 空功能用于填充标准化的load scene
 end

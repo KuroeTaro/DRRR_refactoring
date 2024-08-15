@@ -137,7 +137,7 @@ function update_load_scene_flash_out()
 
         -- 初始化下一个场景所需要动画机器
 
-        NEXT_PRESET_ANIMATOR()
+        NEXT_PRESET()
 
         -- 下一个场景为 在prep预存的下一场景指针
         current_update_block = NEXT_UPDATE_BLOCK

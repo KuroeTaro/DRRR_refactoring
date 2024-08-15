@@ -18,7 +18,7 @@ function load_disclaimer_logos_scene_prep()
 
 	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_general
 	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_general
-    NEXT_PRESET_ANIMATOR = preset_animator_disclaimer_and_logos_scene
+    NEXT_PRESET = preset_disclaimer_and_logos_scene
 
 end
 

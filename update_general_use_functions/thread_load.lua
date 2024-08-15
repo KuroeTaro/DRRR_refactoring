@@ -48,5 +48,5 @@ function init_order_load_table()
 
 	NEXT_UPDATE_BLOCK = nil
 	NEXT_DRAW_BLOCK = nil
-    NEXT_PRESET_ANIMATOR = nil
+    NEXT_PRESET = nil
 end

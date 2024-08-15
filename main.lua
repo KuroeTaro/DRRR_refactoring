@@ -161,7 +161,7 @@ function love.load()
 
 	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_general
 	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_general
-	NEXT_PRESET_ANIMATOR = preset_animator_disclaimer_and_logos_scene
+	NEXT_PRESET = preset_disclaimer_and_logos_scene
 
 	-- disclaimer_and_logos_scene
 	DISCLAIMER_AND_LOGOS_POSITION = {
@@ -187,6 +187,7 @@ function love.update()
 end
 function love.draw()
 	love.graphics.clear(7/255,19/255,31/255,1)
+	current_draw_block()
 	input_sys_draw()
 	love.graphics.print( "FRAMES_DRAWN", 0, 210)
     love.graphics.print( "FPS", 0, 225)
@@ -194,5 +195,4 @@ function love.draw()
 	love.graphics.print( FRAMES_DRAWN, 110, 210)
     love.graphics.print( FPS, 110, 225)
 	love.graphics.print( SCENE_TIMER, 110, 240)
-	current_draw_block()
 end
