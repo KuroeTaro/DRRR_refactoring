@@ -412,7 +412,7 @@ function load_start_scene_anim()
     anim_UI_frame_start_scene_noise_bg_loop_f["loop"] = true
     anim_UI_frame_start_scene_noise_bg_loop_f["fix_type"] = true
 
-
+    
     -- option
     -- option两边的呼吸灯的呼吸透明度变化
     anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity = {}
@@ -720,4 +720,5 @@ end
 function preset_start_scene()
     init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
     init_frame_anim_with(obj_UI_start_scene_noise_bg,anim_UI_frame_start_scene_noise_bg_loop_f)
+    love.audio.play(general_start_scene_FTR_high_audio)
 end
