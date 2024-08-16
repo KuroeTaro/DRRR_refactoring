@@ -71,81 +71,259 @@ end
 function update_start_scene_main()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
-    point_linear_animator(obj_UI_start_scene_breath_tag,anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity)
-    frame_animator(obj_UI_start_scene_console_type_in_mark,anim_UI_frame_start_scene_console_type_in_mark_blink_opacity)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
 
-end
+    -- 场景出口 option twitch left
+    if command_state[1]["Left"] == "Pressing" then 
+        -- 播放twitch音频
+        love.audio.play(SFX_start_scene_click_audio)
 
-function update_start_scene_option_twitch_update()
+        -- 轮转 option id
+        local last_option_id = OPTION_ID
+        if OPTION_ID == 0 then 
+            OPTION_ID = 4 
+        else 
+            OPTION_ID = OPTION_ID - 1
+        end
 
+        -- 轮转 CONSOLE TEXT
+        CONSOLE_TEXT_1_ID = OPTION_ID
+        CONSOLE_TEXT_2_ID = OPTION_ID
 
-end
+        -- option twitch 进入前属性 preset
+        obj_UI_start_scene_breath_tag[4] = 0
+        obj_UI_start_scene_console_dabo_trig[1] = 75
+        obj_UI_start_scene_console_dabo_trig[4] = 0
+        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[last_option_id + 1]
+        obj_UI_start_scene_console_type_in_mark[4] = 0
 
-function update_start_scene_sub_config_flash_in()
+        -- option twitch 进入前动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_console_dabo_trig,
+            anim_UI_frame_start_scene_console_dabo_trig_twtich_x
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_console_dabo_trig,
+            anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_option_text,
+            anim_UI_point_linear_start_scene_option_text_twitch_x
+        )
 
+        current_update_block = update_start_scene_option_twitch
 
-end
+    -- 场景出口 option twitch right
+    elseif command_state[1]["Right"] == "Pressing" then 
+        -- 播放twitch音频
+        love.audio.play(SFX_start_scene_click_audio)
 
-function update_start_scene_sub_config_update()
+        -- 轮转 option id
+        local last_option_id = OPTION_ID
+        if OPTION_ID == 4 then 
+            OPTION_ID = 0 
+        else 
+            OPTION_ID = OPTION_ID + 1
+        end
 
+        -- 轮转 CONSOLE TEXT
+        CONSOLE_TEXT_1_ID = OPTION_ID
+        CONSOLE_TEXT_2_ID = OPTION_ID
 
-end
+        -- option twitch 进入前属性 preset
+        obj_UI_start_scene_breath_tag[4] = 0
+        obj_UI_start_scene_console_dabo_trig[1] = 75
+        obj_UI_start_scene_console_dabo_trig[4] = 0
+        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[last_option_id + 1]
+        obj_UI_start_scene_console_type_in_mark[4] = 0
 
-function update_start_scene_sub_config_flash_out()
+        -- option twitch 进入前动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_console_dabo_trig,
+            anim_UI_frame_start_scene_console_dabo_trig_twtich_x
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_console_dabo_trig,
+            anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_option_text,
+            anim_UI_point_linear_start_scene_option_text_twitch_x
+        )
 
+        current_update_block = update_start_scene_option_twitch
 
-end
+    -- 场景出口 option 确认
+    elseif command_state[1]["D"] == "Pressing" then 
 
-function update_start_scene_sub_record_flash_in()
+    -- 场景出口 控制器更新
+    elseif (controller_state[0] ~= controller_state[2] or controller_state[1] ~= controller_state[3]) then 
+        -- 检测控制器具体变化 修改console text
+        if controller_state[0] == 0 and controller_state[1] == 0 then 
+            CONSOLE_TEXT_2_ID = 5
+        elseif controller_state[0] == 1 and controller_state[1] == 0 then 
+            CONSOLE_TEXT_2_ID = 6
+        elseif controller_state[0] == 1 and controller_state[1] == 1 then 
+            CONSOLE_TEXT_2_ID = 7
+        end
+        CONSOLE_TEXT_1_ID = 5
 
+        -- console twitch 进入前属性 preset
+        obj_UI_start_scene_console_dabo_trig[1] = 75
+        obj_UI_start_scene_console_dabo_trig[4] = 0
 
-end
+        -- console twitch 进入前动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_console_dabo_trig,
+            anim_UI_frame_start_scene_console_dabo_trig_twtich_x
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_console_dabo_trig,
+            anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        )
 
-function update_start_scene_sub_record_update()
+        -- 更新 update block
+        current_update_block = update_start_scene_console_twitch
 
-
-end
-
-function update_start_scene_sub_record_flash_out()
-
-
-end
-
-function update_start_scene_sub_config_audio_flash_in()
-
-
-end
-
-function update_start_scene_sub_config_audio_update()
-
-
-end
-
-function update_start_scene_sub_config_audio_flash_out()
-
-
-end
-
-function update_start_scene_sub_config_resolution_flash_in()
-
-
-end
-
-function update_start_scene_sub_config_resolution_flash_out()
-
-
-end
-
-function update_start_scene_sub_config_controller_flash_in()
-
-
-end
-
-function update_start_scene_sub_config_controller_flash_out()
-
+    end
 
 end
 
 function update_start_scene_flash_out()
 
+end
+
+
+
+
+function update_start_scene_option_twitch()
+    SCENE_TIMER = SCENE_TIMER + 1
+
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(obj_UI_start_scene_breath_tag,anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity)
+    frame_animator(obj_UI_start_scene_console_type_in_mark,anim_UI_frame_start_scene_console_type_in_mark_blink_opacity)
+    
+    point_linear_animator(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_frame_start_scene_console_dabo_trig_twtich_x
+    )
+    point_linear_animator(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_option_text,
+        anim_UI_point_linear_start_scene_option_text_twitch_x
+    )
+
+    -- 检测各个动画是否运行完成
+    local dabo_trig_x_anim_end = 
+    get_point_linear_anim_end_state(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_frame_start_scene_console_dabo_trig_twtich_x
+    )
+    local dabo_trig_opacity_anim_end = 
+    get_point_linear_anim_end_state(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    local option_text_anim_end = 
+    get_point_linear_anim_end_state(
+        obj_UI_start_scene_option_text,
+        anim_UI_point_linear_start_scene_option_text_twitch_x
+    )
+
+    -- 场景出口
+    if dabo_trig_x_anim_end and dabo_trig_opacity_anim_end and option_text_anim_end then
+
+        -- main 回归前动画 preset
+        obj_UI_start_scene_breath_tag[4] = 0.1
+        obj_UI_start_scene_console_dabo_trig[1] = 75
+        obj_UI_start_scene_console_dabo_trig[4] = 1
+        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[OPTION_ID + 1]
+        obj_UI_start_scene_option_text[8] = OPTION_ID
+        obj_UI_start_scene_console_type_in_mark[1] = CONSOLE_TYPE_IN_MARK_X_POSITION_TABLE[CONSOLE_TEXT_2_ID + 1]
+        obj_UI_start_scene_console_type_in_mark[4] = 0
+
+        obj_UI_start_scene_up_console_text[8] = CONSOLE_TEXT_1_ID
+        obj_UI_start_scene_down_console_text[8] = CONSOLE_TEXT_2_ID
+
+        -- 初始化main所需要的动画机
+        init_point_linear_anim_with(
+            obj_UI_start_scene_breath_tag,
+            anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+        )
+        init_frame_anim_with(
+            obj_UI_start_scene_console_type_in_mark,
+            anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+        )
+
+        -- 下一个场景为 update_load_scene_general
+        current_update_block = update_start_scene_main
+
+
+    end
+
+end
+
+function update_start_scene_console_twitch()
+    SCENE_TIMER = SCENE_TIMER + 1
+
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    point_linear_animator(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_frame_start_scene_console_dabo_trig_twtich_x
+    )
+    point_linear_animator(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+
+    -- 检测各个动画是否运行完成
+    local dabo_trig_x_anim_end = 
+    get_point_linear_anim_end_state(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_frame_start_scene_console_dabo_trig_twtich_x
+    )
+    local dabo_trig_opacity_anim_end = 
+    get_point_linear_anim_end_state(
+        obj_UI_start_scene_console_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+
+    -- 场景出口
+    if dabo_trig_x_anim_end and dabo_trig_opacity_anim_end then
+
+        -- main 回归前属性 preset
+        obj_UI_start_scene_console_dabo_trig[1] = 75
+        obj_UI_start_scene_console_dabo_trig[4] = 1
+        obj_UI_start_scene_console_type_in_mark[1] = CONSOLE_TYPE_IN_MARK_X_POSITION_TABLE[CONSOLE_TEXT_2_ID + 1]
+        obj_UI_start_scene_console_type_in_mark[4] = 0
+
+        obj_UI_start_scene_up_console_text[8] = CONSOLE_TEXT_1_ID
+        obj_UI_start_scene_down_console_text[8] = CONSOLE_TEXT_2_ID
+
+        -- main运行的动画没有断过 所以不进行动画preset
+
+        -- 下一个场景为 update_load_scene_general
+        current_update_block = update_start_scene_main
+
+
+    end
 end

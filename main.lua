@@ -22,11 +22,8 @@ require("scenes/start_scene/init")
 require("scenes/start_scene/load_function")
 require("scenes/start_scene/main_blocks")
 require("scenes/start_scene/state_machine")
-require("scenes/start_scene/sub_blocks/config_audio_sub_blocks")
-require("scenes/start_scene/sub_blocks/config_controller_sub_blocks")
-require("scenes/start_scene/sub_blocks/config_main_sub_blocks")
-require("scenes/start_scene/sub_blocks/config_record_sub_blocks")
-require("scenes/start_scene/sub_blocks/config_resolution_sub_blocks")
+require("scenes/start_scene/sub_blocks")
+
 
 function love.run()
 	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
@@ -79,11 +76,11 @@ function love.load()
 -------------------------------------------------
 	-- start_scene
 	PLAYER_NUMBER = 1
-	OPTION_ID = 1
-	SUB_SCENE_DABO_TRIG_ID = 1
-	BAR_MARK_ID = 1
-	CONSOLE_TEXT_1_ID = 1
-	CONSOLE_TEXT_2_ID = 1
+	OPTION_ID = 0
+	SUB_SCENE_DABO_TRIG_ID = 0
+	AUDIO_BAR_MARK_ID = 0
+	CONSOLE_TEXT_1_ID = 0
+	CONSOLE_TEXT_2_ID = 0
 
 
 	OPTION_TEXT_X_POSITION_TABLE = {700,657,728,723,684}

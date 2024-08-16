@@ -401,8 +401,8 @@ function load_start_scene_anim()
     -- console
     -- console dabo trig twitch x
     anim_UI_frame_start_scene_console_dabo_trig_twtich_x = {}
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x[0] = {75, 2}
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x[2] = {60, 4}
+    anim_UI_frame_start_scene_console_dabo_trig_twtich_x[0] = {75, 1}
+    anim_UI_frame_start_scene_console_dabo_trig_twtich_x[1] = {90, 4}
     anim_UI_frame_start_scene_console_dabo_trig_twtich_x[4] = {75, 4}
     anim_UI_frame_start_scene_console_dabo_trig_twtich_x["prop"] = 1
     anim_UI_frame_start_scene_console_dabo_trig_twtich_x["length"] = 4
