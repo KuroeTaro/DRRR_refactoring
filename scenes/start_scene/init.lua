@@ -608,21 +608,61 @@ end
 
 
 function load_start_scene_audio()
-    SFX_start_scene_click_audio = love.audio.newSource("asset/start_scene/audio/click.mp3","static")
-    SFX_start_scene_scene_out_audio = love.audio.newSource("asset/start_scene/audio/scene_out.mp3","static")
-    SFX_start_scene_to_main_audio = love.audio.newSource("asset/start_scene/audio/to_main.mp3","static")
-    SFX_start_scene_to_sub_audio = love.audio.newSource("asset/start_scene/audio/to_sub.mp3","static")
+    audio_SFX_start_scene_click = {1}
+    audio_SFX_start_scene_click["LCT"] = {0}
+    audio_SFX_start_scene_click["LCD"] = {0}
+    audio_SFX_start_scene_click["audio"] = love.audio.newSource("asset/start_scene/audio/click.mp3","static")
 
-    general_start_scene_FTR_high_audio = love.audio.newSource("asset/start_scene/audio/FTR_high.mp3","stream")
-    general_start_scene_FTR_low_audio = love.audio.newSource("asset/start_scene/audio/FTR_low.mp3","stream")
+    audio_SFX_start_scene_scene_out = {1}
+    audio_SFX_start_scene_scene_out["LCT"] = {0}
+    audio_SFX_start_scene_scene_out["LCD"] = {0}
+    audio_SFX_start_scene_scene_out["audio"] = love.audio.newSource("asset/start_scene/audio/scene_out.mp3","static")
 
-    update_SFX_volume(SFX_start_scene_click_audio)
-    update_SFX_volume(SFX_start_scene_scene_out_audio)
-    update_SFX_volume(SFX_start_scene_to_main_audio)
-    update_SFX_volume(SFX_start_scene_to_sub_audio)
+    audio_SFX_start_scene_to_main = {1}
+    audio_SFX_start_scene_to_main["LCT"] = {0}
+    audio_SFX_start_scene_to_main["LCD"] = {0}
+    audio_SFX_start_scene_to_main["audio"] = love.audio.newSource("asset/start_scene/audio/to_main.mp3","static")
 
-    update_BGM_volume(general_start_scene_FTR_high_audio)
-    general_start_scene_FTR_low_audio:setVolume(0)
+    audio_SFX_start_scene_to_sub = {1}
+    audio_SFX_start_scene_to_sub["LCT"] = {0}
+    audio_SFX_start_scene_to_sub["LCD"] = {0}
+    audio_SFX_start_scene_to_sub["audio"] = love.audio.newSource("asset/start_scene/audio/to_sub.mp3","static")
+
+    audio_BGM_start_scene_FTR_high = {1}
+    audio_BGM_start_scene_FTR_high["LCT"] = {0}
+    audio_BGM_start_scene_FTR_high["LCD"] = {0}
+    audio_BGM_start_scene_FTR_high["audio"] = love.audio.newSource("asset/start_scene/audio/FTR_high.mp3","stream")
+
+    audio_BGM_start_scene_FTR_low = {0}
+    audio_BGM_start_scene_FTR_low["LCT"] = {0}
+    audio_BGM_start_scene_FTR_low["LCD"] = {0}
+    audio_BGM_start_scene_FTR_low["audio"] = love.audio.newSource("asset/start_scene/audio/FTR_low.mp3","stream")
+
+    update_SFX_volume(audio_SFX_start_scene_click)
+    update_SFX_volume(audio_SFX_start_scene_scene_out)
+    update_SFX_volume(audio_SFX_start_scene_to_main)
+    update_SFX_volume(audio_SFX_start_scene_to_sub)
+
+    update_BGM_volume(audio_BGM_start_scene_FTR_high)
+    update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+    -- audio anim
+
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume = {}
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[0] = {0, 10}
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[10] = {1, 10}
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["prop"] = 1
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["length"] = 10
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["loop"] = false
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["fix_type"] = true
+
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume = {}
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume[0] = {1, 10}
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume[10] = {0, 10}
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["prop"] = 1
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["length"] = 10
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["loop"] = false
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["fix_type"] = true
 
 end
 
@@ -640,13 +680,13 @@ end
 
 
 function unload_start_scene_audio()
-    SFX_start_scene_click_audio = nil
-    SFX_start_scene_scene_out_audio = nil
-    SFX_start_scene_to_main_audio = nil
-    SFX_start_scene_to_sub_audio = nil
+    audio_SFX_start_scene_click = nil
+    audio_SFX_start_scene_scene_out = nil
+    audio_SFX_start_scene_to_main = nil
+    audio_SFX_start_scene_to_sub = nil
 
-    general_start_scene_FTR_high_audio = nil
-    general_start_scene_FTR_low_audio = nil
+    audio_BGM_start_scene_FTR_high = nil
+    audio_BGM_start_scene_FTR_low = nil
     
 end
 
@@ -676,5 +716,6 @@ end
 function preset_start_scene()
     init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
-    love.audio.play(general_start_scene_FTR_high_audio)
+    play_obj_audio(audio_BGM_start_scene_FTR_high)
+    
 end

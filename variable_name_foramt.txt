@@ -10,7 +10,7 @@ obj 对象
 
 anim 动画
     -- anim_disclaimer_and_logo_scene_general_flash_in_opacity
-    -- anim_          UI_        point_liner_      disclaimer_and_logo_scene_         general_             flash_in_        opacity
+    -- anim_          UI_        point_linear_      disclaimer_and_logo_scene_         general_             flash_in_        opacity
     -- anim前缀  所属Object类型     动画类型              所属场景名                  动画所属obj名称           动画名称        当前动画属性
     --                                                                     如果多个obj都是用此动画则为general
 

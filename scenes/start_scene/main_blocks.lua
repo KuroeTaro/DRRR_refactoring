@@ -83,10 +83,9 @@ function update_start_scene_main()
     -- 场景出口 option twitch left
     if command_state[1]["Left"] == "Pressing" then 
         -- 播放twitch音频
-        love.audio.play(SFX_start_scene_click_audio)
+        play_obj_audio(audio_SFX_start_scene_click)
 
         -- 轮转 option id
-        local last_option_id = OPTION_ID
         if OPTION_ID == 0 then 
             OPTION_ID = 4 
         else 
@@ -101,7 +100,8 @@ function update_start_scene_main()
         obj_UI_start_scene_breath_tag[4] = 0
         obj_UI_start_scene_console_dabo_trig[1] = 75
         obj_UI_start_scene_console_dabo_trig[4] = 0
-        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[last_option_id + 1]
+        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[OPTION_ID + 1]
+        obj_UI_start_scene_option_text[8] = OPTION_ID
         obj_UI_start_scene_console_type_in_mark[4] = 0
 
         -- option twitch 进入前动画 preset
@@ -123,10 +123,9 @@ function update_start_scene_main()
     -- 场景出口 option twitch right
     elseif command_state[1]["Right"] == "Pressing" then 
         -- 播放twitch音频
-        love.audio.play(SFX_start_scene_click_audio)
+        play_obj_audio(audio_SFX_start_scene_click)
 
         -- 轮转 option id
-        local last_option_id = OPTION_ID
         if OPTION_ID == 4 then 
             OPTION_ID = 0 
         else 
@@ -141,7 +140,8 @@ function update_start_scene_main()
         obj_UI_start_scene_breath_tag[4] = 0
         obj_UI_start_scene_console_dabo_trig[1] = 75
         obj_UI_start_scene_console_dabo_trig[4] = 0
-        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[last_option_id + 1]
+        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[OPTION_ID + 1]
+        obj_UI_start_scene_option_text[8] = OPTION_ID
         obj_UI_start_scene_console_type_in_mark[4] = 0
 
         -- option twitch 进入前动画 preset
@@ -162,6 +162,105 @@ function update_start_scene_main()
 
     -- 场景出口 option 确认
     elseif command_state[1]["D"] == "Pressing" then 
+        local switch = {
+            [0] = function()
+                SCENE_TIMER = 0
+
+                PLAYER_NUMBER = 1
+
+                -- 播放scene out audio
+                play_obj_audio(audio_SFX_start_scene_scene_out)
+
+                -- option select training 进入前属性 preset
+                obj_UI_start_scene_solid_color[4] = 0
+                    -- audio
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_SFX_volume(audio_SFX_start_scene_scene_out)
+
+                -- option select training 进入前动画 preset
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_solid_color,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                    -- audio
+                init_point_linear_anim_with(
+                    audio_BGM_start_scene_FTR_high,
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                )
+
+                play_obj_audio(audio_SFX_start_scene_scene_out)
+    
+                current_update_block = update_start_scene_flash_out
+
+            end,
+            [1] = function()
+                SCENE_TIMER = 0
+
+                PLAYER_NUMBER = 2
+
+                -- 播放scene out audio
+                play_obj_audio(audio_SFX_start_scene_scene_out)
+
+                -- option select training 进入前属性 preset
+                obj_UI_start_scene_solid_color[4] = 0
+                    -- audio
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_SFX_volume(audio_SFX_start_scene_scene_out)
+
+                -- option select training 进入前动画 preset
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_solid_color,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                    -- audio
+                init_point_linear_anim_with(
+                    audio_BGM_start_scene_FTR_high,
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                )
+
+                play_obj_audio(audio_SFX_start_scene_scene_out)
+    
+                current_update_block = update_start_scene_flash_out
+
+            end,
+            [2] = function()
+
+            end,
+            [3] = function()
+
+            end,
+            [4] = function()
+                SCENE_TIMER = 0
+                -- 播放scene out audio
+                play_obj_audio(audio_SFX_start_scene_scene_out)
+
+                -- option select training 进入前属性 preset
+                obj_UI_start_scene_solid_color[4] = 0
+                    -- audio
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_SFX_volume(audio_SFX_start_scene_scene_out)
+
+                -- option select training 进入前动画 preset
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_solid_color,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                    -- audio
+                init_point_linear_anim_with(
+                    audio_BGM_start_scene_FTR_high,
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                )
+
+                play_obj_audio(audio_SFX_start_scene_scene_out)
+    
+                current_update_block = update_start_scene_flash_out
+
+            end
+        }
+        local thisFunction = switch[OPTION_ID]
+        if thisFunction then 
+            thisFunction() 
+        end
 
     -- 场景出口 控制器更新
     elseif (controller_state[0] ~= controller_state[2] or controller_state[1] ~= controller_state[3]) then 
@@ -197,9 +296,22 @@ function update_start_scene_main()
 end
 
 function update_start_scene_flash_out()
+    SCENE_TIMER = SCENE_TIMER + 1
+    point_linear_animator(
+        obj_UI_start_scene_solid_color,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_high,
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+    )
+
+    -- 场景出口
+    if audio_SFX_start_scene_scene_out["audio"]:isPlaying() == false then
+        love.event.quit()
+    end
 
 end
-
 
 
 
@@ -247,8 +359,6 @@ function update_start_scene_option_twitch()
         obj_UI_start_scene_breath_tag[4] = 0.1
         obj_UI_start_scene_console_dabo_trig[1] = 75
         obj_UI_start_scene_console_dabo_trig[4] = 1
-        obj_UI_start_scene_option_text[1] = OPTION_TEXT_X_POSITION_TABLE[OPTION_ID + 1]
-        obj_UI_start_scene_option_text[8] = OPTION_ID
         obj_UI_start_scene_console_type_in_mark[1] = CONSOLE_TYPE_IN_MARK_X_POSITION_TABLE[CONSOLE_TEXT_2_ID + 1]
         obj_UI_start_scene_console_type_in_mark[4] = 0
 

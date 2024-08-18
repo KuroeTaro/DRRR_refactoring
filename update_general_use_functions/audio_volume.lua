@@ -23,9 +23,19 @@ function write_volume_config()
     love.filesystem.write('audio_config.lua',chunk)
 end
 
-function update_BGM_volume(src)
-    src:setVolume(BGM_volume/10)
+-- function update_BGM_volume(src)
+--     src:setVolume(BGM_volume/10)
+-- end
+-- function update_SFX_volume(src)
+--     src:setVolume(SFX_volume/10)
+-- end
+
+function update_BGM_volume(obj)
+    obj["audio"]:setVolume(obj[1]*BGM_volume/10)
 end
-function update_SFX_volume(src)
-    src:setVolume(SFX_volume/10)
+function update_SFX_volume(obj)
+    obj["audio"]:setVolume(obj[1]*SFX_volume/10)
+end
+function play_obj_audio(obj)
+    love.audio.play(obj["audio"])
 end
