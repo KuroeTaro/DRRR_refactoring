@@ -166,6 +166,7 @@ function update_start_scene_main()
             [0] = function()
                 SCENE_TIMER = 0
 
+                -- 训练模式
                 PLAYER_NUMBER = 1
 
                 -- 播放scene out audio
@@ -196,6 +197,7 @@ function update_start_scene_main()
             [1] = function()
                 SCENE_TIMER = 0
 
+                -- 双人游戏
                 PLAYER_NUMBER = 2
 
                 -- 播放scene out audio
@@ -305,6 +307,7 @@ function update_start_scene_flash_out()
         audio_BGM_start_scene_FTR_high,
         anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
     )
+    update_BGM_volume(audio_BGM_start_scene_FTR_high)
 
     -- 场景出口
     if audio_SFX_start_scene_scene_out["audio"]:isPlaying() == false then

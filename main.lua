@@ -72,6 +72,10 @@ function love.load()
 	volume_read_save()
 	game_duration_read_save()
 
+	CURRENT_SCENE = "loading"
+	NETWORK_MATCH_SIDE = 1
+	OTHER_SIDE = 2
+
 	-- non-character global variable
 -------------------------------------------------
 	-- start_scene

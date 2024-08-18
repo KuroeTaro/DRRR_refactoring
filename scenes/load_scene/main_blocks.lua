@@ -40,9 +40,7 @@ function update_load_scene_flash_in()
     --  这是个将来需要研究的问题
     -- ******************************************
     -- ******************************************
-    if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_in_x) and 
-    get_frame_anim_end_state(obj_UI_load_scene_type_in_mark,anim_UI_frame_load_scene_type_in_mark_flash_in_opacity) and
-    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_in_opacity) and
+    if audio_UI_SFX_load_scene_general_start_load["audio"]:isPlaying() == false and
     SCENE_TIMER >= 5 then
 
         -- 将SCENE_TIMER设为 0   

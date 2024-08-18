@@ -51,14 +51,31 @@ function input_update()
 
     --获得所有指令的现在布尔值和上一帧布尔值
     --并且赋值到current_command和perCommand
-    if joystick_list[1] == nil then 
-        get_current_command(current_command[1],joystick_list[1])
-        for i = 1,14 do
-            current_command[2][command_list[i]] = 0
+    if CURRENT_SCENE == "online_match_stage" then
+        if joystick_list[1] == nil then 
+            get_current_command(
+                current_command[NETWORK_MATCH_SIDE],
+                joystick_list[NETWORK_MATCH_SIDE]
+            )
+        else 
+            get_current_command(
+                current_command[NETWORK_MATCH_SIDE],
+                joystick_list[NETWORK_MATCH_SIDE]
+            )
         end
-    else 
-        get_current_command(current_command[1],joystick_list[1])
-        get_current_command(current_command[2],joystick_list[2])
+
+        -- current_command[OTHER_SIDE] 从网络接口获取
+
+    else
+        if joystick_list[1] == nil then 
+            get_current_command(current_command[1],joystick_list[1])
+            for i = 1,14 do
+                current_command[2][command_list[i]] = 0
+            end
+        else 
+            get_current_command(current_command[1],joystick_list[1])
+            get_current_command(current_command[2],joystick_list[2])
+        end
     end
 
     --输入状态机
