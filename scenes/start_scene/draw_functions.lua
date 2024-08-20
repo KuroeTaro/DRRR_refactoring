@@ -152,7 +152,8 @@ function draw_start_scene_record_sub_scene()
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_start_scene_sp_record_100h_plus_time_indi(
         obj_UI_start_scene_record_100h_plus_time_indi,
-        image_table_UI_start_scene_time_indi_barcode
+        image_table_UI_start_scene_time_indi_barcode,
+        image_table_UI_start_scene_time_indi_barcode_alpha
     )
     draw_2d_image(obj_UI_start_scene_record_dabo_trig,image_UI_start_scene_global_dabo_trig)
     draw_2d_image_table(obj_UI_start_scene_record_num_5,image_table_UI_start_scene_game_duration_number)
@@ -170,9 +171,10 @@ function draw_start_scene_record_sub_scene()
 end
 
 function draw_start_scene_sp_audio_bar_alpha(obj_light,obj_alpha,image)
-    local x = resolutionCorrection(obj_light[1])
-    local y = resolutionCorrection(obj_light[2])
-    local s = resolutionCorrection(obj_light[3])
+    local x = resolution_correction(obj_light[1])
+    local y = resolution_correction(obj_light[2])
+    local sx = resolution_correction(obj_light[5])
+    local sy = resolution_correction(obj_light[6])
 
     local res = love.graphics.newCanvas(232,16)
     love.graphics.setCanvas(res)
@@ -183,33 +185,29 @@ function draw_start_scene_sp_audio_bar_alpha(obj_light,obj_alpha,image)
     love.graphics.setCanvas()
     
     love.graphics.setColor(1, 1, 1, obj_light[4])
-    love.graphics.draw(res,x,y,0,s,s)
+    love.graphics.draw(res,x,y,0,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
 
 end
 
-function draw_start_scene_sp_record_100h_plus_time_indi(obj,image)
-    local alpha = love.graphics.newCanvas(300,30)
-    local x = resolutionCorrection(obj[1])
-    local y = resolutionCorrection(obj[2])
-    local s = resolutionCorrection(obj[3])
+function draw_start_scene_sp_record_100h_plus_time_indi(obj,image,alpha)
+    local x = resolution_correction(obj[1])
+    local y = resolution_correction(obj[2])
+    local sx = resolution_correction(obj[5])
+    local sy = resolution_correction(obj[6])
 
     local cto_25 = CTO_COUNT*25
 
-    love.graphics.setCanvas(alpha)
-    love.graphics.polygon("fill", 0,0,300,0,300,30,0,30)
-    love.graphics.setCanvas()
-
     local res = love.graphics.newCanvas(320,40)
     love.graphics.setCanvas(res)
-    love.graphics.draw(image,0,0)
+    love.graphics.draw(image)
     love.graphics.setBlendMode('multiply', 'premultiplied')
     love.graphics.draw(alpha,cto_25,0,0,-1,1)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
 
     love.graphics.setColor(1, 1, 1, obj[4])
-    love.graphics.draw(res,x,y,0,s,s)
+    love.graphics.draw(res,x,y,0,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
 
 end

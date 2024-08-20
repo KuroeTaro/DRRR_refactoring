@@ -30,5 +30,6 @@ for i = 13,22 do
     image_data[i] = love.image.newCompressedData("asset/start_scene/record/number/"..(i-13)..".dds")
 end
 image_data[23] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode.dds")
+image_data[24] = love.image.newCompressedData("asset/start_scene/record/time_indi_barcode_alpha.dds")
 
 love.thread.getChannel( 'image_3' ):push( image_data )

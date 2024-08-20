@@ -160,6 +160,8 @@ function love.load()
 	LOAD_ONCE_TABLE = {}
     LOADING_FUNCTION_AMOUNT = 0
 
+	LOADING_AUDIO_PLAYED_ONCE = false
+
 	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_general
 	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_general
 	NEXT_PRESET = preset_disclaimer_and_logos_scene

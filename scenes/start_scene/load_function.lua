@@ -171,7 +171,8 @@ function order_load_start_scene_sub_UI(load_order)
             for i = 13,22 do
                 image_table_UI_start_scene_game_duration_number[i-13] = love.graphics.newImage(ASSET_DATA_TABLE[3][i])
             end
-            image_table_UI_start_scene_time_indi_barcode = ASSET_DATA_TABLE[3][23]
+            image_table_UI_start_scene_time_indi_barcode = love.graphics.newImage(ASSET_DATA_TABLE[3][23])
+            image_table_UI_start_scene_time_indi_barcode_alpha = love.graphics.newImage(ASSET_DATA_TABLE[3][24])
 
         end,
     }

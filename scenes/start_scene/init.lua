@@ -13,8 +13,8 @@ function load_start_scene_obj()
     -- record
     -- x y z opacity sx sy r f
     obj_UI_start_scene_record_100h_plus_time_indi = {600, 510, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_100h_plus_time_indi["width"] = 24
-    obj_UI_start_scene_record_100h_plus_time_indi["height"] = 32
+    obj_UI_start_scene_record_100h_plus_time_indi["width"] = 320
+    obj_UI_start_scene_record_100h_plus_time_indi["height"] = 40
     obj_UI_start_scene_record_100h_plus_time_indi["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["LCD"] = {0,0,0,0,0,0,0,0}
@@ -204,7 +204,7 @@ function load_start_scene_obj()
 
 
     -- config main
-    obj_UI_start_scene_config_menu_dabo_trig = {590, 495, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_menu_dabo_trig = {590, 390, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_menu_dabo_trig["width"] = 36
     obj_UI_start_scene_config_menu_dabo_trig["height"] = 16
     obj_UI_start_scene_config_menu_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
@@ -212,7 +212,7 @@ function load_start_scene_obj()
     obj_UI_start_scene_config_menu_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_dabo_trig["state"] = "default"
 
-    obj_UI_start_scene_config_menu_text = {-415, -10, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_menu_text = {640, 390, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_menu_text["width"] = 320
     obj_UI_start_scene_config_menu_text["height"] = 120
     obj_UI_start_scene_config_menu_text["FCT"] = {0,0,0,0,0,0,0,0}
@@ -649,18 +649,18 @@ function load_start_scene_audio()
     -- audio anim
 
     anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume = {}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[0] = {0, 10}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[10] = {1, 10}
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[0] = {0, 5}
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[5] = {1, 5}
     anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["length"] = 10
+    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["length"] = 5
     anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["loop"] = false
     anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["fix_type"] = true
 
     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume = {}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume[0] = {1, 10}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume[10] = {0, 10}
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume[0] = {1, 5}
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume[5] = {0, 5}
     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["length"] = 10
+    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["length"] = 5
     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["loop"] = false
     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume["fix_type"] = true
 
@@ -717,5 +717,6 @@ function preset_start_scene()
     init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     play_obj_audio(audio_BGM_start_scene_FTR_high)
+    play_obj_audio(audio_BGM_start_scene_FTR_low)
     
 end

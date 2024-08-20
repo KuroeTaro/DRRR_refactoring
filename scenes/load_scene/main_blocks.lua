@@ -33,6 +33,14 @@ function update_load_scene_flash_in()
     -- 加载图像的实际线程功能
     run_table_order_load()
 
+    if audio_UI_SFX_load_scene_general_start_load["audio"]:isPlaying() == false and 
+    audio_UI_SFX_load_scene_general_loading["audio"]:isPlaying() == false  and
+    LOADING_AUDIO_PLAYED_ONCE == false then
+        play_obj_audio(audio_UI_SFX_load_scene_general_loading)
+        LOADING_AUDIO_PLAYED_ONCE = true
+    end
+
+
     -- 场景出口
     -- SCENE_TIMER >= 7 是为了使得audio_UI_SFX_load_scene_start_load正常播放完
     -- ******************************************
@@ -49,7 +57,11 @@ function update_load_scene_flash_in()
         SCENE_TIMER = 0
 
         -- 改变audio
-        play_obj_audio(audio_UI_SFX_load_scene_general_loading)
+        if audio_UI_SFX_load_scene_general_loading["audio"]:isPlaying() == false and
+        LOADING_AUDIO_PLAYED_ONCE == false then
+            play_obj_audio(audio_UI_SFX_load_scene_general_loading)
+            LOADING_AUDIO_PLAYED_ONCE = true
+        end
 
         -- 初始化update所需要的动画机  obj对应的FCT设为0
         init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_frame_load_scene_type_in_mark_blink_opacity)
@@ -159,6 +171,7 @@ function load_scene_prep_routine()
 
     -- 将SCENE_TIMER设为 0   所有obj的当前数据（ 场景时间 = 20 动画时间 = 0）load_scene的AE文件为准进行直接修改
     SCENE_TIMER = 0
+    LOADING_AUDIO_PLAYED_ONCE = false
     obj_UI_load_scene_dabo_trig[4] = 1
 
     -- 初始化flash_in所需要的动画机  obj对应的FCT设为0

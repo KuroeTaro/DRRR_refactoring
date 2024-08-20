@@ -183,13 +183,12 @@ function update_start_scene_main()
                     obj_UI_start_scene_solid_color,
                     anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
                 )
+
                     -- audio
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
                     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
                 )
-
-                play_obj_audio(audio_SFX_start_scene_scene_out)
     
                 current_update_block = update_start_scene_flash_out
 
@@ -203,32 +202,143 @@ function update_start_scene_main()
                 -- 播放scene out audio
                 play_obj_audio(audio_SFX_start_scene_scene_out)
 
-                -- option select training 进入前属性 preset
+                -- option select matching 进入前属性 preset
                 obj_UI_start_scene_solid_color[4] = 0
                     -- audio
                 update_BGM_volume(audio_BGM_start_scene_FTR_high)
                 update_SFX_volume(audio_SFX_start_scene_scene_out)
 
-                -- option select training 进入前动画 preset
+                -- option select matching 进入前动画 preset
                 init_point_linear_anim_with(
                     obj_UI_start_scene_solid_color,
                     anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
                 )
+
                     -- audio
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
                     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
                 )
-
-                play_obj_audio(audio_SFX_start_scene_scene_out)
     
                 current_update_block = update_start_scene_flash_out
 
             end,
             [2] = function()
+                SCENE_TIMER = 0
+                -- 播放scene out to sub
+                play_obj_audio(audio_SFX_start_scene_to_sub)
+
+                -- option select config 进入前属性 preset
+                obj_UI_start_scene_shutter[4] = 0
+                obj_UI_start_scene_config_menu_dabo_trig[4] = 0
+                obj_UI_start_scene_config_menu_text[4] = 0
+                    -- audio
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+                -- option select config 进入前动画 preset
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_shutter,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_config_menu_dabo_trig,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_config_menu_text,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+
+                    -- audio
+                init_point_linear_anim_with(
+                    audio_BGM_start_scene_FTR_high,
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                )
+                init_point_linear_anim_with(
+                    audio_BGM_start_scene_FTR_low,
+                    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+                )
+
+                current_update_block = update_start_scene_config_flash_in
+                current_draw_block = draw_start_scene_config_sub_scene
 
             end,
             [3] = function()
+                SCENE_TIMER = 0
+                -- 播放scene out to sub
+                play_obj_audio(audio_SFX_start_scene_to_sub)
+
+                -- option select record 进入前属性 preset
+                obj_UI_start_scene_shutter[4] = 0
+                obj_UI_start_scene_record_dabo_trig[4] = 0
+                obj_UI_start_scene_record_game_duration_text[4] = 0
+                obj_UI_start_scene_record_num_0[4] = 0
+                obj_UI_start_scene_record_num_1[4] = 0
+                obj_UI_start_scene_record_num_2[4] = 0
+                obj_UI_start_scene_record_num_3[4] = 0
+                obj_UI_start_scene_record_num_4[4] = 0
+                obj_UI_start_scene_record_num_5[4] = 0
+                obj_UI_start_scene_record_100h_plus_time_indi[4] = 0
+
+                    -- audio
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+                -- option select record 进入前动画 preset
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_shutter,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_dabo_trig,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_game_duration_text,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_num_0,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_num_1,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_num_2,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_num_3,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_num_4,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_num_5,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+                init_point_linear_anim_with(
+                    obj_UI_start_scene_record_100h_plus_time_indi,
+                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                )
+
+                    -- audio
+                init_point_linear_anim_with(
+                    audio_BGM_start_scene_FTR_high,
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                )
+                init_point_linear_anim_with(
+                    audio_BGM_start_scene_FTR_low,
+                    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+                )
+
+                current_update_block = update_start_scene_record_flash_in
+                current_draw_block = draw_start_scene_record_sub_scene
 
             end,
             [4] = function()
@@ -252,8 +362,6 @@ function update_start_scene_main()
                     audio_BGM_start_scene_FTR_high,
                     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
                 )
-
-                play_obj_audio(audio_SFX_start_scene_scene_out)
     
                 current_update_block = update_start_scene_flash_out
 
@@ -291,7 +399,7 @@ function update_start_scene_main()
         )
 
         -- 更新 update block
-        current_update_block = update_start_scene_console_twitch
+        current_update_block = update_start_scene_only_console_twitch
 
     end
 
@@ -317,7 +425,7 @@ function update_start_scene_flash_out()
 end
 
 
-
+-- option twitch
 function update_start_scene_option_twitch()
     SCENE_TIMER = SCENE_TIMER + 1
 
@@ -386,7 +494,7 @@ function update_start_scene_option_twitch()
 
 end
 
-function update_start_scene_console_twitch()
+function update_start_scene_only_console_twitch()
     SCENE_TIMER = SCENE_TIMER + 1
 
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
@@ -439,4 +547,124 @@ function update_start_scene_console_twitch()
 
 
     end
+end
+
+
+-- config
+function update_start_scene_config_flash_in()
+    SCENE_TIMER = SCENE_TIMER + 1
+    -- flash in 动画
+    point_linear_animator(
+        obj_UI_start_scene_shutter,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_text,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+        -- audio
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_high,
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+    )
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_low,
+        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+    )
+    update_BGM_volume(audio_BGM_start_scene_FTR_high)
+    update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        -- 更新 update block
+        current_update_block = update_start_scene_config_main
+
+    end
+
+end
+
+function update_start_scene_config_main()
+
+end
+
+function update_start_scene_config_flash_out()
+
+end
+
+
+-- record
+function update_start_scene_record_flash_in()
+    SCENE_TIMER = SCENE_TIMER + 1
+
+    -- flash in 动画
+    point_linear_animator(
+        obj_UI_start_scene_shutter,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_game_duration_text,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_0,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_1,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_2,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_3,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_4,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_5,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_100h_plus_time_indi,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+
+        -- audio
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_high,
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+    )
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_low,
+        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+    )
+
+    -- 场景出口
+    if SCENE_TIMER >=5 then
+        SCENE_TIMER = 0
+        -- 更新 update block
+        current_update_block = update_start_scene_record_main
+    end
+end
+
+function update_start_scene_record_main()
+
+end
+
+function update_start_scene_record_flash_out()
+
 end
