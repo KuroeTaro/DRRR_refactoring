@@ -62,12 +62,12 @@ function draw_start_scene_config_audio_sub_scene()
     draw_2d_image(obj_UI_start_scene_config_audio_SFX_bar_gauge,image_UI_start_scene_config_audio_bar)
     draw_start_scene_sp_audio_bar_alpha(
         obj_UI_start_scene_config_audio_BGM_bar_light,
-        obj_UI_start_scene_config_audio_BGM_bar_alpha,
+        BGM_volume,
         image_UI_start_scene_config_audio_bar
     )
     draw_start_scene_sp_audio_bar_alpha(
         obj_UI_start_scene_config_audio_SFX_bar_light,
-        obj_UI_start_scene_config_audio_SFX_bar_alpha,
+        SFX_volume,
         image_UI_start_scene_config_audio_bar
     )
     draw_2d_image(obj_UI_start_scene_config_audio_text,image_UI_start_scene_config_audio_text)
@@ -152,8 +152,7 @@ function draw_start_scene_record_sub_scene()
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_start_scene_sp_record_100h_plus_time_indi(
         obj_UI_start_scene_record_100h_plus_time_indi,
-        image_table_UI_start_scene_time_indi_barcode,
-        image_table_UI_start_scene_time_indi_barcode_alpha
+        image_table_UI_start_scene_time_indi_barcode
     )
     draw_2d_image(obj_UI_start_scene_record_dabo_trig,image_UI_start_scene_global_dabo_trig)
     draw_2d_image_table(obj_UI_start_scene_record_num_5,image_table_UI_start_scene_game_duration_number)
@@ -170,17 +169,21 @@ function draw_start_scene_record_sub_scene()
 
 end
 
-function draw_start_scene_sp_audio_bar_alpha(obj_light,obj_alpha,image)
+function draw_start_scene_sp_audio_bar_alpha(obj_light,volume,image)
     local x = resolution_correction(obj_light[1])
     local y = resolution_correction(obj_light[2])
     local sx = resolution_correction(obj_light[5])
     local sy = resolution_correction(obj_light[6])
 
+    local volume_23 = volume*23
+
     local res = love.graphics.newCanvas(232,16)
+    local alpha = love.graphics.newCanvas(232,16)
+
     love.graphics.setCanvas(res)
-    love.graphics.draw(image,0,0)
+    love.graphics.draw(image)
     love.graphics.setBlendMode('multiply', 'premultiplied')
-    love.graphics.draw(image,obj_alpha[1],obj_alpha[2])
+    love.graphics.draw(alpha,volume_23)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
     
@@ -190,7 +193,7 @@ function draw_start_scene_sp_audio_bar_alpha(obj_light,obj_alpha,image)
 
 end
 
-function draw_start_scene_sp_record_100h_plus_time_indi(obj,image,alpha)
+function draw_start_scene_sp_record_100h_plus_time_indi(obj,image)
     local x = resolution_correction(obj[1])
     local y = resolution_correction(obj[2])
     local sx = resolution_correction(obj[5])
@@ -199,15 +202,16 @@ function draw_start_scene_sp_record_100h_plus_time_indi(obj,image,alpha)
     local cto_25 = CTO_COUNT*25
 
     local res = love.graphics.newCanvas(320,40)
+    local alpha = love.graphics.newCanvas(320,40)
     love.graphics.setCanvas(res)
     love.graphics.draw(image)
     love.graphics.setBlendMode('multiply', 'premultiplied')
-    love.graphics.draw(alpha,cto_25,0,0,-1,1)
+    love.graphics.draw(alpha,cto_25)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
 
     love.graphics.setColor(1, 1, 1, obj[4])
     love.graphics.draw(res,x,y,0,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
-
+    
 end

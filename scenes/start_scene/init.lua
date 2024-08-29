@@ -28,39 +28,15 @@ function load_start_scene_obj()
     obj_UI_start_scene_record_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_dabo_trig["state"] = "default"
 
-    obj_UI_start_scene_record_num_5 = {600, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_5["width"] = 12
-    obj_UI_start_scene_record_num_5["height"] = 16
-    obj_UI_start_scene_record_num_5["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_5["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_5["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_5["state"] = "default"
+    obj_UI_start_scene_record_num_0 = {600, 425, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_num_0["width"] = 12
+    obj_UI_start_scene_record_num_0["height"] = 16
+    obj_UI_start_scene_record_num_0["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_0["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_0["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_0["state"] = "default"
 
-    obj_UI_start_scene_record_num_4 = {613, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_4["width"] = 12
-    obj_UI_start_scene_record_num_4["height"] = 16
-    obj_UI_start_scene_record_num_4["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_4["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_4["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_4["state"] = "default"
-
-    obj_UI_start_scene_record_num_3 = {635, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_3["width"] = 12
-    obj_UI_start_scene_record_num_3["height"] = 16
-    obj_UI_start_scene_record_num_3["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_3["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_3["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_3["state"] = "default"
-
-    obj_UI_start_scene_record_num_2 = {648, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_2["width"] = 12
-    obj_UI_start_scene_record_num_2["height"] = 16
-    obj_UI_start_scene_record_num_2["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_2["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_2["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_2["state"] = "default"
-
-    obj_UI_start_scene_record_num_1 = {671, 425, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_num_1 = {613, 425, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_record_num_1["width"] = 12
     obj_UI_start_scene_record_num_1["height"] = 16
     obj_UI_start_scene_record_num_1["FCT"] = {0,0,0,0,0,0,0,0}
@@ -68,13 +44,37 @@ function load_start_scene_obj()
     obj_UI_start_scene_record_num_1["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_1["state"] = "default"
 
-    obj_UI_start_scene_record_num_0 = {684, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_0["width"] = 12
-    obj_UI_start_scene_record_num_0["height"] = 16
-    obj_UI_start_scene_record_num_0["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_0["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_0["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_0["state"] = "default"
+    obj_UI_start_scene_record_num_2 = {635, 425, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_num_2["width"] = 12
+    obj_UI_start_scene_record_num_2["height"] = 16
+    obj_UI_start_scene_record_num_2["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_2["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_2["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_2["state"] = "default"
+
+    obj_UI_start_scene_record_num_3 = {648, 425, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_num_3["width"] = 12
+    obj_UI_start_scene_record_num_3["height"] = 16
+    obj_UI_start_scene_record_num_3["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_3["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_3["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_3["state"] = "default"
+
+    obj_UI_start_scene_record_num_4 = {671, 425, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_num_4["width"] = 12
+    obj_UI_start_scene_record_num_4["height"] = 16
+    obj_UI_start_scene_record_num_4["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_4["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_4["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_4["state"] = "default"
+
+    obj_UI_start_scene_record_num_5 = {684, 425, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_num_5["width"] = 12
+    obj_UI_start_scene_record_num_5["height"] = 16
+    obj_UI_start_scene_record_num_5["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_5["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_5["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_5["state"] = "default"
 
     obj_UI_start_scene_record_game_duration_text = {600, 400, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_record_game_duration_text["width"] = 400
@@ -146,14 +146,6 @@ function load_start_scene_obj()
     obj_UI_start_scene_config_audio_bar_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_bar_mark["state"] = "default"
 
-    obj_UI_start_scene_config_audio_BGM_bar_alpha = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["width"] = 232
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["height"] = 16
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["state"] = "default"
-
     obj_UI_start_scene_config_audio_BGM_bar_light = {1055, 400, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_audio_BGM_bar_light["width"] = 232
     obj_UI_start_scene_config_audio_BGM_bar_light["height"] = 16
@@ -161,14 +153,6 @@ function load_start_scene_obj()
     obj_UI_start_scene_config_audio_BGM_bar_light["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_light["state"] = "default"
-
-    obj_UI_start_scene_config_audio_SFX_bar_alpha = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["width"] = 232
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["height"] = 16
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["state"] = "default"
 
     obj_UI_start_scene_config_audio_SFX_bar_light = {1055, 426, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_audio_SFX_bar_light["width"] = 232
@@ -441,46 +425,6 @@ function load_start_scene_anim()
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["length"] = 5
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["loop"] = false
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["fix_type"] = false
-
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y[0] = {440.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y[1] = {415.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y[3] = {410.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y[5] = {415.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y["length"] = 5
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_25_y["fix_type"] = false
-
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y[0] = {415.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y[1] = {440.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y[3] = {445.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y[5] = {440.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y["length"] = 5
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_25_y["fix_type"] = false
-
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y[0] = {495.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y[1] = {450.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y[3] = {435.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y[5] = {440.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y["length"] = 5
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_55_y["fix_type"] = false
-
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y[0] = {440.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y[1] = {490.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y[3] = {505.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y[5] = {495.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y["length"] = 5
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_55_y["fix_type"] = false
 
 
     -- audio config

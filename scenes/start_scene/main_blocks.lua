@@ -225,6 +225,7 @@ function update_start_scene_main()
             end,
             [2] = function()
                 SCENE_TIMER = 0
+                SUB_SCENE_DABO_TRIG_ID = 0
                 -- 播放scene out to sub
                 play_obj_audio(audio_SFX_start_scene_to_sub)
 
@@ -266,6 +267,7 @@ function update_start_scene_main()
             end,
             [3] = function()
                 SCENE_TIMER = 0
+                SUB_SCENE_DABO_TRIG_ID = 0
                 -- 播放scene out to sub
                 play_obj_audio(audio_SFX_start_scene_to_sub)
 
@@ -553,6 +555,7 @@ end
 -- config
 function update_start_scene_config_flash_in()
     SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     -- flash in 动画
     point_linear_animator(
         obj_UI_start_scene_shutter,
@@ -589,6 +592,73 @@ function update_start_scene_config_flash_in()
 end
 
 function update_start_scene_config_main()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    -- 场景出口
+    if command_state[1]["Up"] == "Pressing" then
+        -- 更新 config dabo trig ID
+        if SUB_SCENE_DABO_TRIG_ID == 0 then
+            SUB_SCENE_DABO_TRIG_ID = 3
+        else
+            SUB_SCENE_DABO_TRIG_ID = SUB_SCENE_DABO_TRIG_ID - 1
+        end
+
+        -- 更新 twitch 场景属性 preset
+        obj_UI_start_scene_config_menu_dabo_trig[2] = 
+        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+
+        -- 更新 twitch 场景动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_menu_dabo_trig,
+            anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+        )
+        
+        -- 更新 update block
+        current_update_block = update_start_scene_config_twitch_up
+
+    elseif command_state[1]["Down"] == "Pressing" then
+        -- 更新 config dabo trig ID
+        if SUB_SCENE_DABO_TRIG_ID == 3 then
+            SUB_SCENE_DABO_TRIG_ID = 0
+        else
+            SUB_SCENE_DABO_TRIG_ID = SUB_SCENE_DABO_TRIG_ID + 1
+        end
+
+        -- 更新 twitch 场景属性 preset
+        obj_UI_start_scene_config_menu_dabo_trig[2] = 
+        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+
+        -- 更新 twitch 场景动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_menu_dabo_trig,
+            anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+        )
+
+        -- 更新 update block
+        current_update_block = update_start_scene_config_twitch_down
+
+    elseif command_state[1]["D"] == "Pressing" then
+        if SUB_SCENE_DABO_TRIG_ID == 0 then
+        
+        elseif SUB_SCENE_DABO_TRIG_ID == 1 then
+
+        elseif SUB_SCENE_DABO_TRIG_ID == 2 then
+
+        elseif SUB_SCENE_DABO_TRIG_ID == 3 then
+
+        end
+
+    elseif command_state[1]["C"] == "Pressing" then
+
+    end
+
+end
+
+function update_start_scene_config_twitch_up()
+
+end
+
+function update_start_scene_config_twitch_down()
 
 end
 
@@ -600,6 +670,7 @@ end
 -- record
 function update_start_scene_record_flash_in()
     SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
 
     -- flash in 动画
     point_linear_animator(
@@ -662,6 +733,56 @@ function update_start_scene_record_flash_in()
 end
 
 function update_start_scene_record_main()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    obj_UI_start_scene_record_num_0[8] = GAME_DURATION[1]
+    obj_UI_start_scene_record_num_1[8] = GAME_DURATION[2]
+    obj_UI_start_scene_record_num_2[8] = GAME_DURATION[3]
+    obj_UI_start_scene_record_num_3[8] = GAME_DURATION[4]
+    obj_UI_start_scene_record_num_4[8] = GAME_DURATION[5]
+    obj_UI_start_scene_record_num_5[8] = GAME_DURATION[6]
+
+    -- 场景出口
+    if command_state[1]["Up"] == "Pressing" then
+        if SUB_SCENE_DABO_TRIG_ID == 0 then
+            SUB_SCENE_DABO_TRIG_ID = 1
+        else
+            SUB_SCENE_DABO_TRIG_ID = SUB_SCENE_DABO_TRIG_ID - 1
+        end
+
+        obj_UI_start_scene_config_menu_dabo_trig[2] = 
+        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+
+    elseif command_state[1]["Down"] == "Pressing" then
+        if SUB_SCENE_DABO_TRIG_ID == 1 then
+            SUB_SCENE_DABO_TRIG_ID = 0
+        else
+            SUB_SCENE_DABO_TRIG_ID = SUB_SCENE_DABO_TRIG_ID + 1
+        end
+
+        obj_UI_start_scene_config_menu_dabo_trig[2] = 
+        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+
+    elseif command_state[1]["D"] == "Pressing" then
+        if SUB_SCENE_DABO_TRIG_ID == 0 then
+        
+        elseif SUB_SCENE_DABO_TRIG_ID == 1 then
+
+        end
+
+    elseif command_state[1]["C"] == "Pressing" then
+
+    end
+
+end
+
+function update_start_scene_record_twitch()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+
+    end
 
 end
 
