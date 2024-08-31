@@ -162,6 +162,22 @@ function load_start_scene_obj()
     obj_UI_start_scene_config_audio_SFX_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_light["state"] = "default"
 
+    obj_UI_start_scene_config_audio_BGM_bar_alpha = {BGM_volume*23, 0, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["width"] = 232
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["height"] = 16
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["state"] = "default"
+
+    obj_UI_start_scene_config_audio_SFX_bar_alpha = {SFX_volume*23, 0, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["width"] = 232
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["height"] = 16
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["state"] = "default"
+
     obj_UI_start_scene_config_audio_BGM_bar_gauge = {1055, 400, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_audio_BGM_bar_gauge["width"] = 232
     obj_UI_start_scene_config_audio_BGM_bar_gauge["height"] = 16
@@ -312,6 +328,14 @@ function load_start_scene_anim()
     anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["loop"] = false
     anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["fix_type"] = true
 
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity = {}
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity[0] = {0, 5}
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity[5] = {0.5, 5}
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["fix_type"] = true
+
     anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity = {}
     anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity[0] = {1, 5}
     anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity[5] = {0, 5}
@@ -335,6 +359,15 @@ function load_start_scene_anim()
     anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["length"] = 5
     anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["loop"] = false
     anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["fix_type"] = true
+
+    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity = {}
+    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity[0] = {0.5, 5}
+    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity[5] = {0, 5}
+    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["fix_type"] = true
+
 
     
     -- solid color 闪入 闪出动画

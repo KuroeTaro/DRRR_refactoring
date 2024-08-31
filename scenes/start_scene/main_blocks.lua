@@ -189,6 +189,9 @@ function update_start_scene_main()
                     audio_BGM_start_scene_FTR_high,
                     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
                 )
+
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_BGM_volume(audio_BGM_start_scene_FTR_low)
     
                 current_update_block = update_start_scene_flash_out
 
@@ -219,6 +222,8 @@ function update_start_scene_main()
                     audio_BGM_start_scene_FTR_high,
                     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
                 )
+
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
     
                 current_update_block = update_start_scene_flash_out
 
@@ -250,8 +255,7 @@ function update_start_scene_main()
                     obj_UI_start_scene_config_menu_text,
                     anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
                 )
-
-                    -- audio
+                    -- audio animation init
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
                     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
@@ -261,6 +265,9 @@ function update_start_scene_main()
                     anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
                 )
 
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
                 current_update_block = update_start_scene_config_flash_in
                 current_draw_block = draw_start_scene_config_sub_scene
 
@@ -268,6 +275,8 @@ function update_start_scene_main()
             [3] = function()
                 SCENE_TIMER = 0
                 SUB_SCENE_DABO_TRIG_ID = 0
+                obj_UI_start_scene_config_menu_dabo_trig[2] = 
+                DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
                 -- 播放scene out to sub
                 play_obj_audio(audio_SFX_start_scene_to_sub)
 
@@ -339,6 +348,9 @@ function update_start_scene_main()
                     anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
                 )
 
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
+                update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
                 current_update_block = update_start_scene_record_flash_in
                 current_draw_block = draw_start_scene_record_sub_scene
 
@@ -364,6 +376,8 @@ function update_start_scene_main()
                     audio_BGM_start_scene_FTR_high,
                     anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
                 )
+
+                update_BGM_volume(audio_BGM_start_scene_FTR_high)
     
                 current_update_block = update_start_scene_flash_out
 
@@ -596,6 +610,8 @@ function update_start_scene_config_main()
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     -- 场景出口
     if command_state[1]["Up"] == "Pressing" then
+        SCENE_TIMER = 0
+        play_obj_audio(audio_SFX_start_scene_click)
         -- 更新 config dabo trig ID
         if SUB_SCENE_DABO_TRIG_ID == 0 then
             SUB_SCENE_DABO_TRIG_ID = 3
@@ -605,7 +621,7 @@ function update_start_scene_config_main()
 
         -- 更新 twitch 场景属性 preset
         obj_UI_start_scene_config_menu_dabo_trig[2] = 
-        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+        DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
 
         -- 更新 twitch 场景动画 preset
         init_point_linear_anim_with(
@@ -617,6 +633,8 @@ function update_start_scene_config_main()
         current_update_block = update_start_scene_config_twitch_up
 
     elseif command_state[1]["Down"] == "Pressing" then
+        play_obj_audio(audio_SFX_start_scene_click)
+        SCENE_TIMER = 0
         -- 更新 config dabo trig ID
         if SUB_SCENE_DABO_TRIG_ID == 3 then
             SUB_SCENE_DABO_TRIG_ID = 0
@@ -626,43 +644,441 @@ function update_start_scene_config_main()
 
         -- 更新 twitch 场景属性 preset
         obj_UI_start_scene_config_menu_dabo_trig[2] = 
-        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+        DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
 
         -- 更新 twitch 场景动画 preset
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_dabo_trig,
-            anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+            anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y
         )
 
         -- 更新 update block
         current_update_block = update_start_scene_config_twitch_down
 
     elseif command_state[1]["D"] == "Pressing" then
+        SCENE_TIMER = 0
         if SUB_SCENE_DABO_TRIG_ID == 0 then
-        
+            -- audio
+            -- 播放scene out to sub
+            play_obj_audio(audio_SFX_start_scene_to_sub)
+
+            -- current bar mark ID
+            AUDIO_BAR_MARK_ID = 0
+
+            -- object 属性preset
+                -- audio 子界面的几个object flash in 前自身的设置
+            obj_UI_start_scene_config_audio_bar_mark[4] = 0
+            obj_UI_start_scene_config_audio_BGM_bar_light[4] = 0
+            obj_UI_start_scene_config_audio_SFX_bar_light[4] = 0
+            obj_UI_start_scene_config_audio_BGM_bar_gauge[4] = 0
+            obj_UI_start_scene_config_audio_SFX_bar_gauge[4] = 0
+            obj_UI_start_scene_config_audio_text[4] = 0
+
+                -- audio 子界面的几个object flash in 前 config main object 的设置
+            obj_UI_start_scene_config_menu_dabo_trig[4] = 1
+            obj_UI_start_scene_config_menu_text[4] = 1
+
+            obj_UI_start_scene_config_audio_bar_mark[1] 
+            = BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+            
+            obj_UI_start_scene_config_audio_bar_mark[2] 
+            = BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+            obj_UI_start_scene_config_audio_BGM_bar_alpha[1] = BGM_volume*23
+            obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_volume*23
+
+
+            -- object 动画preset
+                 -- audio 子界面的几个object flash in 前自身的设置
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_audio_bar_mark,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_audio_BGM_bar_light,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_audio_SFX_bar_light,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_audio_BGM_bar_gauge,
+                anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_audio_SFX_bar_gauge,
+                anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_audio_text,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+                -- audio 子界面的几个object flash in 前 config main object 的设置
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_dabo_trig,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_text,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+            )
+            
+            -- 更新 update block
+            current_update_block = update_start_scene_config_audio_flash_in
+            current_draw_block = draw_start_scene_config_audio_sub_scene
+
         elseif SUB_SCENE_DABO_TRIG_ID == 1 then
+            -- controller
+
+                -- 播放scene out to sub
+            play_obj_audio(audio_SFX_start_scene_to_sub)
+
+            -- current bar mark ID
+            AUDIO_BAR_MARK_ID = 0
+            obj_UI_start_scene_config_controller_bar_mark_1P["state"] = "default"
+            obj_UI_start_scene_config_controller_bar_mark_2P["state"] = "default"
+
+            -- object 属性preset
+                -- controller 子界面的几个object flash in 前自身的设置
+            obj_UI_start_scene_config_controller_bar_mark_1P[4] = 0
+            obj_UI_start_scene_config_controller_bar_mark_2P[4] = 0
+            obj_UI_start_scene_config_controller_indi_text[4] = 0
+
+                -- controller 子界面的几个object flash in 前 config main object 的设置
+            obj_UI_start_scene_config_menu_dabo_trig[4] = 1
+            obj_UI_start_scene_config_menu_text[4] = 1
+
+            -- object 动画preset
+                -- controller 子界面的几个object flash in 前自身的设置
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_controller_bar_mark_1P,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_controller_bar_mark_2P,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_controller_indi_text,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+                -- controller 子界面的几个object flash in 前 config main object 的设置
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_dabo_trig,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_text,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+            )
+            
+            -- 更新 update block
+            current_update_block = update_start_scene_config_controller_flash_in
+            current_draw_block = draw_start_scene_config_controller_sub_scene
 
         elseif SUB_SCENE_DABO_TRIG_ID == 2 then
+            -- resolution
+
+            play_obj_audio(audio_SFX_start_scene_to_sub)
+
+            -- current bar mark ID
+            aquire_current_res()
+            obj_UI_start_scene_config_resolution_w_x_h[8] = RES_PARTTEN
+
+            -- object 属性preset
+                -- controller 子界面的几个object flash in 前自身的设置
+            obj_UI_start_scene_config_resolution_bar_mark[4] = 0
+            obj_UI_start_scene_config_resolution_w_x_h[4] = 0
+            obj_UI_start_scene_config_resolution_select_res_text[4] = 0
+
+                -- controller 子界面的几个object flash in 前 config main object 的设置
+            obj_UI_start_scene_config_menu_dabo_trig[4] = 1
+            obj_UI_start_scene_config_menu_text[4] = 1
+
+            -- object 动画preset
+                -- controller 子界面的几个object flash in 前自身的设置
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_resolution_bar_mark,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_resolution_w_x_h,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_resolution_select_res_text,
+                anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            )
+                -- controller 子界面的几个object flash in 前 config main object 的设置
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_dabo_trig,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_text,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+            )
+            
+            -- 更新 update block
+            current_update_block = update_start_scene_config_resolution_flash_in
+            current_draw_block = draw_start_scene_config_resolution_sub_scene
 
         elseif SUB_SCENE_DABO_TRIG_ID == 3 then
+            SCENE_TIMER = 0
+            -- 播放scene out to main
+            play_obj_audio(audio_SFX_start_scene_to_main)
+
+            -- option select config 进入前属性 preset
+            obj_UI_start_scene_shutter[4] = 1
+            obj_UI_start_scene_config_menu_dabo_trig[4] = 1
+            obj_UI_start_scene_config_menu_text[4] = 1
+                -- audio animation 更新
+            update_BGM_volume(audio_BGM_start_scene_FTR_high)
+            update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+            -- option select config 进入前动画 preset
+            init_point_linear_anim_with(
+                obj_UI_start_scene_shutter,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_dabo_trig,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            )
+            init_point_linear_anim_with(
+                obj_UI_start_scene_config_menu_text,
+                anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            )
+
+                -- audio animation init
+            init_point_linear_anim_with(
+                audio_BGM_start_scene_FTR_high,
+                anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+            )
+            init_point_linear_anim_with(
+                audio_BGM_start_scene_FTR_low,
+                anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+            )
+
+            update_BGM_volume(audio_BGM_start_scene_FTR_high)
+            update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+            current_update_block = update_start_scene_config_flash_out
 
         end
 
     elseif command_state[1]["C"] == "Pressing" then
+        SCENE_TIMER = 0
+        -- 播放scene out to sub
+        play_obj_audio(audio_SFX_start_scene_to_main)
+
+        -- option select config 进入前属性 preset
+        obj_UI_start_scene_shutter[4] = 1
+        obj_UI_start_scene_config_menu_dabo_trig[4] = 1
+        obj_UI_start_scene_config_menu_text[4] = 1
+            -- audio animation 更新
+        update_BGM_volume(audio_BGM_start_scene_FTR_high)
+        update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+        -- option select config 进入前动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_shutter,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_menu_dabo_trig,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_menu_text,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+
+            -- audio animation init
+        init_point_linear_anim_with(
+            audio_BGM_start_scene_FTR_high,
+            anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+        )
+        init_point_linear_anim_with(
+            audio_BGM_start_scene_FTR_low,
+            anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+        )
+
+        update_BGM_volume(audio_BGM_start_scene_FTR_high)
+        update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+        current_update_block = update_start_scene_config_flash_out
 
     end
 
 end
 
 function update_start_scene_config_twitch_up()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+    )
+
+    local dabo_trig_twitch_anim_end = 
+    get_point_linear_anim_end_state(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+    )
+
+    -- 场景出口
+    if dabo_trig_twitch_anim_end then
+        -- 更新 twitch 场景属性 preset
+        obj_UI_start_scene_config_menu_dabo_trig[2] = 
+        DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+
+        -- 更新 update block
+        current_update_block = update_start_scene_config_main
+    end
 
 end
 
 function update_start_scene_config_twitch_down()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y
+    )
+
+    local dabo_trig_twitch_anim_end = 
+    get_point_linear_anim_end_state(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y
+    )
+
+    -- 场景出口
+    if dabo_trig_twitch_anim_end then
+        -- 更新 twitch 场景属性 preset
+        obj_UI_start_scene_config_menu_dabo_trig[2] = 
+        DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+
+        -- 更新 update block
+        current_update_block = update_start_scene_config_main
+    end
 
 end
 
 function update_start_scene_config_flash_out()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    -- start scene main 进入动画
+    point_linear_animator(
+        obj_UI_start_scene_shutter,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_text,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+
+        -- audio
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_high,
+        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+    )
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_low,
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+    )
+
+    update_BGM_volume(audio_BGM_start_scene_FTR_high)
+    update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        SUB_SCENE_DABO_TRIG_ID = 0
+        obj_UI_start_scene_config_menu_dabo_trig[2] = 
+        DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
+        
+        -- 更新 update block
+        current_update_block = update_start_scene_main
+        current_draw_block = draw_start_scene_general
+
+    end
+
+end
+
+    -- config audio
+function update_start_scene_config_audio_flash_in()
+
+end
+
+function update_start_scene_config_audio_main()
+
+end
+
+function update_start_scene_config_audio_bar_mark_twtich_up()
+
+end
+
+function update_start_scene_config_audio_bar_mark_twtich_down()
+
+end
+
+function update_start_scene_config_audio_bar_mark_twtich_left()
+
+end
+
+function update_start_scene_config_audio_bar_mark_twtich_right()
+
+end
+
+function update_start_scene_config_audio_flash_out()
+
+end
+
+    -- config controller 
+function update_start_scene_config_controller_flash_in()
+
+end
+
+function update_start_scene_config_controller_main()
+
+end
+
+function update_start_scene_config_controller_flash_out()
+
+end
+
+    -- config resolution 
+function update_start_scene_config_resolution_flash_in()
+
+end
+
+function update_start_scene_config_resolution_main()
+
+end
+
+function update_start_scene_config_resolution_bar_mark_twtich_up()
+
+end
+
+function update_start_scene_config_resolution_bar_mark_twtich_down()
+
+end
+
+function update_start_scene_config_resolution_bar_mark_twtich_left()
+
+end
+
+function update_start_scene_config_resolution_bar_mark_twtich_right()
+
+end
+
+function update_start_scene_config_resolution_flash_out()
 
 end
 
@@ -724,6 +1140,9 @@ function update_start_scene_record_flash_in()
         anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
     )
 
+    update_BGM_volume(audio_BGM_start_scene_FTR_high)
+    update_BGM_volume(audio_BGM_start_scene_FTR_low)
+
     -- 场景出口
     if SCENE_TIMER >=5 then
         SCENE_TIMER = 0
@@ -776,7 +1195,17 @@ function update_start_scene_record_main()
 
 end
 
-function update_start_scene_record_twitch()
+function update_start_scene_record_twitch_up()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+
+    end
+
+end
+
+function update_start_scene_record_twitch_down()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     -- 场景出口
