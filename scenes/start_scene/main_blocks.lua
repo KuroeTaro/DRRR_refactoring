@@ -82,6 +82,7 @@ function update_start_scene_main()
 
     -- 场景出口 option twitch left
     if command_state[1]["Left"] == "Pressing" then 
+        SCENE_TIMER = 0
         -- 播放twitch音频
         play_obj_audio(audio_SFX_start_scene_click)
 
@@ -122,6 +123,7 @@ function update_start_scene_main()
 
     -- 场景出口 option twitch right
     elseif command_state[1]["Right"] == "Pressing" then 
+        SCENE_TIMER = 0
         -- 播放twitch音频
         play_obj_audio(audio_SFX_start_scene_click)
 
@@ -162,6 +164,8 @@ function update_start_scene_main()
 
     -- 场景出口 option 确认
     elseif command_state[1]["D"] == "Pressing" then 
+        SCENE_TIMER = 0
+        play_obj_audio(audio_SFX_start_scene_to_main)
         local switch = {
             [0] = function()
                 SCENE_TIMER = 0
@@ -390,6 +394,7 @@ function update_start_scene_main()
 
     -- 场景出口 控制器更新
     elseif (controller_state[0] ~= controller_state[2] or controller_state[1] ~= controller_state[3]) then 
+        SCENE_TIMER = 0
         -- 检测控制器具体变化 修改console text
         if controller_state[0] == 0 and controller_state[1] == 0 then 
             CONSOLE_TEXT_2_ID = 5
@@ -435,6 +440,7 @@ function update_start_scene_flash_out()
 
     -- 场景出口
     if audio_SFX_start_scene_scene_out["audio"]:isPlaying() == false then
+        SCENE_TIMER = 0
         love.event.quit()
     end
 
@@ -462,26 +468,9 @@ function update_start_scene_option_twitch()
         anim_UI_point_linear_start_scene_option_text_twitch_x
     )
 
-    -- 检测各个动画是否运行完成
-    local dabo_trig_x_anim_end = 
-    get_point_linear_anim_end_state(
-        obj_UI_start_scene_console_dabo_trig,
-        anim_UI_frame_start_scene_console_dabo_trig_twtich_x
-    )
-    local dabo_trig_opacity_anim_end = 
-    get_point_linear_anim_end_state(
-        obj_UI_start_scene_console_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
-    )
-    local option_text_anim_end = 
-    get_point_linear_anim_end_state(
-        obj_UI_start_scene_option_text,
-        anim_UI_point_linear_start_scene_option_text_twitch_x
-    )
-
     -- 场景出口
-    if dabo_trig_x_anim_end and dabo_trig_opacity_anim_end and option_text_anim_end then
-
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
         -- main 回归前动画 preset
         obj_UI_start_scene_breath_tag[4] = 0.1
         obj_UI_start_scene_console_dabo_trig[1] = 75
@@ -532,21 +521,9 @@ function update_start_scene_only_console_twitch()
         anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
     )
 
-    -- 检测各个动画是否运行完成
-    local dabo_trig_x_anim_end = 
-    get_point_linear_anim_end_state(
-        obj_UI_start_scene_console_dabo_trig,
-        anim_UI_frame_start_scene_console_dabo_trig_twtich_x
-    )
-    local dabo_trig_opacity_anim_end = 
-    get_point_linear_anim_end_state(
-        obj_UI_start_scene_console_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
-    )
-
     -- 场景出口
-    if dabo_trig_x_anim_end and dabo_trig_opacity_anim_end then
-
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
         -- main 回归前属性 preset
         obj_UI_start_scene_console_dabo_trig[1] = 75
         obj_UI_start_scene_console_dabo_trig[4] = 1
@@ -570,6 +547,14 @@ end
 function update_start_scene_config_flash_in()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
     -- flash in 动画
     point_linear_animator(
         obj_UI_start_scene_shutter,
@@ -608,14 +593,20 @@ end
 function update_start_scene_config_main()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
     -- 场景出口
     if command_state[1]["Up"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_click)
         -- 更新 config dabo trig ID
-        if SUB_SCENE_DABO_TRIG_ID == 0 then
-            SUB_SCENE_DABO_TRIG_ID = 3
-        else
+        if SUB_SCENE_DABO_TRIG_ID ~= 0 then
             SUB_SCENE_DABO_TRIG_ID = SUB_SCENE_DABO_TRIG_ID - 1
         end
 
@@ -633,12 +624,10 @@ function update_start_scene_config_main()
         current_update_block = update_start_scene_config_twitch_up
 
     elseif command_state[1]["Down"] == "Pressing" then
-        play_obj_audio(audio_SFX_start_scene_click)
         SCENE_TIMER = 0
+        play_obj_audio(audio_SFX_start_scene_click)
         -- 更新 config dabo trig ID
-        if SUB_SCENE_DABO_TRIG_ID == 3 then
-            SUB_SCENE_DABO_TRIG_ID = 0
-        else
+        if SUB_SCENE_DABO_TRIG_ID ~= 3 then
             SUB_SCENE_DABO_TRIG_ID = SUB_SCENE_DABO_TRIG_ID + 1
         end
 
@@ -783,7 +772,7 @@ function update_start_scene_config_main()
             play_obj_audio(audio_SFX_start_scene_to_sub)
 
             -- current bar mark ID
-            aquire_current_res()
+            get_current_resolution()
             obj_UI_start_scene_config_resolution_w_x_h[8] = RES_PARTTEN
 
             -- object 属性preset
@@ -918,18 +907,22 @@ function update_start_scene_config_twitch_up()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
-        obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
     )
-
-    local dabo_trig_twitch_anim_end = 
-    get_point_linear_anim_end_state(
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+    
+    point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
         anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
     )
 
     -- 场景出口
-    if dabo_trig_twitch_anim_end then
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
         -- 更新 twitch 场景属性 preset
         obj_UI_start_scene_config_menu_dabo_trig[2] = 
         DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
@@ -944,18 +937,22 @@ function update_start_scene_config_twitch_down()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
-        obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
     )
 
-    local dabo_trig_twitch_anim_end = 
-    get_point_linear_anim_end_state(
+    point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
         anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y
     )
 
     -- 场景出口
-    if dabo_trig_twitch_anim_end then
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
         -- 更新 twitch 场景属性 preset
         obj_UI_start_scene_config_menu_dabo_trig[2] = 
         DABO_TIRG_CONFIG_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_DABO_TRIG_ID + 1]
@@ -969,6 +966,14 @@ end
 function update_start_scene_config_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
     -- start scene main 进入动画
     point_linear_animator(
         obj_UI_start_scene_shutter,
@@ -1013,31 +1018,572 @@ end
 
     -- config audio
 function update_start_scene_config_audio_flash_in()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+    
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_BGM_bar_light,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_SFX_bar_light,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_BGM_bar_gauge,
+        anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_SFX_bar_gauge,
+        anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_text,
+        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+    )
+        -- audio 子界面的几个object flash in 前 config main object 的设置
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_text,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+    )
+
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        -- 更新 update block
+        current_update_block = update_start_scene_config_audio_main
+
+    end
 
 end
 
 function update_start_scene_config_audio_main()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
 
+    if command_state[1]["D"] == "Pressing" then
+        play_obj_audio(audio_SFX_start_scene_click)
+    end
+
+    -- 场景出口
+    if command_state[1]["Up"] == "Pressing" then
+        SCENE_TIMER = 0
+        play_obj_audio(audio_SFX_start_scene_click)
+
+        -- 更新 config audio bar id 更新 up twitch 场景动画 preset
+        if AUDIO_BAR_MARK_ID ~= 0 then
+            AUDIO_BAR_MARK_ID = AUDIO_BAR_MARK_ID - 1
+        end
+
+        -- 更新 up twitch 场景属性 preset
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID + 1]
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+
+        obj_UI_start_scene_config_audio_BGM_bar_alpha[1] = BGM_volume*23
+        obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_volume*23
+
+        -- 更新 up twitch 场景动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_bar_mark,
+            anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y
+        )
+
+        -- 更新 update block
+        current_update_block = update_start_scene_config_audio_bar_mark_twtich_up
+
+    elseif command_state[1]["Down"] == "Pressing" then
+        SCENE_TIMER = 0
+        play_obj_audio(audio_SFX_start_scene_click)
+
+        -- 更新 config audio bar id 更新 up twitch 场景动画 preset
+        if AUDIO_BAR_MARK_ID ~= 1 then
+            AUDIO_BAR_MARK_ID = AUDIO_BAR_MARK_ID + 1
+        end
+
+        -- 更新 down twitch 场景属性 preset
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID + 1]
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+
+        obj_UI_start_scene_config_audio_BGM_bar_alpha[1] = BGM_volume*23
+        obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_volume*23
+
+        -- 更新 down twitch 场景动画 preset
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_bar_mark,
+            anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y
+        )
+
+        -- 更新 update block
+        current_update_block = update_start_scene_config_audio_bar_mark_twtich_down
+
+    elseif command_state[1]["Left"] == "Pressing" then
+        SCENE_TIMER = 0
+        play_obj_audio(audio_SFX_start_scene_click)
+
+        -- 更新 left twitch 场景属性 preset
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID + 1]
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+
+        obj_UI_start_scene_config_audio_BGM_bar_alpha[1] = BGM_volume*23
+        obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_volume*23
+
+        local local_alpha_bar_table = {
+            obj_UI_start_scene_config_audio_BGM_bar_alpha,
+            obj_UI_start_scene_config_audio_SFX_bar_alpha
+        }
+
+        local local_volume_table = {
+            BGM_volume,
+            SFX_volume
+        }
+
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_bar_mark,
+            anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x
+        )
+
+        if local_volume_table[AUDIO_BAR_MARK_ID+1] > 0 then
+            -- 带 alpha
+            init_point_linear_anim_with(
+                local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+                anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x
+            )
+            local_volume_table[AUDIO_BAR_MARK_ID+1] = local_volume_table[AUDIO_BAR_MARK_ID+1] - 1
+            BGM_volume = local_volume_table[1]
+            SFX_volume = local_volume_table[2]
+            update_start_scene_config_audio_main_update_volume()
+            
+            -- 场景出口
+            current_update_block = update_start_scene_config_audio_bar_mark_twtich_left_with_alpha
+        else
+            -- 不带alpha
+            -- 场景出口
+            current_update_block = update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha
+        end
+
+    elseif command_state[1]["Right"] == "Pressing" then
+        SCENE_TIMER = 0
+        play_obj_audio(audio_SFX_start_scene_click)
+
+        -- 更新 right twitch 场景属性 preset
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID + 1]
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+
+        obj_UI_start_scene_config_audio_BGM_bar_alpha[1] = BGM_volume*23
+        obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_volume*23
+
+        local local_alpha_bar_table = {
+            obj_UI_start_scene_config_audio_BGM_bar_alpha,
+            obj_UI_start_scene_config_audio_SFX_bar_alpha
+        }
+
+        local local_volume_table = {
+            BGM_volume,
+            SFX_volume
+        }
+
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_bar_mark,
+            anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x
+        )
+
+        if local_volume_table[AUDIO_BAR_MARK_ID+1] < 10 then
+            -- 带 alpha
+            init_point_linear_anim_with(
+                local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+                anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x
+            )
+            local_volume_table[AUDIO_BAR_MARK_ID+1] = local_volume_table[AUDIO_BAR_MARK_ID+1] + 1
+            BGM_volume = local_volume_table[1]
+            SFX_volume = local_volume_table[2]
+            update_start_scene_config_audio_main_update_volume()
+            
+            -- 场景出口
+            current_update_block = update_start_scene_config_audio_bar_mark_twtich_right_with_alpha
+        else
+            -- 不带alpha
+            -- 场景出口
+            current_update_block = update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha
+        end
+
+    elseif command_state[1]["C"] == "Pressing" then
+        SCENE_TIMER = 0
+        -- audio
+        -- 播放scene out to sub
+        play_obj_audio(audio_SFX_start_scene_to_main)
+
+        -- object 属性preset
+            -- audio 子界面的几个object flash out 前自身的设置
+        obj_UI_start_scene_config_audio_bar_mark[4] = 1
+        obj_UI_start_scene_config_audio_BGM_bar_light[4] = 1
+        obj_UI_start_scene_config_audio_SFX_bar_light[4] = 1
+        obj_UI_start_scene_config_audio_BGM_bar_gauge[4] = 1
+        obj_UI_start_scene_config_audio_SFX_bar_gauge[4] = 1
+        obj_UI_start_scene_config_audio_text[4] = 1
+
+            -- audio 子界面的几个object flash out 前 config main object 的设置
+        obj_UI_start_scene_config_menu_dabo_trig[4] = 0.5
+        obj_UI_start_scene_config_menu_text[4] = 0.5
+
+        obj_UI_start_scene_config_audio_bar_mark[1] 
+        = BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+        
+        obj_UI_start_scene_config_audio_bar_mark[2] 
+        = BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+        obj_UI_start_scene_config_audio_BGM_bar_alpha[1] = BGM_volume*23
+        obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_volume*23
+
+
+        -- object 动画preset
+                -- audio 子界面的几个object flash in 前自身的设置
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_bar_mark,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_BGM_bar_light,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_SFX_bar_light,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_BGM_bar_gauge,
+            anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_SFX_bar_gauge,
+            anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_audio_text,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+            -- audio 子界面的几个object flash in 前 config main object 的设置
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_menu_dabo_trig,
+            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_config_menu_text,
+            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        )
+        
+        -- 更新 update block
+        current_update_block = update_start_scene_config_audio_flash_out
+
+    end
 end
 
 function update_start_scene_config_audio_bar_mark_twtich_up()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y
+    )
+
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        -- object 回归 audio main 属性preset
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+        current_update_block = update_start_scene_config_audio_main
+    end
 
 end
 
 function update_start_scene_config_audio_bar_mark_twtich_down()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y
+    )
+
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+
+        -- object 回归 audio main 属性preset
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+        current_update_block = update_start_scene_config_audio_main
+    end
 
 end
 
-function update_start_scene_config_audio_bar_mark_twtich_left()
+function update_start_scene_config_audio_bar_mark_twtich_left_with_alpha()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    local local_alpha_bar_table = {
+        obj_UI_start_scene_config_audio_BGM_bar_alpha,
+        obj_UI_start_scene_config_audio_SFX_bar_alpha
+    }
+
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x
+    )
+    point_linear_animator(
+        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+        anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x
+    )
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+        local local_volume_table = {
+            BGM_volume,
+            SFX_volume
+        }
+
+        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1][1] = local_volume_table[AUDIO_BAR_MARK_ID+1]*23
+
+        current_update_block = update_start_scene_config_audio_main
+
+    end
 
 end
 
-function update_start_scene_config_audio_bar_mark_twtich_right()
+function update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x
+    )
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+        current_update_block = update_start_scene_config_audio_main
+
+    end
+
+end
+
+function update_start_scene_config_audio_bar_mark_twtich_right_with_alpha()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    local local_alpha_bar_table = {
+        obj_UI_start_scene_config_audio_BGM_bar_alpha,
+        obj_UI_start_scene_config_audio_SFX_bar_alpha
+    }
+
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x
+    )
+    point_linear_animator(
+        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+        anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x
+    )
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+        local local_volume_table = {
+            BGM_volume,
+            SFX_volume
+        }
+
+        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1][1] = local_volume_table[AUDIO_BAR_MARK_ID+1]*23
+
+        current_update_block = update_start_scene_config_audio_main
+
+    end
+
+end
+
+function update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x
+    )
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+
+        obj_UI_start_scene_config_audio_bar_mark[1] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_X_POSITION
+        obj_UI_start_scene_config_audio_bar_mark[2] = 
+        BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
+
+        current_update_block = update_start_scene_config_audio_main
+
+    end
 
 end
 
 function update_start_scene_config_audio_flash_out()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+    
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_bar_mark,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_BGM_bar_light,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_SFX_bar_light,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_BGM_bar_gauge,
+        anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_SFX_bar_gauge,
+        anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_audio_text,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+        -- audio 子界面的几个object flash in 前 config main object 的设置
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_config_menu_text,
+        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+    )
 
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        -- current bar mark ID
+        AUDIO_BAR_MARK_ID = 0
+
+        write_volume_config()
+
+        -- 更新 update block
+        current_update_block = update_start_scene_config_main
+
+    end
 end
 
     -- config controller 
@@ -1087,6 +1633,14 @@ end
 function update_start_scene_record_flash_in()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
 
     -- flash in 动画
     point_linear_animator(
@@ -1144,7 +1698,7 @@ function update_start_scene_record_flash_in()
     update_BGM_volume(audio_BGM_start_scene_FTR_low)
 
     -- 场景出口
-    if SCENE_TIMER >=5 then
+    if SCENE_TIMER >= 5 then
         SCENE_TIMER = 0
         -- 更新 update block
         current_update_block = update_start_scene_record_main
@@ -1154,6 +1708,15 @@ end
 function update_start_scene_record_main()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
     obj_UI_start_scene_record_num_0[8] = GAME_DURATION[1]
     obj_UI_start_scene_record_num_1[8] = GAME_DURATION[2]
     obj_UI_start_scene_record_num_2[8] = GAME_DURATION[3]
@@ -1198,6 +1761,14 @@ end
 function update_start_scene_record_twitch_up()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
     -- 场景出口
     if SCENE_TIMER >= 5 then
 
@@ -1208,6 +1779,14 @@ end
 function update_start_scene_record_twitch_down()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
     -- 场景出口
     if SCENE_TIMER >= 5 then
 

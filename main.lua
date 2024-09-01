@@ -17,6 +17,7 @@ require("scenes/disclaimer_and_logos_scene/main_blocks")
 require("scenes/disclaimer_and_logos_scene/state_machine")
 require("scenes/disclaimer_and_logos_scene/sub_blocks")
 
+require("scenes/start_scene/common_functions")
 require("scenes/start_scene/draw_functions")
 require("scenes/start_scene/init")
 require("scenes/start_scene/load_function")
@@ -67,11 +68,11 @@ function love.run()
 end
 
 function love.load()
-	input_load()
+	init_input()
 	-- read save data
-	volume_read_save()
-	game_duration_read_save()
-	aquire_current_res()
+	read_volume_config()
+	read_game_duration()
+	get_current_resolution()
 
 	CURRENT_SCENE = "loading"
 	NETWORK_MATCH_SIDE = 1
@@ -96,8 +97,6 @@ function love.load()
 	BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE = {400,425}
 	BAR_MARK_CONFIG_SUB_SCENE_RESOLUTION_X_POSITION = 1000
 	BAR_MARK_CONFIG_SUB_SCENE_RESOLUTION_Y_POSITION = 530
-
-	AUDIO_ALPHA_BAR_DEFAULT_X_POSITION = 
 
 	-- char_select_scene
 	LEFT_CHAR_IMAGE_POSITION = {
@@ -189,16 +188,16 @@ end
 function love.update()
 	-- http://127.0.0.1:8000
 	require("lovebird").update()
-	input_update()
+	update_input()
 	FPS = love.timer.getFPS()
     FRAMES_DRAWN = FRAMES_DRAWN + 1
-	record_game_duration()
+	update_record_game_duration()
 	current_update_block()
 end
 function love.draw()
 	love.graphics.clear(7/255,19/255,31/255,1)
 	current_draw_block()
-	input_sys_draw()
+	draw_input_sys()
 	love.graphics.print( "FRAMES_DRAWN", 0, 210)
     love.graphics.print( "FPS", 0, 225)
 	love.graphics.print( "SCENE_TIMER", 0, 240)

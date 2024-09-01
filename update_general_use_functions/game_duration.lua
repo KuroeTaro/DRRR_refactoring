@@ -1,4 +1,4 @@
-function game_duration_read_save()
+function read_game_duration()
     GAME_DURATION = nil
     local chunk = love.filesystem.load( 'game_duration_record.lua' ) 
     if chunk then 
@@ -24,7 +24,7 @@ function write_game_duration_record()
     love.filesystem.write('game_duration_record.lua',chunk)
 end
 
-function record_game_duration()
+function update_record_game_duration()
     if FRAMES_DRAWN >= 60 then 
         FRAMES_DRAWN = 0
         GAME_DURATION[6] = GAME_DURATION[6] + 1 -- 秒

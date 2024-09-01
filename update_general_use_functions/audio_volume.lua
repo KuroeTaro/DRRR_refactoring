@@ -1,4 +1,4 @@
-function volume_read_save()
+function read_volume_config()
     BGM_volume = nil
     SFX_volume = nil
     local chunk = love.filesystem.load( 'audio_config.lua' ) 
@@ -37,5 +37,6 @@ function update_SFX_volume(obj)
     obj["audio"]:setVolume(obj[1]*SFX_volume/10)
 end
 function play_obj_audio(obj)
+    love.audio.stop(obj["audio"])
     love.audio.play(obj["audio"])
 end

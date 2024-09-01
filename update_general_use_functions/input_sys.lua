@@ -1,4 +1,4 @@
-function input_load()
+function init_input()
     current_command = {}
     command_state = {}
     
@@ -45,7 +45,7 @@ function input_load()
     end
 end
 
-function input_update()
+function update_input()
     --加载手柄
     update_controller()
 
@@ -79,12 +79,12 @@ function input_update()
     end
 
     --输入状态机
-    input_state_machine(command_state[1],current_command[1])
-    input_state_machine(command_state[2],current_command[2])
+    state_machine_input(command_state[1],current_command[1])
+    state_machine_input(command_state[2],current_command[2])
 end
 
 --将手柄按键的值转化为指令表内的数值
-function joystick_buttom_command(js,buttom_name)
+function get_joystick_buttom_command(js,buttom_name)
     if js ~= nil then
         result = js:isGamepadDown(buttom_name)
     else result = false end 
@@ -92,7 +92,7 @@ function joystick_buttom_command(js,buttom_name)
 end 
 
 --将手柄扳机的值转化为指令表内的数值
-function joystick_axis_command(js,axis_name)
+function get_joystick_axis_command(js,axis_name)
     if js ~= nil then 
         result = js:getGamepadAxis(axis_name)
     else result = 0.0 end
@@ -131,14 +131,14 @@ function get_current_command(current_command,joystick)
         end
     else
         for i = 1,12 do
-            if joystick_buttom_command(joystick,buttom_list[i]) then
+            if get_joystick_buttom_command(joystick,buttom_list[i]) then
                 current_command[command_list[i]] = 1
             else current_command[command_list[i]] = 0
             end
         end
 
         for i = 1,2 do
-            if joystick_axis_command(joystick,axis_list[i]) > 0.2 then
+            if get_joystick_axis_command(joystick,axis_list[i]) > 0.2 then
                 current_command[command_list[i+12]] = 1
             else current_command[command_list[i+12]] = 0
             end
@@ -147,7 +147,7 @@ function get_current_command(current_command,joystick)
 end
 
 --输入状态机
-function input_state_machine(command_state,current_command)
+function state_machine_input(command_state,current_command)
     for i=1,14 do
         local switch = 
         {
@@ -181,7 +181,7 @@ function input_state_machine(command_state,current_command)
     end
 end
 
-function input_sys_draw()
+function draw_input_sys()
     for i, v in ipairs(command_list) do
         love.graphics.print(v, 0, i*15-15)
         love.graphics.print(command_state[1][v], 100, i*15-15)

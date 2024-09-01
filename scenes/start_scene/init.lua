@@ -440,20 +440,20 @@ function load_start_scene_anim()
     -- config
     -- config menu dabo trig
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[0] = {415.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[1] = {405.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[3] = {420.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[5] = {415.00, 5}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[0] = {0.00, 1}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[1] = {-3.00, 3}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[3] = {2.00, 5}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[5] = {0.00, 5}
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["prop"] = 2
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["length"] = 5
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["loop"] = false
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["fix_type"] = false
 
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[0] = {415.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[1] = {420.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[3] = {410.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[5] = {415.00, 5}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[0] = {0.00, 1}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[1] = {3.00, 3}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[3] = {-2.00, 5}
+    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[5] = {0.00, 5}
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["prop"] = 2
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["length"] = 5
     anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["loop"] = false
@@ -463,22 +463,20 @@ function load_start_scene_anim()
     -- audio config
     -- audio alpha bar animation
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x = {}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[0] = {1055.00, 2}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[2] = {1040.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[4] = {1035.00, 7}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[7] = {1032.00, 7}
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[0] = {0.00, 1}
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[1] = {-15.00, 5}
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[5] = {-23.00, 5}
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["length"] = 7
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["length"] = 5
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["loop"] = false
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["fix_type"] = false
 
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x = {}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[0] = {1032.00, 2}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[2] = {1047.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[4] = {1052.00, 7}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[7] = {1055.00, 7}
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[0] = {0.00, 1}
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[1] = {15.00, 5}
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[5] = {23.00, 5}
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["length"] = 7
+    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["length"] = 5
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["loop"] = false
     anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["fix_type"] = false
 
@@ -502,22 +500,22 @@ function load_start_scene_anim()
     anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x["fix_type"] = true
 
     anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y = {}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y[0] = {425.00, 1}
+    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y[0] = {400.00, 1}
     anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y[1] = {394.00, 4}
     anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y[4] = {400.00, 4}
     anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["prop"] = 2
     anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["length"] = 4
     anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["fix_type"] = true
+    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["fix_type"] = false
 
     anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y = {}
     anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[0] = {400.00, 1}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[1] = {431.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[4] = {425.00, 4}
+    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[1] = {406.00, 4}
+    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[4] = {400.00, 4}
     anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["prop"] = 2
     anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["length"] = 4
     anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["fix_type"] = true
+    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["fix_type"] = false
 
 
     -- config res select

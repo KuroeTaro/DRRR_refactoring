@@ -1,4 +1,4 @@
-function aquire_current_res()
+function get_current_resolution()
     local width, height, flags = love.window.getMode()
     if width < 1600 then RES_PARTTEN = 0 
     elseif width < 1920 then RES_PARTTEN = 1
@@ -7,7 +7,7 @@ function aquire_current_res()
     else RES_PARTTEN = 4 end
 end
 
-function set_current_res()
+function set_current_resolution()
     if RES_PARTTEN == 0 then 
         love.window.setMode(1280,720,{})
         love.filesystem.write('resolution_config.lua','12800720')
