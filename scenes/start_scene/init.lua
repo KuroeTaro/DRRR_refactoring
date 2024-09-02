@@ -520,23 +520,6 @@ function load_start_scene_anim()
 
     -- config res select
     -- bar mark
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y = {}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y[0] = {530.00, 1}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y[1] = {524.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y[4] = {530.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y["length"] = 4
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_up_y["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y = {}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y[0] = {530.00, 1}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y[1] = {536.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y[4] = {530.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y["length"] = 4
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_down_y["fix_type"] = true
 
     anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x = {}
     anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x[0] = {1000.00, 1}
