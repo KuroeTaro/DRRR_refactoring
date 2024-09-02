@@ -8,7 +8,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         -- flash_in 之前的状态 如果达到第10帧则为下一个动画的第0帧 
         ["pre_disclaimer_flash_in"] = function() 
             -- 如果按D或者scene timer 到达10f则进入flash_in
-            if SCENE_TIMER >= 10 or command_state[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 10 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 -- 设置flash in 动画
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity)
                 obj["state"] = "disclaimer_flash_in"
@@ -25,7 +25,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
                 SCENE_TIMER = 0
             end
             -- 如果在flash in 就按下了D 则设置不透明度为1 设置flash out动画 并且转跳到flash out
-            if command_state[1]["D"] == "Pressing" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity)
                 obj["state"] = "disclaimer_flash_out"
@@ -35,7 +35,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["disclaimer_update"] = function() 
             -- 如果按下D或者已经进入update状态120帧 就转跳到 flash out
             -- 设置不透明度为1 设置flash out 动画 跳转到flash out
-            if SCENE_TIMER >= 120 or command_state[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity)
                 obj["state"] = "disclaimer_flash_out"
@@ -50,7 +50,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
             -- 将position对应disclaimer的值改为logo的值
             -- 改变绘图f为1 也就是kuroe taro s handicraft logo
             -- 跳转到kuroe_taro_s_handicraft_logo_flash_in状态
-            if get_point_linear_anim_end_state(obj,anim) or command_state[1]["D"] == "Pressing" then
+            if get_point_linear_anim_end_state(obj,anim) or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[1] = 620
                 obj[2] = 255
                 obj[4] = 0
@@ -71,7 +71,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
             end
             -- 按下d键 跳转到 flash out
             -- 设置flash out 动画
-            if command_state[1]["D"] == "Pressing" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity)
                 obj["state"] = "kuroe_taro_s_handicraft_logo_flash_out"
@@ -81,7 +81,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["kuroe_taro_s_handicraft_logo_update"] = function() 
             -- 如果flash in 动画运行完成或按下d键 跳转到 flash out
             -- 设置flash out 动画
-            if SCENE_TIMER >= 120 or command_state[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity)
                 obj["state"] = "kuroe_taro_s_handicraft_logo_flash_out"
@@ -95,7 +95,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
             -- 如果运行完成或者按下d键 跳转到新的flash in
             -- 初始化透明度 因为坐标相同所以不改 图片改为 love2d logo
             -- 设置为新的flash in 动画
-            if get_point_linear_anim_end_state(obj,anim) or command_state[1]["D"] == "Pressing" then
+            if get_point_linear_anim_end_state(obj,anim) or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 0
                 obj[8] = 2
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity)
@@ -114,7 +114,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
             end
             -- 如果按下d 跳转到flash out
             -- 设置flash out 动画
-            if command_state[1]["D"] == "Pressing" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity)
                 obj["state"] = "love_logo_flash_out"
@@ -124,7 +124,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["love_logo_update"] = function() 
             -- 如果按下d 或者在update保持了120帧 跳转到 flash out
             -- 设置flash out 动画
-            if SCENE_TIMER >= 120 or command_state[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity)
                 obj["state"] = "love_logo_flash_out"
@@ -136,7 +136,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
             local anim = anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity
             point_linear_animator(obj,anim)
             -- 跳转到end 用于检测
-            if get_point_linear_anim_end_state(obj,anim) or command_state[1]["D"] == "Pressing" then
+            if get_point_linear_anim_end_state(obj,anim) or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 0
                 obj["state"] = "end"
                 SCENE_TIMER = 0

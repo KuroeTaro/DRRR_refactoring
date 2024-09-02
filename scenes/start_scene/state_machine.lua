@@ -19,7 +19,7 @@ function state_machine_UI_start_scene_config_controller(obj,input_id)
         ["off_state"] = function() 
             local local_flash_in_anim = anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
             -- 如果按D或者scene timer 到达10f则进入flash_in
-            if command_state[input_id]["D"] == "Pressing" or command_state[input_id]["D"] == "Holding" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Holding" then
                 -- 设置flash in 动画
                 obj[4] = 0.5
                 init_point_linear_anim_with(obj,local_flash_in_anim)
@@ -30,7 +30,7 @@ function state_machine_UI_start_scene_config_controller(obj,input_id)
             local local_flash_in_anim = anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
             local local_flash_out_anim = anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
             point_linear_animator(obj,local_flash_in_anim)
-            if command_state[input_id]["D"] == "Releasing" or command_state[input_id]["D"] == "Released" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Releasing" or INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Released" then
                 -- 设置flash out 动画
                 obj[4] = 1
                 init_point_linear_anim_with(obj,local_flash_out_anim)
@@ -42,7 +42,7 @@ function state_machine_UI_start_scene_config_controller(obj,input_id)
         end,
         ["on_state"] = function() 
             local local_flash_out_anim = anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
-            if command_state[input_id]["D"] == "Releasing" or command_state[input_id]["D"] == "Released" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Releasing" or INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Released" then
                 -- 设置flash out 动画
                 obj[4] = 1
                 init_point_linear_anim_with(obj,local_flash_out_anim)
@@ -54,11 +54,11 @@ function state_machine_UI_start_scene_config_controller(obj,input_id)
             local local_flash_in_anim = anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
             local local_flash_out_anim = anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
             point_linear_animator(obj,local_flash_out_anim)
-            if command_state[input_id]["D"] == "Pressing" or command_state[input_id]["D"] == "Holding" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Holding" then
                 -- 设置flash out 动画
                 obj[4] = 0.5
                 init_point_linear_anim_with(obj,local_flash_in_anim)
-                obj["state"] = "flash_out"
+                obj["state"] = "flash_in"
             elseif get_point_linear_anim_end_state(obj,local_flash_out_anim) then
                 obj[4] = 0.5
                 obj["state"] = "off_state"

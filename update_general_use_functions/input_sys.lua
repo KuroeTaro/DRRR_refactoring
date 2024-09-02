@@ -1,47 +1,50 @@
 function init_input()
-    current_command = {}
-    command_state = {}
+    INPUT_SYS_CURRENT_COMMAND = {}
+    INPUT_SYS_CURRENT_COMMAND_STATE = {}
     
-    current_command[1] = {}
-    command_state[1] = {}
-    current_command[2] = {}
-    command_state[2] = {}
+    INPUT_SYS_CURRENT_COMMAND[1] = {}
+    INPUT_SYS_CURRENT_COMMAND_STATE[1] = {}
+    INPUT_SYS_CURRENT_COMMAND[2] = {}
+    INPUT_SYS_CURRENT_COMMAND_STATE[2] = {}
 
-    joystick_list = {}
+    INPUT_SYS_CURRENT_JOYSTICK_TABLE = {}
 
-    controller_state = {0,0,0,0}
+    INPUT_SYS_CONTROLLER_STATE = {0,0,0,0}
 
-    joystick_list = love.joystick.getJoysticks()
+    INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
 
     --加载手柄按键 键盘按键 手柄z轴 对于指令的表
-    command_list = {
+    INPUT_SYS_COMMAND_TABLE = {
         "Up","Down","Left","Right",
         "A","B","C","D",
         "SSP","SP","back","start",
-        "RC","Dash"}
+        "RC","Dash"
+    }
     
-    buttom_list = {
+    INPUT_SYS_BUTTON_TABLE = {
         "dpup","dpdown","dpleft","dpright",
         "x","y","b","a",
-        "leftshoulder","rightshoulder","back","start"}
+        "leftshoulder","rightshoulder","back","start"
+    }
         
-    axis_list = {"triggerleft","triggerright"}
+    INPUT_SYS_AXIS_TABLE = {"triggerleft","triggerright"}
 
-    key_list = {
+    INPUT_SYS_KEY_TABLE = {
         "w","s","a","d",
         "j","i","l","k",
         "lshift","space","escape","return",
-        "q","e"}
+        "q","e"
+    }
     
     for i=1,14 do
-        command_state[1][command_list[i]] = "Released"
-        command_state[2][command_list[i]] = "Released"
+        INPUT_SYS_CURRENT_COMMAND_STATE[1][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
+        INPUT_SYS_CURRENT_COMMAND_STATE[2][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
     end
 
     --初始化现指令数组
     for i = 1,14 do
-        current_command[1][command_list[i]] = 0
-        current_command[2][command_list[i]] = 0
+        INPUT_SYS_CURRENT_COMMAND[1][INPUT_SYS_COMMAND_TABLE[i]] = 0
+        INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
     end
 end
 
@@ -50,37 +53,37 @@ function update_input()
     update_controller()
 
     --获得所有指令的现在布尔值和上一帧布尔值
-    --并且赋值到current_command和perCommand
+    --并且赋值到INPUT_SYS_CURRENT_COMMAND和perCommand
     if CURRENT_SCENE == "online_match_stage" then
-        if joystick_list[1] == nil then 
-            get_current_command(
-                current_command[NETWORK_MATCH_SIDE],
-                joystick_list[NETWORK_MATCH_SIDE]
+        if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
+            get_INPUT_SYS_CURRENT_COMMAND(
+                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
+                INPUT_SYS_CURRENT_JOYSTICK_TABLE[NETWORK_MATCH_SIDE]
             )
         else 
-            get_current_command(
-                current_command[NETWORK_MATCH_SIDE],
-                joystick_list[NETWORK_MATCH_SIDE]
+            get_INPUT_SYS_CURRENT_COMMAND(
+                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
+                INPUT_SYS_CURRENT_JOYSTICK_TABLE[NETWORK_MATCH_SIDE]
             )
         end
 
-        -- current_command[OTHER_SIDE] 从网络接口获取
+        -- INPUT_SYS_CURRENT_COMMAND[OTHER_SIDE] 从网络接口获取
 
     else
-        if joystick_list[1] == nil then 
-            get_current_command(current_command[1],joystick_list[1])
+        if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
+            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
             for i = 1,14 do
-                current_command[2][command_list[i]] = 0
+                INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         else 
-            get_current_command(current_command[1],joystick_list[1])
-            get_current_command(current_command[2],joystick_list[2])
+            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
+            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[2],INPUT_SYS_CURRENT_JOYSTICK_TABLE[2])
         end
     end
 
     --输入状态机
-    state_machine_input(command_state[1],current_command[1])
-    state_machine_input(command_state[2],current_command[2])
+    state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE[1],INPUT_SYS_CURRENT_COMMAND[1])
+    state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE[2],INPUT_SYS_CURRENT_COMMAND[2])
 end
 
 --将手柄按键的值转化为指令表内的数值
@@ -101,90 +104,90 @@ end
 
 --加载手柄
 function update_controller()
-    joystick_list = love.joystick.getJoysticks()
+    INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
     
-    controller_state[2] = controller_state[0]
-    controller_state[3] = controller_state[1]
+    INPUT_SYS_CONTROLLER_STATE[2] = INPUT_SYS_CONTROLLER_STATE[0]
+    INPUT_SYS_CONTROLLER_STATE[3] = INPUT_SYS_CONTROLLER_STATE[1]
 
-    if joystick_list[1] == nil then 
-        controller_state[0] = 0
+    if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
+        INPUT_SYS_CONTROLLER_STATE[0] = 0
     else 
-        controller_state[0] = 1
+        INPUT_SYS_CONTROLLER_STATE[0] = 1
     end 
 
-    if joystick_list[2] == nil then 
-        controller_state[1] = 0
+    if INPUT_SYS_CURRENT_JOYSTICK_TABLE[2] == nil then 
+        INPUT_SYS_CONTROLLER_STATE[1] = 0
     else 
-        controller_state[1] = 1
+        INPUT_SYS_CONTROLLER_STATE[1] = 1
     end 
 end
 
 --获得所有指令的现在布尔值和上一帧布尔值（键盘）
-function get_current_command(current_command,joystick)
+function get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND,joystick)
     --(键盘)
     if joystick == nil then
         for i = 1,14 do
-            if love.keyboard.isDown(key_list[i]) then
-                current_command[command_list[i]] = 1
-            else current_command[command_list[i]] = 0
+            if love.keyboard.isDown(INPUT_SYS_KEY_TABLE[i]) then
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
     else
         for i = 1,12 do
-            if get_joystick_buttom_command(joystick,buttom_list[i]) then
-                current_command[command_list[i]] = 1
-            else current_command[command_list[i]] = 0
+            if get_joystick_buttom_command(joystick,INPUT_SYS_BUTTON_TABLE[i]) then
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
 
         for i = 1,2 do
-            if get_joystick_axis_command(joystick,axis_list[i]) > 0.2 then
-                current_command[command_list[i+12]] = 1
-            else current_command[command_list[i+12]] = 0
+            if get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) > 0.2 then
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
             end
         end
     end
 end
 
 --输入状态机
-function state_machine_input(command_state,current_command)
+function state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE,INPUT_SYS_CURRENT_COMMAND)
     for i=1,14 do
         local switch = 
         {
             ["Released"] = function()
-                if current_command[command_list[i]] == 1 then 
-                    command_state[command_list[i]] = "Pressing"
+                if INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] == 1 then 
+                    INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Pressing"
                 end
             end,
             ["Releasing"] = function()
-                if current_command[command_list[i]] == 1 then 
-                    command_state[command_list[i]] = "Pressing"
+                if INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] == 1 then 
+                    INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Pressing"
                 else
-                    command_state[command_list[i]] = "Released"
+                    INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Released"
                 end
             end,
             ["Pressing"] = function()
-                if current_command[command_list[i]] == 1 then 
-                    command_state[command_list[i]] = "Holding"
+                if INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] == 1 then 
+                    INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Holding"
                 else
-                    command_state[command_list[i]] = "Releasing"
+                    INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Releasing"
                 end
             end,
             ["Holding"] = function()
-                if current_command[command_list[i]] == 0 then 
-                    command_state[command_list[i]] = "Releasing"
+                if INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] == 0 then 
+                    INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Releasing"
                 end
             end
         }
-        local this_function = switch[command_state[command_list[i]]]
+        local this_function = switch[INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]]]
         if this_function then this_function() end
     end
 end
 
 function draw_input_sys()
-    for i, v in ipairs(command_list) do
+    for i, v in ipairs(INPUT_SYS_COMMAND_TABLE) do
         love.graphics.print(v, 0, i*15-15)
-        love.graphics.print(command_state[1][v], 100, i*15-15)
-        love.graphics.print(command_state[2][v], 160, i*15-15)
+        love.graphics.print(INPUT_SYS_CURRENT_COMMAND_STATE[1][v], 100, i*15-15)
+        love.graphics.print(INPUT_SYS_CURRENT_COMMAND_STATE[2][v], 160, i*15-15)
     end 
 end

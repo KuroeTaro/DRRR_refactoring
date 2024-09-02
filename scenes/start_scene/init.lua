@@ -162,7 +162,7 @@ function load_start_scene_obj()
     obj_UI_start_scene_config_audio_SFX_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_light["state"] = "default"
 
-    obj_UI_start_scene_config_audio_BGM_bar_alpha = {BGM_volume*23, 0, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha = {BGM_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_audio_BGM_bar_alpha["width"] = 232
     obj_UI_start_scene_config_audio_BGM_bar_alpha["height"] = 16
     obj_UI_start_scene_config_audio_BGM_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
@@ -170,7 +170,7 @@ function load_start_scene_obj()
     obj_UI_start_scene_config_audio_BGM_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_alpha["state"] = "default"
 
-    obj_UI_start_scene_config_audio_SFX_bar_alpha = {SFX_volume*23, 0, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha = {SFX_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_audio_SFX_bar_alpha["width"] = 232
     obj_UI_start_scene_config_audio_SFX_bar_alpha["height"] = 16
     obj_UI_start_scene_config_audio_SFX_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
@@ -519,8 +519,6 @@ function load_start_scene_anim()
 
 
     -- config res select
-    -- bar mark
-
     anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x = {}
     anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x[0] = {1000.00, 1}
     anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x[1] = {994.00, 4}
@@ -596,13 +594,13 @@ function load_start_scene_audio()
     audio_BGM_start_scene_FTR_low["LCD"] = {0}
     audio_BGM_start_scene_FTR_low["audio"] = love.audio.newSource("asset/start_scene/audio/FTR_low.mp3","stream")
 
-    update_SFX_volume(audio_SFX_start_scene_click)
-    update_SFX_volume(audio_SFX_start_scene_scene_out)
-    update_SFX_volume(audio_SFX_start_scene_to_main)
-    update_SFX_volume(audio_SFX_start_scene_to_sub)
+    update_SFX_VOLUME(audio_SFX_start_scene_click)
+    update_SFX_VOLUME(audio_SFX_start_scene_scene_out)
+    update_SFX_VOLUME(audio_SFX_start_scene_to_main)
+    update_SFX_VOLUME(audio_SFX_start_scene_to_sub)
 
-    update_BGM_volume(audio_BGM_start_scene_FTR_high)
-    update_BGM_volume(audio_BGM_start_scene_FTR_low)
+    update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
+    update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
 
     -- audio anim
 
