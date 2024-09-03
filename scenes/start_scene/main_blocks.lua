@@ -189,7 +189,7 @@ function update_start_scene_main()
                     -- audio
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
                 )
 
                 -- 音量更新
@@ -219,7 +219,7 @@ function update_start_scene_main()
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
                 )
                 -- 音量更新
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
@@ -259,7 +259,7 @@ function update_start_scene_main()
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_low,
@@ -345,7 +345,7 @@ function update_start_scene_main()
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_low,
@@ -382,7 +382,7 @@ function update_start_scene_main()
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1
                 )
 
                 -- 更新音量
@@ -440,7 +440,7 @@ function update_start_scene_flash_out()
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1
     )
     update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
 
@@ -583,7 +583,7 @@ function update_start_scene_config_flash_in()
 
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_low,
@@ -851,7 +851,7 @@ function update_start_scene_config_main()
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_low,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
                 )
     
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
@@ -898,7 +898,7 @@ function update_start_scene_config_main()
         )
         init_point_linear_anim_with(
             audio_BGM_start_scene_FTR_low,
-            anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+            anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
         )
 
         update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
@@ -1009,7 +1009,7 @@ function update_start_scene_config_flash_out()
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_low,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
     )
 
     update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
@@ -1841,12 +1841,13 @@ function update_start_scene_config_resolution_flash_in()
         -- 初始化此出口所需要的动画机 但是目前没有
 
         -- 更新 current_update_block
-        current_update_block = update_start_scene_config_controller_main
+        current_update_block = update_start_scene_config_resolution_main
 
     end
 end
 
 function update_start_scene_config_resolution_main()
+    print("x")
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1859,6 +1860,8 @@ function update_start_scene_config_resolution_main()
     )
 
     if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Left"] == "Pressing" then
+        SCENE_TIMER = 0
+
         play_obj_audio(audio_SFX_start_scene_click)
 
         if RES_PARTTEN ~= 0 then
@@ -1880,6 +1883,7 @@ function update_start_scene_config_resolution_main()
         current_update_block = update_start_scene_config_resolution_bar_mark_twtich_left
 
     elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Right"] == "Pressing" then
+        SCENE_TIMER = 0
         
         play_obj_audio(audio_SFX_start_scene_click)
 
@@ -1905,6 +1909,8 @@ function update_start_scene_config_resolution_main()
         set_current_resolution()
 
     elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["C"] == "Pressing" then
+        SCENE_TIMER = 0
+
         play_obj_audio(audio_SFX_start_scene_to_main)
 
         -- 初始化此出口所需属性
@@ -1968,7 +1974,7 @@ function update_start_scene_config_resolution_bar_mark_twtich_left()
         -- 初始化此出口所需要的动画机 但是目前没有
 
         -- 更新 current_update_block
-        current_update_block = update_start_scene_config_controller_main
+        current_update_block = update_start_scene_config_resolution_main
 
     end
 
@@ -1997,7 +2003,7 @@ function update_start_scene_config_resolution_bar_mark_twtich_right()
         -- 初始化此出口所需要的动画机 但是目前没有
 
         -- 更新 current_update_block
-        current_update_block = update_start_scene_config_controller_main
+        current_update_block = update_start_scene_config_resolution_main
 
     end
 
@@ -2106,7 +2112,7 @@ function update_start_scene_record_flash_in()
 
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_low,
