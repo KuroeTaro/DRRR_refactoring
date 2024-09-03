@@ -909,7 +909,7 @@ function update_start_scene_config_main()
 
     end
 
-end 
+end -- 已检查
 
 function update_start_scene_config_twitch_up()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1844,10 +1844,9 @@ function update_start_scene_config_resolution_flash_in()
         current_update_block = update_start_scene_config_resolution_main
 
     end
-end
+end -- 已检查
 
 function update_start_scene_config_resolution_main()
-    print("x")
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1948,7 +1947,7 @@ function update_start_scene_config_resolution_main()
     
     end
 
-end
+end -- 已检查
 
 function update_start_scene_config_resolution_bar_mark_twtich_left()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1978,7 +1977,7 @@ function update_start_scene_config_resolution_bar_mark_twtich_left()
 
     end
 
-end
+end -- 已检查
 
 function update_start_scene_config_resolution_bar_mark_twtich_right()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -2007,7 +2006,7 @@ function update_start_scene_config_resolution_bar_mark_twtich_right()
 
     end
 
-end
+end -- 已检查
 
 function update_start_scene_config_resolution_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -2053,7 +2052,7 @@ function update_start_scene_config_resolution_flash_out()
         
     end
 
-end
+end -- 已检查
 
 
 -- record
