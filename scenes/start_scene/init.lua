@@ -12,7 +12,7 @@ function load_start_scene_obj()
 
     -- record
     -- x y z opacity sx sy r f
-    obj_UI_start_scene_record_100h_plus_time_indi = {600, 510, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_100h_plus_time_indi = {600, 460, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_record_100h_plus_time_indi["width"] = 320
     obj_UI_start_scene_record_100h_plus_time_indi["height"] = 40
     obj_UI_start_scene_record_100h_plus_time_indi["FCT"] = {0,0,0,0,0,0,0,0}
@@ -20,7 +20,7 @@ function load_start_scene_obj()
     obj_UI_start_scene_record_100h_plus_time_indi["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["state"] = "default"
 
-    obj_UI_start_scene_record_dabo_trig = {550, 400, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_record_dabo_trig = {550, 500, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_record_dabo_trig["width"] = 36
     obj_UI_start_scene_record_dabo_trig["height"] = 16
     obj_UI_start_scene_record_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}

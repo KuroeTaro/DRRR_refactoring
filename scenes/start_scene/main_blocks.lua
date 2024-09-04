@@ -288,7 +288,7 @@ function update_start_scene_main()
                 obj_UI_start_scene_shutter[4] = 0
                 obj_UI_start_scene_record_dabo_trig[4] = 0
                 obj_UI_start_scene_record_dabo_trig[2] = 
-                DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_CONFIG_RECORD_DABO_TRIG_ID + 1]
+                DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION
                 obj_UI_start_scene_record_game_duration_text[4] = 0
                 obj_UI_start_scene_record_num_0[4] = 0
                 obj_UI_start_scene_record_num_1[4] = 0
@@ -297,10 +297,8 @@ function update_start_scene_main()
                 obj_UI_start_scene_record_num_4[4] = 0
                 obj_UI_start_scene_record_num_5[4] = 0
                 obj_UI_start_scene_record_100h_plus_time_indi[4] = 0
-
-                -- 更新音量
-                update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
-                update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
+                audio_BGM_start_scene_FTR_high[1] = 1
+                audio_BGM_start_scene_FTR_low[1] = 0
 
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
@@ -371,9 +369,8 @@ function update_start_scene_main()
 
                 -- 初始化此出口所需属性
                 obj_UI_start_scene_solid_color[4] = 0
-                -- 更新音量
-                update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
-                update_SFX_VOLUME(audio_SFX_start_scene_scene_out)
+                audio_BGM_start_scene_FTR_high[1] = 1
+                audio_SFX_start_scene_scene_out[1] = 1
 
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
@@ -387,6 +384,7 @@ function update_start_scene_main()
 
                 -- 更新音量
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
+                update_SFX_VOLUME(audio_SFX_start_scene_scene_out)
 
                 -- 更新 current_update_block
                 current_update_block = update_start_scene_flash_out
@@ -830,6 +828,8 @@ function update_start_scene_config_main()
                 obj_UI_start_scene_shutter[4] = 1
                 obj_UI_start_scene_config_menu_dabo_trig[4] = 1
                 obj_UI_start_scene_config_menu_text[4] = 1
+                audio_BGM_start_scene_FTR_high[1] = 0
+                audio_BGM_start_scene_FTR_low[1] = 1 
     
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
@@ -877,6 +877,8 @@ function update_start_scene_config_main()
         obj_UI_start_scene_shutter[4] = 1
         obj_UI_start_scene_config_menu_dabo_trig[4] = 1
         obj_UI_start_scene_config_menu_text[4] = 1
+        audio_BGM_start_scene_FTR_high[1] = 0
+        audio_BGM_start_scene_FTR_low[1] = 1 
 
         -- 初始化此出口所需要的动画机
         init_point_linear_anim_with(
@@ -1794,11 +1796,11 @@ function update_start_scene_config_controller_flash_out()
 
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_main
+        current_draw_block = draw_start_scene_config_sub_scene
 
     end
 
 end -- 已检查
-
 
     -- config resolution 
 function update_start_scene_config_resolution_flash_in()
@@ -2049,6 +2051,7 @@ function update_start_scene_config_resolution_flash_out()
 
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_main
+        current_draw_block = draw_start_scene_config_sub_scene
         
     end
 
@@ -2129,6 +2132,7 @@ function update_start_scene_record_flash_in()
 
         -- 更新 current_update_block
         current_update_block = update_start_scene_record_main
+        
     end
 end
 
@@ -2153,33 +2157,118 @@ function update_start_scene_record_main()
 
     -- 场景出口
     if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Up"] == "Pressing" then
-        if SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID == 0 then
-            SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID = 1
-        else
-            SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID = SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID - 1
-        end
+        SCENE_TIMER = 0
 
-        obj_UI_start_scene_config_menu_dabo_trig[2] = 
-        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID + 1]
+        play_obj_audio(audio_SFX_start_scene_click)
+
+        -- 初始化此出口所需属性
+        obj_UI_start_scene_record_dabo_trig[2] = 
+        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION
+
+        -- 初始化此出口所需要的动画机
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_dabo_trig,
+            anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+        )
+
+        -- 更新 current_update_block
+        current_update_block = update_start_scene_record_twitch_up
+        
 
     elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Down"] == "Pressing" then
-        if SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID == 1 then
-            SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID = 0
-        else
-            SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID = SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID + 1
-        end
+        SCENE_TIMER = 0
 
-        obj_UI_start_scene_config_menu_dabo_trig[2] = 
-        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION_TABLE[SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID + 1]
-
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
-        if SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID == 0 then
+        play_obj_audio(audio_SFX_start_scene_click)
         
-        elseif SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID == 1 then
+        -- 初始化此出口所需属性
+        obj_UI_start_scene_record_dabo_trig[2] = 
+        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION
 
-        end
+        -- 初始化此出口所需要的动画机
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_dabo_trig,
+            anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y
+        )
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["C"] == "Pressing" then
+        -- 更新 current_update_block
+        current_update_block = update_start_scene_record_twitch_down
+
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE[1]["C"] == "Pressing" then
+        SCENE_TIMER = 0
+
+        play_obj_audio(audio_SFX_start_scene_to_main)
+
+        -- 初始化此出口所需属性
+        obj_UI_start_scene_shutter[4] = 1
+        obj_UI_start_scene_record_dabo_trig[4] = 1
+        obj_UI_start_scene_record_dabo_trig[2] = 
+        DABO_TIRG_RECORD_SUB_SCENE_Y_POSITION
+        obj_UI_start_scene_record_game_duration_text[4] = 1
+        obj_UI_start_scene_record_num_0[4] = 1
+        obj_UI_start_scene_record_num_1[4] = 1
+        obj_UI_start_scene_record_num_2[4] = 1
+        obj_UI_start_scene_record_num_3[4] = 1
+        obj_UI_start_scene_record_num_4[4] = 1
+        obj_UI_start_scene_record_num_5[4] = 1
+        obj_UI_start_scene_record_100h_plus_time_indi[4] = 1
+        audio_BGM_start_scene_FTR_high[1] = 0
+        audio_BGM_start_scene_FTR_low[1] = 1
+
+        -- 初始化此出口所需要的动画机
+        init_point_linear_anim_with(
+            obj_UI_start_scene_shutter,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_dabo_trig,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_game_duration_text,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_num_0,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_num_1,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_num_2,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_num_3,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_num_4,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_num_5,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_start_scene_record_100h_plus_time_indi,
+            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        )
+        init_point_linear_anim_with(
+            audio_BGM_start_scene_FTR_high,
+            anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+        )
+        init_point_linear_anim_with(
+            audio_BGM_start_scene_FTR_low,
+            anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+        )
+
+        update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
+        update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
+
+        -- 更新 current_update_block
+        current_update_block = update_start_scene_record_flash_out
 
     end
 
@@ -2196,8 +2285,17 @@ function update_start_scene_record_twitch_up()
         obj_UI_start_scene_console_type_in_mark,
         anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
     )
+
+    point_linear_animator(
+        obj_UI_start_scene_record_dabo_trig,
+        anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y
+    )
+
     -- 场景出口
     if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        -- 更新 current_update_block
+        current_update_block = update_start_scene_record_main
 
     end
 
@@ -2214,13 +2312,95 @@ function update_start_scene_record_twitch_down()
         obj_UI_start_scene_console_type_in_mark,
         anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
     )
+
+    point_linear_animator(
+        obj_UI_start_scene_record_dabo_trig,
+        anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y
+    )
+
     -- 场景出口
     if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        -- 更新 current_update_block
+        current_update_block = update_start_scene_record_main
 
     end
 
 end
 
 function update_start_scene_record_flash_out()
+    SCENE_TIMER = SCENE_TIMER + 1
+    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
+    point_linear_animator(
+        obj_UI_start_scene_breath_tag,
+        anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity
+    )
+    frame_animator(
+        obj_UI_start_scene_console_type_in_mark,
+        anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
+    )
+
+    -- 初始化此出口所需要的动画机
+    point_linear_animator(
+        obj_UI_start_scene_shutter,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_dabo_trig,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_game_duration_text,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_0,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_1,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_2,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_3,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_4,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_num_5,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        obj_UI_start_scene_record_100h_plus_time_indi,
+        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+    )
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_high,
+        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+    )
+    point_linear_animator(
+        audio_BGM_start_scene_FTR_low,
+        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+    )
+
+    update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
+    update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
+
+    -- 场景出口
+    if SCENE_TIMER >= 5 then
+        SCENE_TIMER = 0
+        -- 更新 current_update_block
+        current_update_block = update_start_scene_main
+        current_draw_block = draw_start_scene_general
+
+    end
+
 
 end

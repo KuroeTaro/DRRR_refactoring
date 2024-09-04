@@ -58,3 +58,10 @@ function update_record_game_duration()
         GAME_DURATION[6] = 0
     end
 end
+
+function modify_quit_game_reocrd()
+    function love.quit()
+        write_game_duration_record()
+        return false
+    end
+end

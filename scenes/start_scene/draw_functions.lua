@@ -202,11 +202,16 @@ function draw_start_scene_sp_record_100h_plus_time_indi(obj,image)
     local res = love.graphics.newCanvas(320,40)
     local alpha = love.graphics.newCanvas(320,40)
     love.graphics.setCanvas(res)
+
     love.graphics.draw(image)
     love.graphics.setBlendMode('multiply', 'premultiplied')
     love.graphics.draw(alpha,cto_25)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
+
+    love.graphics.setColor(1, 1, 1, obj[4]*0.3)
+    love.graphics.draw(image,x,y,0,sx,sy)
+    love.graphics.setColor(1, 1, 1, 1)
 
     love.graphics.setColor(1, 1, 1, obj[4])
     love.graphics.draw(res,x,y,0,sx,sy)
