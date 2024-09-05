@@ -449,7 +449,7 @@ function update_start_scene_flash_out()
         -- 初始化此出口所需要的动画机 但是目前没有
         local local_switch = {
             [0] = function()
-
+                
             end,
             [1] = function()
 
@@ -461,7 +461,7 @@ function update_start_scene_flash_out()
 
         local this_function = local_switch[OPTION_ID]
         if this_function then this_function() end
-        
+
     end
 
 end -- 已检查
