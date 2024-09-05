@@ -152,7 +152,7 @@ end
 --输入状态机
 function state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE,INPUT_SYS_CURRENT_COMMAND)
     for i=1,14 do
-        local switch = 
+        local local_switch = 
         {
             ["Released"] = function()
                 if INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] == 1 then 
@@ -179,7 +179,7 @@ function state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE,INPUT_SYS_CURRENT_C
                 end
             end
         }
-        local this_function = switch[INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]]]
+        local this_function = local_switch[INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]]]
         if this_function then this_function() end
     end
 end

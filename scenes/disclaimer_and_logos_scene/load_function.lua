@@ -24,7 +24,7 @@ end
 
 -- 分步骤将素材加载
 function order_load_disclaimer_and_logo_scene_1_general(load_order)
-    local switch = 
+    local local_switch = 
     {
         [1] = function()
             load_disclaimer_and_logos_scene_obj()
@@ -39,7 +39,7 @@ function order_load_disclaimer_and_logo_scene_1_general(load_order)
             image_table_UI_disclaimer_and_logos_scene_singular[2] = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
         end,
     }
-    local this_function = switch[load_order]
+    local this_function = local_switch[load_order]
     if this_function then this_function() end
 
 end

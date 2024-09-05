@@ -447,21 +447,12 @@ function update_start_scene_flash_out()
         SCENE_TIMER = 0
         -- 初始化此出口所需属性 但是目前没有
         -- 初始化此出口所需要的动画机 但是目前没有
-        local local_switch = {
-            [0] = function()
 
-            end,
-            [1] = function()
+        -- 更新 current_update_block
 
-            end,
-            [4] = function()
-                love.event.quit()
-            end
-        }
-
-        local this_function = local_switch[OPTION_ID]
-        if this_function then this_function() end
-        
+        -- current_update_block = nil
+        -- current_draw_block = nil
+        love.event.quit()
     end
 
 end -- 已检查
