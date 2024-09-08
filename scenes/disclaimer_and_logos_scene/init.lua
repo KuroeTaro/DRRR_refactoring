@@ -7,8 +7,6 @@ function load_disclaimer_and_logos_scene_obj()
     obj_UI_disclaimer_and_logos_scene_singular["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_disclaimer_and_logos_scene_singular["state"] = "pre_disclaimer_flash_in"
 
-    obj_UI_disclaimer_and_logos_scene_singular["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_disclaimer_and_logos_scene_singular["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
 end
 
 

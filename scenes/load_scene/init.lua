@@ -12,9 +12,6 @@ function init_load_scene_obj()
     obj_UI_load_scene_loading_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_loading_text["state"] = "default"
 
-    obj_UI_load_scene_loading_text["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_loading_text["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
-
     obj_UI_load_scene_type_in_mark = {1460, 798, nil, 0, 1, 1, 0, 0}
     obj_UI_load_scene_type_in_mark["width"] = 5
     obj_UI_load_scene_type_in_mark["height"] = 20
@@ -23,9 +20,6 @@ function init_load_scene_obj()
     obj_UI_load_scene_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_type_in_mark["state"] = "default"
 
-    obj_UI_load_scene_type_in_mark["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_type_in_mark["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
-
     obj_UI_load_scene_dabo_trig = {1280, 800, nil, 0, 1, 1, 0, 0}
     obj_UI_load_scene_dabo_trig["width"] = 36
     obj_UI_load_scene_dabo_trig["height"] = 16
@@ -33,9 +27,6 @@ function init_load_scene_obj()
     obj_UI_load_scene_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_load_scene_dabo_trig["state"] = "default"
-
-    obj_UI_load_scene_dabo_trig["debug_executed_FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_dabo_trig["debug_executed_LCT"] = {0,0,0,0,0,0,0,0}
 
 end
 
