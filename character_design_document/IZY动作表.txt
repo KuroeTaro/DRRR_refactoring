@@ -1,0 +1,27 @@
+5A 5B 5C 2A 2B 2C 6A [6B -> Terumi] 6C 3C JA JB JC J2C 5D 6D 4D J5D J6D J4D BC 
+
+AB 236A 214B 214D 623D J214B 236C 2626B 6246C 6246D 
+RC OD AH BLOCK DASH Technical-Art
+
+AB -> AD
+236A -> 2SP 
+214B -> 5SP
+214D -> 4SP
+623D -> 3SP
+J214B -> JSP
+236C -> 6SP
+2626B -> Technical-Art A
+6426C -> Technical-Art B
+6426D -> Technical-Art C
+AH -> Technical-Art D
+
+OD -> Right Stick
+RC -> LT
+Dash -> RT
+
+Dash -> 44/66
+Throw -> BC
+Crush Trigger -> AD
+Technical-Art -> LT
+SP -> RS
+

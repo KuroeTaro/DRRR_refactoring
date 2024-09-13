@@ -1,0 +1,52 @@
+5A hz5a 5 
+5B ntThrow 10 
+5C hz5c/tm2a 15 
+
+2A hz2a 20 
+2B nt2a 25 
+2C hz2C/tm2a 30 
+
+setA nt6a 35 
+setB hz6b 40 
+setC hz6c 45 
+
+set2C hz3c 50 
+set2D hz623d 55 
+
+jA haja 60 
+jB hzjb/nt6b 65 
+jC hzjc 70 
+
+jset hzj214b 75 
+j2C hzj2c 80 
+
+D  hzD 85 
+
+Switch D hz214d  
+Switch C hz236c  
+Switch B hz214b  
+Switch A hz236a 120 
+
+BlockShoulder BarrierBlock 
+BlockShoulder D OverDrive 125 
+BlockShoulder Set ResetC4ncel 
+BlockShoulder B Counter Assault
+
+Dasher Dash 
+
+BC ThrowCrusher 
+AD ChargeCrusher 
+  
+TechnicalArt A tm41236C 
+TechnicalArt B hz236236B 
+TechnicalArt C hz632146C 
+TechnicalArt D hz632146D 
+
+BusterFual D AstonishingHeist  
+
+Switch 右扳机 
+Set 右肩键
+TechnicalArt 左扳机 
+BlockShoulder 左肩键
+
+BusterFual 左右扳机同时双击
