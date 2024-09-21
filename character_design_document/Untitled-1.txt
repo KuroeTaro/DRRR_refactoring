@@ -1,0 +1,56 @@
+HA: 5K CS 6K 6S 6D J6D 2424P
+JK: 236K
+FA: 5D
+HZ: 5A 5B 2A 2B 6A 6C 3C JA JB JC J2C 24B 24D 24DA*B*C*44*66 J24B 2626B 6246DD
+TM: 6A 24C 624AB 
+NT: 6A
+KY: JH
+JO：JH J236H
+GI: 5D
+
+
+    INPUT_SYS_COMMAND_TABLE = {
+        "Up","Down","Left","Right",
+        "P","S","H","K",
+        "SP","Dust","back","start",
+        "RC","Dash"
+    }
+    
+
+
+5P: HA 5P
+5S: HA CS
+5K: HA 5K
+5Dust: HA 5Dust
+
+2P: HA 2P
+2S: LO 2S
+2K: HZ 2B
+2Dust: HA 2Dust
+
+6P: TM 24C 
+6S: HA 6S
+6K: HA 6K
+
+JP: HA JP
+JS: JO JS
+JK: HZ JB
+J2K：HA J2K
+J5DUST: HA J5DUST
+
+4.6Dust：HA 4.6Dust
+
+D: HZ D
+
+6SPDust RM 26D
+
+5/6SPS HZ 24B HA 26S
+2SPK HZ 24D HA 22P/24P
+5SPK HZ 26D JO 26P
+4SPK HA 214K
+JSPS HZ J24B
+
+6SPP HZ 2626b
+4SPP HZ 6246C
+2SPP HZ 63214D6D
+
