@@ -55,10 +55,13 @@ function love.run()
 
         -- Call update and draw
         if FRST >= 1/60 then
+			local updateStartTime = love.timer.getTime()
             if love.update then love.update() end -- will pass 0 if love.timer is disabled
 
             if love.draw then love.draw() end
             love.graphics.present()
+			local updateEndTime = love.timer.getTime()
+			print(updateStartTime-updateEndTime)
 
             FRST = math.fmod(FRST, 1/60)
         end
