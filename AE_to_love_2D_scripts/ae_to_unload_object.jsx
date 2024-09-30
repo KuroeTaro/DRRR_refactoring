@@ -3,7 +3,7 @@ var comp = app.project.activeItem;
 
 if (comp && comp instanceof CompItem) {
     // 创建一个文本文件以输出信息
-    var outputFile = new File("F:/LOVE/DRRR/unload_obj.txt"); // 修改为你想要的文件路径
+    var outputFile = new File("F:/LOVE/DRRR_refactoring/unload_obj.txt"); // 修改为你想要的文件路径
     outputFile.open("w");
 
     // 设置需要输出的颜色标签编号（例如红色标签）

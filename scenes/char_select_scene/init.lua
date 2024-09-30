@@ -1,656 +1,344 @@
-function load_start_scene_obj()
-    -- 主界面 全覆盖 solid color
-    obj_UI_start_scene_solid_color = {0, 0, 0, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_solid_color["width"] = 1600
-    obj_UI_start_scene_solid_color["height"] = 900
-    obj_UI_start_scene_solid_color["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_solid_color["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_solid_color["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_solid_color["state"] = "default"
-    obj_UI_start_scene_solid_color["rgb"] = {7/255,19/255,31/255}
-
-
-    -- record
-    -- x y z opacity sx sy r f
-    obj_UI_start_scene_record_100h_plus_time_indi = {600, 460, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_100h_plus_time_indi["width"] = 320
-    obj_UI_start_scene_record_100h_plus_time_indi["height"] = 40
-    obj_UI_start_scene_record_100h_plus_time_indi["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_100h_plus_time_indi["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_100h_plus_time_indi["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_100h_plus_time_indi["state"] = "default"
-
-    obj_UI_start_scene_record_dabo_trig = {550, 500, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_dabo_trig["width"] = 36
-    obj_UI_start_scene_record_dabo_trig["height"] = 16
-    obj_UI_start_scene_record_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_dabo_trig["state"] = "default"
-
-    obj_UI_start_scene_record_num_0 = {600, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_0["width"] = 12
-    obj_UI_start_scene_record_num_0["height"] = 16
-    obj_UI_start_scene_record_num_0["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_0["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_0["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_0["state"] = "default"
-
-    obj_UI_start_scene_record_num_1 = {613, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_1["width"] = 12
-    obj_UI_start_scene_record_num_1["height"] = 16
-    obj_UI_start_scene_record_num_1["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_1["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_1["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_1["state"] = "default"
-
-    obj_UI_start_scene_record_num_2 = {635, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_2["width"] = 12
-    obj_UI_start_scene_record_num_2["height"] = 16
-    obj_UI_start_scene_record_num_2["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_2["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_2["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_2["state"] = "default"
-
-    obj_UI_start_scene_record_num_3 = {648, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_3["width"] = 12
-    obj_UI_start_scene_record_num_3["height"] = 16
-    obj_UI_start_scene_record_num_3["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_3["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_3["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_3["state"] = "default"
-
-    obj_UI_start_scene_record_num_4 = {671, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_4["width"] = 12
-    obj_UI_start_scene_record_num_4["height"] = 16
-    obj_UI_start_scene_record_num_4["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_4["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_4["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_4["state"] = "default"
-
-    obj_UI_start_scene_record_num_5 = {684, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_5["width"] = 12
-    obj_UI_start_scene_record_num_5["height"] = 16
-    obj_UI_start_scene_record_num_5["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_5["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_5["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_num_5["state"] = "default"
-
-    obj_UI_start_scene_record_game_duration_text = {600, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_game_duration_text["width"] = 400
-    obj_UI_start_scene_record_game_duration_text["height"] = 100
-    obj_UI_start_scene_record_game_duration_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_game_duration_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_game_duration_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_record_game_duration_text["state"] = "default"
-
-
-    -- config res
-    obj_UI_start_scene_config_resolution_bar_mark = {1000, 530, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_bar_mark["width"] = 12
-    obj_UI_start_scene_config_resolution_bar_mark["height"] = 16
-    obj_UI_start_scene_config_resolution_bar_mark["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_bar_mark["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_bar_mark["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_bar_mark["state"] = "default"
-
-    obj_UI_start_scene_config_resolution_w_x_h = {1030, 530, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_w_x_h["width"] = 136
-    obj_UI_start_scene_config_resolution_w_x_h["height"] = 20
-    obj_UI_start_scene_config_resolution_w_x_h["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_w_x_h["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_w_x_h["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_w_x_h["state"] = "default"
-
-    obj_UI_start_scene_config_resolution_select_res_text = {955, 480, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_select_res_text["width"] = 560
-    obj_UI_start_scene_config_resolution_select_res_text["height"] = 180
-    obj_UI_start_scene_config_resolution_select_res_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_select_res_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_select_res_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_resolution_select_res_text["state"] = "default"
-
-
-    -- config controller
-    obj_UI_start_scene_config_controller_bar_mark_1P = {1335, 510, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["width"] = 12
-    obj_UI_start_scene_config_controller_bar_mark_1P["height"] = 16
-    obj_UI_start_scene_config_controller_bar_mark_1P["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["state"] = "default"
-
-    obj_UI_start_scene_config_controller_bar_mark_2P = {1335, 535, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["width"] = 12
-    obj_UI_start_scene_config_controller_bar_mark_2P["height"] = 16
-    obj_UI_start_scene_config_controller_bar_mark_2P["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["state"] = "default"
-
-    obj_UI_start_scene_config_controller_indi_text = {990, 460, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_indi_text["width"] = 480
-    obj_UI_start_scene_config_controller_indi_text["height"] = 180
-    obj_UI_start_scene_config_controller_indi_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_indi_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_indi_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_indi_text["state"] = "default"
-
-
-    -- config audio
-    obj_UI_start_scene_config_audio_bar_mark = {1296, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_bar_mark["width"] = 12
-    obj_UI_start_scene_config_audio_bar_mark["height"] = 16
-    obj_UI_start_scene_config_audio_bar_mark["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_bar_mark["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_bar_mark["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_bar_mark["state"] = "default"
-
-    obj_UI_start_scene_config_audio_BGM_bar_light = {1055, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_light["width"] = 232
-    obj_UI_start_scene_config_audio_BGM_bar_light["height"] = 16
-    obj_UI_start_scene_config_audio_BGM_bar_light["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_light["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_light["state"] = "default"
-
-    obj_UI_start_scene_config_audio_SFX_bar_light = {1055, 426, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_light["width"] = 232
-    obj_UI_start_scene_config_audio_SFX_bar_light["height"] = 16
-    obj_UI_start_scene_config_audio_SFX_bar_light["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_light["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_light["state"] = "default"
-
-    obj_UI_start_scene_config_audio_BGM_bar_alpha = {BGM_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["width"] = 232
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["height"] = 16
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["state"] = "default"
-
-    obj_UI_start_scene_config_audio_SFX_bar_alpha = {SFX_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["width"] = 232
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["height"] = 16
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["state"] = "default"
-
-    obj_UI_start_scene_config_audio_BGM_bar_gauge = {1055, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["width"] = 232
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["height"] = 16
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["state"] = "default"
-
-    obj_UI_start_scene_config_audio_SFX_bar_gauge = {1055, 426, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["width"] = 232
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["height"] = 16
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["state"] = "default"
-
-    obj_UI_start_scene_config_audio_text = {995, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_text["width"] = 52
-    obj_UI_start_scene_config_audio_text["height"] = 52
-    obj_UI_start_scene_config_audio_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_audio_text["state"] = "default"
-
-
-    -- config main
-    obj_UI_start_scene_config_menu_dabo_trig = {590, 390, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_menu_dabo_trig["width"] = 36
-    obj_UI_start_scene_config_menu_dabo_trig["height"] = 16
-    obj_UI_start_scene_config_menu_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_menu_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_menu_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_menu_dabo_trig["state"] = "default"
-
-    obj_UI_start_scene_config_menu_text = {640, 390, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_menu_text["width"] = 320
-    obj_UI_start_scene_config_menu_text["height"] = 120
-    obj_UI_start_scene_config_menu_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_menu_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_menu_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_menu_text["state"] = "default"
-
-
-    -- shutter 次界面
-    obj_UI_start_scene_shutter = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_shutter["width"] = 1600
-    obj_UI_start_scene_shutter["height"] = 900
-    obj_UI_start_scene_shutter["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_shutter["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_shutter["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_shutter["state"] = "default"
-
-
-    -- console 主界面
-    obj_UI_start_scene_up_console_text = {130, 50, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_up_console_text["width"] = 340
-    obj_UI_start_scene_up_console_text["height"] = 20
-    obj_UI_start_scene_up_console_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_up_console_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_up_console_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_up_console_text["state"] = "default"
-
-    obj_UI_start_scene_down_console_text = {130, 75, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_down_console_text["width"] = 930
-    obj_UI_start_scene_down_console_text["height"] = 20
-    obj_UI_start_scene_down_console_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_down_console_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_down_console_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_down_console_text["state"] = "default"
-
-    obj_UI_start_scene_console_type_in_mark = {1065, 74, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_console_type_in_mark["width"] = 4
-    obj_UI_start_scene_console_type_in_mark["height"] = 20
-    obj_UI_start_scene_console_type_in_mark["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_console_type_in_mark["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_console_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_console_type_in_mark["state"] = "default"
-
-    obj_UI_start_scene_console_dabo_trig = {75, 50, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_console_dabo_trig["width"] = 36
-    obj_UI_start_scene_console_dabo_trig["height"] = 16
-    obj_UI_start_scene_console_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_console_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_console_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_console_dabo_trig["state"] = "default"
-
-
-    -- option 主界面
-    obj_UI_start_scene_option_text = {704, 700, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_option_text["width"] = 220
-    obj_UI_start_scene_option_text["height"] = 32
-    obj_UI_start_scene_option_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_option_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_option_text["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_option_text["state"] = "default"
-
-
-    -- 呼吸灯 主界面
-    obj_UI_start_scene_breath_tag = {510, 695, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_breath_tag["width"] = 600
-    obj_UI_start_scene_breath_tag["height"] = 40
-    obj_UI_start_scene_breath_tag["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_breath_tag["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_breath_tag["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_breath_tag["state"] = "default"
-
-
-    -- logo 主界面
-    obj_UI_start_scene_main_logo = {325, 250, nil, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_main_logo["width"] = 1000
-    obj_UI_start_scene_main_logo["height"] = 420
-    obj_UI_start_scene_main_logo["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_main_logo["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_main_logo["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_main_logo["state"] = "default"
-
-
-    -- 背景 主界面
-    obj_UI_start_scene_noise_bg = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_noise_bg["width"] = 1600
-    obj_UI_start_scene_noise_bg["height"] = 900
-    obj_UI_start_scene_noise_bg["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_noise_bg["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_noise_bg["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_noise_bg["state"] = "default"
-    obj_UI_start_scene_noise_bg["name"] = "obj_UI_start_scene_noise_bg"
-
+function load_char_select_scene_obj()
+    -- 覆盖黑色前景
+    obj_UI_char_select_scene_black_solid = {0, 0, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_black_solid["width"] = 1600
+    obj_UI_char_select_scene_black_solid["height"] = 900
+    obj_UI_char_select_scene_black_solid["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_black_solid["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_black_solid["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_black_solid["state"] = "default"
+    
+    -- 覆盖电影噪点
+    obj_UI_char_select_scene_movie_cover = {0, 0, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_movie_cover["width"] = 1600
+    obj_UI_char_select_scene_movie_cover["height"] = 900
+    obj_UI_char_select_scene_movie_cover["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_movie_cover["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_movie_cover["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_movie_cover["state"] = "default"
+    
+    -- 第一光环
+    obj_UI_char_select_scene_first_ring = {0, 0, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_first_ring["width"] = 1600
+    obj_UI_char_select_scene_first_ring["height"] = 900
+    obj_UI_char_select_scene_first_ring["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_first_ring["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_first_ring["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_first_ring["state"] = "default"
+    
+    -- 覆盖白色前景
+    obj_UI_char_select_scene_white_solid = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_white_solid["width"] = 1600
+    obj_UI_char_select_scene_white_solid["height"] = 900
+    obj_UI_char_select_scene_white_solid["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_white_solid["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_white_solid["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_white_solid["state"] = "default"
+    
+    obj_UI_char_select_scene_second_ring = {0, 0, nil, 0.75, 1, 1, 0, 0}
+    obj_UI_char_select_scene_second_ring["width"] = 1600
+    obj_UI_char_select_scene_second_ring["height"] = 900
+    obj_UI_char_select_scene_second_ring["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_second_ring["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_second_ring["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_second_ring["state"] = "default"
+    
+    obj_UI_char_select_scene_second_glow = {0, 0, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_second_glow["width"] = 1600
+    obj_UI_char_select_scene_second_glow["height"] = 900
+    obj_UI_char_select_scene_second_glow["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_second_glow["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_second_glow["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_second_glow["state"] = "default"
+    
+    obj_UI_char_select_scene_bar_mark_L = {55, 509, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_bar_mark_L["width"] = 15
+    obj_UI_char_select_scene_bar_mark_L["height"] = 22
+    obj_UI_char_select_scene_bar_mark_L["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_L["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_L["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_L["state"] = "default"
+    
+    obj_UI_char_select_scene_bar_mark_R = {1545, 739, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_bar_mark_R["width"] = 15
+    obj_UI_char_select_scene_bar_mark_R["height"] = 22
+    obj_UI_char_select_scene_bar_mark_R["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_R["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_R["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_R["state"] = "default"
+    
+    obj_UI_char_select_scene_control_method_L = {90, 470, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_control_method_L["width"] = 300
+    obj_UI_char_select_scene_control_method_L["height"] = 80
+    obj_UI_char_select_scene_control_method_L["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_L["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_L["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_L["state"] = "default"
+    
+    obj_UI_char_select_scene_control_method_R = {1236, 700, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_control_method_R["width"] = 300
+    obj_UI_char_select_scene_control_method_R["height"] = 80
+    obj_UI_char_select_scene_control_method_R["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_R["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_R["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_R["state"] = "default"
+    
+    obj_UI_char_select_scene_char_select_left = {-33, 110, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_left["width"] = 1650
+    obj_UI_char_select_scene_char_select_left["height"] = 455
+    obj_UI_char_select_scene_char_select_left["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left["state"] = "default"
+    
+    obj_UI_char_select_scene_char_select_left_image = {-200, -52, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_left_image["width"] = 1650
+    obj_UI_char_select_scene_char_select_left_image["height"] = 455
+    obj_UI_char_select_scene_char_select_left_image["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_image["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_image["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_image["state"] = "default"
+    
+    obj_UI_char_select_scene_char_select_left_text = {375, -179, nil, 0, 1, 1, 0.192, 0}
+    obj_UI_char_select_scene_char_select_left_text["width"] = 1650
+    obj_UI_char_select_scene_char_select_left_text["height"] = 455
+    obj_UI_char_select_scene_char_select_left_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_text["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_text["state"] = "default"
+    
+    obj_UI_char_select_scene_char_select_right = {-25, 335, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_right["width"] = 1650
+    obj_UI_char_select_scene_char_select_right["height"] = 455
+    obj_UI_char_select_scene_char_select_right["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right["state"] = "default"
+    
+    obj_UI_char_select_scene_char_select_right_image = {610, -12, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_right_image["width"] = 1650
+    obj_UI_char_select_scene_char_select_right_image["height"] = 455
+    obj_UI_char_select_scene_char_select_right_image["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_image["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_image["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_image["state"] = "default"
+    
+    obj_UI_char_select_scene_char_select_right_text = {1291, -36, nil, 0, 1, 1, 0.436, 0}
+    obj_UI_char_select_scene_char_select_right_text["width"] = 1650
+    obj_UI_char_select_scene_char_select_right_text["height"] = 455
+    obj_UI_char_select_scene_char_select_right_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_text["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_text["state"] = "default"
+    
+    obj_UI_char_select_scene_char_select_bg = {0, 0, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_bg["width"] = 1600
+    obj_UI_char_select_scene_char_select_bg["height"] = 900
+    obj_UI_char_select_scene_char_select_bg["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_bg["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_bg["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_bg["state"] = "default"
+    
+    obj_UI_char_select_scene_icon_select_L = {603, 349, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_select_L["width"] = 260
+    obj_UI_char_select_scene_icon_select_L["height"] = 380
+    obj_UI_char_select_scene_icon_select_L["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_L["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_L["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_L["state"] = "default"
+    
+    obj_UI_char_select_scene_icon_select_R = {760, 166, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_select_R["width"] = 260
+    obj_UI_char_select_scene_icon_select_R["height"] = 400
+    obj_UI_char_select_scene_icon_select_R["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_R["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_R["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_R["state"] = "default"
+    
+    obj_UI_char_select_scene_icon_ERIKAWK3 = {-6, 566, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_ERIKAWK3["width"] = 340
+    obj_UI_char_select_scene_icon_ERIKAWK3["height"] = 220
+    obj_UI_char_select_scene_icon_ERIKAWK3["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_ERIKAWK3["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_ERIKAWK3["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_ERIKAWK3["state"] = "default"
+    obj_UI_char_select_scene_icon_ERIKAWK3["image_x"] = 0
+    
+    obj_UI_char_select_scene_icon_KTC = {192, 570, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_KTC["width"] = 340
+    obj_UI_char_select_scene_icon_KTC["height"] = 220
+    obj_UI_char_select_scene_icon_KTC["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_KTC["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_KTC["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_KTC["state"] = "default"
+    obj_UI_char_select_scene_icon_KTC["image_x"] = 0
+    
+    obj_UI_char_select_scene_icon_ANRI = {405, 512, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_ANRI["width"] = 280
+    obj_UI_char_select_scene_icon_ANRI["height"] = 280
+    obj_UI_char_select_scene_icon_ANRI["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_ANRI["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_ANRI["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_ANRI["state"] = "default"
+    obj_UI_char_select_scene_icon_ANRI["image_x"] = 0
+    
+    obj_UI_char_select_scene_icon_IZY = {603, 349, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_IZY["width"] = 260
+    obj_UI_char_select_scene_icon_IZY["height"] = 380
+    obj_UI_char_select_scene_icon_IZY["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_IZY["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_IZY["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_IZY["state"] = "default"
+    obj_UI_char_select_scene_icon_IZY["image_x"] = 0
+    
+    obj_UI_char_select_scene_icon_SZO = {760, 166, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_SZO["width"] = 260
+    obj_UI_char_select_scene_icon_SZO["height"] = 400
+    obj_UI_char_select_scene_icon_SZO["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SZO["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SZO["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SZO["state"] = "default"
+    obj_UI_char_select_scene_icon_SZO["image_x"] = 0
+    
+    obj_UI_char_select_scene_icon_CKG = {921, 120, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_CKG["width"] = 280
+    obj_UI_char_select_scene_icon_CKG["height"] = 280
+    obj_UI_char_select_scene_icon_CKG["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_CKG["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_CKG["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_CKG["state"] = "default"
+    obj_UI_char_select_scene_icon_CKG["image_x"] = 0
+    
+    obj_UI_char_select_scene_icon_SHINRA = {1116, 122, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_SHINRA["width"] = 340
+    obj_UI_char_select_scene_icon_SHINRA["height"] = 220
+    obj_UI_char_select_scene_icon_SHINRA["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SHINRA["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SHINRA["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SHINRA["state"] = "default"
+    obj_UI_char_select_scene_icon_SHINRA["image_x"] = 0
+    
+    obj_UI_char_select_scene_icon_SRT = {1327, 121, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_icon_SRT["width"] = 340
+    obj_UI_char_select_scene_icon_SRT["height"] = 220
+    obj_UI_char_select_scene_icon_SRT["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SRT["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SRT["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_SRT["state"] = "default"
+    obj_UI_char_select_scene_icon_SRT["image_x"] = 0
+    
+    obj_UI_char_select_solid_bg = {0, 0, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_solid_bg["width"] = 1600
+    obj_UI_char_select_solid_bg["height"] = 900
+    obj_UI_char_select_solid_bg["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_solid_bg["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_solid_bg["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_solid_bg["state"] = "default"    
 
 end
 
 
-function load_start_scene_anim()
-
-    -- 通用透明度动画
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity[0] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity[5] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity[0] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity[5] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity[0] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity[5] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity[0] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity[5] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity[0] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity[5] = {0.1, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity[0] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity[5] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity[0] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity[5] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["fix_type"] = true
-
-
-    
-    -- solid color 闪入 闪出动画
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity = {}
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity[0] = {1, 30}
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity[30] = {0, 30}
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["length"] = 30
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["fix_type"] = true
-
-    
-    -- option
-    -- option两边的呼吸灯的呼吸透明度变化
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity = {}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[0] = {0.10, 15}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[15] = {0.13, 30}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[30] = {0.17, 60}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[60] = {0.37, 85}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[85] = {0.69, 100}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[100] = {0.78, 120}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[120] = {0.80, 140}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[140] = {0.78, 155}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[155] = {0.69, 180}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[180] = {0.37, 210}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[210] = {0.17, 225}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[225] = {0.13, 240}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity[240] = {0.10, 240}
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity["length"] = 240
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity["loop"] = true
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity["fix_type"] = true
-
-    -- option text twitch anim
-    anim_UI_point_linear_start_scene_option_text_twitch_x = {}
-    anim_UI_point_linear_start_scene_option_text_twitch_x[0] = {704, 1}
-    anim_UI_point_linear_start_scene_option_text_twitch_x[1] = {684, 2}
-    anim_UI_point_linear_start_scene_option_text_twitch_x[2] = {684, 3}
-    anim_UI_point_linear_start_scene_option_text_twitch_x[3] = {724, 4}
-    anim_UI_point_linear_start_scene_option_text_twitch_x[4] = {684, 5}
-    anim_UI_point_linear_start_scene_option_text_twitch_x[5] = {704, 5}
-    anim_UI_point_linear_start_scene_option_text_twitch_x["prop"] = 1
-    anim_UI_point_linear_start_scene_option_text_twitch_x["length"] = 5
-    anim_UI_point_linear_start_scene_option_text_twitch_x["loop"] = false
-    anim_UI_point_linear_start_scene_option_text_twitch_x["fix_type"] = false
-
-
-    -- console
-    -- console dabo trig twitch x
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x = {}
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x[0] = {75, 1}
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x[1] = {90, 4}
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x[4] = {75, 4}
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x["prop"] = 1
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x["length"] = 4
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x["loop"] = false
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x["fix_type"] = true
-
-    -- console type in mark 闪烁动画
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity = {}
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[0] = 0
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[20] = 1
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity[40] = 0
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity["prop"] = 4
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity["length"] = 40
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity["loop"] = true
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity["fix_type"] = true
-
-
-    -- config
-    -- config menu dabo trig
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[0] = {0.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[1] = {-3.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[3] = {2.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y[5] = {0.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["length"] = 5
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y["fix_type"] = false
-
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y = {}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[0] = {0.00, 1}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[1] = {3.00, 3}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[3] = {-2.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y[5] = {0.00, 5}
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["length"] = 5
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y["fix_type"] = false
-
-
-    -- audio config
-    -- audio alpha bar animation
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x = {}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[0] = {0.00, 1}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[1] = {-15.00, 5}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x[5] = {-23.00, 5}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["length"] = 5
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x["fix_type"] = false
-
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x = {}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[0] = {0.00, 1}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[1] = {15.00, 5}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x[5] = {23.00, 5}
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["length"] = 5
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x["fix_type"] = false
-
-    -- audio bar mark animation
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x = {}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x[0] = {1296.00, 1}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x[1] = {1293.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x[4] = {1296.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x["length"] = 4
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x = {}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x[0] = {1296.00, 1}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x[1] = {1299.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x[4] = {1296.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x["length"] = 4
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y = {}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y[0] = {400.00, 1}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y[1] = {394.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y[4] = {400.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["length"] = 4
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y["fix_type"] = false
-
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y = {}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[0] = {400.00, 1}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[1] = {406.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y[4] = {400.00, 4}
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["prop"] = 2
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["length"] = 4
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["loop"] = false
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y["fix_type"] = false
-
-
-    -- config res select
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x = {}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x[0] = {1000.00, 1}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x[1] = {994.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x[4] = {1000.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x["length"] = 4
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x["loop"] = false
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x = {}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x[0] = {1000.00, 1}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x[1] = {1006.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x[4] = {1000.00, 4}
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x["prop"] = 1
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x["length"] = 4
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x["loop"] = false
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x["fix_type"] = true
-
-
-    -- reocrd
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y = {}
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y[0] = {400.00, 1}
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y[1] = {455.00, 3}
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y[3] = {480.00, 5}
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y[5] = {475.00, 5}
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y["prop"] = 2
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y["length"] = 5
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y["loop"] = false
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y["fix_type"] = true
-
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y = {}
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y[0] = {475.00, 1}
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y[1] = {420.00, 3}
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y[3] = {395.00, 5}
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y[5] = {400.00, 5}
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y["prop"] = 2
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y["length"] = 5
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y["loop"] = false
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y["fix_type"] = true
-
+function load_char_select_anim()
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity = {}
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity[0] = 0
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity[20] = 1
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity[40] = 0
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["prop"] = 4
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["length"] = 40
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["loop"] = true
+    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["fix_type"] = true
 
 end
 
 
-function load_start_scene_audio()
-    audio_SFX_start_scene_click = {1}
-    audio_SFX_start_scene_click["LCT"] = {0}
-    audio_SFX_start_scene_click["LCD"] = {0}
-    audio_SFX_start_scene_click["audio"] = love.audio.newSource("asset/start_scene/audio/click.mp3","static")
+function load_char_select_scene_audio()
+    audio_SFX_char_select_scene_click = {1}
+    audio_SFX_char_select_scene_click["LCT"] = {0}
+    audio_SFX_char_select_scene_click["LCD"] = {0}
+    audio_SFX_char_select_scene_click["audio"] = love.audio.newSource("asset/char_select_scene/audio/click.mp3","static")
 
-    audio_SFX_start_scene_scene_out = {1}
-    audio_SFX_start_scene_scene_out["LCT"] = {0}
-    audio_SFX_start_scene_scene_out["LCD"] = {0}
-    audio_SFX_start_scene_scene_out["audio"] = love.audio.newSource("asset/start_scene/audio/scene_out.mp3","static")
+    audio_SFX_char_select_scene_scene_out = {1}
+    audio_SFX_char_select_scene_scene_out["LCT"] = {0}
+    audio_SFX_char_select_scene_scene_out["LCD"] = {0}
+    audio_SFX_char_select_scene_scene_out["audio"] = love.audio.newSource("asset/char_select_scene/audio/scene_out.mp3","static")
 
-    audio_SFX_start_scene_to_main = {1}
-    audio_SFX_start_scene_to_main["LCT"] = {0}
-    audio_SFX_start_scene_to_main["LCD"] = {0}
-    audio_SFX_start_scene_to_main["audio"] = love.audio.newSource("asset/start_scene/audio/to_main.mp3","static")
+    audio_SFX_char_select_scene_to_main = {1}
+    audio_SFX_char_select_scene_to_main["LCT"] = {0}
+    audio_SFX_char_select_scene_to_main["LCD"] = {0}
+    audio_SFX_char_select_scene_to_main["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_main.mp3","static")
 
-    audio_SFX_start_scene_to_sub = {1}
-    audio_SFX_start_scene_to_sub["LCT"] = {0}
-    audio_SFX_start_scene_to_sub["LCD"] = {0}
-    audio_SFX_start_scene_to_sub["audio"] = love.audio.newSource("asset/start_scene/audio/to_sub.mp3","static")
+    audio_SFX_char_select_scene_to_sub = {1}
+    audio_SFX_char_select_scene_to_sub["LCT"] = {0}
+    audio_SFX_char_select_scene_to_sub["LCD"] = {0}
+    audio_SFX_char_select_scene_to_sub["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_sub.mp3","static")
 
-    audio_BGM_start_scene_FTR_high = {1}
-    audio_BGM_start_scene_FTR_high["LCT"] = {0}
-    audio_BGM_start_scene_FTR_high["LCD"] = {0}
-    audio_BGM_start_scene_FTR_high["audio"] = love.audio.newSource("asset/start_scene/audio/FTR_high.mp3","stream")
+    audio_BGM_char_select_scene_FTR_high = {1}
+    audio_BGM_char_select_scene_FTR_high["LCT"] = {0}
+    audio_BGM_char_select_scene_FTR_high["LCD"] = {0}
+    audio_BGM_char_select_scene_FTR_high["audio"] = love.audio.newSource("asset/char_select_scene/audio/FTR_high.mp3","stream")
 
-    audio_BGM_start_scene_FTR_low = {0}
-    audio_BGM_start_scene_FTR_low["LCT"] = {0}
-    audio_BGM_start_scene_FTR_low["LCD"] = {0}
-    audio_BGM_start_scene_FTR_low["audio"] = love.audio.newSource("asset/start_scene/audio/FTR_low.mp3","stream")
+    audio_BGM_char_select_scene_FTR_low = {0}
+    audio_BGM_char_select_scene_FTR_low["LCT"] = {0}
+    audio_BGM_char_select_scene_FTR_low["LCD"] = {0}
+    audio_BGM_char_select_scene_FTR_low["audio"] = love.audio.newSource("asset/char_select_scene/audio/FTR_low.mp3","stream")
 
-    update_SFX_VOLUME(audio_SFX_start_scene_click)
-    update_SFX_VOLUME(audio_SFX_start_scene_scene_out)
-    update_SFX_VOLUME(audio_SFX_start_scene_to_main)
-    update_SFX_VOLUME(audio_SFX_start_scene_to_sub)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_click)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_scene_out)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_to_main)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_to_sub)
 
-    update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
-    update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
+    update_BGM_VOLUME(audio_BGM_char_select_scene_FTR_high)
+    update_BGM_VOLUME(audio_BGM_char_select_scene_FTR_low)
 
     -- audio anim
 
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume = {}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[0] = {0, 5}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[5] = {1, 5}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["length"] = 5
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["loop"] = false
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["fix_type"] = true
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume = {}
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume[0] = {0, 5}
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume[5] = {1, 5}
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume["prop"] = 1
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume["length"] = 5
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume["loop"] = false
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0 = {}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0[0] = {1, 5}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0[5] = {0, 5}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["length"] = 5
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["loop"] = false
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["fix_type"] = true
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0 = {}
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0[0] = {1, 5}
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0[5] = {0, 5}
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0["prop"] = 1
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0["length"] = 5
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0["loop"] = false
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1 = {}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1[0] = {1, 40}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1[40] = {0, 40}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["length"] = 40
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["loop"] = false
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["fix_type"] = true
-
-end
-
-
-
-
-function unload_start_scene_obj()
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1 = {}
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1[0] = {1, 40}
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1[40] = {0, 40}
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1["prop"] = 1
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1["length"] = 40
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1["loop"] = false
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1["fix_type"] = true
 
 end
 
 
-function unload_start_scene_anim()
+
+
+function unload_char_select_scene_obj()
 
 end
 
 
-function unload_start_scene_audio()
-    audio_SFX_start_scene_click = nil
-    audio_SFX_start_scene_scene_out = nil
-    audio_SFX_start_scene_to_main = nil
-    audio_SFX_start_scene_to_sub = nil
+function unload_char_select_scene_anim()
 
-    audio_BGM_start_scene_FTR_high = nil
-    audio_BGM_start_scene_FTR_low = nil
+end
+
+
+function unload_char_select_scene_audio()
+    audio_SFX_char_select_scene_click = nil
+    audio_SFX_char_select_scene_scene_out = nil
+    audio_SFX_char_select_scene_to_main = nil
+    audio_SFX_char_select_scene_to_sub = nil
+
+    audio_BGM_char_select_scene_FTR_high = nil
+    audio_BGM_char_select_scene_FTR_low = nil
     
 end
 
@@ -667,20 +355,20 @@ end
 -- state_machine会作为功能直接包含在全局变量中 和main block sub block一样
 -- 不进行场景内加载
 ----------------------------------------------------------------------
-function unload_start_scene_all()
-    unload_start_scene_obj()
-    unload_start_scene_anim()
-    unload_start_scene_image()
-    unload_start_scene_asset_audio()
+function unload_char_select_scene_all()
+    unload_char_select_scene_obj()
+    unload_char_select_scene_anim()
+    unload_char_select_scene_image()
+    unload_char_select_scene_asset_audio()
     
     state_machine_tables = {}
 
 end
 
-function preset_start_scene()
-    init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
-    state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
-    play_obj_audio(audio_BGM_start_scene_FTR_high)
-    play_obj_audio(audio_BGM_start_scene_FTR_low)
+function preset_char_select_scene()
+    init_point_linear_anim_with(obj_UI_char_select_scene_solid_color,anim_UI_point_linear_char_select_scene_solid_flash_in_opacity)
+    state_machine_UI_char_select_scene_noise_BG_static_loop(obj_UI_char_select_scene_noise_bg)
+    play_obj_audio(audio_BGM_char_select_scene_FTR_high)
+    play_obj_audio(audio_BGM_char_select_scene_FTR_low)
     
 end

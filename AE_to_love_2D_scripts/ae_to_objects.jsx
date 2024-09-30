@@ -3,7 +3,7 @@ var comp = app.project.activeItem;
 
 if (comp && comp instanceof CompItem) {
     // 创建一个文本文件以输出信息
-    var outputFile = new File("F:/LOVE/DRRR_RECON/obj.txt"); // 修改为你想要的文件路径
+    var outputFile = new File("F:/LOVE/DRRR_refactoring/obj.txt"); // 修改为你想要的文件路径
     outputFile.open("w");
 
     // 格式化为保留一位小数
@@ -36,7 +36,7 @@ if (comp && comp instanceof CompItem) {
                 (z !== "nil" ? formatNumber(z) : "nil") + ', ' +
                 formatNumber(opacity)/100 + ', ' +  // 添加连接符号
                 formatNumber(scale[0]/100) + ', ' +
-                formatNumber(scale[1]/100) + ', 0' +
+                formatNumber(scale[1]/100) + ', 0' + ', 0' +
                 '}\n';
 
             outputFile.write(output);

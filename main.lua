@@ -34,6 +34,7 @@ function love.run()
 
 	local dt = 0
     local FRST = 1/60 --frame rate stabilization timer
+	global_counter = 0
 
 	-- Main loop time.
 	return function()
@@ -52,16 +53,27 @@ function love.run()
 
 		-- Update dt, as we'll be passing it to update
 		if love.timer then FRST = FRST + love.timer.step() end
-
         -- Call update and draw
         if FRST >= 1/60 then
-			local updateStartTime = love.timer.getTime()
+			
+			-- local updateStartTime = love.timer.getTime()
+			-- local cpu_heavy_task = function()
+			-- 	-- 模拟繁重的 CPU 运算，消耗时间
+			-- 	for i = 1, 100000 do
+			-- 		-- 频繁读写全局变量 100w次
+			-- 		global_counter = global_counter + 10
+			-- 		global_counter = global_counter - 10
+			-- 	end
+			-- end
+			-- cpu_heavy_task()
+
             if love.update then love.update() end -- will pass 0 if love.timer is disabled
 
             if love.draw then love.draw() end
             love.graphics.present()
-			local updateEndTime = love.timer.getTime()
-			print(updateStartTime-updateEndTime)
+
+			-- local updateEndTime = love.timer.getTime()
+			-- print(updateStartTime-updateEndTime)
 
             FRST = math.fmod(FRST, 1/60)
         end
