@@ -17,8 +17,8 @@ function init_input()
     INPUT_SYS_COMMAND_TABLE = {
         "Up","Down","Left","Right",
         "A","B","C","D",
-        "SSP","SP","back","start",
-        "RC","Dash"
+        "SP","Launcher","Back","Start",
+        "RC","Dash","Burst","UA"
     }
     
     INPUT_SYS_BUTTON_TABLE = {
@@ -29,20 +29,22 @@ function init_input()
         
     INPUT_SYS_AXIS_TABLE = {"triggerleft","triggerright"}
 
+    INPUT_SYS_STICK_TABLE = {"leftstick","rightstick"}
+
     INPUT_SYS_KEY_TABLE = {
         "w","s","a","d",
         "j","i","l","k",
-        "lshift","space","escape","return",
-        "q","e"
+        "lshift","o","escape","return",
+        "u","h",'r','space'
     }
     
-    for i=1,14 do
+    for i=1,16 do
         INPUT_SYS_CURRENT_COMMAND_STATE[1][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
         INPUT_SYS_CURRENT_COMMAND_STATE[2][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
     end
 
     --初始化现指令数组
-    for i = 1,14 do
+    for i = 1,16 do
         INPUT_SYS_CURRENT_COMMAND[1][INPUT_SYS_COMMAND_TABLE[i]] = 0
         INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
     end
@@ -56,23 +58,18 @@ function update_input()
     --并且赋值到INPUT_SYS_CURRENT_COMMAND和perCommand
     if CURRENT_SCENE == "online_match_stage" then
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_INPUT_SYS_CURRENT_COMMAND(
-                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
-                INPUT_SYS_CURRENT_JOYSTICK_TABLE[NETWORK_MATCH_SIDE]
-            )
+            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
+                INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
         else 
-            get_INPUT_SYS_CURRENT_COMMAND(
-                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
-                INPUT_SYS_CURRENT_JOYSTICK_TABLE[NETWORK_MATCH_SIDE]
-            )
+            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
+                INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
         end
-
         -- INPUT_SYS_CURRENT_COMMAND[OTHER_SIDE] 从网络接口获取
 
     else
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
             get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
-            for i = 1,14 do
+            for i = 1,16 do
                 INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         else 
@@ -126,7 +123,7 @@ end
 function get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND,joystick)
     --(键盘)
     if joystick == nil then
-        for i = 1,14 do
+        for i = 1,16 do
             if love.keyboard.isDown(INPUT_SYS_KEY_TABLE[i]) then
                 INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
             else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
@@ -146,12 +143,18 @@ function get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND,joystick)
             else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
             end
         end
+        for i = 1,2 do
+            if get_joystick_buttom_command(joystick,INPUT_SYS_STICK_TABLE[i]) then
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 0
+            end
+        end
     end
 end
 
 --输入状态机
 function state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE,INPUT_SYS_CURRENT_COMMAND)
-    for i=1,14 do
+    for i=1,16 do
         local local_switch = 
         {
             ["Released"] = function()
