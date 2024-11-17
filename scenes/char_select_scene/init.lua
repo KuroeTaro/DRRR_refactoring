@@ -239,14 +239,6 @@ end
 
 
 function load_char_select_anim()
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity = {}
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity[0] = 0
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity[20] = 1
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity[40] = 0
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["prop"] = 4
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["length"] = 40
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["loop"] = true
-    anim_UI_frame_char_select_scene_console_type_in_mark_blink_opacity["fix_type"] = true
 
 end
 
@@ -322,6 +314,34 @@ end
 
 
 function unload_char_select_scene_obj()
+    obj_UI_char_select_scene_black_solid = nil
+    obj_UI_char_select_scene_movie_cover = nil
+    obj_UI_char_select_scene_first_ring = nil
+    obj_UI_char_select_scene_white_solid = nil
+    obj_UI_char_select_scene_second_ring = nil
+    obj_UI_char_select_scene_second_glow = nil
+    obj_UI_char_select_scene_bar_mark_L = nil
+    obj_UI_char_select_scene_bar_mark_R = nil
+    obj_UI_char_select_scene_control_method_L = nil
+    obj_UI_char_select_scene_control_method_R = nil
+    obj_UI_char_select_scene_char_select_left = nil
+    obj_UI_char_select_scene_char_select_left_image = nil
+    obj_UI_char_select_scene_char_select_left_text = nil
+    obj_UI_char_select_scene_char_select_right = nil
+    obj_UI_char_select_scene_char_select_right_image = nil
+    obj_UI_char_select_scene_char_select_right_text = nil
+    obj_UI_char_select_scene_char_select_bg = nil
+    obj_UI_char_select_scene_icon_select_L = nil
+    obj_UI_char_select_scene_icon_select_R = nil
+    obj_UI_char_select_scene_icon_ERIKAWK3 = nil
+    obj_UI_char_select_scene_icon_KTC = nil
+    obj_UI_char_select_scene_icon_ANRI = nil
+    obj_UI_char_select_scene_icon_IZY = nil
+    obj_UI_char_select_scene_icon_SZO = nil
+    obj_UI_char_select_scene_icon_CKG = nil
+    obj_UI_char_select_scene_icon_SHINRA = nil
+    obj_UI_char_select_scene_icon_SRT = nil
+    obj_UI_char_select_solid_bg = nil
 
 end
 
@@ -339,6 +359,10 @@ function unload_char_select_scene_audio()
 
     audio_BGM_char_select_scene_FTR_high = nil
     audio_BGM_char_select_scene_FTR_low = nil
+
+    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume = nil
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0 = nil
+    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1 = nil
     
 end
 
@@ -359,16 +383,10 @@ function unload_char_select_scene_all()
     unload_char_select_scene_obj()
     unload_char_select_scene_anim()
     unload_char_select_scene_image()
-    unload_char_select_scene_asset_audio()
-    
-    state_machine_tables = {}
+    unload_char_select_scene_audio()
 
 end
 
 function preset_char_select_scene()
-    init_point_linear_anim_with(obj_UI_char_select_scene_solid_color,anim_UI_point_linear_char_select_scene_solid_flash_in_opacity)
-    state_machine_UI_char_select_scene_noise_BG_static_loop(obj_UI_char_select_scene_noise_bg)
-    play_obj_audio(audio_BGM_char_select_scene_FTR_high)
-    play_obj_audio(audio_BGM_char_select_scene_FTR_low)
     
 end

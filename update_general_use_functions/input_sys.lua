@@ -59,7 +59,7 @@ function update_input()
     if CURRENT_SCENE == "online_match_stage" then
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
             get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
-                INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
+                nil)
         else 
             get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
                 INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
@@ -68,7 +68,7 @@ function update_input()
 
     else
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
+            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],nil)
             for i = 1,16 do
                 INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
             end

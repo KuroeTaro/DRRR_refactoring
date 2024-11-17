@@ -72,8 +72,7 @@ function unload_disclaimer_and_logos_scene_all()
 
     -- 此场景不使用音频 没有创建也不运行此功能
     -- unload_disclaimer_and_logos_scene_asset_audio()
-
-    state_machine_tables = {}
+    
 end
 
 function preset_disclaimer_and_logos_scene()

@@ -449,10 +449,18 @@ function update_start_scene_flash_out()
         -- 初始化此出口所需要的动画机 但是目前没有
         local local_switch = {
             [0] = function()
-                
+                load_char_select_scene_prep()
+                load_scene_prep_routine()
+        
+                -- 卸载所有资源 包括object anim image audio
+                unload_start_scene_all()
             end,
             [1] = function()
-
+                load_char_select_scene_prep()
+                load_scene_prep_routine()
+        
+                -- 卸载所有资源 包括object anim image audio
+                unload_start_scene_all()
             end,
             [4] = function()
                 love.event.quit()

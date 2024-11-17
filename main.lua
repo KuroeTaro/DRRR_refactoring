@@ -25,6 +25,14 @@ require("scenes/start_scene/main_blocks")
 require("scenes/start_scene/state_machine")
 require("scenes/start_scene/sub_blocks")
 
+require("scenes/char_select_scene/common_functions")
+require("scenes/char_select_scene/draw_functions")
+require("scenes/char_select_scene/init")
+require("scenes/char_select_scene/load_function")
+require("scenes/char_select_scene/main_blocks")
+require("scenes/char_select_scene/state_machine")
+require("scenes/char_select_scene/sub_blocks")
+
 
 function love.run()
 	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
@@ -198,7 +206,6 @@ function love.load()
 
 	current_update_block = update_load_scene_load_pre_timer
 	current_draw_block = function() end
-	state_machine_tables = {}
 
 end    
 function love.update()
