@@ -7,6 +7,7 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_black_solid["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_black_solid["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_black_solid["state"] = "default"
+    obj_UI_char_select_scene_black_solid["rgb"] = {7/255,19/255,31/255}
     
     -- 覆盖电影噪点
     obj_UI_char_select_scene_movie_cover = {0, 0, nil, 1, 1, 1, 0, 0}
@@ -34,7 +35,9 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_white_solid["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_white_solid["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_white_solid["state"] = "default"
-    
+    obj_UI_char_select_scene_white_solid["rgb"] = {1,1,1}
+
+    -- 第一光环
     obj_UI_char_select_scene_second_ring = {0, 0, nil, 0.75, 1, 1, 0, 0}
     obj_UI_char_select_scene_second_ring["width"] = 1600
     obj_UI_char_select_scene_second_ring["height"] = 900
@@ -239,51 +242,123 @@ end
 
 
 function load_char_select_anim()
+    -- black solid 闪入
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity = {}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[0] = {1.00, 2}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[2] = {0.55, 6}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[6] = {0.22, 10}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[10] = {0.07, 15}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[15] = {0.00, 15}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["prop"] = 4
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["length"] = 15
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["loop"] = false
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["fix_type"] = true
+
+    -- first ring
+    anim_UI_frame_select_scene_first_ring_f = {}
+    anim_UI_frame_select_scene_first_ring_f[0] = 0
+    anim_UI_frame_select_scene_first_ring_f[2] = 1
+    anim_UI_frame_select_scene_first_ring_f[4] = 2
+    anim_UI_frame_select_scene_first_ring_f[6] = 3
+    anim_UI_frame_select_scene_first_ring_f[8] = 4
+    anim_UI_frame_select_scene_first_ring_f[10] = 5
+    anim_UI_frame_select_scene_first_ring_f[12] = 6
+    anim_UI_frame_select_scene_first_ring_f[14] = 7
+    anim_UI_frame_select_scene_first_ring_f[16] = 8
+    anim_UI_frame_select_scene_first_ring_f[18] = 9
+    anim_UI_frame_select_scene_first_ring_f[20] = 10
+    anim_UI_frame_select_scene_first_ring_f[22] = 11
+    anim_UI_frame_select_scene_first_ring_f[24] = 12
+    anim_UI_frame_select_scene_first_ring_f[26] = 13
+    anim_UI_frame_select_scene_first_ring_f[28] = 14
+    anim_UI_frame_select_scene_first_ring_f[30] = 15
+    anim_UI_frame_select_scene_first_ring_f[32] = 16
+    anim_UI_frame_select_scene_first_ring_f[34] = 17
+    anim_UI_frame_select_scene_first_ring_f["prop"] = 8
+    anim_UI_frame_select_scene_first_ring_f["length"] = 34
+    anim_UI_frame_select_scene_first_ring_f["loop"] = false
+    anim_UI_frame_select_scene_first_ring_f["fix_type"] = true
 
 end
 
 
 function load_char_select_scene_audio()
-    audio_SFX_char_select_scene_click = {1}
-    audio_SFX_char_select_scene_click["LCT"] = {0}
-    audio_SFX_char_select_scene_click["LCD"] = {0}
-    audio_SFX_char_select_scene_click["audio"] = love.audio.newSource("asset/char_select_scene/audio/click.mp3","static")
+    -- scene audio
+    audio_SFX_char_select_scene_start_SFX_1 = {1}
+    audio_SFX_char_select_scene_start_SFX_1["LCT"] = {0}
+    audio_SFX_char_select_scene_start_SFX_1["LCD"] = {0}
+    audio_SFX_char_select_scene_start_SFX_1["audio"] = love.audio.newSource("asset/char_select_scene/audio/start_SFX_1.mp3","static")
 
-    audio_SFX_char_select_scene_scene_out = {1}
-    audio_SFX_char_select_scene_scene_out["LCT"] = {0}
-    audio_SFX_char_select_scene_scene_out["LCD"] = {0}
-    audio_SFX_char_select_scene_scene_out["audio"] = love.audio.newSource("asset/char_select_scene/audio/scene_out.mp3","static")
+    audio_SFX_char_select_scene_start_SFX_2 = {1}
+    audio_SFX_char_select_scene_start_SFX_2["LCT"] = {0}
+    audio_SFX_char_select_scene_start_SFX_2["LCD"] = {0}
+    audio_SFX_char_select_scene_start_SFX_2["audio"] = love.audio.newSource("asset/char_select_scene/audio/start_SFX_2.mp3","static")
 
-    audio_SFX_char_select_scene_to_main = {1}
-    audio_SFX_char_select_scene_to_main["LCT"] = {0}
-    audio_SFX_char_select_scene_to_main["LCD"] = {0}
-    audio_SFX_char_select_scene_to_main["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_main.mp3","static")
+    audio_SFX_char_select_scene_click_L = {1}
+    audio_SFX_char_select_scene_click_L["LCT"] = {0}
+    audio_SFX_char_select_scene_click_L["LCD"] = {0}
+    audio_SFX_char_select_scene_click_L["audio"] = love.audio.newSource("asset/char_select_scene/audio/click_L.mp3","static")
 
-    audio_SFX_char_select_scene_to_sub = {1}
-    audio_SFX_char_select_scene_to_sub["LCT"] = {0}
-    audio_SFX_char_select_scene_to_sub["LCD"] = {0}
-    audio_SFX_char_select_scene_to_sub["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_sub.mp3","static")
+    audio_SFX_char_select_scene_click_R = {1}
+    audio_SFX_char_select_scene_click_R["LCT"] = {0}
+    audio_SFX_char_select_scene_click_R["LCD"] = {0}
+    audio_SFX_char_select_scene_click_R["audio"] = love.audio.newSource("asset/char_select_scene/audio/click_R.mp3","static")
 
-    audio_BGM_char_select_scene_FTR_high = {1}
-    audio_BGM_char_select_scene_FTR_high["LCT"] = {0}
-    audio_BGM_char_select_scene_FTR_high["LCD"] = {0}
-    audio_BGM_char_select_scene_FTR_high["audio"] = love.audio.newSource("asset/char_select_scene/audio/FTR_high.mp3","stream")
+    audio_SFX_char_select_scene_flash_out = {1}
+    audio_SFX_char_select_scene_flash_out["LCT"] = {0}
+    audio_SFX_char_select_scene_flash_out["LCD"] = {0}
+    audio_SFX_char_select_scene_flash_out["audio"] = love.audio.newSource("asset/char_select_scene/audio/flash_out.mp3","static")
 
-    audio_BGM_char_select_scene_FTR_low = {0}
-    audio_BGM_char_select_scene_FTR_low["LCT"] = {0}
-    audio_BGM_char_select_scene_FTR_low["LCD"] = {0}
-    audio_BGM_char_select_scene_FTR_low["audio"] = love.audio.newSource("asset/char_select_scene/audio/FTR_low.mp3","stream")
+    audio_SFX_char_select_scene_lock_SFX_L = {1}
+    audio_SFX_char_select_scene_lock_SFX_L["LCT"] = {0}
+    audio_SFX_char_select_scene_lock_SFX_L["LCD"] = {0}
+    audio_SFX_char_select_scene_lock_SFX_L["audio"] = love.audio.newSource("asset/char_select_scene/audio/lock_SFX_L.mp3","static")
 
-    update_SFX_VOLUME(audio_SFX_char_select_scene_click)
-    update_SFX_VOLUME(audio_SFX_char_select_scene_scene_out)
-    update_SFX_VOLUME(audio_SFX_char_select_scene_to_main)
-    update_SFX_VOLUME(audio_SFX_char_select_scene_to_sub)
+    audio_SFX_char_select_scene_lock_SFX_R = {1}
+    audio_SFX_char_select_scene_lock_SFX_R["LCT"] = {0}
+    audio_SFX_char_select_scene_lock_SFX_R["LCD"] = {0}
+    audio_SFX_char_select_scene_lock_SFX_R["audio"] = love.audio.newSource("asset/char_select_scene/audio/lock_SFX_R.mp3","static")
 
-    update_BGM_VOLUME(audio_BGM_char_select_scene_FTR_high)
-    update_BGM_VOLUME(audio_BGM_char_select_scene_FTR_low)
+    audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit = {1}
+    audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit["LCT"] = {0}
+    audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit["LCD"] = {0}
+    audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit["audio"] = love.audio.newSource("asset/char_select_scene/audio/psychedelic_Parade_Re_Edit.mp3","stream")
+
+    audio_SFX_char_select_scene_to_main_L = {1}
+    audio_SFX_char_select_scene_to_main_L["LCT"] = {0}
+    audio_SFX_char_select_scene_to_main_L["LCD"] = {0}
+    audio_SFX_char_select_scene_to_main_L["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_main_L.mp3","static")
+
+    audio_SFX_char_select_scene_to_main_R = {1}
+    audio_SFX_char_select_scene_to_main_R["LCT"] = {0}
+    audio_SFX_char_select_scene_to_main_R["LCD"] = {0}
+    audio_SFX_char_select_scene_to_main_R["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_main_R.mp3","static")
+
+    audio_SFX_char_select_scene_to_sub_L = {1}
+    audio_SFX_char_select_scene_to_sub_L["LCT"] = {0}
+    audio_SFX_char_select_scene_to_sub_L["LCD"] = {0}
+    audio_SFX_char_select_scene_to_sub_L["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_sub_L.mp3","static")
+
+    audio_SFX_char_select_scene_to_sub_R = {1}
+    audio_SFX_char_select_scene_to_sub_R["LCT"] = {0}
+    audio_SFX_char_select_scene_to_sub_R["LCD"] = {0}
+    audio_SFX_char_select_scene_to_sub_R["audio"] = love.audio.newSource("asset/char_select_scene/audio/to_sub_R.mp3","static")
+
+
+    update_SFX_VOLUME(audio_SFX_char_select_scene_start_SFX_1)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_start_SFX_2)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_click_L)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_click_R)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_flash_out)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_lock_SFX_L)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_lock_SFX_R)
+    update_SFX_VOLUME(audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_to_main_L)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_to_main_R)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_to_sub_L)
+    update_SFX_VOLUME(audio_SFX_char_select_scene_to_sub_R)
 
     -- audio anim
-
     anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume = {}
     anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume[0] = {0, 5}
     anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume[5] = {1, 5}
@@ -352,13 +427,18 @@ end
 
 
 function unload_char_select_scene_audio()
-    audio_SFX_char_select_scene_click = nil
-    audio_SFX_char_select_scene_scene_out = nil
-    audio_SFX_char_select_scene_to_main = nil
-    audio_SFX_char_select_scene_to_sub = nil
-
-    audio_BGM_char_select_scene_FTR_high = nil
-    audio_BGM_char_select_scene_FTR_low = nil
+    audio_SFX_char_select_scene_start_SFX_1 = nil
+    audio_SFX_char_select_scene_start_SFX_2 = nil
+    audio_SFX_char_select_scene_click_L = nil
+    audio_SFX_char_select_scene_click_R = nil
+    audio_SFX_char_select_scene_flash_out = nil
+    audio_SFX_char_select_scene_lock_SFX_L = nil
+    audio_SFX_char_select_scene_lock_SFX_R = nil
+    audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit = nil
+    audio_SFX_char_select_scene_to_main_L = nil
+    audio_SFX_char_select_scene_to_main_R = nil
+    audio_SFX_char_select_scene_to_sub_L = nil
+    audio_SFX_char_select_scene_to_sub_R = nil
 
     anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume = nil
     anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0 = nil
@@ -388,5 +468,10 @@ function unload_char_select_scene_all()
 end
 
 function preset_char_select_scene()
-    
+    init_point_linear_anim_with(obj_UI_char_select_scene_black_solid,anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity)
+    state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
+    init_frame_anim_with(obj_UI_char_select_scene_first_ring,anim_UI_frame_select_scene_first_ring_f)
+    play_obj_audio(audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit)
+    play_obj_audio(audio_SFX_char_select_scene_start_SFX_1)
+
 end

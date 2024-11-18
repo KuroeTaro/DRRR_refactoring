@@ -20,12 +20,12 @@ function load_char_select_scene_prep()
         order_load_char_select_scene_UI_movie_cover,
     }    -- load function table
     CURRENT_ORDER_TABLE = {1,1,1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
-    ORDER_SIZE_TABLE = {1,1,1}  -- 每个load function的最大值
+    ORDER_SIZE_TABLE = {2,1,1}  -- 每个load function的最大值
     LOAD_ONCE_TABLE = {false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 3 -- 和线程数相同
 
-	NEXT_UPDATE_BLOCK = update_char_select_scene_flash_in
-	NEXT_DRAW_BLOCK = draw_char_select_scene_general
+	NEXT_UPDATE_BLOCK = update_char_select_scene_flash_in_0f_36f
+	NEXT_DRAW_BLOCK = draw_char_select_scene_flash_in_0f_36f
     NEXT_PRESET = preset_char_select_scene
 
 end
@@ -79,6 +79,11 @@ function order_load_char_select_scene_UI_char(load_order)
             for i = 1,3 do
                 image_table_UI_char_select_scene_char_select_text_right[i+4] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+50])
             end
+        end,
+        [2] = function()
+            load_char_select_scene_obj()
+            load_char_select_anim()
+            load_char_select_scene_audio()
         end,
     }
     local this_function = local_switch[load_order]

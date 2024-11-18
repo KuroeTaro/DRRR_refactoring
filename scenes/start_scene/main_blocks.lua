@@ -14,7 +14,7 @@ function update_start_scene_flash_in()
         
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_30f_1s45f()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -37,7 +37,7 @@ function update_start_scene_30f_1s45f()
         current_update_block = update_start_scene_1s45f_1s50f
         
     end
-end -- 已检查
+end 
 
 function update_start_scene_1s45f_1s50f()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -63,7 +63,7 @@ function update_start_scene_1s45f_1s50f()
         current_update_block = update_start_scene_main
         
     end
-end -- 已检查
+end 
 
 function update_start_scene_main()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -428,7 +428,7 @@ function update_start_scene_main()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -472,7 +472,7 @@ function update_start_scene_flash_out()
 
     end
 
-end -- 已检查
+end 
 
 
 -- option twitch
@@ -525,7 +525,7 @@ function update_start_scene_option_twitch()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_only_console_twitch()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -567,7 +567,7 @@ function update_start_scene_only_console_twitch()
         current_update_block = update_start_scene_main
 
     end
-end -- 已检查
+end 
 
 
 -- config
@@ -619,7 +619,7 @@ function update_start_scene_config_flash_in()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_main()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -928,7 +928,7 @@ function update_start_scene_config_main()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_twitch_up()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -962,7 +962,7 @@ function update_start_scene_config_twitch_up()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_twitch_down()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -995,7 +995,7 @@ function update_start_scene_config_twitch_down()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1050,7 +1050,7 @@ function update_start_scene_config_flash_out()
 
     end
 
-end -- 已检查
+end 
 
     -- config audio
 function update_start_scene_config_audio_flash_in()
@@ -1111,7 +1111,7 @@ function update_start_scene_config_audio_flash_in()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_main()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1356,7 +1356,7 @@ function update_start_scene_config_audio_main()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_bar_mark_twtich_up()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1391,7 +1391,7 @@ function update_start_scene_config_audio_bar_mark_twtich_up()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_bar_mark_twtich_down()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1427,7 +1427,7 @@ function update_start_scene_config_audio_bar_mark_twtich_down()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_bar_mark_twtich_left_with_alpha()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1481,7 +1481,7 @@ function update_start_scene_config_audio_bar_mark_twtich_left_with_alpha()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1517,7 +1517,7 @@ function update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_bar_mark_twtich_right_with_alpha()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1569,7 +1569,7 @@ function update_start_scene_config_audio_bar_mark_twtich_right_with_alpha()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1605,7 +1605,7 @@ function update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_audio_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1669,7 +1669,7 @@ function update_start_scene_config_audio_flash_out()
         current_draw_block = draw_start_scene_config_sub_scene
 
     end
-end -- 已检查
+end 
 
     -- config controller 
 function update_start_scene_config_controller_flash_in()
@@ -1716,7 +1716,7 @@ function update_start_scene_config_controller_flash_in()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_controller_main()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1771,7 +1771,7 @@ function update_start_scene_config_controller_main()
         
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_controller_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1817,7 +1817,7 @@ function update_start_scene_config_controller_flash_out()
 
     end
 
-end -- 已检查
+end 
 
     -- config resolution 
 function update_start_scene_config_resolution_flash_in()
@@ -1863,7 +1863,7 @@ function update_start_scene_config_resolution_flash_in()
         current_update_block = update_start_scene_config_resolution_main
 
     end
-end -- 已检查
+end 
 
 function update_start_scene_config_resolution_main()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1966,7 +1966,7 @@ function update_start_scene_config_resolution_main()
     
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_resolution_bar_mark_twtich_left()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -1996,7 +1996,7 @@ function update_start_scene_config_resolution_bar_mark_twtich_left()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_resolution_bar_mark_twtich_right()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -2025,7 +2025,7 @@ function update_start_scene_config_resolution_bar_mark_twtich_right()
 
     end
 
-end -- 已检查
+end 
 
 function update_start_scene_config_resolution_flash_out()
     SCENE_TIMER = SCENE_TIMER + 1
@@ -2072,7 +2072,7 @@ function update_start_scene_config_resolution_flash_out()
         
     end
 
-end -- 已检查
+end 
 
 
 -- record

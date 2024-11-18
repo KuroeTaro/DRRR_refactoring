@@ -8,7 +8,6 @@ function draw_start_scene_general()
     draw_2d_image(obj_UI_start_scene_console_type_in_mark,image_UI_start_scene_global_type_in_mark)
     draw_2d_image_table(obj_UI_start_scene_down_console_text,image_table_UI_start_scene_down_console_text)
     draw_2d_image_table(obj_UI_start_scene_up_console_text,image_table_UI_start_scene_up_console_text)
-    
 
     -- solid
     draw_solid(obj_UI_start_scene_solid_color)
@@ -25,13 +24,11 @@ function draw_start_scene_config_sub_scene()
     draw_2d_image(obj_UI_start_scene_console_type_in_mark,image_UI_start_scene_global_type_in_mark)
     draw_2d_image_table(obj_UI_start_scene_down_console_text,image_table_UI_start_scene_down_console_text)
     draw_2d_image_table(obj_UI_start_scene_up_console_text,image_table_UI_start_scene_up_console_text)
-    
 
     -- config sub scene sp
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_2d_image(obj_UI_start_scene_config_menu_dabo_trig,image_UI_start_scene_global_dabo_trig)
     draw_2d_image(obj_UI_start_scene_config_menu_text,image_UI_start_scene_config_menu_text)
-    
 
     -- solid
     draw_solid(obj_UI_start_scene_solid_color)
@@ -48,13 +45,11 @@ function draw_start_scene_config_audio_sub_scene()
     draw_2d_image(obj_UI_start_scene_console_type_in_mark,image_UI_start_scene_global_type_in_mark)
     draw_2d_image_table(obj_UI_start_scene_down_console_text,image_table_UI_start_scene_down_console_text)
     draw_2d_image_table(obj_UI_start_scene_up_console_text,image_table_UI_start_scene_up_console_text)
-    
 
     -- config sub scene sp
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_2d_image(obj_UI_start_scene_config_menu_dabo_trig,image_UI_start_scene_global_dabo_trig)
     draw_2d_image(obj_UI_start_scene_config_menu_text,image_UI_start_scene_config_menu_text)
-
 
     -- config sub scene audio sp
     draw_2d_image(obj_UI_start_scene_config_audio_bar_mark,image_UI_start_scene_bar_mark)
@@ -72,7 +67,6 @@ function draw_start_scene_config_audio_sub_scene()
     )
     draw_2d_image(obj_UI_start_scene_config_audio_text,image_UI_start_scene_config_audio_text)
 
-
     -- solid
     draw_solid(obj_UI_start_scene_solid_color)
 
@@ -89,19 +83,16 @@ function draw_start_scene_config_controller_sub_scene()
     draw_2d_image_table(obj_UI_start_scene_down_console_text,image_table_UI_start_scene_down_console_text)
     draw_2d_image_table(obj_UI_start_scene_up_console_text,image_table_UI_start_scene_up_console_text)
     
-
     -- config sub scene sp
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_2d_image(obj_UI_start_scene_config_menu_dabo_trig,image_UI_start_scene_global_dabo_trig)
     draw_2d_image(obj_UI_start_scene_config_menu_text,image_UI_start_scene_config_menu_text)
-
 
     -- config sub scene controller sp
     draw_2d_image(obj_UI_start_scene_config_controller_bar_mark_1P,image_UI_start_scene_bar_mark)
     draw_2d_image(obj_UI_start_scene_config_controller_bar_mark_2P,image_UI_start_scene_bar_mark)
     draw_2d_image(obj_UI_start_scene_config_controller_indi_text,image_UI_start_scene_controller_indi_text)
     
-
     -- solid
     draw_solid(obj_UI_start_scene_solid_color)
 
@@ -118,19 +109,16 @@ function draw_start_scene_config_resolution_sub_scene()
     draw_2d_image_table(obj_UI_start_scene_down_console_text,image_table_UI_start_scene_down_console_text)
     draw_2d_image_table(obj_UI_start_scene_up_console_text,image_table_UI_start_scene_up_console_text)
     
-
     -- config sub scene sp
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_2d_image(obj_UI_start_scene_config_menu_dabo_trig,image_UI_start_scene_global_dabo_trig)
     draw_2d_image(obj_UI_start_scene_config_menu_text,image_UI_start_scene_config_menu_text)
-
 
     -- config sub scene resolution sp
     draw_2d_image(obj_UI_start_scene_config_resolution_bar_mark,image_UI_start_scene_bar_mark)
     draw_2d_image_table(obj_UI_start_scene_config_resolution_w_x_h,image_table_UI_start_scene_resolution_text)
     draw_2d_image(obj_UI_start_scene_config_resolution_select_res_text,image_UI_start_scene_select_res_text)
     
-
     -- solid
     draw_solid(obj_UI_start_scene_solid_color)
 
@@ -147,7 +135,6 @@ function draw_start_scene_record_sub_scene()
     draw_2d_image_table(obj_UI_start_scene_down_console_text,image_table_UI_start_scene_down_console_text)
     draw_2d_image_table(obj_UI_start_scene_up_console_text,image_table_UI_start_scene_up_console_text)
 
-
     -- resolution sub scene sp
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_start_scene_sp_record_100h_plus_time_indi(
@@ -162,7 +149,6 @@ function draw_start_scene_record_sub_scene()
     draw_2d_image_table(obj_UI_start_scene_record_num_1,image_table_UI_start_scene_game_duration_number)
     draw_2d_image_table(obj_UI_start_scene_record_num_0,image_table_UI_start_scene_game_duration_number)
     draw_2d_image(obj_UI_start_scene_record_game_duration_text,image_UI_start_scene_game_duration_text)
-    
     
     -- solid
     draw_solid(obj_UI_start_scene_solid_color)

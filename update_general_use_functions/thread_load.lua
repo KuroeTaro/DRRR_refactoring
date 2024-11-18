@@ -33,6 +33,7 @@ function run_table_order_load()
         end
         i = i + 1
     end
+    
 end
 
 function init_order_load_table()
@@ -49,4 +50,5 @@ function init_order_load_table()
 	NEXT_UPDATE_BLOCK = nil
 	NEXT_DRAW_BLOCK = nil
     NEXT_PRESET = nil
+
 end

@@ -30,9 +30,6 @@ function update_load_scene_flash_in()
     frame_animator(obj_UI_load_scene_type_in_mark,anim_UI_frame_load_scene_type_in_mark_flash_in_opacity)
     frame_animator(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_in_opacity)
 
-    -- 加载图像的实际线程功能
-    run_table_order_load()
-
     if audio_UI_SFX_load_scene_general_start_load["audio"]:isPlaying() == false and 
     audio_UI_SFX_load_scene_general_loading["audio"]:isPlaying() == false  and
     LOADING_AUDIO_PLAYED_ONCE == false then

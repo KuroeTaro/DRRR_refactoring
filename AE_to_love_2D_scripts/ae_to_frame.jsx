@@ -1,6 +1,6 @@
 var comp = app.project.activeItem;
 if (comp && comp instanceof CompItem) {
-    var outputFile = new File("F:/LOVE/DRRR_RECON/key.txt");
+    var outputFile = new File("F:/LOVE/DRRR_refactoring/key.txt");
     outputFile.open("w", "TEXT", "????");
     outputFile.encoding = "UTF-8";
     // 遍历所有选定的图层
