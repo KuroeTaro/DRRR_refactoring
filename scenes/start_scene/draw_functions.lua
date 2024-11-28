@@ -89,8 +89,8 @@ function draw_start_scene_config_controller_sub_scene()
     draw_2d_image(obj_UI_start_scene_config_menu_text,image_UI_start_scene_config_menu_text)
 
     -- config sub scene controller sp
-    draw_2d_image(obj_UI_start_scene_config_controller_bar_mark_1P,image_UI_start_scene_bar_mark)
-    draw_2d_image(obj_UI_start_scene_config_controller_bar_mark_2P,image_UI_start_scene_bar_mark)
+    draw_2d_image(obj_UI_start_scene_config_controller_bar_mark_LP,image_UI_start_scene_bar_mark)
+    draw_2d_image(obj_UI_start_scene_config_controller_bar_mark_RP,image_UI_start_scene_bar_mark)
     draw_2d_image(obj_UI_start_scene_config_controller_indi_text,image_UI_start_scene_controller_indi_text)
     
     -- solid

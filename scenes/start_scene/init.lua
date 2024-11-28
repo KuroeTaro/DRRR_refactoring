@@ -112,21 +112,21 @@ function load_start_scene_obj()
 
 
     -- config controller
-    obj_UI_start_scene_config_controller_bar_mark_1P = {1335, 510, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["width"] = 12
-    obj_UI_start_scene_config_controller_bar_mark_1P["height"] = 16
-    obj_UI_start_scene_config_controller_bar_mark_1P["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_1P["state"] = "default"
+    obj_UI_start_scene_config_controller_bar_mark_LP = {1335, 510, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_controller_bar_mark_LP["width"] = 12
+    obj_UI_start_scene_config_controller_bar_mark_LP["height"] = 16
+    obj_UI_start_scene_config_controller_bar_mark_LP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_LP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_LP["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_LP["state"] = "default"
 
-    obj_UI_start_scene_config_controller_bar_mark_2P = {1335, 535, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["width"] = 12
-    obj_UI_start_scene_config_controller_bar_mark_2P["height"] = 16
-    obj_UI_start_scene_config_controller_bar_mark_2P["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_start_scene_config_controller_bar_mark_2P["state"] = "default"
+    obj_UI_start_scene_config_controller_bar_mark_RP = {1335, 535, nil, 0, 1, 1, 0, 0}
+    obj_UI_start_scene_config_controller_bar_mark_RP["width"] = 12
+    obj_UI_start_scene_config_controller_bar_mark_RP["height"] = 16
+    obj_UI_start_scene_config_controller_bar_mark_RP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_RP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_RP["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_RP["state"] = "default"
 
     obj_UI_start_scene_config_controller_indi_text = {990, 460, nil, 0, 1, 1, 0, 0}
     obj_UI_start_scene_config_controller_indi_text["width"] = 480
@@ -646,8 +646,8 @@ function unload_start_scene_obj()
     obj_UI_start_scene_config_resolution_bar_mark = nil
     obj_UI_start_scene_config_resolution_w_x_h = nil
     obj_UI_start_scene_config_resolution_select_res_text = nil
-    obj_UI_start_scene_config_controller_bar_mark_1P = nil
-    obj_UI_start_scene_config_controller_bar_mark_2P = nil
+    obj_UI_start_scene_config_controller_bar_mark_LP = nil
+    obj_UI_start_scene_config_controller_bar_mark_RP = nil
     obj_UI_start_scene_config_controller_indi_text = nil
     obj_UI_start_scene_config_audio_bar_mark = nil
     obj_UI_start_scene_config_audio_BGM_bar_light = nil

@@ -53,6 +53,9 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_second_glow["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_second_glow["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_second_glow["state"] = "default"
+    obj_UI_char_select_scene_second_glow["alpha_points"] = {0,0, 0,262, 384,900, 1600,900, 1600,149, 587,0}
+    obj_UI_char_select_scene_second_glow["LCT"]["alpha_points"] = {0,0, 0,0, 0,0, 0,0, 0,0, 0,0}
+    obj_UI_char_select_scene_second_glow["LCD"]["alpha_points"] = {0,0, 0,0, 0,0, 0,0, 0,0, 0,0}
     
     obj_UI_char_select_scene_bar_mark_L = {55, 509, nil, 0, 1, 1, 0, 0}
     obj_UI_char_select_scene_bar_mark_L["width"] = 15
@@ -242,7 +245,7 @@ end
 
 
 function load_char_select_anim()
-    -- black solid 闪入
+    -- black solid 闪出
     anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity = {}
     anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[0] = {1.00, 2}
     anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[2] = {0.55, 6}
@@ -278,6 +281,79 @@ function load_char_select_anim()
     anim_UI_frame_select_scene_first_ring_f["length"] = 34
     anim_UI_frame_select_scene_first_ring_f["loop"] = false
     anim_UI_frame_select_scene_first_ring_f["fix_type"] = true
+
+    -- while solid
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity = {}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[0] = {1.00, 2}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[2] = {0.6, 6}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[6] = {0.2, 10}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[10] = {0.05, 15}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[15] = {0.00, 15}
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["prop"] = 4
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["length"] = 15
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["loop"] = false
+    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity["fix_type"] = true
+
+    --glow alpha anim
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y = {}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[0] = {587.00, 2}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[2] = {530.00, 5}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[5] = {490.00, 10}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[10] = {451.00, 15}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[15] = {427.00, 20}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[20] = {411.00, 25}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[25] = {401.00, 30}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[30] = {394.00, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y[40] = {390.00, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y["prpty"] = 11
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y["length"] = 40
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y["loop"] = false
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt5_y["fix_type"] = true
+
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y = {}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[0] = {149.00, 2}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[2] = {175.00, 5}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[5] = {193.00, 10}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[10] = {209.00, 15}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[15] = {220.00, 20}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[20] = {227.00, 25}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[25] = {231.00, 30}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[30] = {234.00, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y[40] = {237.00, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y["prpty"] = 10
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y["length"] = 40
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y["loop"] = false
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt4_y["fix_type"] = true
+
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x = {}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[0] = {384.00, 2}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[2] = {411.00, 5}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[5] = {433.00, 10}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[10] = {453.00, 15}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[15] = {465.00, 20}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[20] = {473.00, 25}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[25] = {478.00, 30}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[30] = {482.00, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x[40] = {484.00, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x["prpty"] = 5
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x["length"] = 40
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x["loop"] = false
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt2_x["fix_type"] = true
+
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y = {}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[0] = {262.00, 2}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[2] = {247.26, 5}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[5] = {236.60, 10}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[10] = {226.33, 15}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[15] = {219.98, 20}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[20] = {215.77, 25}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[25] = {212.98, 30}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[30] = {211.23, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y[40] = {210.00, 40}
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y["prpty"] = 4
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y["length"] = 40
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y["loop"] = false
+    anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y["fix_type"] = true
 
 end
 

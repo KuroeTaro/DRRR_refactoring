@@ -754,21 +754,21 @@ function update_start_scene_config_main()
                 play_obj_audio(audio_SFX_start_scene_to_sub)
 
                 -- 初始化此出口所需属性
-                obj_UI_start_scene_config_controller_bar_mark_1P["state"] = "off_state"
-                obj_UI_start_scene_config_controller_bar_mark_2P["state"] = "off_state"
-                obj_UI_start_scene_config_controller_bar_mark_1P[4] = 0
-                obj_UI_start_scene_config_controller_bar_mark_2P[4] = 0
+                obj_UI_start_scene_config_controller_bar_mark_LP["state"] = "off_state"
+                obj_UI_start_scene_config_controller_bar_mark_RP["state"] = "off_state"
+                obj_UI_start_scene_config_controller_bar_mark_LP[4] = 0
+                obj_UI_start_scene_config_controller_bar_mark_RP[4] = 0
                 obj_UI_start_scene_config_controller_indi_text[4] = 0
                 obj_UI_start_scene_config_menu_dabo_trig[4] = 1
                 obj_UI_start_scene_config_menu_text[4] = 1
 
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
-                    obj_UI_start_scene_config_controller_bar_mark_1P,
+                    obj_UI_start_scene_config_controller_bar_mark_LP,
                     anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
                 )
                 init_point_linear_anim_with(
-                    obj_UI_start_scene_config_controller_bar_mark_2P,
+                    obj_UI_start_scene_config_controller_bar_mark_RP,
                     anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
                 )
                 init_point_linear_anim_with(
@@ -1685,11 +1685,11 @@ function update_start_scene_config_controller_flash_in()
     )
 
     point_linear_animator(
-        obj_UI_start_scene_config_controller_bar_mark_1P,
+        obj_UI_start_scene_config_controller_bar_mark_LP,
         anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
     )
     point_linear_animator(
-        obj_UI_start_scene_config_controller_bar_mark_2P,
+        obj_UI_start_scene_config_controller_bar_mark_RP,
         anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
     )
     point_linear_animator(
@@ -1730,8 +1730,8 @@ function update_start_scene_config_controller_main()
         anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
     )
     -- controller indi bar mark 状态机
-    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_1P,1)
-    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_2P,2)
+    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_LP,1)
+    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_RP,2)
 
     -- 场景出口
     if INPUT_SYS_CURRENT_COMMAND_STATE[1]["C"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE[2]["C"] == "Pressing" then
@@ -1740,16 +1740,16 @@ function update_start_scene_config_controller_main()
         play_obj_audio(audio_SFX_start_scene_to_main)
 
         -- 初始化此出口所需属性
-        obj_UI_start_scene_config_controller_bar_mark_1P[4] = 0.5
-        obj_UI_start_scene_config_controller_bar_mark_2P[4] = 0.5
+        obj_UI_start_scene_config_controller_bar_mark_LP[4] = 0.5
+        obj_UI_start_scene_config_controller_bar_mark_RP[4] = 0.5
 
         -- 初始化此出口所需要的动画机
         init_point_linear_anim_with(
-            obj_UI_start_scene_config_controller_bar_mark_1P,
+            obj_UI_start_scene_config_controller_bar_mark_LP,
             anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
         )
         init_point_linear_anim_with(
-            obj_UI_start_scene_config_controller_bar_mark_2P,
+            obj_UI_start_scene_config_controller_bar_mark_RP,
             anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
         )
         init_point_linear_anim_with(
@@ -1786,11 +1786,11 @@ function update_start_scene_config_controller_flash_out()
     )
 
     point_linear_animator(
-        obj_UI_start_scene_config_controller_bar_mark_1P,
+        obj_UI_start_scene_config_controller_bar_mark_LP,
         anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
     )
     point_linear_animator(
-        obj_UI_start_scene_config_controller_bar_mark_2P,
+        obj_UI_start_scene_config_controller_bar_mark_RP,
         anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
     )
     point_linear_animator(

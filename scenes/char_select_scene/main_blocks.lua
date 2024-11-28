@@ -28,11 +28,15 @@ function update_char_select_scene_flash_in_36f_40f()
     -- 场景出口
     if SCENE_TIMER >= 40 then 
         SCENE_TIMER = 0
-        -- 初始化此出口所需属性 但是目前没有
-        -- 初始化此出口所需要的动画机 但是目前没有
+        -- 初始化此出口所需属性
+        obj_UI_char_select_scene_white_solid[4] = 1
+
+        -- 初始化此出口所需要的动画机
+        
 
         -- 更新 current_update_block
         current_update_block = update_char_select_scene_flash_in_40f_1s30f
+        current_draw_block = draw_char_select_scene_flash_in_40f_1s30f
     end
 
 end
