@@ -31,16 +31,40 @@ function update_char_select_scene_flash_in_36f_40f()
         SCENE_TIMER = 40
         -- 初始化此出口所需属性
         obj_UI_char_select_scene_white_solid[4] = 1
+        obj_UI_char_select_scene_second_ring[4] = 0.75
+        obj_UI_char_select_scene_char_select_bg[4] = 1
 
         -- 初始化此出口所需要的动画机
-        
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_white_solid,
+            anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_second_glow,
+            anim_UI_point_linear_char_select_scene_second_glow_opacity
+        )
 
-        -- 初始化此出口所需要的switch_cache
-        local_switch_cache = nil
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
 
         -- 更新 current_update_block
         current_update_block = update_char_select_scene_flash_in_40f_1s30f
         current_draw_block = draw_char_select_scene_flash_in_40f_1s30f
+
     end
 
 end
@@ -49,7 +73,33 @@ function update_char_select_scene_flash_in_40f_1s30f()
     SCENE_TIMER = SCENE_TIMER + 1
     local local_scene_timer = SCENE_TIMER
 
+    state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
+
     if local_scene_timer < 45 then
+        point_linear_animator(
+            obj_UI_char_select_scene_white_solid,
+            anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow,
+            anim_UI_point_linear_char_select_scene_second_glow_opacity
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
 
     elseif local_scene_timer == 45 then
 
