@@ -34,6 +34,9 @@ function update_char_select_scene_flash_in_36f_40f()
         -- 初始化此出口所需要的动画机
         
 
+        -- 初始化此出口所需要的switch_cache
+        local_switch_cache = nil
+
         -- 更新 current_update_block
         current_update_block = update_char_select_scene_flash_in_40f_1s30f
         current_draw_block = draw_char_select_scene_flash_in_40f_1s30f
@@ -42,7 +45,25 @@ function update_char_select_scene_flash_in_36f_40f()
 end
 
 function update_char_select_scene_flash_in_40f_1s30f()
+    SCENE_TIMER = SCENE_TIMER + 1
+    local timer_switch = 
+    {
+        [1] = function()
 
+        end,
+        [2] = function()
+            load_char_select_scene_obj()
+            load_char_select_anim()
+            load_char_select_scene_audio()
+        end,
+    }
+    local this_function = timer_switch[load_order]
+    if this_function then 
+        this_function()
+        local_switch_cache = this_function
+    else
+        local_switch_cache()
+    end
 
 end
 
