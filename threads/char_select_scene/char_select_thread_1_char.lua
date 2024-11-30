@@ -5,7 +5,7 @@ local image_data = {}
 
 -- global use shape image
 image_data[1] = compress_module("asset/char_select_scene/bar_mark.dds")
-image_data[2] = compress_module("asset/char_select_scene/char_select_bg.dds")
+image_data[2] = love.image.newImageData("asset/char_select_scene/char_select_bg.png")
 image_data[3] = compress_module("asset/char_select_scene/char_select_left_alpha.dds")
 image_data[4] = compress_module("asset/char_select_scene/char_select_right_alpha.dds")
 image_data[5] = compress_module("asset/char_select_scene/control_method_L.dds")

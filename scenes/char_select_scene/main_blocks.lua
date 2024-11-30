@@ -30,7 +30,10 @@ function update_char_select_scene_flash_in_36f_40f()
     if SCENE_TIMER >= 40 then 
         SCENE_TIMER = 40
         -- 初始化此出口所需属性
+        obj_UI_char_select_solid_bg[4] = 1
+        obj_UI_char_select_scene_timer[4] = 1
         obj_UI_char_select_scene_white_solid[4] = 1
+        obj_UI_char_select_scene_second_glow[4] = 1
         obj_UI_char_select_scene_second_ring[4] = 0.75
         obj_UI_char_select_scene_char_select_bg[4] = 1
 
@@ -74,7 +77,7 @@ function update_char_select_scene_flash_in_40f_1s30f()
     local local_scene_timer = SCENE_TIMER
 
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
-
+    state_machine_UI_char_select_scene_timer(obj_UI_char_select_scene_timer)
     if local_scene_timer < 45 then
         point_linear_animator(
             obj_UI_char_select_scene_white_solid,
@@ -146,8 +149,8 @@ function update_char_select_scene_flash_in_40f_1s30f()
         -- 初始化此出口所需要的动画机 
 
         -- 更新 current_update_block
-        current_update_block = update_char_select_scene_flash_in_36f_40f
-        current_draw_block = draw_char_select_scene_flash_in_36f_40f
+        current_update_block = update_char_select_scene_flash_in_1s30f_1s50f
+        -- current_draw_block = draw_char_select_scene_flash_in_36f_40f
 
     end
 

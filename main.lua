@@ -42,7 +42,7 @@ function love.run()
 
 	local dt = 0
     local FRST = 1/60 --frame rate stabilization timer
-	global_counter = 0
+	-- global_counter = 0
 
 	-- Main loop time.
 	return function()
@@ -85,7 +85,7 @@ function love.run()
 
             FRST = math.fmod(FRST, 1/60)
         end
-        if love.timer then love.timer.sleep(1/60-FRST) end
+        if love.timer then love.timer.sleep(0.001) end
         -- if love.timer then love.timer.sleep(0.001) end
 	end
 end
@@ -223,7 +223,7 @@ function love.draw()
 	love.graphics.setColor(1, 1, 1, 0.5)
 	draw_input_sys()
 	love.graphics.print( "FRAMES_DRAWN", 0, 240)
-    love.graphics.print( "FPS", 0, 255)
+    love.graphics.print( "GRAPHICIAL_FPS", 0, 255)
 	love.graphics.print( "SCENE_TIMER", 0, 270)
 	love.graphics.print( FRAMES_DRAWN, 110, 240)
     love.graphics.print( FPS, 110, 255)
