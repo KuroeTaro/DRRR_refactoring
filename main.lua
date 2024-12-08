@@ -74,19 +74,23 @@ function love.run()
 			-- 	end
 			-- end
 			-- cpu_heavy_task()
-
+			local s = love.timer.getTime()
             if love.update then love.update() end -- will pass 0 if love.timer is disabled
 
             if love.draw then love.draw() end
             love.graphics.present()
+			local gap = love.timer.getTime() - s 
+			if gap > 1/60 then
+				print(gap)
+			end
 
 			-- local updateEndTime = love.timer.getTime()
 			-- print(updateStartTime-updateEndTime)
 
             FRST = math.fmod(FRST, 1/60)
         end
-        if love.timer then love.timer.sleep(0.001) end
-        -- if love.timer then love.timer.sleep(0.001) end
+		collectgarbage()
+		if love.timer then love.timer.sleep(0.001) end
 	end
 end
 
@@ -99,9 +103,10 @@ function love.load()
 
 	modify_quit_game_reocrd()
 
-	CURRENT_SCENE = "loading"
+	ONLINE_MATCH_BOOL = false
 	NETWORK_MATCH_SIDE = 1
 	OTHER_SIDE = 2
+	CHAR_SELECT_LR = {4,5}
 
 	-- non-character global variable
 -------------------------------------------------
@@ -123,7 +128,7 @@ function love.load()
 	BAR_MARK_CONFIG_SUB_SCENE_RESOLUTION_Y_POSITION = 530
 
 	-- char_select_scene
-	LEFT_CHAR_IMAGE_POSITION = {
+	LEFT_CHAR_SELECT_CHAR_POSITION = {
 		{132,-2,0},
 		{230,6,0},
 		{248,-60,0},
@@ -133,7 +138,7 @@ function love.load()
 		{215,1,0},
 		{256,-32,0},
 	}
-	LEFT_CHAR_TEXT_POSITION = {
+	LEFT_CHAR_SELECT_TEXT_POSITION = {
 		{210,-121,0.332},
 		{205,-131,0.332},
 		{422,-114,0.332},
@@ -143,7 +148,7 @@ function love.load()
 		{193,-152,0.332},
 		{264,-146,0.332},
 	}
-	RIGHT_CHAR_IMAGE_POSITION = {
+	RIGHT_CHAR_SELECT_CHAR_POSITION = {
 		{797,-2,0},
 		{1000,-2,0},
 		{840,35,-0.244},
@@ -153,7 +158,7 @@ function love.load()
 		{945,-3,0},
 		{903,-32,0},
 	}
-	RIGHT_CHAR_TEXT_POSITION = {
+	RIGHT_CHAR_SELECT_TEXT_POSITION = {
 		{802,216,-0.401},
 		{964,205,-0.332},
 		{1016,182,-0.384},

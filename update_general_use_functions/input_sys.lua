@@ -56,13 +56,17 @@ function update_input()
 
     --获得所有指令的现在布尔值和上一帧布尔值
     --并且赋值到INPUT_SYS_CURRENT_COMMAND和perCommand
-    if CURRENT_SCENE == "online_match_stage" then
+    if ONLINE_MATCH_BOOL then
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
-                nil)
+            get_INPUT_SYS_CURRENT_COMMAND(
+                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
+                nil
+            )
         else 
-            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
-                INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
+            get_INPUT_SYS_CURRENT_COMMAND(
+                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
+                INPUT_SYS_CURRENT_JOYSTICK_TABLE[1]
+            )
         end
         -- INPUT_SYS_CURRENT_COMMAND[OTHER_SIDE] 从网络接口获取
 
@@ -120,33 +124,33 @@ function update_controller()
 end
 
 --获得所有指令的现在布尔值和上一帧布尔值（键盘）
-function get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND,joystick)
+function get_INPUT_SYS_CURRENT_COMMAND(LOCAL_INPUT_SYS_CURRENT_COMMAND,joystick)
     --(键盘)
     if joystick == nil then
         for i = 1,16 do
             if love.keyboard.isDown(INPUT_SYS_KEY_TABLE[i]) then
-                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
-            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
+                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
+            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
     else
         for i = 1,12 do
             if get_joystick_buttom_command(joystick,INPUT_SYS_BUTTON_TABLE[i]) then
-                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
-            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
+                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
+            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
 
         for i = 1,2 do
             if get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) > 0.2 then
-                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 1
-            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
+                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 1
+            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
             end
         end
         for i = 1,2 do
             if get_joystick_buttom_command(joystick,INPUT_SYS_STICK_TABLE[i]) then
-                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 1
-            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 0
+                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 1
+            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 0
             end
         end
     end

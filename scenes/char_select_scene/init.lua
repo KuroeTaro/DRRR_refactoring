@@ -96,9 +96,9 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_timer["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_timer["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_timer["state"] = "default"
-    obj_UI_char_select_scene_timer["time"] = {9,9,60}
+    obj_UI_char_select_scene_timer["time"] = {6,0,60}
     
-    obj_UI_char_select_scene_char_select_left = {-33, 110, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_left = {-33, 110, nil, 0, 1, 1, 0, 0}
     obj_UI_char_select_scene_char_select_left["width"] = 1650
     obj_UI_char_select_scene_char_select_left["height"] = 455
     obj_UI_char_select_scene_char_select_left["FCT"] = {0,0,0,0,0,0,0,0}
@@ -106,13 +106,13 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_char_select_left["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left["state"] = "default"
     
-    obj_UI_char_select_scene_char_select_left_image = {-200, -52, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_char_select_left_image["width"] = 1650
-    obj_UI_char_select_scene_char_select_left_image["height"] = 455
-    obj_UI_char_select_scene_char_select_left_image["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_scene_char_select_left_image["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_scene_char_select_left_image["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_scene_char_select_left_image["state"] = "default"
+    obj_UI_char_select_scene_char_select_left_char = {-200, -52, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_left_char["width"] = 1650
+    obj_UI_char_select_scene_char_select_left_char["height"] = 455
+    obj_UI_char_select_scene_char_select_left_char["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_char["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_char["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_char["state"] = "default"
     
     obj_UI_char_select_scene_char_select_left_text = {375, -179, nil, 0, 1, 1, 0.192, 0}
     obj_UI_char_select_scene_char_select_left_text["width"] = 1650
@@ -122,7 +122,7 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_char_select_left_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_text["state"] = "default"
     
-    obj_UI_char_select_scene_char_select_right = {-25, 335, nil, 1, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_right = {-25, 335, nil, 0, 1, 1, 0, 0}
     obj_UI_char_select_scene_char_select_right["width"] = 1650
     obj_UI_char_select_scene_char_select_right["height"] = 455
     obj_UI_char_select_scene_char_select_right["FCT"] = {0,0,0,0,0,0,0,0}
@@ -130,13 +130,13 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_char_select_right["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right["state"] = "default"
     
-    obj_UI_char_select_scene_char_select_right_image = {610, -12, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_char_select_right_image["width"] = 1650
-    obj_UI_char_select_scene_char_select_right_image["height"] = 455
-    obj_UI_char_select_scene_char_select_right_image["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_scene_char_select_right_image["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_scene_char_select_right_image["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_scene_char_select_right_image["state"] = "default"
+    obj_UI_char_select_scene_char_select_right_char = {610, -12, nil, 0, 1, 1, 0, 0}
+    obj_UI_char_select_scene_char_select_right_char["width"] = 1650
+    obj_UI_char_select_scene_char_select_right_char["height"] = 455
+    obj_UI_char_select_scene_char_select_right_char["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_char["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_char["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_char["state"] = "default"
     
     obj_UI_char_select_scene_char_select_right_text = {1291, -36, nil, 0, 1, 1, 0.436, 0}
     obj_UI_char_select_scene_char_select_right_text["width"] = 1650
@@ -241,15 +241,6 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_icon_SRT["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_SRT["state"] = "default"
     obj_UI_char_select_scene_icon_SRT["image_x"] = 0
-    
-    obj_UI_char_select_solid_bg = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_solid_bg["width"] = 1600
-    obj_UI_char_select_solid_bg["height"] = 900
-    obj_UI_char_select_solid_bg["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_solid_bg["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_solid_bg["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_UI_char_select_solid_bg["state"] = "default"  
-    obj_UI_char_select_solid_bg["rgb"] = {7/255,19/255,31/255}
 
 end
 
@@ -409,19 +400,19 @@ function load_char_select_anim()
 
     anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1 = {}
     anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1[0] = {0, 5}
-    anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1[5] = {1, 5}
+    anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1[5] = {0.2, 5}
     anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1["prop"] = 1
     anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1["length"] = 5
     anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1["loop"] = false
-    anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1["fix_type"] = false
+    anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1["fix_type"] = true
 
     anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1 = {}
-    anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1[0] = {1, 5}
+    anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1[0] = {0.2, 5}
     anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1[5] = {0, 5}
     anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1["prop"] = 1
     anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1["length"] = 5
     anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1["loop"] = false
-    anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1["fix_type"] = false
+    anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0_1["fix_type"] = true
 
     anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1 = {}
     anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1[0] = {0, 1}
@@ -435,40 +426,40 @@ function load_char_select_anim()
     anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1["loop"] = false
     anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1["fix_type"] = true
 
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x = {}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[0] = {0, 1}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[1] = {-25.40, 2}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[2] = {-31.60, 3}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[3] = {-35.40, 5}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[5] = {-40.20, 10}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[10] = {-46.70, 20}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[20] = {-52.60, 30}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[30] = {-55.40, 40}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[40] = {-57.10, 50}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[50] = {-58.20, 60}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[60] = {-58.90, 70}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[70] = {-59.40, 80}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[80] = {-59.70, 90}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[90] = {-59.90, 100}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[100] = {-60, 110}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[110] = {-60, 120}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x[120] = {-60, 120}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x["prop"] = 1
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x["length"] = 120
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x["loop"] = false
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_in_x["fix_type"] = false
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x = {}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[0] = {0, 1}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[1] = {-25.40, 2}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[2] = {-31.60, 3}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[3] = {-35.40, 5}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[5] = {-40.20, 10}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[10] = {-46.70, 20}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[20] = {-52.60, 30}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[30] = {-55.40, 40}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[40] = {-57.10, 50}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[50] = {-58.20, 60}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[60] = {-58.90, 70}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[70] = {-59.40, 80}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[80] = {-59.70, 90}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[90] = {-59.90, 100}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[100] = {-60, 110}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[110] = {-60, 120}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x[120] = {-60, 120}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x["prop"] = 1
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x["length"] = 120
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x["loop"] = false
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x["fix_type"] = false
 
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x = {}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x[0] = {-60.00, 1}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x[1] = {-61.00, 2}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x[2] = {-64.75, 3}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x[3] = {-74.80, 4}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x[4] = {-98.00, 5}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x[5] = {-150.00, 5}
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x["prop"] = 1
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x["length"] = 5
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x["loop"] = false
-    anim_UI_point_linear_char_select_scene_char_select_image_flash_out_x["fix_type"] = false
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x = {}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x[0] = {-60.00, 1}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x[1] = {-61.00, 2}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x[2] = {-64.75, 3}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x[3] = {-74.80, 4}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x[4] = {-98.00, 5}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x[5] = {-150.00, 5}
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x["prop"] = 1
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x["length"] = 5
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x["loop"] = false
+    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x["fix_type"] = false
 
     anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x = {}
     anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x[0] = {0.00, 1}
@@ -492,6 +483,18 @@ function load_char_select_anim()
     anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x["length"] = 120
     anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x["loop"] = false
     anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x["fix_type"] = false
+
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x = {}
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x[0] = {-226.30, 1}
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x[1] = {-231.00, 2}
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x[2] = {-240.00, 3}
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x[3] = {-268.00, 4}
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x[4] = {-326.00, 5}
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x[5] = {-423.00, 5}
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x["prop"] = 1
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x["length"] = 5
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x["loop"] = false
+    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x["fix_type"] = false
 
 end
 
@@ -599,7 +602,16 @@ function load_char_select_scene_audio()
 
 end
 
+function load_char_select_scene_shader()
+    shader_char_select_scene_fractal_noise = love.graphics.newShader("shaders/char_select_fractal_noise.glsl")
+    shader_char_select_scene_radial_blur = love.graphics.newShader("shaders/radial_blur.glsl")
 
+    canvas = love.graphics.newCanvas(1600,900)
+    canvas_radial_blur = love.graphics.newCanvas(1600,900)
+    canvas_alpha_comp = love.graphics.newCanvas(1600,900)
+    alpha = love.graphics.newCanvas(1600,900)
+
+end
 
 
 function unload_char_select_scene_obj()
@@ -614,10 +626,10 @@ function unload_char_select_scene_obj()
     obj_UI_char_select_scene_control_method_L = nil
     obj_UI_char_select_scene_control_method_R = nil
     obj_UI_char_select_scene_char_select_left = nil
-    obj_UI_char_select_scene_char_select_left_image = nil
+    obj_UI_char_select_scene_char_select_left_char = nil
     obj_UI_char_select_scene_char_select_left_text = nil
     obj_UI_char_select_scene_char_select_right = nil
-    obj_UI_char_select_scene_char_select_right_image = nil
+    obj_UI_char_select_scene_char_select_right_char = nil
     obj_UI_char_select_scene_char_select_right_text = nil
     obj_UI_char_select_scene_char_select_bg = nil
     obj_UI_char_select_scene_icon_select_L = nil
@@ -630,7 +642,6 @@ function unload_char_select_scene_obj()
     obj_UI_char_select_scene_icon_CKG = nil
     obj_UI_char_select_scene_icon_SHINRA = nil
     obj_UI_char_select_scene_icon_SRT = nil
-    obj_UI_char_select_solid_bg = nil
 
 end
 
@@ -660,6 +671,18 @@ function unload_char_select_scene_audio()
     
 end
 
+function unload_char_select_scene_shader()
+    shader_char_select_scene_fractal_noise = nil
+    shader_char_select_scene_radial_blur = nil
+
+    canvas = nil
+    canvas_radial_blur = nil
+    canvas_alpha_comp = nil
+    alpha = nil
+
+end
+
+
 
 ----------------------------------------------------------------------
 -- 包含四个
@@ -678,6 +701,7 @@ function unload_char_select_scene_all()
     unload_char_select_scene_anim()
     unload_char_select_scene_image()
     unload_char_select_scene_audio()
+    unload_char_select_scene_shader()
 
 end
 

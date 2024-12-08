@@ -11,6 +11,9 @@ function state_machine_UI_char_select_scene_movie_cover_loop(obj)
 end
 
 function state_machine_UI_char_select_scene_timer(obj)
+    if obj["time"][1] == 0 and obj["time"][2] == 0 then
+        return
+    end
     obj["time"][3] = obj["time"][3]-1
     if obj["time"][3] == -1 then 
         obj["time"][2] = obj["time"][2]-1

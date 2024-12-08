@@ -47,30 +47,30 @@ function order_load_char_select_scene_UI_char(load_order)
             -- char icon alpha image name
             image_table_UI_char_select_scene_char_icon_alpha = {}
             for i = 1,8 do
-                image_table_UI_char_select_scene_char_icon_alpha[i-1] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+7])
+                image_table_UI_char_select_scene_char_icon_alpha[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+7])
             end
 
             image_table_UI_char_select_scene_char_icon_image = {}
             for i = 1,8 do
-                image_table_UI_char_select_scene_char_icon_image[i-1] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+15])
+                image_table_UI_char_select_scene_char_icon_image[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+15])
             end
 
-            image_table_UI_char_select_scene_char_select_image = {}
+            image_table_UI_char_select_scene_char_select_char = {}
             for i = 1,8 do
-                image_table_UI_char_select_scene_char_select_image[i-1] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+23])
+                image_table_UI_char_select_scene_char_select_char[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+23])
             end
 
             image_table_UI_char_select_scene_char_select_text_left = {}
             for i = 1,8 do
-                image_table_UI_char_select_scene_char_select_text_left[i-1] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+31])
+                image_table_UI_char_select_scene_char_select_text_left[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+31])
             end
 
             image_table_UI_char_select_scene_char_select_text_right = {}
             for i = 1,3 do
-                image_table_UI_char_select_scene_char_select_text_right[i-1] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+39])
+                image_table_UI_char_select_scene_char_select_text_right[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+39])
             end
-            image_table_UI_char_select_scene_char_select_text_right[3] = love.graphics.newImage(ASSET_DATA_TABLE[1][35])
-            image_table_UI_char_select_scene_char_select_text_right[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][36])
+            image_table_UI_char_select_scene_char_select_text_right[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][35])
+            image_table_UI_char_select_scene_char_select_text_right[5] = love.graphics.newImage(ASSET_DATA_TABLE[1][36])
             for i = 1,3 do
                 image_table_UI_char_select_scene_char_select_text_right[i+4] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+42])
             end
@@ -84,6 +84,8 @@ function order_load_char_select_scene_UI_char(load_order)
             load_char_select_scene_obj()
             load_char_select_anim()
             load_char_select_scene_audio()
+            load_char_select_scene_shader()
+            
         end,
     }
     local this_function = local_switch[load_order]
@@ -133,7 +135,7 @@ function unload_char_select_scene_image()
 
     image_table_UI_char_select_scene_char_icon_alpha = nil
     image_table_UI_char_select_scene_char_icon_image = nil
-    image_table_UI_char_select_scene_char_select_image = nil
+    image_table_UI_char_select_scene_char_select_char = nil
     image_table_UI_char_select_scene_char_select_text_left = nil
     image_table_UI_char_select_scene_char_select_text_right = nil
     image_table_UI_char_select_scene_number = nil
