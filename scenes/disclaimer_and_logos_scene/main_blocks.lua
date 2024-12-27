@@ -1,4 +1,4 @@
-function update_disclaimer_and_logos_scene_general()
+function update_disclaimer_and_logos_scene_main()
     -- 场景时间更新
     SCENE_TIMER = SCENE_TIMER + 1
 

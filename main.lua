@@ -152,7 +152,7 @@ function love.load()
 		{797,-2,0},
 		{1000,-2,0},
 		{840,35,-0.244},
-		{674,-30,0},
+		{574,-30,0},
 		{610,-12,0},
 		{870,-4,0},
 		{945,-3,0},
@@ -197,8 +197,8 @@ function love.load()
 
 	LOADING_AUDIO_PLAYED_ONCE = false
 
-	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_general
-	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_general
+	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_main
+	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_main
 	NEXT_PRESET = preset_disclaimer_and_logos_scene
 
 	-- disclaimer_and_logos_scene

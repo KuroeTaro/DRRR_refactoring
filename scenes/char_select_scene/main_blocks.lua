@@ -64,19 +64,21 @@ function update_char_select_scene_flash_in_36f_40f()
         )
 
         -- 更新 current_update_block
-        current_update_block = update_char_select_scene_flash_in_40f_1s30f
-        current_draw_block = draw_char_select_scene_flash_in_40f_1s30f
+        current_update_block = update_char_select_scene_flash_in_40f_2s10f
+        current_draw_block = draw_char_select_scene_flash_in_40f_2s10f
 
     end
 
 end
 
-function update_char_select_scene_flash_in_40f_1s30f()
+function update_char_select_scene_flash_in_40f_2s10f()
     SCENE_TIMER = SCENE_TIMER + 1
     local local_scene_timer = SCENE_TIMER
 
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
     state_machine_UI_char_select_scene_timer(obj_UI_char_select_scene_timer)
+    state_machine_UI_char_select_scene_second_ring_blink(obj_UI_char_select_scene_second_ring)
+    
     if local_scene_timer < 45 then
         point_linear_animator(
             obj_UI_char_select_scene_white_solid,
@@ -266,7 +268,7 @@ function update_char_select_scene_flash_in_40f_1s30f()
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
 
-    elseif local_scene_timer == 55 then    
+    elseif local_scene_timer == 55 then
         point_linear_animator(
             obj_UI_char_select_scene_second_glow,
             anim_UI_point_linear_char_select_scene_second_glow_opacity
@@ -556,7 +558,7 @@ function update_char_select_scene_flash_in_40f_1s30f()
         obj_UI_char_select_scene_icon_select_R[4] = 0
         init_point_linear_anim_with(
             obj_UI_char_select_scene_icon_select_R,
-            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1
+            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
         )
 
         obj_UI_char_select_scene_char_select_left[4] = 0
@@ -634,8 +636,6 @@ function update_char_select_scene_flash_in_40f_1s30f()
             obj_UI_char_select_scene_icon_SZO,
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
-
-
         point_linear_animator(
             obj_UI_char_select_scene_icon_IZY,
             anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
@@ -648,7 +648,7 @@ function update_char_select_scene_flash_in_40f_1s30f()
 
         point_linear_animator(
             obj_UI_char_select_scene_icon_select_R,
-            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1
+            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
         )
 
 
@@ -720,8 +720,6 @@ function update_char_select_scene_flash_in_40f_1s30f()
             obj_UI_char_select_scene_icon_SZO,
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
-
-
         point_linear_animator(
             obj_UI_char_select_scene_icon_IZY,
             anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
@@ -734,7 +732,7 @@ function update_char_select_scene_flash_in_40f_1s30f()
 
         point_linear_animator(
             obj_UI_char_select_scene_icon_select_R,
-            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1
+            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
         )
 
         
@@ -767,7 +765,7 @@ function update_char_select_scene_flash_in_40f_1s30f()
         obj_UI_char_select_scene_icon_select_L[4] = 0
         init_point_linear_anim_with(
             obj_UI_char_select_scene_icon_select_L,
-            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_1
+            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
         )
 
         obj_UI_char_select_scene_char_select_right[4] = 0
@@ -809,40 +807,1015 @@ function update_char_select_scene_flash_in_40f_1s30f()
             anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
         )
 
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SRT,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SRT,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_select_L,
+            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right,
+            anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+
+
     elseif local_scene_timer == 75 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SRT,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SRT,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_select_L,
+            anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right,
+            anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+
+        obj_UI_char_select_scene_icon_KTC[4] = 0
+        obj_UI_char_select_scene_icon_KTC["image_x"] = 0
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
 
     elseif local_scene_timer < 80 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
 
     elseif local_scene_timer == 80 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SHINRA,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+
+
+        obj_UI_char_select_scene_icon_ERIKAWK3[4] = 0
+        obj_UI_char_select_scene_icon_ERIKAWK3["image_x"] = 0
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
 
     elseif local_scene_timer < 85 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
 
     elseif local_scene_timer == 85 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_CKG,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
 
     elseif local_scene_timer < 90 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+
+    elseif local_scene_timer == 90 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_SZO,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_left_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_char,
+            anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_char_select_right_text,
+            anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
+        )
+
+        obj_UI_char_select_scene_char_select_left["state"] = "flash_in"
+        obj_UI_char_select_scene_char_select_left["sub_animation_time"] = 25
+        obj_UI_char_select_scene_char_select_right["state"] = "flash_in"
+        obj_UI_char_select_scene_char_select_right["sub_animation_time"] = 20
+
+    elseif local_scene_timer <= 95 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_IZY,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_left,
+            obj_UI_char_select_scene_char_select_left_char,
+            obj_UI_char_select_scene_char_select_left_text,
+            obj_UI_char_select_scene_icon_select_L,
+            1
+        )
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_right,
+            obj_UI_char_select_scene_char_select_right_char,
+            obj_UI_char_select_scene_char_select_right_text,
+            obj_UI_char_select_scene_icon_select_R,
+            2
+        )
+
+    elseif local_scene_timer <= 100 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ANRI,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_left,
+            obj_UI_char_select_scene_char_select_left_char,
+            obj_UI_char_select_scene_char_select_left_text,
+            obj_UI_char_select_scene_icon_select_L,
+            1
+        )
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_right,
+            obj_UI_char_select_scene_char_select_right_char,
+            obj_UI_char_select_scene_char_select_right_text,
+            obj_UI_char_select_scene_icon_select_R,
+            2
+        )
+
+    elseif local_scene_timer <= 105 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_KTC,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_left,
+            obj_UI_char_select_scene_char_select_left_char,
+            obj_UI_char_select_scene_char_select_left_text,
+            obj_UI_char_select_scene_icon_select_L,
+            1
+        )
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_right,
+            obj_UI_char_select_scene_char_select_right_char,
+            obj_UI_char_select_scene_char_select_right_text,
+            obj_UI_char_select_scene_icon_select_R,
+            2
+        )
+
+    elseif local_scene_timer <= 110 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_icon_ERIKAWK3,
+            anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
+        )
+
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_left,
+            obj_UI_char_select_scene_char_select_left_char,
+            obj_UI_char_select_scene_char_select_left_text,
+            obj_UI_char_select_scene_icon_select_L,
+            1
+        )
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_right,
+            obj_UI_char_select_scene_char_select_right_char,
+            obj_UI_char_select_scene_char_select_right_text,
+            obj_UI_char_select_scene_icon_select_R,
+            2
+        )
+
+    elseif local_scene_timer < 130 then
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y
+        )
+        point_linear_animator(
+            obj_UI_char_select_scene_second_glow["alpha_points"],
+            anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
+        )
+
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_left,
+            obj_UI_char_select_scene_char_select_left_char,
+            obj_UI_char_select_scene_char_select_left_text,
+            obj_UI_char_select_scene_icon_select_L,
+            1
+        )
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_right,
+            obj_UI_char_select_scene_char_select_right_char,
+            obj_UI_char_select_scene_char_select_right_text,
+            obj_UI_char_select_scene_icon_select_R,
+            2
+        )
 
     end
 
     -- 场景出口
-    if local_scene_timer >= 90 then 
+    if local_scene_timer >= 130 then 
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_left,
+            obj_UI_char_select_scene_char_select_left_char,
+            obj_UI_char_select_scene_char_select_left_text,
+            obj_UI_char_select_scene_icon_select_L,
+            1
+        )
+        state_machine_UI_char_select_scene_char_select(
+            obj_UI_char_select_scene_char_select_right,
+            obj_UI_char_select_scene_char_select_right_char,
+            obj_UI_char_select_scene_char_select_right_text,
+            obj_UI_char_select_scene_icon_select_R,
+            2
+        )
+
         -- 初始化此出口所需属性
+        SCENE_TIMER = 0
 
         -- 初始化此出口所需要的动画机 
 
         -- 更新 current_update_block
-        current_update_block = update_char_select_scene_flash_in_1s30f_1s50f
-        -- current_draw_block = draw_char_select_scene_flash_in_36f_40f
+        current_update_block = update_char_select_scene_main
+        current_draw_block = draw_char_select_scene_main
 
     end
 
 end
 
-function update_char_select_scene_flash_in_1s30f_1s50f()
+function update_char_select_scene_main()
     SCENE_TIMER = SCENE_TIMER + 1
     local local_scene_timer = SCENE_TIMER
 
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
     state_machine_UI_char_select_scene_timer(obj_UI_char_select_scene_timer)
+    state_machine_UI_char_select_scene_second_ring_blink(obj_UI_char_select_scene_second_ring)
+
+    state_machine_UI_char_select_scene_char_select(
+        obj_UI_char_select_scene_char_select_left,
+        obj_UI_char_select_scene_char_select_left_char,
+        obj_UI_char_select_scene_char_select_left_text,
+        obj_UI_char_select_scene_icon_select_L,
+        1
+    )
+    state_machine_UI_char_select_scene_char_select(
+        obj_UI_char_select_scene_char_select_right,
+        obj_UI_char_select_scene_char_select_right_char,
+        obj_UI_char_select_scene_char_select_right_text,
+        obj_UI_char_select_scene_icon_select_R,
+        2
+    )
 
 end
 

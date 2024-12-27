@@ -16,8 +16,8 @@ function load_disclaimer_logos_scene_prep()
     LOAD_ONCE_TABLE = {false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 1 -- 和线程数相同
 
-	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_general
-	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_general
+	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_main
+	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_main
     NEXT_PRESET = preset_disclaimer_and_logos_scene
 
 end

@@ -25,7 +25,7 @@ function load_start_scene_prep()
     LOADING_FUNCTION_AMOUNT = 3 -- 和线程数相同
 
 	NEXT_UPDATE_BLOCK = update_start_scene_flash_in
-	NEXT_DRAW_BLOCK = draw_start_scene_general
+	NEXT_DRAW_BLOCK = draw_start_scene_main
     NEXT_PRESET = preset_start_scene
 
 end

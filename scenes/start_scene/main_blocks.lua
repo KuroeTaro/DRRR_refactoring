@@ -1046,7 +1046,7 @@ function update_start_scene_config_flash_out()
 
         -- 更新 current_update_block
         current_update_block = update_start_scene_main
-        current_draw_block = draw_start_scene_general
+        current_draw_block = draw_start_scene_main
 
     end
 
@@ -2415,7 +2415,7 @@ function update_start_scene_record_flash_out()
         SCENE_TIMER = 0
         -- 更新 current_update_block
         current_update_block = update_start_scene_main
-        current_draw_block = draw_start_scene_general
+        current_draw_block = draw_start_scene_main
 
     end
 

@@ -1,4 +1,4 @@
-function draw_start_scene_general()
+function draw_start_scene_main()
     -- general
     draw_2d_image_table(obj_UI_start_scene_noise_bg,image_table_UI_start_scene_BG_loop)
     draw_2d_image(obj_UI_start_scene_main_logo,image_UI_start_scene_main_logo)

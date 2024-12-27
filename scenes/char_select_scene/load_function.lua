@@ -72,7 +72,7 @@ function order_load_char_select_scene_UI_char(load_order)
             image_table_UI_char_select_scene_char_select_text_right[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][35])
             image_table_UI_char_select_scene_char_select_text_right[5] = love.graphics.newImage(ASSET_DATA_TABLE[1][36])
             for i = 1,3 do
-                image_table_UI_char_select_scene_char_select_text_right[i+4] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+42])
+                image_table_UI_char_select_scene_char_select_text_right[i+5] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+42])
             end
 
             image_table_UI_char_select_scene_number = {}
