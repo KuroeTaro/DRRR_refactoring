@@ -32,7 +32,24 @@ function state_machine_UI_char_select_scene_second_ring_blink(obj)
     obj[4] = 0.8+math.random(-1, 1)*0.03
 end
 
-function state_machine_UI_char_select_scene_char_select(obj,obj_char,obj_text,icon_cover,input_id)
+function state_machine_UI_char_select_scene_char_select(input_id)
+    local obj = nil
+    local obj_char = nil
+    local obj_text = nil
+    local icon_cover = nil
+
+    if input_id == 1 then
+        obj = obj_UI_char_select_scene_char_select_left
+        obj_char = obj_UI_char_select_scene_char_select_left_char
+        obj_text = obj_UI_char_select_scene_char_select_left_text
+        icon_cover = obj_UI_char_select_scene_icon_select_L
+    else
+        obj = obj_UI_char_select_scene_char_select_right
+        obj_char = obj_UI_char_select_scene_char_select_right_char
+        obj_text = obj_UI_char_select_scene_char_select_right_text
+        icon_cover = obj_UI_char_select_scene_icon_select_R
+    end
+
     local local_switch = {
         ["idle"] = function() 
             if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Left"] == "Pressing" then

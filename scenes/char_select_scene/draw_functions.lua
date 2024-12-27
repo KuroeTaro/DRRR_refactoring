@@ -319,7 +319,6 @@ function draw_char_select_scene_char_select_LR(id)
         love.graphics.setColor(24/255, 30/255, 39/255, 1)
         love.graphics.draw(image_UI_char_select_scene_char_select_right_alpha,0,0,0,1,1)
         love.graphics.setColor(1, 1, 1, 1)
-        print(f)
         love.graphics.draw(
             image_table_UI_char_select_scene_char_select_text_right[f],
             obj_UI_char_select_scene_char_select_right_text[1],
