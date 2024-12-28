@@ -253,7 +253,7 @@ function state_machine_UI_char_select_scene_char_select(input_id)
             elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["C"] == "Pressing" then
                 obj["select_state"] = "unlocking"
 
-                obj[4] = 0.25
+                obj[4] = 0.5
                 obj_bar_mark[4] = 1
                 obj_control_method[4] = 1
 
@@ -278,7 +278,7 @@ function state_machine_UI_char_select_scene_char_select(input_id)
             if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["C"] == "Pressing" then
                 obj["select_state"] = "unlocking"
 
-                obj[4] = 0.25
+                obj[4] = 0.5
                 obj_bar_mark[4] = 1
                 obj_control_method[4] = 1
 

@@ -452,7 +452,7 @@ function update_start_scene_flash_out()
                 load_char_select_scene_prep()
                 load_scene_prep_routine()
 
-                TRAINING_BOOL = true
+                GAME_MODE = 0
 
                 -- 卸载所有资源 包括object anim image audio
                 unload_start_scene_all()
@@ -460,6 +460,8 @@ function update_start_scene_flash_out()
             [1] = function()
                 load_char_select_scene_prep()
                 load_scene_prep_routine()
+
+                GAME_MODE = 1
         
                 -- 卸载所有资源 包括object anim image audio
                 unload_start_scene_all()
