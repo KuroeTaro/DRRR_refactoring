@@ -32,7 +32,7 @@ function state_machine_UI_char_select_scene_second_ring_blink(obj)
     obj[4] = 0.8+math.random(-1, 1)*0.03
 end
 
-function state_machine_UI_char_select_scene_char_select(input_id)
+function state_machine_UI_char_select_scene_char_select(input_id,side_id)
     local obj = nil
     local obj_char = nil
     local obj_text = nil
@@ -40,7 +40,7 @@ function state_machine_UI_char_select_scene_char_select(input_id)
     local obj_bar_mark = nil
     local obj_control_method = nil
 
-    if input_id == 1 then
+    if side_id == 1 then
         obj = obj_UI_char_select_scene_char_select_left
         obj_char = obj_UI_char_select_scene_char_select_left_char
         obj_text = obj_UI_char_select_scene_char_select_left_text
@@ -79,7 +79,31 @@ function state_machine_UI_char_select_scene_char_select(input_id)
                     anim_UI_point_linear_char_select_scene_control_method_bar_mark_selecting_flash_in_opacity_0_1
                 )
 
+            elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["C"] == "Pressing" and GAME_MODE == 0 and side_id == 2 then
+                obj_UI_char_select_scene_char_select_left["select_state"] = "unlocking"
+
+                obj_UI_char_select_scene_char_select_left[4] = 0.5
+                obj_UI_char_select_scene_bar_mark_L[4] = 1
+                obj_UI_char_select_scene_control_method_L[4] = 1
+
+                init_point_linear_anim_with(
+                    obj_UI_char_select_scene_char_select_left,
+                    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25
+                )
+                init_point_linear_anim_with(
+                    obj_UI_char_select_scene_bar_mark_L,
+                    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_opacity_0_1
+                )
+                init_point_linear_anim_with(
+                    obj_UI_char_select_scene_control_method_L,
+                    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_opacity_0_1
+                )
+
+                TRAINNING_SIDE = 1
+                TRAINNING_OTHER_SIDE = 2
+
             end
+
         end,
         ["selecting"] = function()
             
@@ -166,6 +190,11 @@ function state_machine_UI_char_select_scene_char_select(input_id)
 
             elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Pressing" then
                 obj["select_state"] = "locking"
+
+                if side_id == 1 then
+                    TRAINNING_SIDE = 2
+                    TRAINNING_OTHER_SIDE = 1
+                end
 
                 obj[4] = 0.25
                 obj_bar_mark[4] = 1
@@ -342,15 +371,15 @@ function state_machine_UI_char_select_scene_char_select(input_id)
 
     }
 
-    state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,input_id)
-    state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_bar_mark,input_id)
+    state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,input_id,side_id)
+    state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_bar_mark,input_id,side_id)
 
     local this_function = local_switch[obj["select_state"]]
     if this_function then this_function() end
 
 end
 
-function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,input_id)
+function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,input_id,side_id)
     local local_switch = {
         ["flash_in"] = function() 
             point_linear_animator(
@@ -371,11 +400,11 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             then
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id,side_id)
 
-                CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] - 1
-                if CHAR_SELECT_LR[input_id] == 0 then
-                    CHAR_SELECT_LR[input_id] = 8
+                CHAR_SELECT_LR[side_id] = CHAR_SELECT_LR[side_id] - 1
+                if CHAR_SELECT_LR[side_id] == 0 then
+                    CHAR_SELECT_LR[side_id] = 8
                 end
 
                 init_point_linear_anim_with(
@@ -392,11 +421,11 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             then
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id,side_id)
 
-                CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] + 1
-                if CHAR_SELECT_LR[input_id] == 9 then
-                    CHAR_SELECT_LR[input_id] = 1
+                CHAR_SELECT_LR[side_id] = CHAR_SELECT_LR[side_id] + 1
+                if CHAR_SELECT_LR[side_id] == 9 then
+                    CHAR_SELECT_LR[side_id] = 1
                 end
 
                 init_point_linear_anim_with(
@@ -429,9 +458,9 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             then
                 obj["flash_state"] = "flash_in"
 
-                commmon_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,input_id)
+                commmon_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,input_id,side_id)
 
-                obj[8] = CHAR_SELECT_LR[input_id]
+                obj[8] = CHAR_SELECT_LR[side_id]
 
                 init_point_linear_anim_with(
                     obj_char,
@@ -446,11 +475,11 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             then
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id,side_id)
 
-                CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] - 1
-                if CHAR_SELECT_LR[input_id] == 0 then
-                    CHAR_SELECT_LR[input_id] = 8
+                CHAR_SELECT_LR[side_id] = CHAR_SELECT_LR[side_id] - 1
+                if CHAR_SELECT_LR[side_id] == 0 then
+                    CHAR_SELECT_LR[side_id] = 8
                 end
 
                 init_point_linear_anim_with(
@@ -467,11 +496,11 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             then
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id,side_id)
 
-                CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] + 1
-                if CHAR_SELECT_LR[input_id] == 9 then
-                    CHAR_SELECT_LR[input_id] = 1
+                CHAR_SELECT_LR[side_id] = CHAR_SELECT_LR[side_id] + 1
+                if CHAR_SELECT_LR[side_id] == 9 then
+                    CHAR_SELECT_LR[side_id] = 1
                 end
 
                 init_point_linear_anim_with(
@@ -489,30 +518,30 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
     if this_function then this_function() end
 end
 
-function state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_bar_mark,input_id)
+function state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_bar_mark,input_id,side_id)
     local local_switch = {
         ["idle"] = function() 
             if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Up"] == "Pressing" then
                 obj_bar_mark["state"] = "up_twitch"
-                if CONTROL_METHOD[input_id] == 1 then
-                    if input_id == 1 then
+                if CONTROL_METHOD[side_id] == 1 then
+                    if side_id == 1 then
                         obj_bar_mark[2] = 469
                     else
                         obj_bar_mark[2] = 699
                     end
-                    CONTROL_METHOD[input_id] = 0
+                    CONTROL_METHOD[side_id] = 0
                 end
                 init_point_linear_anim_with(obj_bar_mark,anim_UI_point_linear_char_select_scene_bar_mark_up_y)
 
             elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Down"] == "Pressing" then
                 obj_bar_mark["state"] = "down_twitch"
-                if CONTROL_METHOD[input_id] == 0 then
-                    if input_id == 1 then
+                if CONTROL_METHOD[side_id] == 0 then
+                    if side_id == 1 then
                         obj_bar_mark[2] = 509
                     else
                         obj_bar_mark[2] = 739
                     end
-                    CONTROL_METHOD[input_id] = 1
+                    CONTROL_METHOD[side_id] = 1
                 end
                 init_point_linear_anim_with(obj_bar_mark,anim_UI_point_linear_char_select_scene_bar_mark_down_y)
             end
@@ -523,25 +552,25 @@ function state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_
                 obj_bar_mark["state"] = "idle"
             elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Up"] == "Pressing" then
                 obj_bar_mark["state"] = "up_twitch"
-                if CONTROL_METHOD[input_id] == 1 then
-                    if input_id == 1 then
+                if CONTROL_METHOD[side_id] == 1 then
+                    if side_id == 1 then
                         obj_bar_mark[2] = 469
                     else
                         obj_bar_mark[2] = 699
                     end
-                    CONTROL_METHOD[input_id] = 0
+                    CONTROL_METHOD[side_id] = 0
                 end
                 init_point_linear_anim_with(obj_bar_mark,anim_UI_point_linear_char_select_scene_bar_mark_up_y)
 
-            elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Down"] == "Pressing" then
+            elseif INPUT_SYS_CURRENT_COMMAND_STATE[side_id]["Down"] == "Pressing" then
                 obj_bar_mark["state"] = "down_twitch"
-                if CONTROL_METHOD[input_id] == 0 then
-                    if input_id == 1 then
+                if CONTROL_METHOD[side_id] == 0 then
+                    if side_id == 1 then
                         obj_bar_mark[2] = 509
                     else
                         obj_bar_mark[2] = 739
                     end
-                    CONTROL_METHOD[input_id] = 1
+                    CONTROL_METHOD[side_id] = 1
                 end
                 init_point_linear_anim_with(obj_bar_mark,anim_UI_point_linear_char_select_scene_bar_mark_down_y)
             end
@@ -552,25 +581,25 @@ function state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_
                 obj_bar_mark["state"] = "idle"
             elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Up"] == "Pressing" then
                 obj_bar_mark["state"] = "up_twitch"
-                if CONTROL_METHOD[input_id] == 1 then
-                    if input_id == 1 then
+                if CONTROL_METHOD[side_id] == 1 then
+                    if side_id == 1 then
                         obj_bar_mark[2] = 469
                     else
                         obj_bar_mark[2] = 699
                     end
-                    CONTROL_METHOD[input_id] = 0
+                    CONTROL_METHOD[side_id] = 0
                 end
                 init_point_linear_anim_with(obj_bar_mark,anim_UI_point_linear_char_select_scene_bar_mark_up_y)
 
             elseif INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Down"] == "Pressing" then
                 obj_bar_mark["state"] = "down_twitch"
-                if CONTROL_METHOD[input_id] == 0 then
-                    if input_id == 1 then
+                if CONTROL_METHOD[side_id] == 0 then
+                    if side_id == 1 then
                         obj_bar_mark[2] = 509
                     else
                         obj_bar_mark[2] = 739
                     end
-                    CONTROL_METHOD[input_id] = 1
+                    CONTROL_METHOD[side_id] = 1
                 end
                 init_point_linear_anim_with(obj_bar_mark,anim_UI_point_linear_char_select_scene_bar_mark_down_y)
             end

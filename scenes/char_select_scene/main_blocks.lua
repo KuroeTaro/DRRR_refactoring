@@ -1560,9 +1560,14 @@ function update_char_select_scene_flash_in_40f_2s10f()
             obj_UI_char_select_scene_icon_ERIKAWK3,
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
-        
-        state_machine_UI_char_select_scene_char_select(1)
-        state_machine_UI_char_select_scene_char_select(2)
+
+        if GAME_MODE == 0 then
+            state_machine_UI_char_select_scene_char_select(1,TRAINNING_SIDE)
+            state_machine_UI_char_select_scene_char_select(2,TRAINNING_OTHER_SIDE)
+        else
+            state_machine_UI_char_select_scene_char_select(1,1)
+            state_machine_UI_char_select_scene_char_select(2,2)
+        end
 
     elseif local_scene_timer <= 100 then
         point_linear_animator(
@@ -1608,8 +1613,13 @@ function update_char_select_scene_flash_in_40f_2s10f()
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
 
-        state_machine_UI_char_select_scene_char_select(1)
-        state_machine_UI_char_select_scene_char_select(2)
+        if GAME_MODE == 0 then
+            state_machine_UI_char_select_scene_char_select(1,TRAINNING_SIDE)
+            state_machine_UI_char_select_scene_char_select(2,TRAINNING_OTHER_SIDE)
+        else
+            state_machine_UI_char_select_scene_char_select(1,1)
+            state_machine_UI_char_select_scene_char_select(2,2)
+        end
 
     elseif local_scene_timer <= 105 then
         point_linear_animator(
@@ -1647,8 +1657,13 @@ function update_char_select_scene_flash_in_40f_2s10f()
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
 
-        state_machine_UI_char_select_scene_char_select(1)
-        state_machine_UI_char_select_scene_char_select(2)
+        if GAME_MODE == 0 then
+            state_machine_UI_char_select_scene_char_select(1,TRAINNING_SIDE)
+            state_machine_UI_char_select_scene_char_select(2,TRAINNING_OTHER_SIDE)
+        else
+            state_machine_UI_char_select_scene_char_select(1,1)
+            state_machine_UI_char_select_scene_char_select(2,2)
+        end
 
     elseif local_scene_timer <= 110 then
         point_linear_animator(
@@ -1678,8 +1693,13 @@ function update_char_select_scene_flash_in_40f_2s10f()
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
 
-        state_machine_UI_char_select_scene_char_select(1)
-        state_machine_UI_char_select_scene_char_select(2)
+        if GAME_MODE == 0 then
+            state_machine_UI_char_select_scene_char_select(1,TRAINNING_SIDE)
+            state_machine_UI_char_select_scene_char_select(2,TRAINNING_OTHER_SIDE)
+        else
+            state_machine_UI_char_select_scene_char_select(1,1)
+            state_machine_UI_char_select_scene_char_select(2,2)
+        end
 
     elseif local_scene_timer < 130 then
         point_linear_animator(
@@ -1699,15 +1719,25 @@ function update_char_select_scene_flash_in_40f_2s10f()
             anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x
         )
 
-        state_machine_UI_char_select_scene_char_select(1)
-        state_machine_UI_char_select_scene_char_select(2)
+        if GAME_MODE == 0 then
+            state_machine_UI_char_select_scene_char_select(1,TRAINNING_SIDE)
+            state_machine_UI_char_select_scene_char_select(2,TRAINNING_OTHER_SIDE)
+        else
+            state_machine_UI_char_select_scene_char_select(1,1)
+            state_machine_UI_char_select_scene_char_select(2,2)
+        end
 
     end
 
     -- 场景出口
     if local_scene_timer >= 130 then 
-        state_machine_UI_char_select_scene_char_select(1)
-        state_machine_UI_char_select_scene_char_select(2)
+        if GAME_MODE == 0 then
+            state_machine_UI_char_select_scene_char_select(1,TRAINNING_SIDE)
+            state_machine_UI_char_select_scene_char_select(2,TRAINNING_OTHER_SIDE)
+        else
+            state_machine_UI_char_select_scene_char_select(1,1)
+            state_machine_UI_char_select_scene_char_select(2,2)
+        end
 
         -- 初始化此出口所需属性
         SCENE_TIMER = 0
@@ -1730,8 +1760,13 @@ function update_char_select_scene_main()
     state_machine_UI_char_select_scene_timer(obj_UI_char_select_scene_timer)
     state_machine_UI_char_select_scene_second_ring_blink(obj_UI_char_select_scene_second_ring)
 
-    state_machine_UI_char_select_scene_char_select(1)
-    state_machine_UI_char_select_scene_char_select(2)
+    if GAME_MODE == 0 then
+        state_machine_UI_char_select_scene_char_select(1,TRAINNING_SIDE)
+        state_machine_UI_char_select_scene_char_select(2,TRAINNING_OTHER_SIDE)
+    else
+        state_machine_UI_char_select_scene_char_select(1,1)
+        state_machine_UI_char_select_scene_char_select(2,2)
+    end
 
 end
 

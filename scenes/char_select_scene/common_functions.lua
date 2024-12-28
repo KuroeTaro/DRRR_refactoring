@@ -1,6 +1,6 @@
-function commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
-    local id = CHAR_SELECT_LR[input_id]
-    if input_id == 1 then
+function commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id,side_id)
+    local id = CHAR_SELECT_LR[side_id]
+    if side_id == 1 then
         obj_char[1] = LEFT_CHAR_SELECT_CHAR_POSITION[id][1] - 60
         obj_char[2] = LEFT_CHAR_SELECT_CHAR_POSITION[id][2]
         obj_char[7] = LEFT_CHAR_SELECT_CHAR_POSITION[id][3]
@@ -19,9 +19,9 @@ function commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,o
     init_point_linear_anim_with(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0)
 end
 
-function commmon_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,input_id)
-    local id = CHAR_SELECT_LR[input_id]
-    if input_id == 1 then
+function commmon_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,input_id,side_id)
+    local id = CHAR_SELECT_LR[side_id]
+    if side_id == 1 then
         obj_char[1] = LEFT_CHAR_SELECT_CHAR_POSITION[id][1]
         obj_char[2] = LEFT_CHAR_SELECT_CHAR_POSITION[id][2]
         obj_char[7] = LEFT_CHAR_SELECT_CHAR_POSITION[id][3]
