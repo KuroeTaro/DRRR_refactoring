@@ -69,19 +69,7 @@ function update_input()
             )
         end
         -- INPUT_SYS_CURRENT_COMMAND[OTHER_SIDE] 从网络接口获取
-    elseif TRAINING_BOOL then 
-        if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_INPUT_SYS_CURRENT_COMMAND(
-                INPUT_SYS_CURRENT_COMMAND[TRAINNING_SIDE],
-                nil
-            )
-        else 
-            get_INPUT_SYS_CURRENT_COMMAND(
-                INPUT_SYS_CURRENT_COMMAND[TRAINNING_SIDE],
-                INPUT_SYS_CURRENT_JOYSTICK_TABLE[1]
-            )
-        end
-        -- INPUT_SYS_CURRENT_COMMAND[OTHER_SIDE] 从网络接口获取
+
     else
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
             get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],nil)
