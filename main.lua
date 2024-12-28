@@ -103,15 +103,19 @@ function love.load()
 
 	modify_quit_game_reocrd()
 
+	PLAYER_NUMBER = 1
 	ONLINE_MATCH_BOOL = false
+	TRAINING_BOOL = false
 	NETWORK_MATCH_SIDE = 1
-	OTHER_SIDE = 2
+	NETWORK_OTHER_SIDE = 2
+	TRAINNING_SIDE = 1
+	TARINNING_OTHER_SIDE = 2
 	CHAR_SELECT_LR = {4,5}
+	CONTROL_METHOD = {1,1}
 
 	-- non-character global variable
 -------------------------------------------------
 	-- start_scene
-	PLAYER_NUMBER = 1
 	OPTION_ID = 0
 	SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID = 0
 	AUDIO_BAR_MARK_ID = 0

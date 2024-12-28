@@ -78,6 +78,26 @@ function draw_char_select_scene_flash_in_40f_2s10f()
     draw_char_select_scene_char_select_LR(1)
     draw_char_select_scene_char_select_LR(2)
 
+    draw_2d_image(
+        obj_UI_char_select_scene_bar_mark_L,
+        image_UI_char_select_scene_bar_mark
+    )
+
+    draw_2d_image(
+        obj_UI_char_select_scene_bar_mark_R,
+        image_UI_char_select_scene_bar_mark
+    )
+
+    draw_2d_image(
+        obj_UI_char_select_scene_control_method_L,
+        image_UI_char_select_scene_control_method_L
+    )
+
+    draw_2d_image(
+        obj_UI_char_select_scene_control_method_R,
+        image_UI_char_select_scene_control_method_R
+    )
+
     draw_char_select_timer(
         obj_UI_char_select_scene_timer,
         image_table_UI_char_select_scene_number
@@ -159,6 +179,26 @@ function draw_char_select_scene_main()
 
     draw_char_select_scene_char_select_LR(1)
     draw_char_select_scene_char_select_LR(2)
+
+    draw_2d_image(
+        obj_UI_char_select_scene_bar_mark_L,
+        image_UI_char_select_scene_bar_mark
+    )
+
+    draw_2d_image(
+        obj_UI_char_select_scene_bar_mark_R,
+        image_UI_char_select_scene_bar_mark
+    )
+
+    draw_2d_image(
+        obj_UI_char_select_scene_control_method_L,
+        image_UI_char_select_scene_control_method_L
+    )
+
+    draw_2d_image(
+        obj_UI_char_select_scene_control_method_R,
+        image_UI_char_select_scene_control_method_R
+    )
 
     draw_char_select_timer(
         obj_UI_char_select_scene_timer,

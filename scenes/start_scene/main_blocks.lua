@@ -451,7 +451,9 @@ function update_start_scene_flash_out()
             [0] = function()
                 load_char_select_scene_prep()
                 load_scene_prep_routine()
-        
+
+                TRAINING_BOOL = true
+
                 -- 卸载所有资源 包括object anim image audio
                 unload_start_scene_all()
             end,

@@ -1504,10 +1504,10 @@ function update_char_select_scene_flash_in_40f_2s10f()
             anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x
         )
 
-        obj_UI_char_select_scene_char_select_left["state"] = "flash_in"
-        obj_UI_char_select_scene_char_select_left["sub_animation_time"] = 25
-        obj_UI_char_select_scene_char_select_right["state"] = "flash_in"
-        obj_UI_char_select_scene_char_select_right["sub_animation_time"] = 20
+        obj_UI_char_select_scene_char_select_left["select_state"] = "idle"
+        obj_UI_char_select_scene_char_select_left["flash_state"] = "flash_in"
+        obj_UI_char_select_scene_char_select_right["select_state"] = "idle"
+        obj_UI_char_select_scene_char_select_right["flash_state"] = "flash_in"
 
     elseif local_scene_timer <= 95 then
         point_linear_animator(
@@ -1560,7 +1560,7 @@ function update_char_select_scene_flash_in_40f_2s10f()
             obj_UI_char_select_scene_icon_ERIKAWK3,
             anim_UI_point_linear_char_select_scene_icon_image_flash_in_x
         )
-
+        
         state_machine_UI_char_select_scene_char_select(1)
         state_machine_UI_char_select_scene_char_select(2)
 
