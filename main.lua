@@ -103,8 +103,7 @@ function love.load()
 
 	modify_quit_game_reocrd()
 
-	PLAYER_NUMBER = 1
-	ONLINE_MATCH_BOOL = false
+	GAME_MODE = 0
 	NETWORK_MATCH_SIDE = 1
 	OTHER_SIDE = 2
 	CHAR_SELECT_LR = {4,5}
@@ -185,7 +184,6 @@ function love.load()
 	--	general_scene_global_variable
 	FRAMES_DRAWN = 0
 	SCENE_TIMER = -1
-	GAME_MODE = 0
 
 	-- load_scene
 	THREAD_TABLE = {}

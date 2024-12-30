@@ -56,7 +56,7 @@ function update_input()
 
     --获得所有指令的现在布尔值和上一帧布尔值
     --并且赋值到INPUT_SYS_CURRENT_COMMAND和perCommand
-    if ONLINE_MATCH_BOOL then
+    if GAME_MODE == 2 then
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
             get_INPUT_SYS_CURRENT_COMMAND(
                 INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
