@@ -10,6 +10,10 @@ require("scenes/load_scene/draw_functions")
 require("scenes/load_scene/init")
 require("scenes/load_scene/main_blocks")
 
+require("scenes/disclaimer_and_logos_scene/load_function")
+require("scenes/start_scene/draw_functions")
+require("scenes/char_select_scene/load_function")
+
 require("scenes/disclaimer_and_logos_scene/draw_functions")
 require("scenes/disclaimer_and_logos_scene/init")
 require("scenes/disclaimer_and_logos_scene/load_function")
