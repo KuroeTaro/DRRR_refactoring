@@ -734,6 +734,7 @@ function unload_start_scene_all()
     unload_start_scene_anim()
     unload_start_scene_image()
     unload_start_scene_audio()
+    unload_start_select_scene_require()
 
 end
 

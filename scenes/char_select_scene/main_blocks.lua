@@ -1904,4 +1904,9 @@ function update_char_select_scene_flash_out()
 
     update_BGM_VOLUME(audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit)
 
+    if audio_SFX_char_select_scene_flash_out["audio"]:isPlaying() == false then
+        unload_char_select_scene_all()
+        current_update_block = function() end
+        current_draw_block = function() end
+    end
 end 

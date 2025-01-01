@@ -247,7 +247,7 @@ function load_char_select_scene_obj()
 end
 
 
-function load_char_select_anim()
+function load_char_select_scene_anim()
     -- black solid 闪出
     anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity = {}
     anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity[0] = {1, 2}
@@ -843,6 +843,7 @@ function unload_char_select_scene_all()
     unload_char_select_scene_image()
     unload_char_select_scene_audio()
     unload_char_select_scene_shader()
+    unload_char_select_scene_require()
 
 end
 

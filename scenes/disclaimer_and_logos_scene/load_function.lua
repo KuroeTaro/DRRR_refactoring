@@ -6,6 +6,8 @@
 -- CURRENT_ORDER_TABLE 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
 function load_disclaimer_logos_scene_prep()
+    load_disclaimer_and_logos_scene_require()
+    
     THREAD_TABLE = {"threads/disclaimer_and_logos_scene/disclaimer_and_logos_scene_thread_1_general.lua"}
     THREAD_AMOUNT = 1   -- 线程数目
     THREAD_ONCE_TABLE = {false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
@@ -46,4 +48,30 @@ end
 
 function unload_disclaimer_and_logos_scene_image()
     image_table_UI_disclaimer_and_logos_scene_singular = nil
+end
+
+
+function load_disclaimer_and_logos_scene_require()
+    require("scenes/disclaimer_and_logos_scene/draw_functions")
+    require("scenes/disclaimer_and_logos_scene/init")
+    require("scenes/disclaimer_and_logos_scene/load_function")
+    require("scenes/disclaimer_and_logos_scene/main_blocks")
+    require("scenes/disclaimer_and_logos_scene/state_machine")
+    require("scenes/disclaimer_and_logos_scene/sub_blocks")
+
+end
+
+function unload_disclaimer_and_logos_scene_require()
+    draw_disclaimer_and_logos_scene_main = nil
+
+    load_disclaimer_and_logos_scene_obj = nil
+    load_disclaimer_and_logos_scene_anim = nil
+    unload_disclaimer_and_logos_scene_obj = nil
+    unload_disclaimer_and_logos_scene_anim = nil
+    unload_disclaimer_and_logos_scene_all = nil
+    preset_disclaimer_and_logos_scene = nil
+
+    update_disclaimer_and_logos_scene_main = nil
+    state_machine_UI_disclaimer_and_logos_scene_singular = nil
+
 end

@@ -6,6 +6,7 @@
 -- CURRENT_ORDER_TABLE 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
 function load_start_scene_prep()
+    load_start_select_scene_require()
     THREAD_TABLE = {
         "threads/start_scene/start_scene_thread_1_main_UI.lua",
         "threads/start_scene/start_scene_thread_2_main_UI_BG.lua",
@@ -214,5 +215,78 @@ function unload_start_scene_image()
     image_UI_start_scene_game_duration_text = nil
     image_table_UI_start_scene_game_duration_number = nil
     image_table_UI_start_scene_time_indi_barcode = nil
+
+end
+
+
+function load_start_select_scene_require()
+    require("scenes/start_scene/common_functions")
+    require("scenes/start_scene/draw_functions")
+    require("scenes/start_scene/init")
+    require("scenes/start_scene/load_function")
+    require("scenes/start_scene/main_blocks")
+    require("scenes/start_scene/state_machine")
+    require("scenes/start_scene/sub_blocks")
+
+end
+
+function unload_start_select_scene_require()
+    update_start_scene_config_audio_main_update_volume = nil
+
+    draw_start_scene_main = nil
+    draw_start_scene_config_sub_scene = nil
+    draw_start_scene_config_audio_sub_scene = nil
+    draw_start_scene_config_controller_sub_scene = nil
+    draw_start_scene_config_resolution_sub_scene = nil
+    draw_start_scene_record_sub_scene = nil
+    draw_start_scene_sp_audio_bar_alpha = nil
+    draw_start_scene_sp_record_100h_plus_time_indi = nil
+    
+    load_start_scene_obj = nil
+    load_start_scene_anim = nil
+    load_start_scene_audio = nil
+    unload_start_scene_obj = nil
+    unload_start_scene_anim = nil
+    unload_start_scene_audio = nil
+    unload_start_scene_all = nil
+    preset_start_scene = nil
+
+    update_start_scene_flash_in = nil
+    update_start_scene_30f_1s45f = nil
+    update_start_scene_1s45f_1s50f = nil
+    update_start_scene_main = nil
+    update_start_scene_flash_out = nil
+    update_start_scene_option_twitch = nil
+    update_start_scene_only_console_twitch = nil
+    update_start_scene_config_flash_in = nil
+    update_start_scene_config_main = nil
+    update_start_scene_config_twitch_up = nil
+    update_start_scene_config_twitch_down = nil
+    update_start_scene_config_flash_out = nil
+    update_start_scene_config_audio_flash_in = nil
+    update_start_scene_config_audio_main = nil
+    update_start_scene_config_audio_bar_mark_twtich_up = nil
+    update_start_scene_config_audio_bar_mark_twtich_down = nil
+    update_start_scene_config_audio_bar_mark_twtich_left_with_alpha = nil
+    update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha = nil
+    update_start_scene_config_audio_bar_mark_twtich_right_with_alpha = nil
+    update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha = nil
+    update_start_scene_config_audio_flash_out = nil
+    update_start_scene_config_controller_flash_in = nil
+    update_start_scene_config_controller_main = nil
+    update_start_scene_config_controller_flash_out = nil
+    update_start_scene_config_resolution_flash_in = nil
+    update_start_scene_config_resolution_main = nil
+    update_start_scene_config_resolution_bar_mark_twtich_left = nil
+    update_start_scene_config_resolution_bar_mark_twtich_right = nil
+    update_start_scene_config_resolution_flash_out = nil
+    update_start_scene_record_flash_in = nil
+    update_start_scene_record_main = nil
+    update_start_scene_record_twitch_up = nil
+    update_start_scene_record_twitch_down = nil
+    update_start_scene_record_flash_out = nil
+
+    state_machine_UI_start_scene_noise_BG_static_loop = nil
+    state_machine_UI_start_scene_config_controller = nil
 
 end
