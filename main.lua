@@ -14,30 +14,6 @@ require("scenes/disclaimer_and_logos_scene/load_function")
 require("scenes/start_scene/load_function")
 require("scenes/char_select_scene/load_function")
 
--- require("scenes/disclaimer_and_logos_scene/draw_functions")
--- require("scenes/disclaimer_and_logos_scene/init")
--- require("scenes/disclaimer_and_logos_scene/load_function")
--- require("scenes/disclaimer_and_logos_scene/main_blocks")
--- require("scenes/disclaimer_and_logos_scene/state_machine")
--- require("scenes/disclaimer_and_logos_scene/sub_blocks")
-
--- require("scenes/start_scene/common_functions")
--- require("scenes/start_scene/draw_functions")
--- require("scenes/start_scene/init")
--- require("scenes/start_scene/load_function")
--- require("scenes/start_scene/main_blocks")
--- require("scenes/start_scene/state_machine")
--- require("scenes/start_scene/sub_blocks")
-
--- require("scenes/char_select_scene/common_functions")
--- require("scenes/char_select_scene/draw_functions")
--- require("scenes/char_select_scene/init")
--- require("scenes/char_select_scene/load_function")
--- require("scenes/char_select_scene/main_blocks")
--- require("scenes/char_select_scene/state_machine")
--- require("scenes/char_select_scene/sub_blocks")
-
-
 function love.run()
 	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
 
@@ -96,6 +72,7 @@ function love.run()
 		collectgarbage()
 		if love.timer then love.timer.sleep(0.001) end
 	end
+	
 end
 
 function love.load()
@@ -226,6 +203,7 @@ function love.update()
     FRAMES_DRAWN = FRAMES_DRAWN + 1
 	update_record_game_duration()
 	current_update_block()
+
 end
 function love.draw()
 	love.graphics.clear(7/255,19/255,31/255,1)
@@ -239,4 +217,5 @@ function love.draw()
     love.graphics.print( FPS, 110, 255)
 	love.graphics.print( SCENE_TIMER, 110, 270)
 	love.graphics.setColor(1, 1, 1, 1)
+
 end
