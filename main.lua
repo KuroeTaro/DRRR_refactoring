@@ -92,6 +92,30 @@ function love.load()
 
 	-- non-character global variable
 -------------------------------------------------
+	-- load_scene
+	THREAD_TABLE = {}
+    THREAD_AMOUNT = 0
+    THREAD_ONCE_TABLE = {}
+    ASSET_DATA_TABLE = {}
+    LOAD_FUNCTION_TABLE = {}
+    LOAD_ORDER_TABLE = {}
+    ORDER_SIZE_TABLE = {}
+	LOAD_ONCE_TABLE = {}
+    LOADING_FUNCTION_AMOUNT = 0
+
+	LOADING_AUDIO_PLAYED_ONCE = false
+
+	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_main
+	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_main
+	NEXT_PRESET = preset_disclaimer_and_logos_scene
+
+	-- disclaimer_and_logos_scene
+	DISCLAIMER_AND_LOGOS_POSITION = {
+		{175,125},
+		{620,255},
+		{620,255},
+	}
+
 	-- start_scene
 	OPTION_ID = 0
 	SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID = 0
@@ -109,8 +133,6 @@ function love.load()
 	BAR_MARK_CONFIG_SUB_SCENE_RESOLUTION_Y_POSITION = 530
 
 	-- char_select_scene
-	TRAINNING_SIDE = 1
-	TRAINNING_OTHER_SIDE = 2
 	LEFT_CHAR_SELECT_CHAR_POSITION = {
 		{132,-2,0},
 		{230,6,0},
@@ -162,33 +184,13 @@ function love.load()
 		{1327,121},
 	}
 
+	-- game_scene_global_variable
+
+
 	--	general_scene_global_variable
 	FRAMES_DRAWN = 0
 	SCENE_TIMER = -1
 
-	-- load_scene
-	THREAD_TABLE = {}
-    THREAD_AMOUNT = 0
-    THREAD_ONCE_TABLE = {}
-    ASSET_DATA_TABLE = {}
-    LOAD_FUNCTION_TABLE = {}
-    LOAD_ORDER_TABLE = {}
-    ORDER_SIZE_TABLE = {}
-	LOAD_ONCE_TABLE = {}
-    LOADING_FUNCTION_AMOUNT = 0
-
-	LOADING_AUDIO_PLAYED_ONCE = false
-
-	NEXT_UPDATE_BLOCK = update_disclaimer_and_logos_scene_main
-	NEXT_DRAW_BLOCK = draw_disclaimer_and_logos_scene_main
-	NEXT_PRESET = preset_disclaimer_and_logos_scene
-
-	-- disclaimer_and_logos_scene
-	DISCLAIMER_AND_LOGOS_POSITION = {
-		{175,125},
-		{620,255},
-		{620,255},
-	}
 ---------------------------------------------------
 
 	current_update_block = update_load_scene_load_pre_timer
@@ -216,6 +218,14 @@ function love.draw()
 	love.graphics.print( FRAMES_DRAWN, 110, 240)
     love.graphics.print( FPS, 110, 255)
 	love.graphics.print( SCENE_TIMER, 110, 270)
-	love.graphics.setColor(1, 1, 1, 1)
+	-- 获取统计信息
+	local stats = love.graphics.getStats()
+	-- 显示统计信息
+	love.graphics.print("Draw Calls: " .. stats.drawcalls, 250, 150)
+	love.graphics.print("Canvas Switches: " .. stats.canvasswitches, 250, 30)
+	love.graphics.print("Texture Memory: " .. stats.texturememory / 1024 / 1024 .. " MB", 250, 50)
+	love.graphics.print("Images Loaded: " .. stats.images, 250, 70)
 
+	love.graphics.setColor(1, 1, 1, 1)
+	
 end

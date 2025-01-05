@@ -34,7 +34,7 @@ image_table 图片表
     -- image前缀      所属Object类型           所属场景名                图片表所属obj名称
 
 
-load 加载功能
+load 加载功能 声明全局变量
     -- load_disclaimer_and_logo_scene_obj
     -- load_           disclaimer_and_logo_scene_       obj
                                                         anim
@@ -44,7 +44,7 @@ load 加载功能
     -- load前缀               所属场景名                加载类型
 
 
-unload 卸载功能
+unload 卸载功能 卸载全局变量
     -- unload_disclaimer_and_logo_scene_obj
     -- unload_           disclaimer_and_logo_scene_       obj
                                                           anim
@@ -52,6 +52,7 @@ unload 卸载功能
                                                           audio
                                                           all
     -- load前缀                所属场景名                 加载类型
+
 
 preset_animator 预设动画机
     -- preset_animator_disclaimer_and_logos_scene

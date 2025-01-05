@@ -286,11 +286,13 @@ function draw_char_select_scene_second_glow(obj,f_shader,r_shader)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
 
-    love.graphics.setBlendMode("add")
-    love.graphics.setColor(1, 1, 1, opacity)
-    love.graphics.draw(canvas_alpha_comp,x,y,0,sx,sy)
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.setBlendMode("alpha")
+    if opacity ~= 0 then
+        love.graphics.setBlendMode("add")
+        love.graphics.setColor(1, 1, 1, opacity)
+        love.graphics.draw(canvas_alpha_comp,x,y,0,sx,sy)
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.setBlendMode("alpha")
+    end
 
 end
 
@@ -310,10 +312,11 @@ function draw_char_select_scene_char_icon(obj,image,alpha)
     love.graphics.draw(alpha)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
-    
-    love.graphics.setColor(1, 1, 1, opacity)
-    love.graphics.draw(canvas,x,y,0,sx,sy)
-    love.graphics.setColor(1, 1, 1, 1)
+    if opacity ~= 0 then
+        love.graphics.setColor(1, 1, 1, opacity)
+        love.graphics.draw(canvas,x,y,0,sx,sy)
+        love.graphics.setColor(1, 1, 1, 1)
+    end
 
 end
 
@@ -394,9 +397,11 @@ function draw_char_select_scene_char_select_LR(id)
         love.graphics.setBlendMode('alpha', 'alphamultiply')
         love.graphics.setCanvas()
         
-        love.graphics.setColor(1, 1, 1, opacity)
-        love.graphics.draw(canvas,x,y,0,sx,sy)
-        love.graphics.setColor(1, 1, 1, 1)
+        if opacity ~= 0 then
+            love.graphics.setColor(1, 1, 1, opacity)
+            love.graphics.draw(canvas,x,y,0,sx,sy)
+            love.graphics.setColor(1, 1, 1, 1)
+        end
 
     elseif id == 0 then
         local x = resolution_correction(obj_UI_char_select_scene_char_select_right[1])

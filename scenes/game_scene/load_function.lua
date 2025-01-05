@@ -5,8 +5,8 @@
 -- load_functions_table 每个thread对应一个 load function
 -- CURRENT_ORDER_TABLE 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
-function load_start_scene_prep()
-    load_start_select_scene_require()
+function load_game_scene_prep()
+    load_game_select_scene_require()
     THREAD_TABLE = {
         "threads/start_scene/start_scene_thread_1_main_UI.lua",
         "threads/start_scene/start_scene_thread_2_main_UI_BG.lua",
@@ -219,7 +219,17 @@ function unload_start_scene_image()
 end
 
 
-function load_start_select_scene_require()
+function load_game_select_scene_require()
+    local id_to_character_name = {
+        "ERIKAWK3",
+        "KTC",
+        "ANRI",
+        "IZY",
+        "SZO",
+        "CKG",
+        "SHINRA",
+        "SRT"
+    }
     require("scenes/start_scene/common_functions")
     require("scenes/start_scene/draw_functions")
     require("scenes/start_scene/init")
@@ -230,6 +240,6 @@ function load_start_select_scene_require()
 
 end
 
-function unload_start_select_scene_require()
+function unload_game_select_scene_require()
 
 end
