@@ -1,3 +1,0 @@
-function update_shadow_maker_global_location(shadow_maker)
-
-end
