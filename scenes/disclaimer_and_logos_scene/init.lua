@@ -38,13 +38,25 @@ end
 
 
 function unload_disclaimer_and_logos_scene_obj()
-    obj_UI_disclaimer_and_logos_scene_singular = nil
+    for key in pairs(_G) do
+        if key:sub(1, 33) == "obj_UI_disclaimer_and_logos_scene" 
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+    -- obj_UI_disclaimer_and_logos_scene_singular = nil
 end
 
 
 function unload_disclaimer_and_logos_scene_anim()
-    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity = nil
-    anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity = nil
+    for key in pairs(_G) do
+        if key:sub(1, 47) == "anim_UI_point_linear_disclaimer_and_logos_scene" 
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+    -- anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_in_opacity = nil
+    -- anim_UI_point_linear_disclaimer_and_logos_scene_singular_flash_out_opacity = nil
 end
 
 

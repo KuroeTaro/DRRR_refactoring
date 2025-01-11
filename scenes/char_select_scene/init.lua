@@ -730,91 +730,118 @@ end
 
 
 function unload_char_select_scene_obj()
-    obj_UI_char_select_scene_black_solid = nil
-    obj_UI_char_select_scene_movie_cover = nil
-    obj_UI_char_select_scene_first_ring = nil
-    obj_UI_char_select_scene_white_solid = nil
-    obj_UI_char_select_scene_second_ring = nil
-    obj_UI_char_select_scene_second_glow = nil
-    obj_UI_char_select_scene_bar_mark_L = nil
-    obj_UI_char_select_scene_bar_mark_R = nil
-    obj_UI_char_select_scene_control_method_L = nil
-    obj_UI_char_select_scene_control_method_R = nil
-    obj_UI_char_select_scene_char_select_left = nil
-    obj_UI_char_select_scene_char_select_left_char = nil
-    obj_UI_char_select_scene_char_select_left_text = nil
-    obj_UI_char_select_scene_char_select_right = nil
-    obj_UI_char_select_scene_char_select_right_char = nil
-    obj_UI_char_select_scene_char_select_right_text = nil
-    obj_UI_char_select_scene_char_select_bg = nil
-    obj_UI_char_select_scene_icon_select_L = nil
-    obj_UI_char_select_scene_icon_select_R = nil
-    obj_UI_char_select_scene_icon_ERIKAWK3 = nil
-    obj_UI_char_select_scene_icon_KTC = nil
-    obj_UI_char_select_scene_icon_ANRI = nil
-    obj_UI_char_select_scene_icon_IZY = nil
-    obj_UI_char_select_scene_icon_SZO = nil
-    obj_UI_char_select_scene_icon_CKG = nil
-    obj_UI_char_select_scene_icon_SHINRA = nil
-    obj_UI_char_select_scene_icon_SRT = nil
+    for key in pairs(_G) do
+        if key:sub(1, 24) == "obj_UI_char_select_scene" 
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+    -- obj_UI_char_select_scene_black_solid = nil
+    -- obj_UI_char_select_scene_movie_cover = nil
+    -- obj_UI_char_select_scene_first_ring = nil
+    -- obj_UI_char_select_scene_white_solid = nil
+    -- obj_UI_char_select_scene_second_ring = nil
+    -- obj_UI_char_select_scene_second_glow = nil
+    -- obj_UI_char_select_scene_bar_mark_L = nil
+    -- obj_UI_char_select_scene_bar_mark_R = nil
+    -- obj_UI_char_select_scene_control_method_L = nil
+    -- obj_UI_char_select_scene_control_method_R = nil
+    -- obj_UI_char_select_scene_timer = nil
+    -- obj_UI_char_select_scene_char_select_left = nil
+    -- obj_UI_char_select_scene_char_select_left_char = nil
+    -- obj_UI_char_select_scene_char_select_left_text = nil
+    -- obj_UI_char_select_scene_char_select_right = nil
+    -- obj_UI_char_select_scene_char_select_right_char = nil
+    -- obj_UI_char_select_scene_char_select_right_text = nil
+    -- obj_UI_char_select_scene_char_select_bg = nil
+    -- obj_UI_char_select_scene_icon_select_L = nil
+    -- obj_UI_char_select_scene_icon_select_R = nil
+    -- obj_UI_char_select_scene_icon_ERIKAWK3 = nil
+    -- obj_UI_char_select_scene_icon_KTC = nil
+    -- obj_UI_char_select_scene_icon_ANRI = nil
+    -- obj_UI_char_select_scene_icon_IZY = nil
+    -- obj_UI_char_select_scene_icon_SZO = nil
+    -- obj_UI_char_select_scene_icon_CKG = nil
+    -- obj_UI_char_select_scene_icon_SHINRA = nil
+    -- obj_UI_char_select_scene_icon_SRT = nil
 
 end
 
 
 function unload_char_select_scene_anim()
-    anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity = nil
-    anim_UI_frame_select_scene_first_ring_f = nil
-    anim_UI_point_linear_char_select_scene_white_solid_flash_out_opacity = nil
-    anim_UI_point_linear_char_select_scene_second_glow_opacity = nil
-    anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x = nil
-    anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y = nil
-    anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x = nil
-    anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y = nil
-    anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1 = nil
-    anim_UI_point_linear_char_select_scene_icon_image_flash_in_x = nil
-    anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1 = nil
-    anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0 = nil
-    anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1 = nil
-    anim_UI_point_linear_char_select_scene_char_select_unselecting_flash_in_opacity_0p25_1 = nil
-    anim_UI_point_linear_char_select_scene_char_select_selecting_flash_out_opacity_1_0p25 = nil
-    anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x = nil
-    anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x = nil
-    anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x = nil
-    anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x = nil
-    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unselecting_flash_out_opacity_1_0 = nil
-    anim_UI_point_linear_char_select_scene_control_method_bar_mark_selecting_flash_in_opacity_0_1 = nil
-    anim_UI_point_linear_char_select_scene_control_method_bar_mark_locking_flash_out_opacity_1_0 = nil
-    anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5 = nil
-    anim_UI_point_linear_char_select_scene_bar_mark_up_y = nil
-    anim_UI_point_linear_char_select_scene_bar_mark_down_y = nil
-    anim_UI_point_linear_char_select_scene_black_solid_scene_flash_out = nil
+    for key in pairs(_G) do
+        if key:sub(1, 38) == "anim_UI_point_linear_char_select_scene"
+        or key:sub(1, 26) == "anim_UI_frame_select_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+    -- anim_UI_point_linear_char_select_scene_black_solid_flash_out_opacity = nil
+    -- anim_UI_frame_select_scene_first_ring_f = nil
+    -- anim_UI_point_linear_char_select_scene_white_solid_flash_out_opacity = nil
+    -- anim_UI_point_linear_char_select_scene_second_glow_opacity = nil
+    -- anim_UI_point_linear_char_select_scene_second_glow_alpha_pt5_x = nil
+    -- anim_UI_point_linear_char_select_scene_second_glow_alpha_pt4_y = nil
+    -- anim_UI_point_linear_char_select_scene_second_glow_alpha_pt2_x = nil
+    -- anim_UI_point_linear_char_select_scene_second_glow_alpha_pt1_y = nil
+    -- anim_UI_point_linear_char_select_scene_icon_flash_in_opacity_0_1 = nil
+    -- anim_UI_point_linear_char_select_scene_icon_image_flash_in_x = nil
+    -- anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1 = nil
+    -- anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0 = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_flash_in_opacity_0_1 = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_unselecting_flash_in_opacity_0p25_1 = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_selecting_flash_out_opacity_1_0p25 = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_char_flash_in_x = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_text_flash_in_x = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x = nil
+    -- anim_UI_point_linear_char_select_scene_control_method_bar_mark_unselecting_flash_out_opacity_1_0 = nil
+    -- anim_UI_point_linear_char_select_scene_control_method_bar_mark_selecting_flash_in_opacity_0_1 = nil
+    -- anim_UI_point_linear_char_select_scene_control_method_bar_mark_locking_flash_out_opacity_1_0 = nil
+    -- anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5 = nil
+    -- anim_UI_point_linear_char_select_scene_bar_mark_up_y = nil
+    -- anim_UI_point_linear_char_select_scene_bar_mark_down_y = nil
+    -- anim_UI_point_linear_char_select_scene_black_solid_scene_flash_out = nil
 
 end
 
 
 function unload_char_select_scene_audio()
-    audio_SFX_char_select_scene_start_SFX_1 = nil
-    audio_SFX_char_select_scene_start_SFX_2 = nil
-    audio_SFX_char_select_scene_click_L = nil
-    audio_SFX_char_select_scene_click_R = nil
-    audio_SFX_char_select_scene_flash_out = nil
-    audio_SFX_char_select_scene_lock_SFX_L = nil
-    audio_SFX_char_select_scene_lock_SFX_R = nil
-    audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit = nil
-    audio_SFX_char_select_scene_to_main_L = nil
-    audio_SFX_char_select_scene_to_main_R = nil
-    audio_SFX_char_select_scene_to_sub_L = nil
-    audio_SFX_char_select_scene_to_sub_R = nil
+    for key in pairs(_G) do
+        if key:sub(1, 27) == "audio_SFX_char_select_scene"
+        or key:sub(1, 27) == "audio_BGM_char_select_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+    -- audio_SFX_char_select_scene_start_SFX_1 = nil
+    -- audio_SFX_char_select_scene_start_SFX_2 = nil
+    -- audio_SFX_char_select_scene_click_L = nil
+    -- audio_SFX_char_select_scene_click_R = nil
+    -- audio_SFX_char_select_scene_flash_out = nil
+    -- audio_SFX_char_select_scene_lock_SFX_L = nil
+    -- audio_SFX_char_select_scene_lock_SFX_R = nil
+    -- audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit = nil
+    -- audio_SFX_char_select_scene_to_main_L = nil
+    -- audio_SFX_char_select_scene_to_main_R = nil
+    -- audio_SFX_char_select_scene_to_sub_L = nil
+    -- audio_SFX_char_select_scene_to_sub_R = nil
 
-    anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume = nil
-    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0 = nil
-    anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1 = nil
+    -- anim_UI_point_linear_char_select_scene_audio_flash_in_0_1_volume = nil
+    -- anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_0 = nil
+    -- anim_UI_point_linear_char_select_scene_audio_flash_out_1_0_volume_1 = nil
     
 end
 
 function unload_char_select_scene_shader()
-    shader_char_select_scene_fractal_noise = nil
-    shader_char_select_scene_radial_blur = nil
+    for key in pairs(_G) do
+        if key:sub(1, 24) == "shader_char_select_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+    -- shader_char_select_scene_fractal_noise = nil
+    -- shader_char_select_scene_radial_blur = nil
 
     canvas = nil
     canvas_radial_blur = nil

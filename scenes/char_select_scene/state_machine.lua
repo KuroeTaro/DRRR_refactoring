@@ -300,7 +300,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
 
                 CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] - 1
                 if CHAR_SELECT_LR[input_id] == 0 then
@@ -322,7 +322,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
 
                 CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] + 1
                 if CHAR_SELECT_LR[input_id] == 9 then
@@ -359,7 +359,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             then
                 obj["flash_state"] = "flash_in"
 
-                commmon_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,input_id)
+                common_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,input_id)
 
                 obj[8] = CHAR_SELECT_LR[input_id]
 
@@ -377,7 +377,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
 
                 CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] - 1
                 if CHAR_SELECT_LR[input_id] == 0 then
@@ -399,7 +399,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,input_id)
 
                 CHAR_SELECT_LR[input_id] = CHAR_SELECT_LR[input_id] + 1
                 if CHAR_SELECT_LR[input_id] == 9 then
@@ -775,7 +775,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
 
                 CHAR_SELECT_LR[2] = CHAR_SELECT_LR[2] - 1
                 if CHAR_SELECT_LR[2] == 0 then
@@ -797,7 +797,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
 
                 CHAR_SELECT_LR[2] = CHAR_SELECT_LR[2] + 1
                 if CHAR_SELECT_LR[2] == 9 then
@@ -834,7 +834,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
             then
                 obj["flash_state"] = "flash_in"
 
-                commmon_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,2)
+                common_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,2)
 
                 obj[8] = CHAR_SELECT_LR[2]
 
@@ -852,7 +852,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
 
                 CHAR_SELECT_LR[2] = CHAR_SELECT_LR[2] - 1
                 if CHAR_SELECT_LR[2] == 0 then
@@ -874,7 +874,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
                 play_obj_audio(audio)
                 obj["flash_state"] = "flash_out"
 
-                commmon_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
+                common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,obj_icon_cover,2)
 
                 CHAR_SELECT_LR[2] = CHAR_SELECT_LR[2] + 1
                 if CHAR_SELECT_LR[2] == 9 then

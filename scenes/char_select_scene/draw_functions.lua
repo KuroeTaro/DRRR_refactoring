@@ -105,7 +105,7 @@ function draw_char_select_scene_flash_in_40f_2s10f()
         image_UI_char_select_scene_control_method_R
     )
 
-    draw_char_select_timer(
+    draw_char_select_scene_timer(
         obj_UI_char_select_scene_timer,
         image_table_UI_char_select_scene_number
     )
@@ -214,7 +214,7 @@ function draw_char_select_scene_main()
         image_UI_char_select_scene_control_method_R
     )
 
-    draw_char_select_timer(
+    draw_char_select_scene_timer(
         obj_UI_char_select_scene_timer,
         image_table_UI_char_select_scene_number
     )
@@ -242,7 +242,7 @@ end
 
 
 
-function draw_char_select_timer(obj,image_table)
+function draw_char_select_scene_timer(obj,image_table)
     draw_2d_image_table({obj[1],obj[2],nil,1,1,1,0,obj["time"][1]},image_table)
     draw_2d_image_table({obj[1]+13,obj[2],nil,1,1,1,0,obj["time"][2]},image_table)
 

@@ -633,86 +633,109 @@ end
 
 
 function unload_start_scene_obj()
-    obj_UI_start_scene_solid_color = nil
-    obj_UI_start_scene_record_100h_plus_time_indi = nil
-    obj_UI_start_scene_record_dabo_trig = nil
-    obj_UI_start_scene_record_num_0 = nil
-    obj_UI_start_scene_record_num_1 = nil
-    obj_UI_start_scene_record_num_2 = nil
-    obj_UI_start_scene_record_num_3 = nil
-    obj_UI_start_scene_record_num_4 = nil
-    obj_UI_start_scene_record_num_5 = nil
-    obj_UI_start_scene_record_game_duration_text = nil
-    obj_UI_start_scene_config_resolution_bar_mark = nil
-    obj_UI_start_scene_config_resolution_w_x_h = nil
-    obj_UI_start_scene_config_resolution_select_res_text = nil
-    obj_UI_start_scene_config_controller_bar_mark_LP = nil
-    obj_UI_start_scene_config_controller_bar_mark_RP = nil
-    obj_UI_start_scene_config_controller_indi_text = nil
-    obj_UI_start_scene_config_audio_bar_mark = nil
-    obj_UI_start_scene_config_audio_BGM_bar_light = nil
-    obj_UI_start_scene_config_audio_SFX_bar_light = nil
-    obj_UI_start_scene_config_audio_BGM_bar_alpha = nil
-    obj_UI_start_scene_config_audio_SFX_bar_alpha = nil
-    obj_UI_start_scene_config_audio_BGM_bar_gauge = nil
-    obj_UI_start_scene_config_audio_SFX_bar_gauge = nil
-    obj_UI_start_scene_config_audio_text = nil
-    obj_UI_start_scene_config_menu_dabo_trig = nil
-    obj_UI_start_scene_config_menu_text = nil
-    obj_UI_start_scene_shutter = nil
-    obj_UI_start_scene_up_console_text = nil
-    obj_UI_start_scene_down_console_text = nil
-    obj_UI_start_scene_console_type_in_mark = nil
-    obj_UI_start_scene_console_dabo_trig = nil
-    obj_UI_start_scene_option_text = nil
-    obj_UI_start_scene_breath_tag = nil
-    obj_UI_start_scene_main_logo = nil
-    obj_UI_start_scene_noise_bg = nil
+    for key in pairs(_G) do
+        if key:sub(1, 18) == "obj_UI_start_scene" 
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+
+    -- obj_UI_start_scene_solid_color = nil
+    -- obj_UI_start_scene_record_100h_plus_time_indi = nil
+    -- obj_UI_start_scene_record_dabo_trig = nil
+    -- obj_UI_start_scene_record_num_0 = nil
+    -- obj_UI_start_scene_record_num_1 = nil
+    -- obj_UI_start_scene_record_num_2 = nil
+    -- obj_UI_start_scene_record_num_3 = nil
+    -- obj_UI_start_scene_record_num_4 = nil
+    -- obj_UI_start_scene_record_num_5 = nil
+    -- obj_UI_start_scene_record_game_duration_text = nil
+    -- obj_UI_start_scene_config_resolution_bar_mark = nil
+    -- obj_UI_start_scene_config_resolution_w_x_h = nil
+    -- obj_UI_start_scene_config_resolution_select_res_text = nil
+    -- obj_UI_start_scene_config_controller_bar_mark_LP = nil
+    -- obj_UI_start_scene_config_controller_bar_mark_RP = nil
+    -- obj_UI_start_scene_config_controller_indi_text = nil
+    -- obj_UI_start_scene_config_audio_bar_mark = nil
+    -- obj_UI_start_scene_config_audio_BGM_bar_light = nil
+    -- obj_UI_start_scene_config_audio_SFX_bar_light = nil
+    -- obj_UI_start_scene_config_audio_BGM_bar_alpha = nil
+    -- obj_UI_start_scene_config_audio_SFX_bar_alpha = nil
+    -- obj_UI_start_scene_config_audio_BGM_bar_gauge = nil
+    -- obj_UI_start_scene_config_audio_SFX_bar_gauge = nil
+    -- obj_UI_start_scene_config_audio_text = nil
+    -- obj_UI_start_scene_config_menu_dabo_trig = nil
+    -- obj_UI_start_scene_config_menu_text = nil
+    -- obj_UI_start_scene_shutter = nil
+    -- obj_UI_start_scene_up_console_text = nil
+    -- obj_UI_start_scene_down_console_text = nil
+    -- obj_UI_start_scene_console_type_in_mark = nil
+    -- obj_UI_start_scene_console_dabo_trig = nil
+    -- obj_UI_start_scene_option_text = nil
+    -- obj_UI_start_scene_breath_tag = nil
+    -- obj_UI_start_scene_main_logo = nil
+    -- obj_UI_start_scene_noise_bg = nil
 
 end
 
 
 function unload_start_scene_anim()
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity = nil
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity = nil
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity = nil
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity = nil
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity = nil
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity = nil
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity = nil
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity = nil
-    anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity = nil
-    anim_UI_point_linear_start_scene_option_text_twitch_x = nil
-    anim_UI_frame_start_scene_console_dabo_trig_twtich_x = nil
-    anim_UI_frame_start_scene_console_type_in_mark_blink_opacity = nil
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y = nil
-    anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y = nil
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x = nil
-    anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x = nil
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x = nil
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x = nil
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y = nil
-    anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y = nil
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x = nil
-    anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x = nil
-    anim_UI_point_linear_start_scene_record_dabo_trig_up_y = nil
-    anim_UI_point_linear_start_scene_record_dabo_trig_down_y = nil
+    for key in pairs(_G) do
+        if key:sub(1, 32) == "anim_UI_point_linear_start_scene"
+        or key:sub(1, 25) == "anim_UI_frame_start_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+
+    -- anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity = nil
+    -- anim_UI_point_linear_start_scene_solid_flash_in_opacity = nil
+    -- anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity = nil
+    -- anim_UI_point_linear_start_scene_option_text_twitch_x = nil
+    -- anim_UI_frame_start_scene_console_dabo_trig_twtich_x = nil
+    -- anim_UI_frame_start_scene_console_type_in_mark_blink_opacity = nil
+    -- anim_UI_point_linear_start_scene_config_menu_dabo_trig_up_0_y = nil
+    -- anim_UI_point_linear_start_scene_config_menu_dabo_trig_down_0_y = nil
+    -- anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x = nil
+    -- anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x = nil
+    -- anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x = nil
+    -- anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x = nil
+    -- anim_UI_point_linear_start_scene_config_audio_bar_mark_up_y = nil
+    -- anim_UI_point_linear_start_scene_config_audio_bar_mark_down_y = nil
+    -- anim_UI_point_linear_start_scene_config_resolution_bar_mark_left_x = nil
+    -- anim_UI_point_linear_start_scene_config_resolution_bar_mark_right_x = nil
+    -- anim_UI_point_linear_start_scene_record_dabo_trig_up_y = nil
+    -- anim_UI_point_linear_start_scene_record_dabo_trig_down_y = nil
 
 end
 
 
 function unload_start_scene_audio()
-    audio_SFX_start_scene_click = nil
-    audio_SFX_start_scene_scene_out = nil
-    audio_SFX_start_scene_to_main = nil
-    audio_SFX_start_scene_to_sub = nil
+    for key in pairs(_G) do
+        if key:sub(1, 21) == "audio_SFX_start_scene"
+        or key:sub(1, 21) == "audio_BGM_start_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
 
-    audio_BGM_start_scene_FTR_high = nil
-    audio_BGM_start_scene_FTR_low = nil
+    -- audio_SFX_start_scene_click = nil
+    -- audio_SFX_start_scene_scene_out = nil
+    -- audio_SFX_start_scene_to_main = nil
+    -- audio_SFX_start_scene_to_sub = nil
 
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume = nil
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0 = nil
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1 = nil
+    -- audio_BGM_start_scene_FTR_high = nil
+    -- audio_BGM_start_scene_FTR_low = nil
+
+    -- anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume = nil
+    -- anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0 = nil
+    -- anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1 = nil
     
 end
 

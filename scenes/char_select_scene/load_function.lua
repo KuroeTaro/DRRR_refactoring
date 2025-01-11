@@ -158,45 +158,58 @@ function load_char_select_scene_require()
 end
 
 function unload_char_select_scene_require()
-    commmon_char_select_scene_reset_char_text_flash_out = nil
-    commmon_char_select_scene_reset_char_text_flash_in = nil
-    common_char_select_scene_char_select_simple_locked_exit = nil
+    for key in pairs(_G) do
+        if key:sub(1, 24) == "common_char_select_scene" 
+        or key:sub(1, 22) == "draw_char_select_scene" 
+        or key:sub(1, 22) == "load_char_select_scene" 
+        or key:sub(1, 24) == "unload_char_select_scene" 
+        or key:sub(1, 24) == "preset_char_select_scene" 
+        or key:sub(1, 24) == "update_char_select_scene"
+        or key:sub(1, 34) == "state_machine_UI_char_select_scene" 
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
 
-    draw_char_select_scene_flash_in_0f_36f = nil
-    draw_char_select_scene_flash_in_36f_40f = nil
-    draw_char_select_scene_flash_in_40f_2s10f = nil
-    draw_char_select_scene_main = nil
-    draw_char_select_timer = nil
-    draw_char_select_scene_second_glow = nil
-    draw_char_select_scene_char_icon = nil
-    draw_char_select_scene_char_select_LR = nil
+    -- common_char_select_scene_reset_char_text_flash_out = nil
+    -- common_char_select_scene_reset_char_text_flash_in = nil
+    -- common_char_select_scene_char_select_simple_locked_exit = nil
 
-    load_char_select_scene_obj = nil
-    load_char_select_scene_anim = nil
-    load_char_select_scene_audio = nil
-    load_char_select_scene_shader = nil
-    unload_char_select_scene_obj = nil
-    unload_char_select_scene_anim = nil
-    unload_char_select_scene_audio = nil
-    unload_char_select_scene_shader = nil
-    unload_char_select_scene_all = nil
-    preset_char_select_scene = nil
+    -- draw_char_select_scene_flash_in_0f_36f = nil
+    -- draw_char_select_scene_flash_in_36f_40f = nil
+    -- draw_char_select_scene_flash_in_40f_2s10f = nil
+    -- draw_char_select_scene_main = nil
+    -- draw_char_select_scene_timer = nil
+    -- draw_char_select_scene_second_glow = nil
+    -- draw_char_select_scene_char_icon = nil
+    -- draw_char_select_scene_char_select_LR = nil
 
-    update_char_select_scene_flash_in_0f_36f = nil
-    update_char_select_scene_flash_in_36f_40f = nil
-    update_char_select_scene_flash_in_40f_2s10f = nil
-    update_char_select_scene_main = nil
-    update_char_select_scene_train_dummy_select = nil
-    update_char_select_scene_flash_out = nil
+    -- load_char_select_scene_obj = nil
+    -- load_char_select_scene_anim = nil
+    -- load_char_select_scene_audio = nil
+    -- load_char_select_scene_shader = nil
+    -- unload_char_select_scene_obj = nil
+    -- unload_char_select_scene_anim = nil
+    -- unload_char_select_scene_audio = nil
+    -- unload_char_select_scene_shader = nil
+    -- unload_char_select_scene_all = nil
+    -- preset_char_select_scene = nil
 
-    state_machine_UI_char_select_scene_movie_cover_loop = nil
-    state_machine_UI_char_select_scene_timer = nil
-    state_machine_UI_char_select_scene_second_ring_blink = nil
-    state_machine_UI_char_select_scene_char_select = nil
-    state_machine_UI_char_select_scene_char_select_flash_anim = nil
-    state_machine_UI_char_select_scene_char_select_bar_mark_select = nil
-    state_machine_UI_char_select_scene_char_select_train_dummy = nil
-    state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy = nil
-    state_machine_UI_char_select_scene_char_select_bar_mark_select_train_dummy = nil
+    -- update_char_select_scene_flash_in_0f_36f = nil
+    -- update_char_select_scene_flash_in_36f_40f = nil
+    -- update_char_select_scene_flash_in_40f_2s10f = nil
+    -- update_char_select_scene_main = nil
+    -- update_char_select_scene_train_dummy_select = nil
+    -- update_char_select_scene_flash_out = nil
+
+    -- state_machine_UI_char_select_scene_movie_cover_loop = nil
+    -- state_machine_UI_char_select_scene_timer = nil
+    -- state_machine_UI_char_select_scene_second_ring_blink = nil
+    -- state_machine_UI_char_select_scene_char_select = nil
+    -- state_machine_UI_char_select_scene_char_select_flash_anim = nil
+    -- state_machine_UI_char_select_scene_char_select_bar_mark_select = nil
+    -- state_machine_UI_char_select_scene_char_select_train_dummy = nil
+    -- state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy = nil
+    -- state_machine_UI_char_select_scene_char_select_bar_mark_select_train_dummy = nil
 
 end

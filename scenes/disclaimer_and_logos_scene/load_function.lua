@@ -47,7 +47,13 @@ function order_load_disclaimer_and_logo_scene_1_general(load_order)
 end
 
 function unload_disclaimer_and_logos_scene_image()
-    image_table_UI_disclaimer_and_logos_scene_singular = nil
+    for key in pairs(_G) do
+        if key:sub(1, 41) == "image_table_UI_disclaimer_and_logos_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
+    -- image_table_UI_disclaimer_and_logos_scene_singular = nil
 end
 
 
@@ -62,16 +68,28 @@ function load_disclaimer_and_logos_scene_require()
 end
 
 function unload_disclaimer_and_logos_scene_require()
-    draw_disclaimer_and_logos_scene_main = nil
+    for key in pairs(_G) do
+        if key:sub(1, 31) == "draw_disclaimer_and_logos_scene" 
+        or key:sub(1, 31) == "load_disclaimer_and_logos_scene" 
+        or key:sub(1, 33) == "unload_disclaimer_and_logos_scene" 
+        or key:sub(1, 33) == "preset_disclaimer_and_logos_scene" 
+        or key:sub(1, 33) == "update_disclaimer_and_logos_scene" 
+        or key:sub(1, 43) == "state_machine_UI_disclaimer_and_logos_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
 
-    load_disclaimer_and_logos_scene_obj = nil
-    load_disclaimer_and_logos_scene_anim = nil
-    unload_disclaimer_and_logos_scene_obj = nil
-    unload_disclaimer_and_logos_scene_anim = nil
-    unload_disclaimer_and_logos_scene_all = nil
-    preset_disclaimer_and_logos_scene = nil
+    -- draw_disclaimer_and_logos_scene_main = nil
 
-    update_disclaimer_and_logos_scene_main = nil
-    state_machine_UI_disclaimer_and_logos_scene_singular = nil
+    -- load_disclaimer_and_logos_scene_obj = nil
+    -- load_disclaimer_and_logos_scene_anim = nil
+    -- unload_disclaimer_and_logos_scene_obj = nil
+    -- unload_disclaimer_and_logos_scene_anim = nil
+    -- unload_disclaimer_and_logos_scene_all = nil
+    -- preset_disclaimer_and_logos_scene = nil
+
+    -- update_disclaimer_and_logos_scene_main = nil
+    -- state_machine_UI_disclaimer_and_logos_scene_singular = nil
 
 end

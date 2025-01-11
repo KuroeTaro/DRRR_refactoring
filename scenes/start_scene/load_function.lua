@@ -183,38 +183,46 @@ end
 
 
 function unload_start_scene_image()
-    -- main UI
-    image_UI_start_scene_global_dabo_trig = nil
-    image_UI_start_scene_global_type_in_mark = nil
-    image_table_UI_start_scene_up_console_text = nil
-    image_table_UI_start_scene_down_console_text = nil
-    image_table_UI_start_scene_option_text = nil
-    image_UI_start_scene_breath_tag = nil
-    image_UI_start_scene_main_logo = nil
+    for key in pairs(_G) do
+        if key:sub(1, 20) == "image_UI_start_scene"
+        or key:sub(1, 26) == "image_table_UI_start_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
 
-    -- main UI BG shutter
-    image_table_UI_start_scene_BG_loop = nil
-    image_UI_start_scene_shutter = nil
+    -- -- main UI
+    -- image_UI_start_scene_global_dabo_trig = nil
+    -- image_UI_start_scene_global_type_in_mark = nil
+    -- image_table_UI_start_scene_up_console_text = nil
+    -- image_table_UI_start_scene_down_console_text = nil
+    -- image_table_UI_start_scene_option_text = nil
+    -- image_UI_start_scene_breath_tag = nil
+    -- image_UI_start_scene_main_logo = nil
 
-    -- resolution sub scene
-    image_table_UI_start_scene_resolution_text = nil
-    image_UI_start_scene_select_res_text = nil
+    -- -- main UI BG shutter
+    -- image_table_UI_start_scene_BG_loop = nil
+    -- image_UI_start_scene_shutter = nil
 
-    -- audio sub scene
-    image_UI_start_scene_config_audio_bar = nil
-    image_UI_start_scene_config_audio_text = nil
+    -- -- resolution sub scene
+    -- image_table_UI_start_scene_resolution_text = nil
+    -- image_UI_start_scene_select_res_text = nil
 
-    -- controller device
-    image_UI_start_scene_controller_indi_text = nil
+    -- -- audio sub scene
+    -- image_UI_start_scene_config_audio_bar = nil
+    -- image_UI_start_scene_config_audio_text = nil
 
-    -- config global
-    image_UI_start_scene_config_menu_text = nil
-    image_UI_start_scene_bar_mark = nil
+    -- -- controller device
+    -- image_UI_start_scene_controller_indi_text = nil
 
-    -- record
-    image_UI_start_scene_game_duration_text = nil
-    image_table_UI_start_scene_game_duration_number = nil
-    image_table_UI_start_scene_time_indi_barcode = nil
+    -- -- config global
+    -- image_UI_start_scene_config_menu_text = nil
+    -- image_UI_start_scene_bar_mark = nil
+
+    -- -- record
+    -- image_UI_start_scene_game_duration_text = nil
+    -- image_table_UI_start_scene_game_duration_number = nil
+    -- image_table_UI_start_scene_time_indi_barcode = nil
 
 end
 
@@ -231,62 +239,74 @@ function load_start_select_scene_require()
 end
 
 function unload_start_select_scene_require()
-    update_start_scene_config_audio_main_update_volume = nil
+    for key in pairs(_G) do
+        if key:sub(1, 18) == "update_start_scene" 
+        or key:sub(1, 16) == "draw_start_scene" 
+        or key:sub(1, 16) == "load_start_scene" 
+        or key:sub(1, 18) == "unload_start_scene" 
+        or key:sub(1, 18) == "preset_start_scene" 
+        or key:sub(1, 28) == "state_machine_UI_start_scene"
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
 
-    draw_start_scene_main = nil
-    draw_start_scene_config_sub_scene = nil
-    draw_start_scene_config_audio_sub_scene = nil
-    draw_start_scene_config_controller_sub_scene = nil
-    draw_start_scene_config_resolution_sub_scene = nil
-    draw_start_scene_record_sub_scene = nil
-    draw_start_scene_sp_audio_bar_alpha = nil
-    draw_start_scene_sp_record_100h_plus_time_indi = nil
+    -- update_start_scene_config_audio_main_update_volume = nil
+
+    -- draw_start_scene_main = nil
+    -- draw_start_scene_config_sub_scene = nil
+    -- draw_start_scene_config_audio_sub_scene = nil
+    -- draw_start_scene_config_controller_sub_scene = nil
+    -- draw_start_scene_config_resolution_sub_scene = nil
+    -- draw_start_scene_record_sub_scene = nil
+    -- draw_start_scene_sp_audio_bar_alpha = nil
+    -- draw_start_scene_sp_record_100h_plus_time_indi = nil
     
-    load_start_scene_obj = nil
-    load_start_scene_anim = nil
-    load_start_scene_audio = nil
-    unload_start_scene_obj = nil
-    unload_start_scene_anim = nil
-    unload_start_scene_audio = nil
-    unload_start_scene_all = nil
-    preset_start_scene = nil
+    -- load_start_scene_obj = nil
+    -- load_start_scene_anim = nil
+    -- load_start_scene_audio = nil
+    -- unload_start_scene_obj = nil
+    -- unload_start_scene_anim = nil
+    -- unload_start_scene_audio = nil
+    -- unload_start_scene_all = nil
+    -- preset_start_scene = nil
 
-    update_start_scene_flash_in = nil
-    update_start_scene_30f_1s45f = nil
-    update_start_scene_1s45f_1s50f = nil
-    update_start_scene_main = nil
-    update_start_scene_flash_out = nil
-    update_start_scene_option_twitch = nil
-    update_start_scene_only_console_twitch = nil
-    update_start_scene_config_flash_in = nil
-    update_start_scene_config_main = nil
-    update_start_scene_config_twitch_up = nil
-    update_start_scene_config_twitch_down = nil
-    update_start_scene_config_flash_out = nil
-    update_start_scene_config_audio_flash_in = nil
-    update_start_scene_config_audio_main = nil
-    update_start_scene_config_audio_bar_mark_twtich_up = nil
-    update_start_scene_config_audio_bar_mark_twtich_down = nil
-    update_start_scene_config_audio_bar_mark_twtich_left_with_alpha = nil
-    update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha = nil
-    update_start_scene_config_audio_bar_mark_twtich_right_with_alpha = nil
-    update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha = nil
-    update_start_scene_config_audio_flash_out = nil
-    update_start_scene_config_controller_flash_in = nil
-    update_start_scene_config_controller_main = nil
-    update_start_scene_config_controller_flash_out = nil
-    update_start_scene_config_resolution_flash_in = nil
-    update_start_scene_config_resolution_main = nil
-    update_start_scene_config_resolution_bar_mark_twtich_left = nil
-    update_start_scene_config_resolution_bar_mark_twtich_right = nil
-    update_start_scene_config_resolution_flash_out = nil
-    update_start_scene_record_flash_in = nil
-    update_start_scene_record_main = nil
-    update_start_scene_record_twitch_up = nil
-    update_start_scene_record_twitch_down = nil
-    update_start_scene_record_flash_out = nil
+    -- update_start_scene_flash_in = nil
+    -- update_start_scene_30f_1s45f = nil
+    -- update_start_scene_1s45f_1s50f = nil
+    -- update_start_scene_main = nil
+    -- update_start_scene_flash_out = nil
+    -- update_start_scene_option_twitch = nil
+    -- update_start_scene_only_console_twitch = nil
+    -- update_start_scene_config_flash_in = nil
+    -- update_start_scene_config_main = nil
+    -- update_start_scene_config_twitch_up = nil
+    -- update_start_scene_config_twitch_down = nil
+    -- update_start_scene_config_flash_out = nil
+    -- update_start_scene_config_audio_flash_in = nil
+    -- update_start_scene_config_audio_main = nil
+    -- update_start_scene_config_audio_bar_mark_twtich_up = nil
+    -- update_start_scene_config_audio_bar_mark_twtich_down = nil
+    -- update_start_scene_config_audio_bar_mark_twtich_left_with_alpha = nil
+    -- update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha = nil
+    -- update_start_scene_config_audio_bar_mark_twtich_right_with_alpha = nil
+    -- update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha = nil
+    -- update_start_scene_config_audio_flash_out = nil
+    -- update_start_scene_config_controller_flash_in = nil
+    -- update_start_scene_config_controller_main = nil
+    -- update_start_scene_config_controller_flash_out = nil
+    -- update_start_scene_config_resolution_flash_in = nil
+    -- update_start_scene_config_resolution_main = nil
+    -- update_start_scene_config_resolution_bar_mark_twtich_left = nil
+    -- update_start_scene_config_resolution_bar_mark_twtich_right = nil
+    -- update_start_scene_config_resolution_flash_out = nil
+    -- update_start_scene_record_flash_in = nil
+    -- update_start_scene_record_main = nil
+    -- update_start_scene_record_twitch_up = nil
+    -- update_start_scene_record_twitch_down = nil
+    -- update_start_scene_record_flash_out = nil
 
-    state_machine_UI_start_scene_noise_BG_static_loop = nil
-    state_machine_UI_start_scene_config_controller = nil
+    -- state_machine_UI_start_scene_noise_BG_static_loop = nil
+    -- state_machine_UI_start_scene_config_controller = nil
 
 end
