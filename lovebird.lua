@@ -171,10 +171,11 @@ end
     #env {
       position: absolute;
       top: 40px; bottom: 0px; right: 0px;
-      width: 300px;
+      width: 800px;
     }
     #envheader {
       padding: 5px;
+      width: 800px;
       background: #E0E0E0;
     }
     #envvars {
@@ -225,8 +226,7 @@ end
       }
 
       var truncate = function(str, len) {
-        if (str.length <= len) return str;
-        return str.substring(0, len - 3) + "...";
+        return str
       }
 
       var geturl = function(url, onComplete, onFail) {
@@ -345,10 +345,58 @@ end
 
           /* Variables */
           var html = "<table>";
+          var init_check_list = [
+            "_G",
+            "_VERSION",
+            "arg",
+            "assert",
+            "bit",
+            "collectgarbage",
+            "coroutine",
+            "debug",
+            "dofile",
+            "error",
+            "gcinfo",
+            "getfenv",
+            "getmetatable",
+            "io",
+            "ipairs",
+            "jit",
+            "load",
+            "loadfile",
+            "loadstring",
+            "love",
+            "math",
+            "module",
+            "newproxy",
+            "next",
+            "os",
+            "package",
+            "pairs",
+            "pcall",
+            "print",
+            "rawequal",
+            "rawget",
+            "rawset",
+            "require",
+            "select",
+            "setfenv",
+            "setmetatable",
+            "string",
+            "table",
+            "tonumber",
+            "tostring",
+            "type",
+            "unpack",
+            "xpcall"
+          ];
           for (var i = 0; json.vars[i]; i++) {
             var x = json.vars[i];
             var fullpath = (json.path + "." + x.key).replace(/^\./, "");
             var k = truncate(x.key, 15);
+            if(init_check_list.includes(k)){
+              continue;
+            }
             if (x.type == "table") {
               k = "<a href='#' onclick=\"setEnvPath('" + fullpath + "')\">" +
                   k + "</a>";
@@ -732,6 +780,5 @@ function lovebird.update()
     end
   end
 end
-
 
 return lovebird

@@ -13,6 +13,8 @@ function init_input()
 
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
 
+    INPUT_SYS_GLOBAL_PRIME_JOYSITCK = {}
+
     --加载手柄按键 键盘按键 手柄z轴 对于指令的表
     INPUT_SYS_COMMAND_TABLE = {
         "Up","Down","Left","Right",
@@ -89,6 +91,7 @@ end
 
 --将手柄按键的值转化为指令表内的数值
 function get_joystick_buttom_command(js,buttom_name)
+    local result = nil
     if js ~= nil then
         result = js:isGamepadDown(buttom_name)
     else result = false end 
@@ -97,6 +100,7 @@ end
 
 --将手柄扳机的值转化为指令表内的数值
 function get_joystick_axis_command(js,axis_name)
+    local result = nil
     if js ~= nil then 
         result = js:getGamepadAxis(axis_name)
     else result = 0.0 end
@@ -106,7 +110,44 @@ end
 --加载手柄
 function update_controller()
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
+    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1] and INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1]:isConnected() == false then
+        INPUT_SYS_GLOBAL_PRIME_JOYSITCK = {}
+    end
+    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] and INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2]:isConnected() == false then
+        INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] = nil
+    end
+
+    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK == {} or INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1] == nil then
+        for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
+            if (INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpleft") 
+            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpright")
+            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("a")
+            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("b"))
+            and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2]
+            then
+                INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1] = INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]
+                INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] = nil
+                break
+            end
+        end
+    end
     
+    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] == nil then
+        for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
+            if (INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpleft") 
+            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpright")
+            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("a")
+            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("b"))
+            and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1]
+            then
+                INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] = INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]
+                break
+            end
+        end
+    end
+
+    INPUT_SYS_CURRENT_JOYSTICK_TABLE = INPUT_SYS_GLOBAL_PRIME_JOYSITCK
+        
     INPUT_SYS_CONTROLLER_STATE[2] = INPUT_SYS_CONTROLLER_STATE[0]
     INPUT_SYS_CONTROLLER_STATE[3] = INPUT_SYS_CONTROLLER_STATE[1]
 

@@ -14,6 +14,7 @@ function load_char_select_scene_prep()
     }
     THREAD_AMOUNT = 3   -- 线程数目
     THREAD_ONCE_TABLE = {false,false,false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
+    INDEX_ARGUMENT = {nil,nil,nil}
     ASSET_DATA_TABLE = {}   -- 保持为nil
     ORDER_LOAD_TABLE = {
         order_load_char_select_scene_UI_char,
@@ -148,12 +149,13 @@ end
 
 
 function load_char_select_scene_require()
-    require("scenes/char_select_scene/common_functions")
-    require("scenes/char_select_scene/draw_functions")
-    require("scenes/char_select_scene/init")
-    require("scenes/char_select_scene/main_blocks")
-    require("scenes/char_select_scene/state_machine")
-    require("scenes/char_select_scene/sub_blocks")
+    require_all_in_folder("scenes/char_select_scene")
+    -- require("scenes/char_select_scene/common_functions")
+    -- require("scenes/char_select_scene/draw_functions")
+    -- require("scenes/char_select_scene/init")
+    -- require("scenes/char_select_scene/main_blocks")
+    -- require("scenes/char_select_scene/state_machine")
+    -- require("scenes/char_select_scene/sub_blocks")
 
 end
 
@@ -170,10 +172,11 @@ function unload_char_select_scene_require()
             _G[key] = nil -- 删除该变量
         end
     end
+    require("scenes/char_select_scene/load_function")
 
     -- common_char_select_scene_reset_char_text_flash_out = nil
     -- common_char_select_scene_reset_char_text_flash_in = nil
-    -- common_char_select_scene_char_select_simple_locked_exit = nil
+    -- common_char_select_scene_char_select_left_locked_exit = nil
 
     -- draw_char_select_scene_flash_in_0f_36f = nil
     -- draw_char_select_scene_flash_in_36f_40f = nil

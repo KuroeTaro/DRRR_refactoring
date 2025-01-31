@@ -43,7 +43,7 @@ function common_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj
     init_point_linear_anim_with(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1)
 end
 
-function common_char_select_scene_char_select_simple_locked_exit()
+function common_char_select_scene_char_select_left_locked_exit()
     if obj_UI_char_select_scene_char_select_left["select_state"] == "locking" then
         if get_point_linear_anim_end_state(
             obj_UI_char_select_scene_char_select_left,

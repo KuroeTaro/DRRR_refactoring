@@ -15,6 +15,7 @@ function load_start_scene_prep()
     THREAD_AMOUNT = 3   -- 线程数目
     THREAD_ONCE_TABLE = {false,false,false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     ASSET_DATA_TABLE = {}   -- 保持为nil
+    INDEX_ARGUMENT = {nil,nil,nil}
     ORDER_LOAD_TABLE = {
         order_load_start_scene_main_UI,
         order_load_start_scene_main_UI_BG,
@@ -172,7 +173,7 @@ function order_load_start_scene_sub_UI(load_order)
             for i = 13,22 do
                 image_table_UI_start_scene_game_duration_number[i-13] = love.graphics.newImage(ASSET_DATA_TABLE[3][i])
             end
-            image_table_UI_start_scene_time_indi_barcode = love.graphics.newImage(ASSET_DATA_TABLE[3][23])
+            image_UI_start_scene_time_indi_barcode = love.graphics.newImage(ASSET_DATA_TABLE[3][23])
 
         end,
     }
@@ -222,19 +223,20 @@ function unload_start_scene_image()
     -- -- record
     -- image_UI_start_scene_game_duration_text = nil
     -- image_table_UI_start_scene_game_duration_number = nil
-    -- image_table_UI_start_scene_time_indi_barcode = nil
+    -- image_UI_start_scene_time_indi_barcode = nil
 
 end
 
 
 function load_start_select_scene_require()
-    require("scenes/start_scene/common_functions")
-    require("scenes/start_scene/draw_functions")
-    require("scenes/start_scene/init")
-    require("scenes/start_scene/load_function")
-    require("scenes/start_scene/main_blocks")
-    require("scenes/start_scene/state_machine")
-    require("scenes/start_scene/sub_blocks")
+    require_all_in_folder("scenes/start_scene")
+    -- require("scenes/start_scene/common_functions")
+    -- require("scenes/start_scene/draw_functions")
+    -- require("scenes/start_scene/init")
+    -- require("scenes/start_scene/load_function")
+    -- require("scenes/start_scene/main_blocks")
+    -- require("scenes/start_scene/state_machine")
+    -- require("scenes/start_scene/sub_blocks")
 
 end
 
@@ -250,6 +252,7 @@ function unload_start_select_scene_require()
             _G[key] = nil -- 删除该变量
         end
     end
+    require("scenes/start_scene/load_function")
 
     -- update_start_scene_config_audio_main_update_volume = nil
 

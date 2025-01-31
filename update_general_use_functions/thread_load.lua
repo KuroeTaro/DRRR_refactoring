@@ -4,6 +4,8 @@ function run_table_order_load()
     do
         if THREAD_ONCE_TABLE[i] == false then 
             local thread = love.thread.newThread(THREAD_TABLE[i])
+            local index_channel = love.thread.getChannel("input")
+            index_channel:push(INDEX_ARGUMENT[i])
             thread:start()
             THREAD_ONCE_TABLE[i] = true
         end
@@ -40,6 +42,7 @@ function init_order_load_table()
     THREAD_TABLE = {}
     THREAD_AMOUNT = 0
     THREAD_ONCE_TABLE = {}
+    INDEX_ARGUMENT = {}
     ASSET_DATA_TABLE = {}
     ORDER_LOAD_TABLE = {}
     CURRENT_ORDER_TABLE = {}

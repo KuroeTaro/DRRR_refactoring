@@ -1,6 +1,7 @@
 require("update_general_use_functions/animator")
 require("update_general_use_functions/audio_volume")
 require("update_general_use_functions/game_duration")
+require("update_general_use_functions/require_scene")
 require("update_general_use_functions/input_sys")
 require("update_general_use_functions/resolution")
 require("update_general_use_functions/thread_load")
@@ -61,7 +62,7 @@ function love.run()
             love.graphics.present()
 			local gap = love.timer.getTime() - s 
 			if gap > 1/60 then
-				print(gap)
+				print("frame gaps:",gap)
 			end
 
 			-- local updateEndTime = love.timer.getTime()
@@ -96,6 +97,7 @@ function love.load()
 	THREAD_TABLE = {}
     THREAD_AMOUNT = 0
     THREAD_ONCE_TABLE = {}
+	INDEX_ARGUMENT = {}
     ASSET_DATA_TABLE = {}
     LOAD_FUNCTION_TABLE = {}
     LOAD_ORDER_TABLE = {}

@@ -1803,9 +1803,7 @@ function update_char_select_scene_main()
         -- 更新 current_update_block
         current_update_block = update_char_select_scene_train_dummy_select
 
-    end
-
-    if GAME_MODE ~= 0 
+    elseif GAME_MODE ~= 0 
     and obj_UI_char_select_scene_char_select_left["select_state"] == "locked"
     and obj_UI_char_select_scene_char_select_right["select_state"] == "locked"
     then 
@@ -1856,7 +1854,7 @@ function update_char_select_scene_train_dummy_select()
         anim_UI_point_linear_char_select_scene_control_method_bar_mark_locking_flash_out_opacity_1_0
     )
 
-    common_char_select_scene_char_select_simple_locked_exit()
+    common_char_select_scene_char_select_left_locked_exit()
 
     if obj_UI_char_select_scene_char_select_left["select_state"] == "locked"
     and obj_UI_char_select_scene_char_select_right["select_state"] == "locked"

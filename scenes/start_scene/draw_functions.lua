@@ -139,7 +139,7 @@ function draw_start_scene_record_sub_scene()
     draw_2d_image(obj_UI_start_scene_shutter,image_UI_start_scene_shutter)
     draw_start_scene_sp_record_100h_plus_time_indi(
         obj_UI_start_scene_record_100h_plus_time_indi,
-        image_table_UI_start_scene_time_indi_barcode
+        image_UI_start_scene_time_indi_barcode
     )
     draw_2d_image(obj_UI_start_scene_record_dabo_trig,image_UI_start_scene_global_dabo_trig)
     draw_2d_image_table(obj_UI_start_scene_record_num_5,image_table_UI_start_scene_game_duration_number)
