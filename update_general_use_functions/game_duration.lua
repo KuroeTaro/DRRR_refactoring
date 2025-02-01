@@ -56,6 +56,7 @@ function update_record_game_duration()
         GAME_DURATION[4] = 0
         GAME_DURATION[5] = 0
         GAME_DURATION[6] = 0
+        CTO_COUNT = CTO_COUNT + 1
     end
 end
 
