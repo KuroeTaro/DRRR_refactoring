@@ -12,8 +12,11 @@ require("scenes/load_scene/init")
 require("scenes/load_scene/main_blocks")
 
 require("scenes/disclaimer_and_logos_scene/load_function")
+require("scenes/disclaimer_and_logos_scene/init")
 require("scenes/start_scene/load_function")
+require("scenes/start_scene/init")
 require("scenes/char_select_scene/load_function")
+require("scenes/char_select_scene/init")
 
 function love.run()
 	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end

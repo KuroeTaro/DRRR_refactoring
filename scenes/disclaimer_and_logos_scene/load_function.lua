@@ -71,9 +71,7 @@ end
 
 function unload_disclaimer_and_logos_scene_require()
     for key in pairs(_G) do
-        if key:sub(1, 31) == "draw_disclaimer_and_logos_scene" 
-        or key:sub(1, 31) == "load_disclaimer_and_logos_scene" 
-        or key:sub(1, 33) == "unload_disclaimer_and_logos_scene" 
+        if key:sub(1, 31) == "draw_disclaimer_and_logos_scene"  
         or key:sub(1, 33) == "preset_disclaimer_and_logos_scene" 
         or key:sub(1, 33) == "update_disclaimer_and_logos_scene" 
         or key:sub(1, 43) == "state_machine_UI_disclaimer_and_logos_scene"

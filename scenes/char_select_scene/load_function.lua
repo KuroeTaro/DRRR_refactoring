@@ -163,8 +163,6 @@ function unload_char_select_scene_require()
     for key in pairs(_G) do
         if key:sub(1, 24) == "common_char_select_scene" 
         or key:sub(1, 22) == "draw_char_select_scene" 
-        or key:sub(1, 22) == "load_char_select_scene" 
-        or key:sub(1, 24) == "unload_char_select_scene" 
         or key:sub(1, 24) == "preset_char_select_scene" 
         or key:sub(1, 24) == "update_char_select_scene"
         or key:sub(1, 34) == "state_machine_UI_char_select_scene" 

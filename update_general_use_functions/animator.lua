@@ -62,12 +62,6 @@ function frame_animator(obj,anim)
     obj[anim_change_prop] = current_value
     obj["FCT"][anim_change_prop] = current_time
 
-    -- debug 用数据更新
-    -- if current_time ~= 0 then
-    --     obj["debug_executed_FCT"][anim_change_prop] = current_time - 1
-    -- else
-    --     obj["debug_executed_FCT"][anim_change_prop] = anim_length
-    -- end
 end
 
 function init_frame_anim_with(obj,anim)
@@ -151,13 +145,6 @@ function point_linear_animator(obj,anim)
     obj[anim_change_prop] = current_value
     obj["LCT"][anim_change_prop] = current_time
     obj["LCD"][anim_change_prop] = current_delta
-
-    -- -- debug 用数据更新
-    -- if current_time ~= 0 then
-    --     obj["debug_executed_LCT"][anim_change_prop] = current_time - 1
-    -- else
-    --     obj["debug_executed_LCT"][anim_change_prop] = anim_length
-    -- end
 
 end
 

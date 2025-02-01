@@ -244,8 +244,6 @@ function unload_start_select_scene_require()
     for key in pairs(_G) do
         if key:sub(1, 18) == "update_start_scene" 
         or key:sub(1, 16) == "draw_start_scene" 
-        or key:sub(1, 16) == "load_start_scene" 
-        or key:sub(1, 18) == "unload_start_scene" 
         or key:sub(1, 18) == "preset_start_scene" 
         or key:sub(1, 28) == "state_machine_UI_start_scene"
         then -- 检查变量名是否以 "prefix_" 开头
