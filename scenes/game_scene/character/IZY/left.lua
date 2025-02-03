@@ -1,6 +1,7 @@
 function load_game_scene_char_obj_LP()
     -- x y z opacity sx sy r f
     obj_char_game_scene_char_LP = {-325, 120, 0, -1, 1, 1, 0, 0}
+    obj_char_game_scene_char_LP["f"] = 0
     obj_char_game_scene_char_LP["width"] = 400
     obj_char_game_scene_char_LP["height"] = 500
     obj_char_game_scene_char_LP["velocity"] = {0,0}
@@ -19,7 +20,7 @@ function load_game_scene_char_obj_LP()
 
 end
 
-function order_load_game_scene_char_LP_idle_frames(load_order)
+function order_load_game_scene_char_LP_frames(load_order)
     local local_switch = 
     {
         [1] = function()
@@ -46,18 +47,21 @@ function order_load_game_scene_char_LP_idle_frames(load_order)
 end
 
 function load_game_scene_char_anim_LP()
+    -- 站姿待机动画
     anim_character_stand_idle_LP = {}
-    anim_character_stand_idle_LP["length"] = 119
-    anim_character_stand_idle_LP["loop"] = false
     anim_character_stand_idle_LP[0] = function() 
         obj_char_game_scene_char_LP[8] = 0
         obj_char_game_scene_char_LP["knife_limb_pos"] = {0,0}
     end
     for i = 1,16 do
         anim_character_stand_idle_LP[i*7] = function()
-            common_game_scene_frame_adder(obj_char_game_scene_char_LP)
-            obj_char_game_scene_char_LP["knife_limb_pos"] = {0,0}
+            obj_char_game_scene_char_LP[8] = i
         end
+    end
+    anim_character_stand_idle_LP[17*7] = function()
+        obj_char_game_scene_char_LP["f"] = 0
+        obj_char_game_scene_char_LP[8] = 0
+        obj_char_game_scene_char_LP["knife_limb_pos"] = {0,0}
     end
 
 end

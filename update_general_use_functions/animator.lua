@@ -166,20 +166,12 @@ function get_point_linear_anim_end_state(obj,anim)
 end
 
 function character_animator(obj,anim)
-    local anim_length = anim["length"]
-    local anim_loop = anim["loop"]
-    local key_frame_funciton = anim[current_time]
+    local key_frame_funciton = anim[obj["f"]]
 
     if key_frame_funciton then 
         key_frame_funciton()
-    end    
+    end
     
-    if current_time <= anim_length then
-        current_time = current_time + 1
-    end
-
-    if anim_loop and current_time > anim_length  then
-        current_time = 0
-    end
+    obj["f"] = obj["f"] + 1
 
 end

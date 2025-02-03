@@ -13,8 +13,8 @@ function load_game_scene_prep()
     INDEX_ARGUMENT = {nil,nil,nil}
     ASSET_DATA_TABLE = {}   -- 保持为nil
     ORDER_LOAD_TABLE = {
-        order_load_game_scene_char_LP_idle_frames,
-        order_load_game_scene_char_RP_idle_frames,
+        order_load_game_scene_char_LP_frames,
+        order_load_game_scene_char_RP_frames,
         order_load_game_scene_stage,
     }    -- load function table
     CURRENT_ORDER_TABLE = {1,1,1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
@@ -29,7 +29,10 @@ function load_game_scene_prep()
 end
 
 function load_game_scene_require(LP_name,RP_name,stage_name)
-    
+    require_all_in_folder("scenes/game_scene/_common")
+    require("scenes/game_scene/character/" .. LP_name .. "/left.lua")
+    require("scenes/game_scene/character/" .. RP_name .. "/right.lua")
+    require("scenes/game_scene/stage/" .. stage_name .. ".lua")
 end
 
 function load_game_scene_thread_table(LP_name,RP_name,stage_name)
