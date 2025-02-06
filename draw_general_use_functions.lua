@@ -103,7 +103,7 @@ function draw_3d_image_table(camera,obj,image_table)
     }
 
     love.graphics.setColor(1, 1, 1, opacity)
-    love.graphics.draw(image_table[8],cood_res[1],cood_res[2],r,sx*scale,sy*scale)
+    love.graphics.draw(image_table[f],cood_res[1],cood_res[2],r,sx*scale,sy*scale)
     love.graphics.setColor(1, 1, 1, 1)
 
 end
