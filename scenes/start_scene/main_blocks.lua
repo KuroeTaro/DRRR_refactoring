@@ -165,7 +165,7 @@ function update_start_scene_main()
     elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then 
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_to_main)
-        local local_switch = {
+        local switch = {
             [0] = function()
                 SCENE_TIMER = 0
 
@@ -391,7 +391,7 @@ function update_start_scene_main()
 
             end
         }
-        local thisFunction = local_switch[OPTION_ID]
+        local thisFunction = switch[OPTION_ID]
         if thisFunction then 
             thisFunction() 
         end
@@ -447,7 +447,7 @@ function update_start_scene_flash_out()
         SCENE_TIMER = 0
         -- 初始化此出口所需属性 但是目前没有
         -- 初始化此出口所需要的动画机 但是目前没有
-        local local_switch = {
+        local switch = {
             [0] = function()
                 load_char_select_scene_prep()
                 load_scene_prep_routine()
@@ -471,7 +471,7 @@ function update_start_scene_flash_out()
             end
         }
 
-        local this_function = local_switch[OPTION_ID]
+        local this_function = switch[OPTION_ID]
         if this_function then this_function() end
 
     end
@@ -499,6 +499,11 @@ function update_start_scene_option_twitch()
         obj_UI_start_scene_option_text,
         anim_UI_point_linear_start_scene_option_text_twitch_x
     )
+    if(SCENE_TIMER>=5 and not get_point_linear_anim_end_state(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_option_text_twitch_x)) then
+        print("got ya")
+        print("scene_timer:",SCENE_TIMER)
+        print("obj_UI_start_scene_option_text_end:",get_point_linear_anim_end_state(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_option_text_twitch_x))
+    end
 
     -- 场景出口
     if SCENE_TIMER >= 5 then
@@ -683,7 +688,7 @@ function update_start_scene_config_main()
     elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
         SCENE_TIMER = 0
 
-        local local_switch = {
+        local switch = {
             [0] = function()
                 -- audio config
 
@@ -884,7 +889,7 @@ function update_start_scene_config_main()
             end
         }
 
-        local thisFunction = local_switch[SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID]
+        local thisFunction = switch[SUB_SCENE_CONIFG_MAIN_DABO_TRIG_ID]
         if thisFunction then 
             thisFunction() 
         end
@@ -1202,12 +1207,12 @@ function update_start_scene_config_audio_main()
         obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_VOLUME*23
 
         -- 仅此出口使用所需table
-        local local_alpha_bar_table = {
+        local alpha_bar_table = {
             obj_UI_start_scene_config_audio_BGM_bar_alpha,
             obj_UI_start_scene_config_audio_SFX_bar_alpha
         }
 
-        local local_volume_table = {
+        local volume_table = {
             BGM_VOLUME,
             SFX_VOLUME
         }
@@ -1218,18 +1223,18 @@ function update_start_scene_config_audio_main()
             anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x
         )
 
-        if local_volume_table[AUDIO_BAR_MARK_ID+1] > 0 then
+        if volume_table[AUDIO_BAR_MARK_ID+1] > 0 then
             -- 带 alpha
             -- 初始化此出口所需要的动画机
             init_point_linear_anim_with(
-                local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+                alpha_bar_table[AUDIO_BAR_MARK_ID+1],
                 anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x
             )
 
             -- 更新BGM SFX volume
-            local_volume_table[AUDIO_BAR_MARK_ID+1] = local_volume_table[AUDIO_BAR_MARK_ID+1] - 1
-            BGM_VOLUME = local_volume_table[1]
-            SFX_VOLUME = local_volume_table[2]
+            volume_table[AUDIO_BAR_MARK_ID+1] = volume_table[AUDIO_BAR_MARK_ID+1] - 1
+            BGM_VOLUME = volume_table[1]
+            SFX_VOLUME = volume_table[2]
 
             update_start_scene_config_audio_main_update_volume()
 
@@ -1256,12 +1261,12 @@ function update_start_scene_config_audio_main()
         obj_UI_start_scene_config_audio_SFX_bar_alpha[1] = SFX_VOLUME*23
 
         -- 仅此出口使用所需table
-        local local_alpha_bar_table = {
+        local alpha_bar_table = {
             obj_UI_start_scene_config_audio_BGM_bar_alpha,
             obj_UI_start_scene_config_audio_SFX_bar_alpha
         }
 
-        local local_volume_table = {
+        local volume_table = {
             BGM_VOLUME,
             SFX_VOLUME
         }
@@ -1272,18 +1277,18 @@ function update_start_scene_config_audio_main()
             anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x
         )
 
-        if local_volume_table[AUDIO_BAR_MARK_ID+1] < 10 then
+        if volume_table[AUDIO_BAR_MARK_ID+1] < 10 then
             -- 带 alpha
             -- 初始化此出口所需要的动画机
             init_point_linear_anim_with(
-                local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+                alpha_bar_table[AUDIO_BAR_MARK_ID+1],
                 anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x
             )
-            local_volume_table[AUDIO_BAR_MARK_ID+1] = local_volume_table[AUDIO_BAR_MARK_ID+1] + 1
+            volume_table[AUDIO_BAR_MARK_ID+1] = volume_table[AUDIO_BAR_MARK_ID+1] + 1
 
             -- 更新BGM SFX volume
-            BGM_VOLUME = local_volume_table[1]
-            SFX_VOLUME = local_volume_table[2]
+            BGM_VOLUME = volume_table[1]
+            SFX_VOLUME = volume_table[2]
             update_start_scene_config_audio_main_update_volume()
             
             -- 更新 current_update_block
@@ -1446,7 +1451,7 @@ function update_start_scene_config_audio_bar_mark_twtich_left_with_alpha()
     )
 
     -- 仅此出口使用所需table
-    local local_alpha_bar_table = {
+    local alpha_bar_table = {
         obj_UI_start_scene_config_audio_BGM_bar_alpha,
         obj_UI_start_scene_config_audio_SFX_bar_alpha
     }
@@ -1456,7 +1461,7 @@ function update_start_scene_config_audio_bar_mark_twtich_left_with_alpha()
         anim_UI_point_linear_start_scene_config_audio_bar_mark_left_x
     )
     point_linear_animator(
-        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+        alpha_bar_table[AUDIO_BAR_MARK_ID+1],
         anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_left_23_x
     )
 
@@ -1471,12 +1476,12 @@ function update_start_scene_config_audio_bar_mark_twtich_left_with_alpha()
         BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
 
         -- 仅此出口使用所需table
-        local local_volume_table = {
+        local volume_table = {
             BGM_VOLUME,
             SFX_VOLUME
         }
 
-        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1][1] = local_volume_table[AUDIO_BAR_MARK_ID+1]*23
+        alpha_bar_table[AUDIO_BAR_MARK_ID+1][1] = volume_table[AUDIO_BAR_MARK_ID+1]*23
 
         -- 初始化此出口所需要的动画机 但是目前没有
 
@@ -1536,7 +1541,7 @@ function update_start_scene_config_audio_bar_mark_twtich_right_with_alpha()
     )
 
     -- 仅此出口使用所需table
-    local local_alpha_bar_table = {
+    local alpha_bar_table = {
         obj_UI_start_scene_config_audio_BGM_bar_alpha,
         obj_UI_start_scene_config_audio_SFX_bar_alpha
     }
@@ -1546,7 +1551,7 @@ function update_start_scene_config_audio_bar_mark_twtich_right_with_alpha()
         anim_UI_point_linear_start_scene_config_audio_bar_mark_right_x
     )
     point_linear_animator(
-        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1],
+        alpha_bar_table[AUDIO_BAR_MARK_ID+1],
         anim_UI_point_linear_start_scene_config_audio_general_bar_alpha_right_23_x
     )
 
@@ -1561,12 +1566,12 @@ function update_start_scene_config_audio_bar_mark_twtich_right_with_alpha()
         BAR_MARK_CONFIG_SUB_SCENE_AUDIO_Y_POSITION_TABLE[AUDIO_BAR_MARK_ID+1]
 
         -- 仅此出口使用所需table
-        local local_volume_table = {
+        local volume_table = {
             BGM_VOLUME,
             SFX_VOLUME
         }
 
-        local_alpha_bar_table[AUDIO_BAR_MARK_ID+1][1] = local_volume_table[AUDIO_BAR_MARK_ID+1]*23
+        alpha_bar_table[AUDIO_BAR_MARK_ID+1][1] = volume_table[AUDIO_BAR_MARK_ID+1]*23
 
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_audio_main

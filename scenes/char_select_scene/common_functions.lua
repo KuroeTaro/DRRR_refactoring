@@ -15,8 +15,8 @@ function common_char_select_scene_reset_char_text_flash_out(obj_char,obj_text,ob
         obj_text[2] = RIGHT_CHAR_SELECT_TEXT_POSITION[id][2]
         obj_text[7] = RIGHT_CHAR_SELECT_TEXT_POSITION[id][3]
     end
-    obj_icon_cover[4] = 0.1
-    init_point_linear_anim_with(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0)
+    obj_icon_cover[4] = 0.5
+    init_point_linear_anim_with(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p5_0)
 end
 
 function common_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj_icon_cover,input_id)
@@ -40,7 +40,7 @@ function common_char_select_scene_reset_char_text_flash_in(obj_char,obj_text,obj
     obj_icon_cover[2] = ICON_COVER_POSITION[id][2]
     obj_icon_cover[8] = id
     obj_icon_cover[4] = 0
-    init_point_linear_anim_with(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1)
+    init_point_linear_anim_with(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p5)
 end
 
 function common_char_select_scene_char_select_left_locked_exit()

@@ -1,12 +1,12 @@
 function draw_char_select_scene_flash_in_0f_36f()
+    draw_2d_image_table(
+        obj_UI_char_select_scene_start_0f_110f,
+        image_table_UI_char_select_scene_start_0_110f
+    )
     love.graphics.setBlendMode("add")
     draw_2d_image_table(
         obj_UI_char_select_scene_movie_cover,
         image_table_UI_char_select_scene_movie_cover
-    )
-    draw_2d_image_table(
-        obj_UI_char_select_scene_first_ring,
-        image_table_UI_char_select_scene_first_ring
     )
     love.graphics.setBlendMode("alpha")
     draw_solid(obj_UI_char_select_scene_black_solid)
@@ -14,53 +14,24 @@ function draw_char_select_scene_flash_in_0f_36f()
 end
 
 function draw_char_select_scene_flash_in_36f_40f()
-    draw_solid(obj_UI_char_select_scene_white_solid)
+    draw_2d_image_table(
+        obj_UI_char_select_scene_start_0f_110f,
+        image_table_UI_char_select_scene_start_0_110f
+    )
+    love.graphics.setBlendMode("add")
+    draw_2d_image_table(
+        obj_UI_char_select_scene_movie_cover,
+        image_table_UI_char_select_scene_movie_cover
+    )
+    love.graphics.setBlendMode("alpha")
 
 end
 
-function draw_char_select_scene_flash_in_40f_2s10f()
-
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_SRT,
-        image_table_UI_char_select_scene_char_icon_image[8],
-        image_table_UI_char_select_scene_char_icon_alpha[8]
+function draw_char_select_scene_flash_in_40f_130f()
+    draw_2d_image_table(
+        obj_UI_char_select_scene_start_0f_110f,
+        image_table_UI_char_select_scene_start_0_110f
     )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_SHINRA,
-        image_table_UI_char_select_scene_char_icon_image[7],
-        image_table_UI_char_select_scene_char_icon_alpha[7]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_CKG,
-        image_table_UI_char_select_scene_char_icon_image[6],
-        image_table_UI_char_select_scene_char_icon_alpha[6]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_SZO,
-        image_table_UI_char_select_scene_char_icon_image[5],
-        image_table_UI_char_select_scene_char_icon_alpha[5]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_IZY,
-        image_table_UI_char_select_scene_char_icon_image[4],
-        image_table_UI_char_select_scene_char_icon_alpha[4]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_ANRI,
-        image_table_UI_char_select_scene_char_icon_image[3],
-        image_table_UI_char_select_scene_char_icon_alpha[3]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_KTC,
-        image_table_UI_char_select_scene_char_icon_image[2],
-        image_table_UI_char_select_scene_char_icon_alpha[2]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_ERIKAWK3,
-        image_table_UI_char_select_scene_char_icon_image[1],
-        image_table_UI_char_select_scene_char_icon_alpha[1]
-    )
-
     draw_2d_image(
         obj_UI_char_select_scene_icon_select_L,
         image_table_UI_char_select_scene_char_icon_alpha[obj_UI_char_select_scene_icon_select_L[8]]
@@ -72,12 +43,6 @@ function draw_char_select_scene_flash_in_40f_2s10f()
             image_table_UI_char_select_scene_char_icon_alpha[obj_UI_char_select_scene_icon_select_R[8]]
         )
     end
-
-    draw_2d_image(
-        obj_UI_char_select_scene_char_select_bg,
-        image_UI_char_select_scene_char_select_bg
-    )
-
     draw_char_select_scene_char_select_LR(1)
     draw_char_select_scene_char_select_LR(2)
 
@@ -106,12 +71,12 @@ function draw_char_select_scene_flash_in_40f_2s10f()
         image_table_UI_char_select_scene_number
     )
 
-    draw_char_select_scene_second_glow(obj_UI_char_select_scene_second_glow)
+    draw_char_select_scene_glow(obj_UI_char_select_scene_glow)
 
     love.graphics.setBlendMode("add")
     draw_2d_image(
-        obj_UI_char_select_scene_second_ring,
-        image_UI_char_select_scene_second_ring
+        obj_UI_char_select_scene_ring,
+        image_UI_char_select_scene_ring
     )
     draw_2d_image_table(
         obj_UI_char_select_scene_movie_cover,
@@ -119,53 +84,13 @@ function draw_char_select_scene_flash_in_40f_2s10f()
     )
     love.graphics.setBlendMode("alpha")
 
-    draw_solid(obj_UI_char_select_scene_white_solid)
-
 end
 
 function draw_char_select_scene_main()
-
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_SRT,
-        image_table_UI_char_select_scene_char_icon_image[8],
-        image_table_UI_char_select_scene_char_icon_alpha[8]
+    draw_2d_image_table(
+        obj_UI_char_select_scene_start_0f_110f,
+        image_table_UI_char_select_scene_start_0_110f
     )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_SHINRA,
-        image_table_UI_char_select_scene_char_icon_image[7],
-        image_table_UI_char_select_scene_char_icon_alpha[7]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_CKG,
-        image_table_UI_char_select_scene_char_icon_image[6],
-        image_table_UI_char_select_scene_char_icon_alpha[6]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_SZO,
-        image_table_UI_char_select_scene_char_icon_image[5],
-        image_table_UI_char_select_scene_char_icon_alpha[5]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_IZY,
-        image_table_UI_char_select_scene_char_icon_image[4],
-        image_table_UI_char_select_scene_char_icon_alpha[4]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_ANRI,
-        image_table_UI_char_select_scene_char_icon_image[3],
-        image_table_UI_char_select_scene_char_icon_alpha[3]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_KTC,
-        image_table_UI_char_select_scene_char_icon_image[2],
-        image_table_UI_char_select_scene_char_icon_alpha[2]
-    )
-    draw_char_select_scene_char_icon(
-        obj_UI_char_select_scene_icon_ERIKAWK3,
-        image_table_UI_char_select_scene_char_icon_image[1],
-        image_table_UI_char_select_scene_char_icon_alpha[1]
-    )
-
     draw_2d_image(
         obj_UI_char_select_scene_icon_select_L,
         image_table_UI_char_select_scene_char_icon_alpha[obj_UI_char_select_scene_icon_select_L[8]]
@@ -177,11 +102,6 @@ function draw_char_select_scene_main()
             image_table_UI_char_select_scene_char_icon_alpha[obj_UI_char_select_scene_icon_select_R[8]]
         )
     end
-
-    draw_2d_image(
-        obj_UI_char_select_scene_char_select_bg,
-        image_UI_char_select_scene_char_select_bg
-    )
 
     draw_char_select_scene_char_select_LR(1)
     draw_char_select_scene_char_select_LR(2)
@@ -211,12 +131,12 @@ function draw_char_select_scene_main()
         image_table_UI_char_select_scene_number
     )
 
-    draw_char_select_scene_second_glow(obj_UI_char_select_scene_second_glow)
+    draw_char_select_scene_glow(obj_UI_char_select_scene_glow)
 
     love.graphics.setBlendMode("add")
     draw_2d_image(
-        obj_UI_char_select_scene_second_ring,
-        image_UI_char_select_scene_second_ring
+        obj_UI_char_select_scene_ring,
+        image_UI_char_select_scene_ring
     )
     draw_2d_image_table(
         obj_UI_char_select_scene_movie_cover,
@@ -240,7 +160,7 @@ function draw_char_select_scene_timer(obj,image_table)
 
 end
 
-function draw_char_select_scene_second_glow(obj,f_shader,r_shader)
+function draw_char_select_scene_glow(obj,f_shader,r_shader)
     local x = resolution_correction(obj[1])
     local y = resolution_correction(obj[2])
     local sx = resolution_correction(obj[5])
@@ -288,32 +208,6 @@ function draw_char_select_scene_second_glow(obj,f_shader,r_shader)
     love.graphics.draw(canvas_alpha_comp,x,y,0,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.setBlendMode("alpha")
-
-end
-
-function draw_char_select_scene_char_icon(obj,image,alpha)
-    local x = resolution_correction(obj[1])
-    local y = resolution_correction(obj[2])
-    local sx = resolution_correction(obj[5])
-    local sy = resolution_correction(obj[6])
-    local opacity = obj[4]
-    local image_x = obj["image_x"]
-
-    if opacity == 0 then
-        return
-    end
-
-    canvas = love.graphics.newCanvas(w,h)
-
-    love.graphics.setCanvas(canvas) 
-    love.graphics.draw(image,image_x,0)
-    love.graphics.setBlendMode('multiply', 'premultiplied')
-    love.graphics.draw(alpha)
-    love.graphics.setBlendMode('alpha', 'alphamultiply')
-    love.graphics.setCanvas()
-    love.graphics.setColor(1, 1, 1, opacity)
-    love.graphics.draw(canvas,x,y,0,sx,sy)
-    love.graphics.setColor(1, 1, 1, 1)
 
 end
 

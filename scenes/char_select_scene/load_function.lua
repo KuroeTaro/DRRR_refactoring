@@ -1,7 +1,7 @@
 -- thread_table 线程table正常放
 -- thread_amount 从1开始数有多少就是多少
 -- thread_once_table thread_amount量的false
--- asset_data_table = {}
+-- ASSET_DATA = {}
 -- load_functions_table 每个thread对应一个 load function
 -- CURRENT_ORDER_TABLE 全是 1
 -- order_size_table 对应 每个具体的 load_function的 order最大值
@@ -9,16 +9,15 @@ function load_char_select_scene_prep()
     load_char_select_scene_require()
     THREAD_TABLE = {
         "threads/char_select_scene/char_select_thread_1_char.lua",
-        "threads/char_select_scene/char_select_thread_2_first_ring.lua",
+        "threads/char_select_scene/char_select_thread_2_start_0_110f.lua",
         "threads/char_select_scene/char_select_thread_3_movie_cover.lua",
     }
     THREAD_AMOUNT = 3   -- 线程数目
     THREAD_ONCE_TABLE = {false,false,false} -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
-    INDEX_ARGUMENT = {nil,nil,nil}
-    ASSET_DATA_TABLE = {}   -- 保持为nil
+    ASSET_DATA = {}   -- 保持为nil
     ORDER_LOAD_TABLE = {
         order_load_char_select_scene_UI_char,
-        order_load_char_select_scene_UI_first_ring,
+        order_load_char_select_scene_UI_start_0_110f,
         order_load_char_select_scene_UI_movie_cover,
     }    -- load function table
     CURRENT_ORDER_TABLE = {1,1,1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
@@ -34,52 +33,52 @@ end
 
 -- 分步骤将素材加载
 function order_load_char_select_scene_UI_char(load_order)
-    local local_switch = 
+    local switch = 
     {
         [1] = function()
             -- global use shape image
-            image_UI_char_select_scene_bar_mark = love.graphics.newImage(ASSET_DATA_TABLE[1][1])
-            image_UI_char_select_scene_char_select_bg = love.graphics.newImage(ASSET_DATA_TABLE[1][2])
-            image_UI_char_select_scene_char_select_left_alpha = love.graphics.newImage(ASSET_DATA_TABLE[1][3])
-            image_UI_char_select_scene_char_select_right_alpha = love.graphics.newImage(ASSET_DATA_TABLE[1][4])
-            image_UI_char_select_scene_control_method_L = love.graphics.newImage(ASSET_DATA_TABLE[1][5])
-            image_UI_char_select_scene_control_method_R = love.graphics.newImage(ASSET_DATA_TABLE[1][6])
-            image_UI_char_select_scene_second_ring = love.graphics.newImage(ASSET_DATA_TABLE[1][7])
+            image_UI_char_select_scene_bar_mark = love.graphics.newImage(ASSET_DATA[1][1])
+            -- image_UI_char_select_scene_char_select_bg = love.graphics.newImage(ASSET_DATA[1][2])
+            image_UI_char_select_scene_char_select_left_alpha = love.graphics.newImage(ASSET_DATA[1][2])
+            image_UI_char_select_scene_char_select_right_alpha = love.graphics.newImage(ASSET_DATA[1][3])
+            image_UI_char_select_scene_control_method_L = love.graphics.newImage(ASSET_DATA[1][4])
+            image_UI_char_select_scene_control_method_R = love.graphics.newImage(ASSET_DATA[1][5])
+            image_UI_char_select_scene_ring = love.graphics.newImage(ASSET_DATA[1][6])
 
-            -- char icon alpha image name
+            -- -- char icon alpha image name
             image_table_UI_char_select_scene_char_icon_alpha = {}
             for i = 1,8 do
-                image_table_UI_char_select_scene_char_icon_alpha[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+7])
+                image_table_UI_char_select_scene_char_icon_alpha[i] = love.graphics.newImage(ASSET_DATA[1][i+6])
             end
 
-            image_table_UI_char_select_scene_char_icon_image = {}
-            for i = 1,8 do
-                image_table_UI_char_select_scene_char_icon_image[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+15])
-            end
+            -- image_table_UI_char_select_scene_char_icon_image = {}
+            -- for i = 1,8 do
+            --     image_table_UI_char_select_scene_char_icon_image[i] = love.graphics.newImage(ASSET_DATA[1][i+15])
+            -- end
 
             image_table_UI_char_select_scene_char_select_char = {}
             for i = 1,8 do
-                image_table_UI_char_select_scene_char_select_char[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+23])
+                image_table_UI_char_select_scene_char_select_char[i] = love.graphics.newImage(ASSET_DATA[1][i+14])
             end
 
             image_table_UI_char_select_scene_char_select_text_left = {}
             for i = 1,8 do
-                image_table_UI_char_select_scene_char_select_text_left[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+31])
+                image_table_UI_char_select_scene_char_select_text_left[i] = love.graphics.newImage(ASSET_DATA[1][i+22])
             end
 
             image_table_UI_char_select_scene_char_select_text_right = {}
             for i = 1,3 do
-                image_table_UI_char_select_scene_char_select_text_right[i] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+39])
+                image_table_UI_char_select_scene_char_select_text_right[i] = love.graphics.newImage(ASSET_DATA[1][i+30])
             end
-            image_table_UI_char_select_scene_char_select_text_right[4] = love.graphics.newImage(ASSET_DATA_TABLE[1][35])
-            image_table_UI_char_select_scene_char_select_text_right[5] = love.graphics.newImage(ASSET_DATA_TABLE[1][36])
+            image_table_UI_char_select_scene_char_select_text_right[4] = love.graphics.newImage(ASSET_DATA[1][26])
+            image_table_UI_char_select_scene_char_select_text_right[5] = love.graphics.newImage(ASSET_DATA[1][27])
             for i = 1,3 do
-                image_table_UI_char_select_scene_char_select_text_right[i+5] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+42])
+                image_table_UI_char_select_scene_char_select_text_right[i+5] = love.graphics.newImage(ASSET_DATA[1][i+33])
             end
 
             image_table_UI_char_select_scene_number = {}
             for i = 1,10 do
-                image_table_UI_char_select_scene_number[i-1] = love.graphics.newImage(ASSET_DATA_TABLE[1][i+45])
+                image_table_UI_char_select_scene_number[i-1] = love.graphics.newImage(ASSET_DATA[1][i+36])
             end
         end,
         [2] = function()
@@ -90,60 +89,66 @@ function order_load_char_select_scene_UI_char(load_order)
             
         end,
     }
-    local this_function = local_switch[load_order]
+    local this_function = switch[load_order]
     if this_function then this_function() end
 
 end
 
-function order_load_char_select_scene_UI_first_ring(load_order)
-    local local_switch = 
+function order_load_char_select_scene_UI_start_0_110f(load_order)
+    local switch = 
     {
         [1] = function()
-            image_table_UI_char_select_scene_first_ring = {}
-            for i = 0,17 do
-                image_table_UI_char_select_scene_first_ring[i] = love.graphics.newImage(ASSET_DATA_TABLE[2][i+1])
+            image_table_UI_char_select_scene_start_0_110f = {}
+            for i = 1,111 do
+                image_table_UI_char_select_scene_start_0_110f[i-1] = love.graphics.newImage(ASSET_DATA[2][i])
             end
         end,
     }
-    local this_function = local_switch[load_order]
+    local this_function = switch[load_order]
     if this_function then this_function() end
 
 end
 
 function order_load_char_select_scene_UI_movie_cover(load_order)
-    local local_switch = 
+    local switch = 
     {
         [1] = function()
             image_table_UI_char_select_scene_movie_cover = {}
             for i = 0,9 do
-                image_table_UI_char_select_scene_movie_cover[i] = love.graphics.newImage(ASSET_DATA_TABLE[3][i+1])
+                image_table_UI_char_select_scene_movie_cover[i] = love.graphics.newImage(ASSET_DATA[3][i+1])
             end
         end,
     }
-    local this_function = local_switch[load_order]
+    local this_function = switch[load_order]
     if this_function then this_function() end
 
 end
 
 
 function unload_char_select_scene_image()
-    image_UI_char_select_scene_bar_mark = nil
-    image_UI_char_select_scene_char_select_bg = nil
-    image_UI_char_select_scene_char_select_left_alpha = nil
-    image_UI_char_select_scene_char_select_right_alpha = nil
-    image_UI_char_select_scene_control_method_L = nil
-    image_UI_char_select_scene_control_method_R = nil
-    image_UI_char_select_scene_second_ring = nil
+    for key in pairs(_G) do
+        if key:sub(1, 26) == "image_UI_char_select_scene" 
+        or key:sub(1, 32) == "image_table_UI_char_select_scene" 
+        then -- 检查变量名是否以 "prefix_" 开头
+            _G[key] = nil -- 删除该变量
+        end
+    end
 
-    image_table_UI_char_select_scene_char_icon_alpha = nil
-    image_table_UI_char_select_scene_char_icon_image = nil
-    image_table_UI_char_select_scene_char_select_char = nil
-    image_table_UI_char_select_scene_char_select_text_left = nil
-    image_table_UI_char_select_scene_char_select_text_right = nil
-    image_table_UI_char_select_scene_number = nil
+    -- image_UI_char_select_scene_bar_mark = nil
+    -- image_UI_char_select_scene_char_select_left_alpha = nil
+    -- image_UI_char_select_scene_char_select_right_alpha = nil
+    -- image_UI_char_select_scene_control_method_L = nil
+    -- image_UI_char_select_scene_control_method_R = nil
+    -- image_UI_char_select_scene_ring = nil
 
-    image_table_UI_char_select_scene_first_ring = nil
-    image_table_UI_char_select_scene_movie_cover = nil
+    -- image_table_UI_char_select_scene_char_select_char = nil
+    -- image_table_UI_char_select_scene_char_select_text_left = nil
+    -- image_table_UI_char_select_scene_char_select_text_right = nil
+    -- image_table_UI_char_select_scene_number = nil
+    -- image_table_UI_char_select_scene_char_icon_alpha = nil
+
+    -- image_table_UI_char_select_scene_start_0_110f = nil
+    -- image_table_UI_char_select_scene_movie_cover = nil
 
 end
 
@@ -181,7 +186,7 @@ function unload_char_select_scene_require()
     -- draw_char_select_scene_flash_in_40f_2s10f = nil
     -- draw_char_select_scene_main = nil
     -- draw_char_select_scene_timer = nil
-    -- draw_char_select_scene_second_glow = nil
+    -- draw_char_select_scene_glow = nil
     -- draw_char_select_scene_char_icon = nil
     -- draw_char_select_scene_char_select_LR = nil
 
@@ -205,7 +210,7 @@ function unload_char_select_scene_require()
 
     -- state_machine_UI_char_select_scene_movie_cover_loop = nil
     -- state_machine_UI_char_select_scene_timer = nil
-    -- state_machine_UI_char_select_scene_second_ring_blink = nil
+    -- state_machine_UI_char_select_scene_ring_blink = nil
     -- state_machine_UI_char_select_scene_char_select = nil
     -- state_machine_UI_char_select_scene_char_select_flash_anim = nil
     -- state_machine_UI_char_select_scene_char_select_bar_mark_select = nil

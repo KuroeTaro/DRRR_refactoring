@@ -13,10 +13,12 @@ function love.conf(t)
 
     -- t.window.width = 1600
     -- t.window.height = 900
-    t.window.vsync = 0
+    t.window.title = "DRRR.ver.1/8.002"
+    t.window.vsync = 1
     t.modules.physics = false 
     t.modules.touch = false 
     t.modules.video = false
     t.modules.math = false
     t.modules.mouse = false
+
 end

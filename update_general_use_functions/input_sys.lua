@@ -165,33 +165,33 @@ function update_controller()
 end
 
 --获得所有指令的现在布尔值和上一帧布尔值（键盘）
-function get_INPUT_SYS_CURRENT_COMMAND(LOCAL_INPUT_SYS_CURRENT_COMMAND,joystick)
+function get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND,joystick)
     --(键盘)
     if joystick == nil then
         for i = 1,16 do
             if love.keyboard.isDown(INPUT_SYS_KEY_TABLE[i]) then
-                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
-            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
     else
         for i = 1,12 do
             if get_joystick_buttom_command(joystick,INPUT_SYS_BUTTON_TABLE[i]) then
-                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
-            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
 
         for i = 1,2 do
             if get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) > 0.2 then
-                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 1
-            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
             end
         end
         for i = 1,2 do
             if get_joystick_buttom_command(joystick,INPUT_SYS_STICK_TABLE[i]) then
-                LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 1
-            else LOCAL_INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 0
+                INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 1
+            else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 0
             end
         end
     end
@@ -200,7 +200,7 @@ end
 --输入状态机
 function state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE,INPUT_SYS_CURRENT_COMMAND)
     for i=1,16 do
-        local local_switch = 
+        local switch = 
         {
             ["Released"] = function()
                 if INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] == 1 then 
@@ -227,7 +227,7 @@ function state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE,INPUT_SYS_CURRENT_C
                 end
             end
         }
-        local this_function = local_switch[INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]]]
+        local this_function = switch[INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]]]
         if this_function then this_function() end
     end
 end

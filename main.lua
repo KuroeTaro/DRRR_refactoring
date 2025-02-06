@@ -17,67 +17,69 @@ require("scenes/start_scene/load_function")
 require("scenes/start_scene/init")
 require("scenes/char_select_scene/load_function")
 require("scenes/char_select_scene/init")
+require("scenes/game_scene/_common/load_function")
+require("scenes/game_scene/_common/init")
 
-function love.run()
-	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
+-- function love.run()
+-- 	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
 
-	-- We don't want the first frame's dt to include time taken by love.load.
-	if love.timer then love.timer.step() end
+-- 	-- We don't want the first frame's dt to include time taken by love.load.
+-- 	if love.timer then love.timer.step() end
 
-	local dt = 0
-    local FRST = 1/60 --frame rate stabilization timer
-	-- global_counter = 0
+-- 	local dt = 0
+--     local FRST = 1/60 --frame rate stabilization timer
+-- 	-- global_counter = 0
 
-	-- Main loop time.
-	return function()
-		-- Process events.
-		if love.event then
-			love.event.pump()
-			for name, a,b,c,d,e,f in love.event.poll() do
-				if name == "quit" then
-					if not love.quit or not love.quit() then
-						return a or 0
-					end
-				end
-				love.handlers[name](a,b,c,d,e,f)
-			end
-		end
+-- 	-- Main loop time.
+-- 	return function()
+-- 		-- Process events.
+-- 		if love.event then
+-- 			love.event.pump()
+-- 			for name, a,b,c,d,e,f in love.event.poll() do
+-- 				if name == "quit" then
+-- 					if not love.quit or not love.quit() then
+-- 						return a or 0
+-- 					end
+-- 				end
+-- 				love.handlers[name](a,b,c,d,e,f)
+-- 			end
+-- 		end
 
-		-- Update dt, as we'll be passing it to update
-		if love.timer then FRST = FRST + love.timer.step() end
-        -- Call update and draw
-        if FRST >= 1/60 then
+-- 		-- Update dt, as we'll be passing it to update
+-- 		if love.timer then FRST = FRST + love.timer.step() end
+--         -- Call update and draw
+--         if FRST >= 1/60 then
 			
-			-- local updateStartTime = love.timer.getTime()
-			-- local cpu_heavy_task = function()
-			-- 	-- 模拟繁重的 CPU 运算，消耗时间
-			-- 	for i = 1, 100000 do
-			-- 		-- 频繁读写全局变量 100w次
-			-- 		global_counter = global_counter + 10
-			-- 		global_counter = global_counter - 10
-			-- 	end
-			-- end
-			-- cpu_heavy_task()
-			local s = love.timer.getTime()
-            if love.update then love.update() end -- will pass 0 if love.timer is disabled
+-- 			-- local updateStartTime = love.timer.getTime()
+-- 			-- local cpu_heavy_task = function()
+-- 			-- 	-- 模拟繁重的 CPU 运算，消耗时间
+-- 			-- 	for i = 1, 100000 do
+-- 			-- 		-- 频繁读写全局变量 100w次
+-- 			-- 		global_counter = global_counter + 10
+-- 			-- 		global_counter = global_counter - 10
+-- 			-- 	end
+-- 			-- end
+-- 			-- cpu_heavy_task()
+-- 			local s = love.timer.getTime()
+--             if love.update then love.update() end -- will pass 0 if love.timer is disabled
 
-            if love.draw then love.draw() end
-            love.graphics.present()
-			local gap = love.timer.getTime() - s 
-			if gap > 1/60 then
-				print("frame gaps:",gap)
-			end
+--             if love.draw then love.draw() end
+--             love.graphics.present()
+-- 			local gap = love.timer.getTime() - s 
+-- 			if gap > 1/60 then
+-- 				print("frame gaps:",gap)
+-- 			end
 
-			-- local updateEndTime = love.timer.getTime()
-			-- print(updateStartTime-updateEndTime)
+-- 			-- local updateEndTime = love.timer.getTime()
+-- 			-- print(updateStartTime-updateEndTime)
 
-            FRST = math.fmod(FRST, 1/60)
-        end
-		collectgarbage()
-		if love.timer then love.timer.sleep(0.001) end
-	end
+--             FRST = math.fmod(FRST, 1/60)
+--         end
+-- 		collectgarbage()
+-- 		if love.timer then love.timer.sleep(0.001) end
+-- 	end
 	
-end
+-- end
 
 function love.load()
 	init_input()
@@ -100,8 +102,7 @@ function love.load()
 	THREAD_TABLE = {}
     THREAD_AMOUNT = 0
     THREAD_ONCE_TABLE = {}
-	INDEX_ARGUMENT = {}
-    ASSET_DATA_TABLE = {}
+    ASSET_DATA = {}
     LOAD_FUNCTION_TABLE = {}
     LOAD_ORDER_TABLE = {}
     ORDER_SIZE_TABLE = {}
@@ -210,6 +211,7 @@ function love.update()
     FRAMES_DRAWN = FRAMES_DRAWN + 1
 	update_record_game_duration()
 	current_update_block()
+	collectgarbage()
 
 end
 function love.draw()

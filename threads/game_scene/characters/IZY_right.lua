@@ -1,0 +1,12 @@
+local filesys_module = require "love.filesystem"
+local image_module = require "love.image"
+local compress_module = image_module.newCompressedData
+local non_compress_module = love.image.newImageData
+local image_data = {}
+
+image_data["stand_idle"] = {}
+for i = 1,17 do
+    image_data["stand_idle"][i] = compress_module("asset/game_scene/characters/IZY/stand_idle/"..(i-1)..".dds")
+end
+
+love.thread.getChannel( 'image_2' ):push( image_data )

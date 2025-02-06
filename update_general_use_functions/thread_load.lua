@@ -4,8 +4,6 @@ function run_table_order_load()
     do
         if THREAD_ONCE_TABLE[i] == false then 
             local thread = love.thread.newThread(THREAD_TABLE[i])
-            local index_channel = love.thread.getChannel("input")
-            index_channel:push(INDEX_ARGUMENT[i])
             thread:start()
             THREAD_ONCE_TABLE[i] = true
         end
@@ -15,8 +13,8 @@ function run_table_order_load()
     i = 1
     while (i<=THREAD_AMOUNT)
     do
-        if ASSET_DATA_TABLE[i] == nil then 
-            ASSET_DATA_TABLE[i] = love.thread.getChannel("image_"..i..""):pop()
+        if ASSET_DATA[i] == nil then 
+            ASSET_DATA[i] = love.thread.getChannel("image_"..i..""):pop()
         end
         i = i + 1
     end
@@ -24,7 +22,7 @@ function run_table_order_load()
     i = 1
     while (i<=THREAD_AMOUNT)
     do
-        if ASSET_DATA_TABLE[i] ~= nil and LOAD_ONCE_TABLE[i] == false then
+        if ASSET_DATA[i] ~= nil and LOAD_ONCE_TABLE[i] == false then
             ORDER_LOAD_TABLE[i](CURRENT_ORDER_TABLE[i])
             CURRENT_ORDER_TABLE[i] = CURRENT_ORDER_TABLE[i] + 1
             if CURRENT_ORDER_TABLE[i] > ORDER_SIZE_TABLE[i] then 
@@ -42,8 +40,7 @@ function init_order_load_table()
     THREAD_TABLE = {}
     THREAD_AMOUNT = 0
     THREAD_ONCE_TABLE = {}
-    INDEX_ARGUMENT = {}
-    ASSET_DATA_TABLE = {}
+    ASSET_DATA = {}
     ORDER_LOAD_TABLE = {}
     CURRENT_ORDER_TABLE = {}
     ORDER_SIZE_TABLE = {}

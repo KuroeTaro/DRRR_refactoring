@@ -10,6 +10,18 @@ function state_machine_UI_char_select_scene_movie_cover_loop(obj)
     end
 end
 
+function state_machine_UI_char_select_scene_start_0f_110f(obj)
+    local speed = 0
+    if obj[8] >= 110 then
+        return
+    end
+    obj["FCT"][8] = obj["FCT"][8] + 1
+    if obj["FCT"][8] > speed then
+        obj[8] = obj[8] + 1
+        obj["FCT"][8] = 0
+    end
+end
+
 function state_machine_UI_char_select_scene_timer(obj)
     if obj["time"][1] == 0 and obj["time"][2] == 0 then
         return
@@ -28,7 +40,7 @@ function state_machine_UI_char_select_scene_timer(obj)
     end
 end
 
-function state_machine_UI_char_select_scene_second_ring_blink(obj)
+function state_machine_UI_char_select_scene_ring_blink(obj)
     obj[4] = 0.8+math.random(-1, 1)*0.03
 end
 
@@ -69,7 +81,7 @@ function state_machine_UI_char_select_scene_char_select(input_id)
         audio_to_sub = audio_SFX_char_select_scene_to_sub_R
     end
 
-    local local_switch = {
+    local switch = {
         ["idle"] = function()
             if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["D"] == "Pressing" then
                 play_obj_audio(audio_to_sub)
@@ -273,13 +285,13 @@ function state_machine_UI_char_select_scene_char_select(input_id)
     state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,audio_click,input_id)
     state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_bar_mark,audio_click,input_id)
 
-    local this_function = local_switch[obj["select_state"]]
+    local this_function = switch[obj["select_state"]]
     if this_function then this_function() end
 
 end
 
 function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,audio,input_id)
-    local local_switch = {
+    local switch = {
         ["flash_in"] = function() 
             point_linear_animator(
                 obj_char,
@@ -291,7 +303,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             )
             point_linear_animator(
                 obj_icon_cover,
-                anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
+                anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p5
             )
 
             if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Left"] == "Pressing" 
@@ -350,12 +362,12 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             )
             point_linear_animator(
                 obj_icon_cover,
-                anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0
+                anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p5_0
             )
 
             if get_point_linear_anim_end_state(obj_char,anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x)
             and get_point_linear_anim_end_state(obj_text,anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x)
-            and get_point_linear_anim_end_state(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0)
+            and get_point_linear_anim_end_state(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p5_0)
             then
                 obj["flash_state"] = "flash_in"
 
@@ -417,12 +429,12 @@ function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,
             end
         end,
     }
-    local this_function = local_switch[obj["flash_state"]]
+    local this_function = switch[obj["flash_state"]]
     if this_function then this_function() end
 end
 
 function state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_bar_mark,audio,input_id)
-    local local_switch = {
+    local switch = {
         ["idle"] = function() 
             if INPUT_SYS_CURRENT_COMMAND_STATE[input_id]["Up"] == "Pressing"
             and (obj["select_state"] == "selecting" or obj["select_state"] == "selected")
@@ -526,7 +538,7 @@ function state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_
             end
         end,
     }
-    local this_function = local_switch[obj_bar_mark["state"]]
+    local this_function = switch[obj_bar_mark["state"]]
     if this_function then this_function() end
 
 end
@@ -544,7 +556,7 @@ function state_machine_UI_char_select_scene_char_select_train_dummy()
     local audio_to_main = audio_SFX_char_select_scene_to_main_R
     local audio_to_sub = audio_SFX_char_select_scene_to_sub_R
 
-    local local_switch = {
+    local switch = {
         ["idle"] = function()
             if INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 play_obj_audio(audio_to_sub)
@@ -748,13 +760,13 @@ function state_machine_UI_char_select_scene_char_select_train_dummy()
     state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(obj,obj_char,obj_text,obj_icon_cover,audio_click)
     state_machine_UI_char_select_scene_char_select_bar_mark_select_train_dummy(obj,obj_bar_mark,audio_click)
 
-    local this_function = local_switch[obj["select_state"]]
+    local this_function = switch[obj["select_state"]]
     if this_function then this_function() end
 
 end
 
 function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(obj,obj_char,obj_text,obj_icon_cover,audio)
-    local local_switch = {
+    local switch = {
         ["flash_in"] = function() 
             point_linear_animator(
                 obj_char,
@@ -766,7 +778,7 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
             )
             point_linear_animator(
                 obj_icon_cover,
-                anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p1
+                anim_UI_point_linear_char_select_scene_icon_select_flash_in_opacity_0_0p5
             )
 
             if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Left"] == "Pressing" 
@@ -825,12 +837,12 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
             )
             point_linear_animator(
                 obj_icon_cover,
-                anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0
+                anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p5_0
             )
 
             if get_point_linear_anim_end_state(obj_char,anim_UI_point_linear_char_select_scene_char_select_char_flash_out_x)
             and get_point_linear_anim_end_state(obj_text,anim_UI_point_linear_char_select_scene_char_select_text_flash_out_x)
-            and get_point_linear_anim_end_state(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p1_0)
+            and get_point_linear_anim_end_state(obj_icon_cover,anim_UI_point_linear_char_select_scene_icon_select_flash_out_opacity_0p5_0)
             then
                 obj["flash_state"] = "flash_in"
 
@@ -892,12 +904,12 @@ function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(o
             end
         end,
     }
-    local this_function = local_switch[obj["flash_state"]]
+    local this_function = switch[obj["flash_state"]]
     if this_function then this_function() end
 end
 
 function state_machine_UI_char_select_scene_char_select_bar_mark_select_train_dummy(obj,obj_bar_mark,audio)
-    local local_switch = {
+    local switch = {
         ["idle"] = function() 
             if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Up"] == "Pressing" 
             and (obj["select_state"] == "selecting" or obj["select_state"] == "selected")
@@ -977,7 +989,7 @@ function state_machine_UI_char_select_scene_char_select_bar_mark_select_train_du
             end
         end,
     }
-    local this_function = local_switch[obj_bar_mark["state"]]
+    local this_function = switch[obj_bar_mark["state"]]
     if this_function then this_function() end
 
 end
