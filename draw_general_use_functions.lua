@@ -1,14 +1,14 @@
-function resolution_correction(length)
+function draw_resolution_correction(length)
     local ratio = love.graphics.getWidth()/1600
     local result = length * ratio
     return result
 end
 
 function draw_2d_image(obj,image)
-    local x = resolution_correction(obj[1])
-    local y = resolution_correction(obj[2])
-    local sx = resolution_correction(obj[5])
-    local sy = resolution_correction(obj[6])
+    local x = draw_resolution_correction(obj[1])
+    local y = draw_resolution_correction(obj[2])
+    local sx = draw_resolution_correction(obj[5])
+    local sy = draw_resolution_correction(obj[6])
     local r = obj[7]
     local opacity = obj[4]
 
@@ -22,10 +22,10 @@ function draw_2d_image(obj,image)
 end 
 
 function draw_2d_image_table(obj,image_table)
-    local x = resolution_correction(obj[1])
-    local y = resolution_correction(obj[2])
-    local sx = resolution_correction(obj[5])
-    local sy = resolution_correction(obj[6])
+    local x = draw_resolution_correction(obj[1])
+    local y = draw_resolution_correction(obj[2])
+    local sx = draw_resolution_correction(obj[5])
+    local sy = draw_resolution_correction(obj[6])
     local r = obj[7]
     local f = obj[8]
     local opacity = obj[4]
@@ -58,8 +58,8 @@ function draw_3d_image(camera,obj,image)
     local x = obj[1]
     local y = obj[2]
     local z = obj[3]
-    local sx = resolution_correction(obj[5])
-    local sy = resolution_correction(obj[6])
+    local sx = obj[5]
+    local sy = obj[6]
     local r = obj[7]
     local opacity = obj[4]
 
@@ -67,11 +67,11 @@ function draw_3d_image(camera,obj,image)
     local camera_y = camera[2]
     local camera_z = camera[3]
 
-    local scale = 800/(z-camera_z)
+    local scale = draw_resolution_correction(800)/(z-camera_z)
 
     local cood_res = {
-        resolution_correction(scale*(x-camera_x)+resolution_correction(800)), 
-        resolution_correction(scale*(y-camera_y)+resolution_correction(450))
+        scale * (x - camera_x) + draw_resolution_correction(800), 
+        scale * (y - camera_y) + draw_resolution_correction(450)
     }
 
     love.graphics.setColor(1, 1, 1, opacity)
@@ -85,8 +85,8 @@ function draw_3d_image_table(camera,obj,image_table)
     local x = obj[1]
     local y = obj[2]
     local z = obj[3]
-    local sx = resolution_correction(obj[5])
-    local sy = resolution_correction(obj[6])
+    local sx = obj[5]
+    local sy = obj[6]
     local r = obj[7]
     local f = obj[8]
     local opacity = obj[4]
@@ -95,11 +95,11 @@ function draw_3d_image_table(camera,obj,image_table)
     local camera_y = camera[2]
     local camera_z = camera[3]
 
-    local scale = 800/(z-camera_z)
+    local scale = draw_resolution_correction(800)/(z-camera_z)
 
     local cood_res = {
-        resolution_correction(scale*(x-camera_x)+resolution_correction(800)), 
-        resolution_correction(scale*(y-camera_y)+resolution_correction(450))
+        scale * (x - camera_x) + draw_resolution_correction(800), 
+        scale * (y - camera_y) + draw_resolution_correction(450)
     }
 
     love.graphics.setColor(1, 1, 1, opacity)

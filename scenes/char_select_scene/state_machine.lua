@@ -282,7 +282,7 @@ function state_machine_UI_char_select_scene_char_select(input_id)
         end,
     }
 
-    state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,audio_click,input_id)
+    state_machine_UI_char_select_scene_char_select_flash(obj,obj_char,obj_text,obj_icon_cover,audio_click,input_id)
     state_machine_UI_char_select_scene_char_select_bar_mark_select(obj,obj_bar_mark,audio_click,input_id)
 
     local this_function = switch[obj["select_state"]]
@@ -290,7 +290,7 @@ function state_machine_UI_char_select_scene_char_select(input_id)
 
 end
 
-function state_machine_UI_char_select_scene_char_select_flash_anim(obj,obj_char,obj_text,obj_icon_cover,audio,input_id)
+function state_machine_UI_char_select_scene_char_select_flash(obj,obj_char,obj_text,obj_icon_cover,audio,input_id)
     local switch = {
         ["flash_in"] = function() 
             point_linear_animator(
@@ -757,7 +757,7 @@ function state_machine_UI_char_select_scene_char_select_train_dummy()
         end,
     }
 
-    state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(obj,obj_char,obj_text,obj_icon_cover,audio_click)
+    state_machine_UI_char_select_scene_char_select_flash_train_dummy(obj,obj_char,obj_text,obj_icon_cover,audio_click)
     state_machine_UI_char_select_scene_char_select_bar_mark_select_train_dummy(obj,obj_bar_mark,audio_click)
 
     local this_function = switch[obj["select_state"]]
@@ -765,7 +765,7 @@ function state_machine_UI_char_select_scene_char_select_train_dummy()
 
 end
 
-function state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy(obj,obj_char,obj_text,obj_icon_cover,audio)
+function state_machine_UI_char_select_scene_char_select_flash_train_dummy(obj,obj_char,obj_text,obj_icon_cover,audio)
     local switch = {
         ["flash_in"] = function() 
             point_linear_animator(

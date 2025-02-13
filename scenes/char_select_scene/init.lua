@@ -548,10 +548,10 @@ function load_char_select_scene_shader()
     shader_char_select_scene_fractal_noise = love.graphics.newShader("shaders/char_select_fractal_noise.glsl")
     shader_char_select_scene_radial_blur = love.graphics.newShader("shaders/radial_blur.glsl")
 
-    canvas = love.graphics.newCanvas(1600,900)
-    canvas_radial_blur = love.graphics.newCanvas(1600,900)
-    canvas_alpha_comp = love.graphics.newCanvas(1600,900)
-    alpha = love.graphics.newCanvas(1600,900)
+    CANVAS = love.graphics.newCanvas(1600,900)
+    CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)
+    CANVAS_ALPHA_COMP = love.graphics.newCanvas(1600,900)
+    CANVAS_ALPHA_ONLY = love.graphics.newCanvas(1600,900)
 
 end
 
@@ -597,10 +597,10 @@ function unload_char_select_scene_shader()
         end
     end
 
-    canvas = nil
-    canvas_radial_blur = nil
-    canvas_alpha_comp = nil
-    alpha = nil
+    CANVAS = nil
+    CANVAS_RADIAL_BLUR = nil
+    CANVAS_ALPHA_COMP = nil
+    CANVAS_ALPHA_ONLY = nil
 
 end
 

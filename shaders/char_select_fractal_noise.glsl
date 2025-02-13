@@ -21,7 +21,7 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords){
         float t = mod(1 + i, 12.0);
         float l = 1 - t;
         float e = exp2(t);
-        v += noise(uv * e + vec2(time*1, 1)) * (1.0 - (t / 12.0)) * (t / 12.0);
+        v += noise(uv * e + vec2(time*1, 0)) * (1.0 - (t / 12.0)) * (t / 12.0);
     }
     v = (v - 0.5) * 3 - 1.55;
     return vec4(v, v, v, 1.0);

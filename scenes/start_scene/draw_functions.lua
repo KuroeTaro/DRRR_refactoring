@@ -156,18 +156,18 @@ function draw_start_scene_record_sub_scene()
 end
 
 function draw_start_scene_sp_audio_bar_alpha(obj_light,volume,image)
-    local x = resolution_correction(obj_light[1])
-    local y = resolution_correction(obj_light[2])
-    local sx = resolution_correction(obj_light[5])
-    local sy = resolution_correction(obj_light[6])
+    local x = draw_resolution_correction(obj_light[1])
+    local y = draw_resolution_correction(obj_light[2])
+    local sx = draw_resolution_correction(obj_light[5])
+    local sy = draw_resolution_correction(obj_light[6])
 
     local res = love.graphics.newCanvas(232,16)
-    local alpha = love.graphics.newCanvas(232,16)
+    local CANVAS_ALPHA_ONLY = love.graphics.newCanvas(232,16)
 
     love.graphics.setCanvas(res)
     love.graphics.draw(image)
     love.graphics.setBlendMode('multiply', 'premultiplied')
-    love.graphics.draw(alpha,volume)
+    love.graphics.draw(CANVAS_ALPHA_ONLY,volume)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
     
@@ -178,20 +178,20 @@ function draw_start_scene_sp_audio_bar_alpha(obj_light,volume,image)
 end
 
 function draw_start_scene_sp_record_100h_plus_time_indi(obj,image)
-    local x = resolution_correction(obj[1])
-    local y = resolution_correction(obj[2])
-    local sx = resolution_correction(obj[5])
-    local sy = resolution_correction(obj[6])
+    local x = draw_resolution_correction(obj[1])
+    local y = draw_resolution_correction(obj[2])
+    local sx = draw_resolution_correction(obj[5])
+    local sy = draw_resolution_correction(obj[6])
 
     local cto_25 = CTO_COUNT*25
 
     local res = love.graphics.newCanvas(320,40)
-    local alpha = love.graphics.newCanvas(320,40)
+    local CANVAS_ALPHA_ONLY = love.graphics.newCanvas(320,40)
     love.graphics.setCanvas(res)
 
     love.graphics.draw(image)
     love.graphics.setBlendMode('multiply', 'premultiplied')
-    love.graphics.draw(alpha,cto_25)
+    love.graphics.draw(CANVAS_ALPHA_ONLY,cto_25)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
 

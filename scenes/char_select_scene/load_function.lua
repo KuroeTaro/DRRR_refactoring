@@ -212,10 +212,10 @@ function unload_char_select_scene_require()
     -- state_machine_UI_char_select_scene_timer = nil
     -- state_machine_UI_char_select_scene_ring_blink = nil
     -- state_machine_UI_char_select_scene_char_select = nil
-    -- state_machine_UI_char_select_scene_char_select_flash_anim = nil
+    -- state_machine_UI_char_select_scene_char_select_flash = nil
     -- state_machine_UI_char_select_scene_char_select_bar_mark_select = nil
     -- state_machine_UI_char_select_scene_char_select_train_dummy = nil
-    -- state_machine_UI_char_select_scene_char_select_flash_anim_train_dummy = nil
+    -- state_machine_UI_char_select_scene_char_select_flash_train_dummy = nil
     -- state_machine_UI_char_select_scene_char_select_bar_mark_select_train_dummy = nil
 
 end

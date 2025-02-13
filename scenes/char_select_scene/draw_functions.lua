@@ -161,10 +161,10 @@ function draw_char_select_scene_timer(obj,image_table)
 end
 
 function draw_char_select_scene_glow(obj,f_shader,r_shader)
-    local x = resolution_correction(obj[1])
-    local y = resolution_correction(obj[2])
-    local sx = resolution_correction(obj[5])
-    local sy = resolution_correction(obj[6])
+    local x = draw_resolution_correction(obj[1])
+    local y = draw_resolution_correction(obj[2])
+    local sx = draw_resolution_correction(obj[5])
+    local sy = draw_resolution_correction(obj[6])
     local opacity = obj[4]
     local r = obj[7]
 
@@ -172,40 +172,40 @@ function draw_char_select_scene_glow(obj,f_shader,r_shader)
         return
     end
     
-    canvas = love.graphics.newCanvas(1600,900)
-    canvas_radial_blur = love.graphics.newCanvas(1600,900)
-    canvas_alpha_comp = love.graphics.newCanvas(1600,900)
-    alpha = love.graphics.newCanvas(1600,900)
+    CANVAS = love.graphics.newCanvas(1600,900)
+    CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)
+    CANVAS_ALPHA_COMP = love.graphics.newCanvas(1600,900)
+    CANVAS_ALPHA_ONLY = love.graphics.newCanvas(1600,900)
 
-    love.graphics.setCanvas(alpha)
+    love.graphics.setCanvas(CANVAS_ALPHA_ONLY)
     love.graphics.polygon("fill", obj["alpha_points"])
     love.graphics.setCanvas()
 
-    love.graphics.setCanvas(canvas)
+    love.graphics.setCanvas(CANVAS)
     love.graphics.setShader(shader_char_select_scene_fractal_noise)
     shader_char_select_scene_fractal_noise:send("time", love.timer.getTime())
     love.graphics.rectangle("fill", 0, 0, 1600, 900)
     love.graphics.setShader()
     love.graphics.setCanvas()
 
-    love.graphics.setCanvas(canvas_radial_blur)
+    love.graphics.setCanvas(CANVAS_RADIAL_BLUR)
     love.graphics.setShader(shader_char_select_scene_radial_blur)
     shader_char_select_scene_radial_blur:send("start_coods", { -230,-120 })
     love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(canvas, 0, 0)
+    love.graphics.draw(CANVAS, 0, 0)
     love.graphics.setShader()
-    love.graphics.setCanvas(canvas_radial_blur)
+    love.graphics.setCanvas(CANVAS_RADIAL_BLUR)
 
-    love.graphics.setCanvas(canvas_alpha_comp)
-    love.graphics.draw(canvas_radial_blur)
+    love.graphics.setCanvas(CANVAS_ALPHA_COMP)
+    love.graphics.draw(CANVAS_RADIAL_BLUR)
     love.graphics.setBlendMode('multiply', 'premultiplied')
-    love.graphics.draw(alpha)
+    love.graphics.draw(CANVAS_ALPHA_ONLY)
     love.graphics.setBlendMode('alpha', 'alphamultiply')
     love.graphics.setCanvas()
 
     love.graphics.setBlendMode("add")
     love.graphics.setColor(1, 1, 1, opacity)
-    love.graphics.draw(canvas_alpha_comp,x,y,0,sx,sy)
+    love.graphics.draw(CANVAS_ALPHA_COMP,x,y,0,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.setBlendMode("alpha")
 
@@ -213,10 +213,10 @@ end
 
 function draw_char_select_scene_char_select_LR(id)
     if id == 1 then
-        local x = resolution_correction(obj_UI_char_select_scene_char_select_left[1])
-        local y = resolution_correction(obj_UI_char_select_scene_char_select_left[2])
-        local sx = resolution_correction(obj_UI_char_select_scene_char_select_left[5])
-        local sy = resolution_correction(obj_UI_char_select_scene_char_select_left[6])
+        local x = draw_resolution_correction(obj_UI_char_select_scene_char_select_left[1])
+        local y = draw_resolution_correction(obj_UI_char_select_scene_char_select_left[2])
+        local sx = draw_resolution_correction(obj_UI_char_select_scene_char_select_left[5])
+        local sy = draw_resolution_correction(obj_UI_char_select_scene_char_select_left[6])
         local f = obj_UI_char_select_scene_char_select_left[8]
         local opacity = obj_UI_char_select_scene_char_select_left[4]
         local w = obj_UI_char_select_scene_char_select_left["width"]
@@ -226,8 +226,8 @@ function draw_char_select_scene_char_select_LR(id)
             return
         end
 
-        canvas = love.graphics.newCanvas(w,h)
-        love.graphics.setCanvas(canvas)
+        CANVAS= love.graphics.newCanvas(w,h)
+        love.graphics.setCanvas(CANVAS)
         love.graphics.clear(24/255, 30/255, 39/255, 1)
         love.graphics.draw(
             image_table_UI_char_select_scene_char_select_text_left[f],
@@ -251,21 +251,25 @@ function draw_char_select_scene_char_select_LR(id)
         love.graphics.setCanvas()
         
         love.graphics.setColor(1, 1, 1, opacity)
-        love.graphics.draw(canvas,x,y,0,sx,sy)
+        love.graphics.draw(CANVAS,x,y,0,sx,sy)
         love.graphics.setColor(1, 1, 1, 1)
 
     elseif id == 2 then
-        local x = resolution_correction(obj_UI_char_select_scene_char_select_right[1])
-        local y = resolution_correction(obj_UI_char_select_scene_char_select_right[2])
-        local sx = resolution_correction(obj_UI_char_select_scene_char_select_right[5])
-        local sy = resolution_correction(obj_UI_char_select_scene_char_select_right[6])
+        local x = draw_resolution_correction(obj_UI_char_select_scene_char_select_right[1])
+        local y = draw_resolution_correction(obj_UI_char_select_scene_char_select_right[2])
+        local sx = draw_resolution_correction(obj_UI_char_select_scene_char_select_right[5])
+        local sy = draw_resolution_correction(obj_UI_char_select_scene_char_select_right[6])
         local f = obj_UI_char_select_scene_char_select_right[8]
         local opacity = obj_UI_char_select_scene_char_select_right[4]
         local w = obj_UI_char_select_scene_char_select_right["width"]
         local h = obj_UI_char_select_scene_char_select_right["height"]
 
-        canvas = love.graphics.newCanvas(w,h)
-        love.graphics.setCanvas(canvas)
+        if opacity == 0 then
+            return
+        end
+
+        CANVAS= love.graphics.newCanvas(w,h)
+        love.graphics.setCanvas(CANVAS)
         love.graphics.clear(24/255, 30/255, 39/255, 1)
         love.graphics.draw(
             image_table_UI_char_select_scene_char_select_text_right[f],
@@ -288,11 +292,9 @@ function draw_char_select_scene_char_select_LR(id)
         love.graphics.setBlendMode('alpha', 'alphamultiply')
         love.graphics.setCanvas()
         
-        if opacity ~= 0 then
-            love.graphics.setColor(1, 1, 1, opacity)
-            love.graphics.draw(canvas,x,y,0,sx,sy)
-            love.graphics.setColor(1, 1, 1, 1)
-        end
+        love.graphics.setColor(1, 1, 1, opacity)
+        love.graphics.draw(CANVAS,x,y,0,sx,sy)
+        love.graphics.setColor(1, 1, 1, 1)
         
     end
 end

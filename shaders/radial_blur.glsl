@@ -1,5 +1,5 @@
 extern vec2 start_coods;
-const int nsamples = 100;
+const int nsamples = 300;
 vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords){
     screen_coords = vec2(1600.0,900.0);
     vec2 center = start_coods.xy / screen_coords.xy;

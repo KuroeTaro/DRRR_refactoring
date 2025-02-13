@@ -45,11 +45,18 @@ function load_game_scene_prep()
 end
 
 
-function order_load_game_scene_common()
-    load_game_scene_common_obj()
-    load_game_scene_common_anim()
-    load_game_scene_common_audio()
-    load_game_scene_common_shader()
+function order_load_game_scene_common(load_order)
+    local switch = 
+    {
+        [1] = function()
+            load_game_scene_common_obj()
+            load_game_scene_common_anim()
+            load_game_scene_common_audio()
+            load_game_scene_common_shader()
+        end,
+    }
+    local this_function = switch[load_order]
+    if this_function then this_function() end
     
 end
 
