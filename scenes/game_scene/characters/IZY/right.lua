@@ -1,7 +1,7 @@
 function load_game_scene_obj_char_RP()
     -- x y z opacity sx sy r f
-    obj_char_game_scene_char_RP = {0, 0, 0, 1, 1, 1, 0, 0} -- obj[1-8]都为图形上的数据 obj[8]为图形上的帧数
-    obj_char_game_scene_char_RP["x"] = -320
+    obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0} -- obj[1-8]都为图形上的数据 obj[8]为图形上的帧数
+    obj_char_game_scene_char_RP["x"] = 320
     obj_char_game_scene_char_RP["y"] = 365
     obj_char_game_scene_char_RP["f"] = 0 -- obj["f"] 逻辑上的帧数
     obj_char_game_scene_char_RP["anchor_pos"] = {150,550}
