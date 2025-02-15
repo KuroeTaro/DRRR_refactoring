@@ -114,9 +114,6 @@ function draw_game_scene_char_RP()
     local character_image_table = image_table_char_game_scene_RP[obj["state"]]
     local camera = obj_stage_game_scene_camera
 
-    obj[1] = obj["x"]-obj[5]*obj["anchor_pos"][1]
-    obj[2] = obj["y"]-obj[6]*obj["anchor_pos"][2]
-
     local x = obj[1]
     local y = obj[2]
     local z = obj[3]
@@ -126,6 +123,11 @@ function draw_game_scene_char_RP()
     local r = obj[7]
     local f = obj[8]
 
+    obj[1] = obj["x"]-obj[5]*obj["anchor_pos"][1]
+    obj[2] = obj["y"]-obj[6]*obj["anchor_pos"][2]
+    x = obj[1]
+    y = obj[2]
+    
     local knife_state = obj["knife_state"]
 
     if knife_state == "on" then

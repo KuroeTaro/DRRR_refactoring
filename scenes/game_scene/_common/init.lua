@@ -26,6 +26,5 @@ function load_game_scene_common_shader()
     CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)
     CANVAS_ALPHA_COMP = love.graphics.newCanvas(1600,900)
     CANVAS_ALPHA_ONLY = love.graphics.newCanvas(1600,900)
-    CANVAS_RES_RESIZE = love.graphics.newCanvas(1600,900)
 
 end

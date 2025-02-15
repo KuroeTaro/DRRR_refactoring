@@ -12,7 +12,89 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["hitbox_list"] = {}
     obj_char_game_scene_char_LP["hurtbox_list"] = {}
     obj_char_game_scene_char_LP["projectile_list"] = {}
-    obj_char_game_scene_char_LP["shadow_box_list"] = {}
+    obj_char_game_scene_char_LP["shadow_box_list"] = {
+        {
+            {-21.63, -18.63,
+            -37.88, -4.50}
+            ,
+            {-37.88, -4.50,
+            -37.63, 6.13}
+            ,
+            {-37.63, 6.13,
+            -31.01, 10.17}
+            ,
+            {-31.01, 10.17,
+            -17.60, 10.46}
+            ,
+            {-17.60, 10.46,
+            -3.88, 18.75}
+            ,
+            {-3.88, 18.75,
+            8.88, 19.50}
+            ,
+            {8.88, 19.50,
+            20.75, 18.75}
+            ,
+            {20.75, 18.75,
+            32.84, 15.79}
+            ,
+            {32.84, 15.79,
+            38.25, 11.63}
+            ,
+            {38.25, 11.63,
+            37.88, 5.00}
+            ,
+            {37.88, 5.00,
+            35.88, 0.24}
+            ,
+            {35.88, 0.24,
+            30.38, -2.75}
+            ,
+            {30.38, -2.75,
+            23.96, -4.23}
+            ,
+            {23.96, -4.23,
+            12.00, -5.00}
+            ,
+            {12.00, -5.00,
+            -21.63, -18.63}
+        },
+        {
+            {-3.88, -21.50,
+            -19.00, -17.38}
+            ,
+            {-19.00, -17.38,
+            -20.88, -12.00}
+            ,
+            {-20.88, -12.00,
+            -14.25, 15.63}
+            ,
+            {-14.25, 15.63,
+            -7.63, 20.50}
+            ,
+            {-7.63, 20.50,
+            3.25, 22.13}
+            ,
+            {3.25, 22.13,
+            13.63, 21.25}
+            ,
+            {13.63, 21.25,
+            22.50, 16.38}
+            ,
+            {22.50, 16.38,
+            21.88, 4.63}
+            ,
+            {21.88, 4.63,
+            11.88, -14.63}
+            ,
+            {11.88, -14.63,
+            -3.88, -21.50}
+        }
+    }
+    obj_char_game_scene_char_LP["shadow_box_pos"] ={
+        {196.0,527.0}
+        ,{94.0,547.0}
+    }
 
     obj_char_game_scene_char_LP["knife_state"] = "off"
     obj_char_game_scene_char_LP["knife_anchor_pos"] = {168,210}
@@ -110,13 +192,16 @@ end
 
 
 
+function draw_game_scene_char_LP_logic_graphic_pos_sync()
+    local obj = obj_char_game_scene_char_LP
+    obj[1] = obj["x"]-obj[5]*obj["anchor_pos"][1]
+    obj[2] = obj["y"]-obj[6]*obj["anchor_pos"][2]
+end
+
 function draw_game_scene_char_LP()
     local obj = obj_char_game_scene_char_LP
     local character_image_table = image_table_char_game_scene_LP[obj["state"]]
     local camera = obj_stage_game_scene_camera
-
-    obj[1] = obj["x"]-obj[5]*obj["anchor_pos"][1]
-    obj[2] = obj["y"]-obj[6]*obj["anchor_pos"][2]
 
     local x = obj[1]
     local y = obj[2]
@@ -143,8 +228,10 @@ function draw_game_scene_char_LP()
             knife_8
         }
 
-        local knife_image_table = image_table_char_game_scene_LP_knife[obj["state"]]
-        draw_3d_image_table(camera,knife,knife_image_table)
+        -- local knife_image_table = image_table_char_game_scene_LP_knife[obj["state"]]
+        -- draw_3d_image_table(camera,knife,knife_image_table)
+        local knife_image_table = image_UI_load_scene_loading_text
+        draw_3d_image(camera,knife,knife_image_table)
 
 
     end
@@ -155,7 +242,32 @@ end
 
 function draw_game_scene_char_LP_shadow()
     local shadow_box_list = obj_char_game_scene_char_LP["shadow_box_list"]
+    local obj = obj_char_game_scene_char_LP
+    local z = obj[3]
+    local sx = obj[5]
+    local sy = obj[6]
+    local shadow_anchor = obj_stage_game_scene_shadow_anchor
+    local camera = obj_stage_game_scene_camera
+    local camera_z = camera[3]
 
+    local obj_2d_pos = draw_3d_point_to_2D(camera,obj)
+    local shadow_anchor_2d_pos = draw_3d_point_to_2D(camera,shadow_anchor)
+    local scale = draw_resolution_correction(800)/(z-camera_z)
+
+    for i = 1,2 do
+        local x = obj_2d_pos[1] + scale*sx*obj["shadow_box_pos"][i][1]
+        local y = obj_2d_pos[2] + scale*sy*obj["shadow_box_pos"][i][2]
+
+        common_game_scene_draw_shadow(
+            shadow_box_list[i],
+            shadow_anchor_2d_pos,
+            x,
+            y,
+            scale*sx,
+            scale*sy
+        )
+    end
+    
 end
 
 

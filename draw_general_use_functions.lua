@@ -54,25 +54,15 @@ function draw_solid(object)
 end
 
 function draw_3d_image(camera,obj,image)
-    -- x y z opacity sx sy r f
-    local x = obj[1]
-    local y = obj[2]
     local z = obj[3]
     local sx = obj[5]
     local sy = obj[6]
     local r = obj[7]
+    local f = obj[8]
     local opacity = obj[4]
-
-    local camera_x = camera[1]
-    local camera_y = camera[2]
     local camera_z = camera[3]
-
     local scale = draw_resolution_correction(800)/(z-camera_z)
-
-    local cood_res = {
-        scale * (x - camera_x) + draw_resolution_correction(800), 
-        scale * (y - camera_y) + draw_resolution_correction(450)
-    }
+    local cood_res = draw_3d_point_to_2D(camera,obj)
 
     love.graphics.setColor(1, 1, 1, opacity)
     love.graphics.draw(image,cood_res[1],cood_res[2],r,sx*scale,sy*scale)
@@ -81,16 +71,28 @@ function draw_3d_image(camera,obj,image)
 end
 
 function draw_3d_image_table(camera,obj,image_table)
-    -- x y z opacity sx sy r f
-    local x = obj[1]
-    local y = obj[2]
     local z = obj[3]
     local sx = obj[5]
     local sy = obj[6]
     local r = obj[7]
     local f = obj[8]
     local opacity = obj[4]
+    local camera_z = camera[3]
+    local scale = draw_resolution_correction(800)/(z-camera_z)
+    local cood_res = draw_3d_point_to_2D(camera,obj)
 
+    love.graphics.setColor(1, 1, 1, opacity)
+    love.graphics.draw(image_table[f],cood_res[1],cood_res[2],r,sx*scale,sy*scale)
+    love.graphics.setColor(1, 1, 1, 1)
+
+end
+
+function draw_3d_point_to_2D(camera,obj)
+    -- x y z opacity sx sy r f
+    local x = obj[1]
+    local y = obj[2]
+    local z = obj[3]
+    
     local camera_x = camera[1]
     local camera_y = camera[2]
     local camera_z = camera[3]
@@ -101,9 +103,9 @@ function draw_3d_image_table(camera,obj,image_table)
         scale * (x - camera_x) + draw_resolution_correction(800), 
         scale * (y - camera_y) + draw_resolution_correction(450)
     }
-
-    love.graphics.setColor(1, 1, 1, opacity)
-    love.graphics.draw(image_table[f],cood_res[1],cood_res[2],r,sx*scale,sy*scale)
-    love.graphics.setColor(1, 1, 1, 1)
+    
+    return cood_res
 
 end
+
+

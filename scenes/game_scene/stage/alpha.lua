@@ -11,8 +11,7 @@ function load_game_scene_stage()
     obj_stage_game_scene_glow["glow_3d_pos"] = {0,-800}
     obj_stage_game_scene_glow["fractal_noise_offset"] = 0
 
-    obj_stage_game_scene_shadow_anchor = {0, 0, -800, 1, 1, 1, 0, 0}
-    obj_stage_game_scene_shadow_anchor["shadow_anchor_3d_pos"] = {0,175,300}
+    obj_stage_game_scene_shadow_anchor = {0, 515, 800}
 
 end
 
@@ -79,8 +78,6 @@ function draw_game_scene_stage_glow()
         scale * (x - camera_x) + 800,
         scale * (y - camera_y) + 450
     }
-
-    print(cood_res[1],cood_res[2])
 
     CANVAS = love.graphics.newCanvas(1600,900)
     CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)

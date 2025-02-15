@@ -1,5 +1,6 @@
 require("update_general_use_functions/animator")
 require("update_general_use_functions/audio_volume")
+require("update_general_use_functions/common")
 require("update_general_use_functions/game_duration")
 require("update_general_use_functions/require_scene")
 require("update_general_use_functions/input_sys")
