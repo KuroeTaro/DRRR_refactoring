@@ -171,28 +171,44 @@ function draw_char_select_scene_glow(obj,f_shader,r_shader)
     if opacity == 0 then
         return
     end
+
+    local width = love.graphics.getWidth()
+    local height = love.graphics.getHeight()
+
+    local alpha_points = {}
+
+    for i = 1,#obj["alpha_points"] do
+        alpha_points[i] = draw_resolution_correction(obj["alpha_points"][i])
+    end
     
-    CANVAS = love.graphics.newCanvas(1600,900)
-    CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)
-    CANVAS_ALPHA_COMP = love.graphics.newCanvas(1600,900)
-    CANVAS_ALPHA_ONLY = love.graphics.newCanvas(1600,900)
+    CANVAS = love.graphics.newCanvas(width,height)
+    CANVAS_RADIAL_BLUR = love.graphics.newCanvas(width,height)
+    CANVAS_ALPHA_COMP = love.graphics.newCanvas(width,height)
+    CANVAS_ALPHA_ONLY = love.graphics.newCanvas(width,height)
 
     love.graphics.setCanvas(CANVAS_ALPHA_ONLY)
-    love.graphics.polygon("fill", obj["alpha_points"])
+    love.graphics.polygon("fill", alpha_points)
     love.graphics.setCanvas()
 
     love.graphics.setCanvas(CANVAS)
     love.graphics.setShader(shader_char_select_scene_fractal_noise)
     shader_char_select_scene_fractal_noise:send("time", love.timer.getTime())
-    love.graphics.rectangle("fill", 0, 0, 1600, 900)
+    love.graphics.rectangle("fill", 0, 0, width, height)
     love.graphics.setShader()
     love.graphics.setCanvas()
 
     love.graphics.setCanvas(CANVAS_RADIAL_BLUR)
     love.graphics.setShader(shader_char_select_scene_radial_blur)
-    shader_char_select_scene_radial_blur:send("start_coods", { -230,-120 })
+    shader_char_select_scene_radial_blur:send(
+        "start_coods", 
+        {
+            draw_resolution_correction(-230), 
+            draw_resolution_correction(-120)
+        }
+    )
+    shader_char_select_scene_radial_blur:send("input_screen_coords", { width, height })
     love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(CANVAS, 0, 0)
+    love.graphics.draw(CANVAS)
     love.graphics.setShader()
     love.graphics.setCanvas(CANVAS_RADIAL_BLUR)
 
@@ -205,7 +221,7 @@ function draw_char_select_scene_glow(obj,f_shader,r_shader)
 
     love.graphics.setBlendMode("add")
     love.graphics.setColor(1, 1, 1, opacity)
-    love.graphics.draw(CANVAS_ALPHA_COMP,x,y,0,sx,sy)
+    love.graphics.draw(CANVAS_ALPHA_COMP)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.setBlendMode("alpha")
 

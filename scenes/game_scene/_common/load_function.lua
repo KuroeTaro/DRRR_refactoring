@@ -34,7 +34,7 @@ function load_game_scene_prep()
         order_load_game_scene_common
     }    -- load function table
     CURRENT_ORDER_TABLE = {1,1,1,1}  -- 如果有两个线程 = {1，1} 三个 = {1，1，1} 以此类推
-    ORDER_SIZE_TABLE = {1,1,1,1}  -- 每个load function的最大值
+    ORDER_SIZE_TABLE = {1,1,1,2}  -- 每个load function的最大值
     LOAD_ONCE_TABLE = {false,false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 4 -- 和线程数相同
 
@@ -53,6 +53,40 @@ function order_load_game_scene_common(load_order)
             load_game_scene_common_anim()
             load_game_scene_common_audio()
             load_game_scene_common_shader()
+        end,
+        [2] = function()
+            image_table_announcer_game_scene_act_common = {}
+            for i = 0,104 do
+                image_table_announcer_game_scene_act_common[i] = love.graphics.newImage(ASSET_DATA[4]["act_#"][i+1])
+            end
+
+            image_table_announcer_game_scene_act_number = {}
+            image_table_announcer_game_scene_act_number[1] = {}
+            image_table_announcer_game_scene_act_number[2] = {}
+            image_table_announcer_game_scene_act_number[3] = {}
+            for i = 0,74 do
+                image_table_announcer_game_scene_act_number[1][i] = love.graphics.newImage(ASSET_DATA[4]["act_1"][i+1])
+            end
+            for i = 0,74 do
+                image_table_announcer_game_scene_act_number[2][i] = love.graphics.newImage(ASSET_DATA[4]["act_2"][i+1])
+            end
+            for i = 0,74 do
+                image_table_announcer_game_scene_act_number[3][i] = love.graphics.newImage(ASSET_DATA[4]["act_3"][i+1])
+            end
+
+            image_table_announcer_game_scene_HUD_flash_in = {}
+            for i = 0,49 do
+                image_table_announcer_game_scene_HUD_flash_in[i] = love.graphics.newImage(ASSET_DATA[4]["HUD_flash_in"][i+1])
+            end
+
+            image_table_announcer_game_scene_lets_dance = {}
+            for i = 0,39 do
+                image_table_announcer_game_scene_lets_dance[i] = love.graphics.newImage(ASSET_DATA[4]["lets_dance"][i+1])
+            end
+
+            image_HUD_game_scene_guage = love.graphics.newImage(ASSET_DATA[4]["HUD_guage"])
+
+
         end,
     }
     local this_function = switch[load_order]

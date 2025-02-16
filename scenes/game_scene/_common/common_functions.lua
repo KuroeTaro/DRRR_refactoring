@@ -1,4 +1,4 @@
-function common_game_scene_draw_shadow(lines,shadow_anchor,x,y,sx,sy,shadow_cavans)
+function common_game_scene_draw_shadow(lines,shadow_anchor,x,y,sx,sy)
     for i = 1, #lines do
         -- 计算阴影
         local line = lines[i]

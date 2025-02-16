@@ -1,9 +1,12 @@
 function load_game_scene_stage()
-    obj_stage_game_scene_camera = {0, 0, -800, 1, 1, 1, 0, 0}
+    obj_stage_game_scene_camera = {0, 0, -800}
     obj_stage_game_scene_camera["FCT"] = {0,0,0,0,0,0,0,0}
     obj_stage_game_scene_camera["LCT"] = {0,0,0,0,0,0,0,0}
     obj_stage_game_scene_camera["LCD"] = {0,0,0,0,0,0,0,0}
     obj_stage_game_scene_camera["state"] = "default"
+    obj_stage_game_scene_camera["enclose_percentage"] = 0.0
+    obj_stage_game_scene_camera["non_enclose_position"] = {0, 0, -800}
+    obj_stage_game_scene_camera["enclose_position"] = {0, 0, -700}
 
     obj_stage_game_scene_ground = {-2400, 320, 200, 1, 1, 1, 0, 0}
     obj_stage_game_scene_stair = {-2400, 175, 300, 1, 3, 1, 0, 0}
@@ -74,31 +77,40 @@ function draw_game_scene_stage_glow()
 
     local scale = draw_resolution_correction(800)/(z-camera_z)
 
+    local width = love.graphics.getWidth()
+    local height = love.graphics.getHeight()
+
     local cood_res = {
-        scale * (x - camera_x) + 800,
-        scale * (y - camera_y) + 450
+        scale * (x - camera_x) + draw_resolution_correction(800),
+        scale * (y - camera_y) + draw_resolution_correction(450)
     }
 
-    CANVAS = love.graphics.newCanvas(1600,900)
-    CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)
-    CANVAS_ALPHA_COMP = love.graphics.newCanvas(1600,900)
-    CANVAS_ALPHA_ONLY = love.graphics.newCanvas(1600,900)
+    CANVAS = love.graphics.newCanvas(width,height)
+    CANVAS_RADIAL_BLUR = love.graphics.newCanvas(width,height)
+    CANVAS_ALPHA_COMP = love.graphics.newCanvas(width,height)
+    CANVAS_ALPHA_ONLY = love.graphics.newCanvas(width,height)
 
     love.graphics.setCanvas(CANVAS_ALPHA_ONLY)
-    love.graphics.draw(image_stage_game_scene_stage_liner_fade_alpha)
+    love.graphics.draw(
+        image_stage_game_scene_stage_liner_fade_alpha,
+        0,0,0,
+        draw_resolution_correction(1),
+        draw_resolution_correction(1)
+    )
     love.graphics.setCanvas()
 
     love.graphics.setCanvas(CANVAS)
     love.graphics.setShader(shader_game_scene_fractal_noise)
     shader_game_scene_fractal_noise:send("time", love.timer.getTime())
     shader_game_scene_fractal_noise:send("input_x", cood_res[1])
-    love.graphics.rectangle("fill", 0, 0, 1600, 900)
+    love.graphics.rectangle("fill", 0, 0, width, height)
     love.graphics.setShader()
     love.graphics.setCanvas()
 
     love.graphics.setCanvas(CANVAS_RADIAL_BLUR)
     love.graphics.setShader(shader_game_scene_radial_blur)
     shader_game_scene_radial_blur:send("start_coods", cood_res)
+    shader_game_scene_radial_blur:send("input_screen_coords", {width, height})
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(CANVAS, 0, 0)
     love.graphics.setShader()
@@ -113,11 +125,7 @@ function draw_game_scene_stage_glow()
 
     love.graphics.setBlendMode("add")
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(CANVAS_ALPHA_COMP,
-        0,0,0,
-        draw_resolution_correction(1),
-        draw_resolution_correction(1)
-    )
+    love.graphics.draw(CANVAS_ALPHA_COMP)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.setBlendMode("alpha")
 

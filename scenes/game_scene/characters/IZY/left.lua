@@ -14,7 +14,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["projectile_list"] = {}
     obj_char_game_scene_char_LP["shadow_box_list"] = {
         {
-            {-21.63, -18.63,
+            {-17.38, -6.38,
             -37.88, -4.50}
             ,
             {-37.88, -4.50,
@@ -57,7 +57,7 @@ function load_game_scene_obj_char_LP()
             12.00, -5.00}
             ,
             {12.00, -5.00,
-            -21.63, -18.63}
+            -17.38, -6.38}
         },
         {
             {-3.88, -21.50,
@@ -254,7 +254,7 @@ function draw_game_scene_char_LP_shadow()
     local shadow_anchor_2d_pos = draw_3d_point_to_2D(camera,shadow_anchor)
     local scale = draw_resolution_correction(800)/(z-camera_z)
 
-    for i = 1,2 do
+    for i = 1,#shadow_box_list do
         local x = obj_2d_pos[1] + scale*sx*obj["shadow_box_pos"][i][1]
         local y = obj_2d_pos[2] + scale*sy*obj["shadow_box_pos"][i][2]
 
