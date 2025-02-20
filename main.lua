@@ -91,7 +91,7 @@ function love.load()
 
 	modify_quit_game_reocrd()
 
-	GAME_MODE = 0
+	GAME_MODE = 0 -- 1.训练模式 2.本地多人 3.在线多人
 	NETWORK_MATCH_SIDE = 1
 	OTHER_SIDE = 2
 	CHAR_SELECT_LR = {4,5}
@@ -99,6 +99,11 @@ function love.load()
 	ROUND_COUNTER = 1
 	WIN_MARK = {0,0}
 	CHECKPOINT_MARK = {0,0}
+
+	TRAINING_MODE_CONFIG = {}
+	TRAINING_MODE_CONFIG["LP_character_pos"] = -320 -- -1600 -> 1600
+	TRAINING_MODE_CONFIG["RP_character_pos"] = 320
+	TRAINING_MODE_CONFIG["announcer"] = false
 
 	-- non-character global variable
 -------------------------------------------------

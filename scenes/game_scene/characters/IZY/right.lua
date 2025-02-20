@@ -101,6 +101,14 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["knife_8"] = 0 -- obj[knife_8]匕首图形上的帧数
     obj_char_game_scene_char_RP["knife_f"] = 0 -- obj[knife_8]匕首逻辑上的帧数
 
+
+    obj_char_game_scene_char_RP["health"] = 11500
+    obj_char_game_scene_char_RP["heat"] = 0.0 -- 0.0 - 200.0
+    obj_char_game_scene_char_RP["ability"] = 600.0 -- 0.0 - 600.0
+    obj_char_game_scene_char_RP["overdrive"] = 600.0 -- 0.0 - 600.0
+    obj_char_game_scene_char_RP["risk"] = 0.0 -- 0.0 - 300.0
+
+
 end
 
 function order_load_game_scene_char_RP_frames(load_order)

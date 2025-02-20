@@ -1,4 +1,4 @@
-function draw_game_scene_flash_in()
+function draw_game_scene_main()
     -- 绘制场景固定物
     draw_game_scene_stage_static()
 

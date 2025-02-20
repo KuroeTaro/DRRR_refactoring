@@ -38,9 +38,27 @@ function load_game_scene_prep()
     LOAD_ONCE_TABLE = {false,false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 4 -- 和线程数相同
 
-	NEXT_UPDATE_BLOCK = update_game_scene_flash_in
-	NEXT_DRAW_BLOCK = draw_game_scene_flash_in
-    NEXT_PRESET = preset_game_scene
+    GAME_MODE = 0 -- 1.训练模式 2.本地多人 3.在线多人
+	TRAINING_MODE_CONFIG["announcer"] = false
+
+    if GAME_MODE == 0 and TRAINING_MODE_CONFIG["announcer"] == false then
+        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_training_black_solid
+        NEXT_DRAW_BLOCK = draw_game_scene_main
+        NEXT_PRESET = preset_game_scene_training
+    elseif GAME_MODE == 0 and TRAINING_MODE_CONFIG["announcer"] == true then
+        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_training_act1
+        NEXT_DRAW_BLOCK = draw_game_scene_main
+        NEXT_PRESET = preset_game_scene_training
+    elseif GAME_MODE == 1 then
+        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_local_match_act1
+        NEXT_DRAW_BLOCK = draw_game_scene_main
+        NEXT_PRESET = preset_game_scene_match
+    elseif GAME_MODE == 2 then
+        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_online_match_synchronizing
+        NEXT_DRAW_BLOCK = draw_game_scene_synchronizing
+        NEXT_PRESET = preset_game_scene_match
+    end
+
 
 end
 
@@ -125,6 +143,11 @@ function load_game_scene_thread_table(LP_name,RP_name,stage_name)
 
 end
 
-function preset_game_scene()
+
+function preset_game_scene_training()
+
+end
+
+function preset_game_scene_match()
 
 end
