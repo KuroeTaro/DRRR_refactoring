@@ -1,8 +1,6 @@
 function load_char_select_scene_obj()
     -- 覆盖黑色前景
     obj_UI_char_select_scene_black_solid = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_black_solid["width"] = 1600
-    obj_UI_char_select_scene_black_solid["height"] = 900
     obj_UI_char_select_scene_black_solid["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_black_solid["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_black_solid["LCD"] = {0,0,0,0,0,0,0,0}
@@ -11,16 +9,12 @@ function load_char_select_scene_obj()
     
     -- 覆盖电影噪点
     obj_UI_char_select_scene_movie_cover = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_movie_cover["width"] = 1600
-    obj_UI_char_select_scene_movie_cover["height"] = 900
     obj_UI_char_select_scene_movie_cover["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_movie_cover["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_movie_cover["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_movie_cover["state"] = "default"
 
     obj_UI_char_select_scene_start_0f_110f = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_start_0f_110f["width"] = 1600
-    obj_UI_char_select_scene_start_0f_110f["height"] = 900
     obj_UI_char_select_scene_start_0f_110f["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_start_0f_110f["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_start_0f_110f["LCD"] = {0,0,0,0,0,0,0,0}
@@ -28,16 +22,12 @@ function load_char_select_scene_obj()
 
     -- 光环
     obj_UI_char_select_scene_ring = {0, 0, nil, 0.75, 1, 1, 0, 0}
-    obj_UI_char_select_scene_ring["width"] = 1600
-    obj_UI_char_select_scene_ring["height"] = 900
     obj_UI_char_select_scene_ring["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_ring["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_ring["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_ring["state"] = "default"
     
     obj_UI_char_select_scene_glow = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_glow["width"] = 1600
-    obj_UI_char_select_scene_glow["height"] = 900
     obj_UI_char_select_scene_glow["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_glow["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_glow["LCD"] = {0,0,0,0,0,0,0,0}
@@ -47,40 +37,30 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_glow["alpha_points"]["LCD"] = {0,0, 0,0, 0,0, 0,0, 0,0, 0,0}
     
     obj_UI_char_select_scene_bar_mark_L = {55, 509, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_bar_mark_L["width"] = 15
-    obj_UI_char_select_scene_bar_mark_L["height"] = 22
     obj_UI_char_select_scene_bar_mark_L["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_L["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_L["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_L["state"] = "idle"
     
     obj_UI_char_select_scene_bar_mark_R = {1545, 739, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_bar_mark_R["width"] = 15
-    obj_UI_char_select_scene_bar_mark_R["height"] = 22
     obj_UI_char_select_scene_bar_mark_R["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_R["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_R["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_R["state"] = "idle"
     
     obj_UI_char_select_scene_control_method_L = {90, 470, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_control_method_L["width"] = 300
-    obj_UI_char_select_scene_control_method_L["height"] = 80
     obj_UI_char_select_scene_control_method_L["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_L["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_L["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_L["state"] = "default"
     
     obj_UI_char_select_scene_control_method_R = {1236, 700, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_control_method_R["width"] = 300
-    obj_UI_char_select_scene_control_method_R["height"] = 80
     obj_UI_char_select_scene_control_method_R["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_R["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_R["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_R["state"] = "default"
 
     obj_UI_char_select_scene_timer = {1321, 815, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_timer["width"] = 20
-    obj_UI_char_select_scene_timer["height"] = 20
     obj_UI_char_select_scene_timer["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_timer["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_timer["LCD"] = {0,0,0,0,0,0,0,0}
@@ -88,8 +68,6 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_timer["time"] = {6,0,60}
     
     obj_UI_char_select_scene_char_select_left = {-33, 110, nil, 0, 1, 1, 0, 4}
-    obj_UI_char_select_scene_char_select_left["width"] = 1650
-    obj_UI_char_select_scene_char_select_left["height"] = 455
     obj_UI_char_select_scene_char_select_left["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left["LCD"] = {0,0,0,0,0,0,0,0}
@@ -97,24 +75,18 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_char_select_left["flash_state"] = "flash_in"
     
     obj_UI_char_select_scene_char_select_left_char = {-200, -52, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_char_select_left_char["width"] = 1650
-    obj_UI_char_select_scene_char_select_left_char["height"] = 455
     obj_UI_char_select_scene_char_select_left_char["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_char["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_char["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_char["state"] = "default"
     
     obj_UI_char_select_scene_char_select_left_text = {375, -179, nil, 1, 1, 1, 0.192, 0}
-    obj_UI_char_select_scene_char_select_left_text["width"] = 1650
-    obj_UI_char_select_scene_char_select_left_text["height"] = 455
     obj_UI_char_select_scene_char_select_left_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_text["state"] = "default"
     
     obj_UI_char_select_scene_char_select_right = {-25, 335, nil, 0, 1, 1, 0, 5}
-    obj_UI_char_select_scene_char_select_right["width"] = 1650
-    obj_UI_char_select_scene_char_select_right["height"] = 455
     obj_UI_char_select_scene_char_select_right["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right["LCD"] = {0,0,0,0,0,0,0,0}
@@ -122,32 +94,24 @@ function load_char_select_scene_obj()
     obj_UI_char_select_scene_char_select_right["flash_state"] = "flash_in"
     
     obj_UI_char_select_scene_char_select_right_char = {610, -12, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_char_select_right_char["width"] = 1650
-    obj_UI_char_select_scene_char_select_right_char["height"] = 455
     obj_UI_char_select_scene_char_select_right_char["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_char["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_char["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_char["state"] = "default"
     
     obj_UI_char_select_scene_char_select_right_text = {1291, -36, nil, 1, 1, 1, 0.436, 0}
-    obj_UI_char_select_scene_char_select_right_text["width"] = 1650
-    obj_UI_char_select_scene_char_select_right_text["height"] = 455
     obj_UI_char_select_scene_char_select_right_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_text["state"] = "default"
     
     obj_UI_char_select_scene_icon_select_L = {603, 349, nil, 0, 1, 1, 0, 4}
-    obj_UI_char_select_scene_icon_select_L["width"] = 260
-    obj_UI_char_select_scene_icon_select_L["height"] = 380
     obj_UI_char_select_scene_icon_select_L["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_select_L["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_select_L["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_select_L["state"] = "default"
     
     obj_UI_char_select_scene_icon_select_R = {760, 166, nil, 0, 1, 1, 0, 5}
-    obj_UI_char_select_scene_icon_select_R["width"] = 260
-    obj_UI_char_select_scene_icon_select_R["height"] = 400
     obj_UI_char_select_scene_icon_select_R["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_select_R["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_select_R["LCD"] = {0,0,0,0,0,0,0,0}

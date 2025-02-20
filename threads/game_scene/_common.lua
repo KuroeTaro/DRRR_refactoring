@@ -4,10 +4,10 @@ local compress_module = image_module.newCompressedData
 local non_compress_module = love.image.newImageData
 local image_data = {}
 
--- act_#
-image_data["act_#"] = {}
+-- act_common
+image_data["act_common"] = {}
 for i = 1,105 do
-    image_data["act_#"][i] = compress_module("asset/game_scene/common/act_#/"..(i-1)..".dds")
+    image_data["act_common"][i] = compress_module("asset/game_scene/common/act_common/"..(i-1)..".dds")
 end
 image_data["act_1"] = {}
 for i = 1,75 do
@@ -29,5 +29,5 @@ image_data["lets_dance"] = {}
 for i = 1,40 do
     image_data["lets_dance"][i] = compress_module("asset/game_scene/common/lets_dance/"..(i-1)..".dds")
 end
-image_data["HUD_guage"] = compress_module("asset/game_scene/common/HUD_guage.dds")
+image_data["HUD_gauge"] = compress_module("asset/game_scene/common/HUD_gauge.dds")
 love.thread.getChannel( 'image_4' ):push( image_data )

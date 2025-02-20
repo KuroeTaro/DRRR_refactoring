@@ -101,6 +101,8 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["knife_8"] = 0 -- obj[knife_8]匕首图形上的帧数
     obj_char_game_scene_char_LP["knife_f"] = 0 -- obj[knife_8]匕首逻辑上的帧数
 
+    
+
 end
 
 function order_load_game_scene_char_LP_frames(load_order)
@@ -152,7 +154,6 @@ end
 function load_game_scene_shader_char_LP()
 
 end
-
 
 
 function update_game_scene_char_LP()

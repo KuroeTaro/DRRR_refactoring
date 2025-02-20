@@ -96,6 +96,9 @@ function love.load()
 	OTHER_SIDE = 2
 	CHAR_SELECT_LR = {4,5}
 	CONTROL_METHOD = {1,1}
+	ROUND_COUNTER = 1
+	WIN_MARK = {0,0}
+	CHECKPOINT_MARK = {0,0}
 
 	-- non-character global variable
 -------------------------------------------------

@@ -235,8 +235,8 @@ function draw_char_select_scene_char_select_LR(id)
         local sy = draw_resolution_correction(obj_UI_char_select_scene_char_select_left[6])
         local f = obj_UI_char_select_scene_char_select_left[8]
         local opacity = obj_UI_char_select_scene_char_select_left[4]
-        local w = obj_UI_char_select_scene_char_select_left["width"]
-        local h = obj_UI_char_select_scene_char_select_left["height"]
+        local w = 1650
+        local h = 455
 
         if opacity == 0 then
             return
@@ -277,8 +277,8 @@ function draw_char_select_scene_char_select_LR(id)
         local sy = draw_resolution_correction(obj_UI_char_select_scene_char_select_right[6])
         local f = obj_UI_char_select_scene_char_select_right[8]
         local opacity = obj_UI_char_select_scene_char_select_right[4]
-        local w = obj_UI_char_select_scene_char_select_right["width"]
-        local h = obj_UI_char_select_scene_char_select_right["height"]
+        local w = 1650
+        local h = 455
 
         if opacity == 0 then
             return

@@ -1,9 +1,12 @@
 function draw_game_scene_flash_in()
+    -- 绘制场景固定物
     draw_game_scene_stage_static()
 
+    -- 更新角色的图像位置
     draw_game_scene_char_LP_logic_graphic_pos_sync()
     draw_game_scene_char_RP_logic_graphic_pos_sync()
 
+    -- 绘制角色阴影
     local shadow_cavans = love.graphics.newCanvas(
         love.graphics.getWidth(),
         love.graphics.getHeight()
@@ -17,9 +20,11 @@ function draw_game_scene_flash_in()
     love.graphics.draw(shadow_cavans)
     love.graphics.setColor(1, 1, 1, 1)
 
+    -- 绘制角色本体
     draw_game_scene_char_LP()
     draw_game_scene_char_RP()
 
+    -- 绘制上帝光
     draw_game_scene_stage_glow()
     
 end

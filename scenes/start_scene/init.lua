@@ -1,8 +1,6 @@
 function load_start_scene_obj()
     -- 主界面 全覆盖 solid color
     obj_UI_start_scene_solid_color = {0, 0, 0, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_solid_color["width"] = 1600
-    obj_UI_start_scene_solid_color["height"] = 900
     obj_UI_start_scene_solid_color["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_solid_color["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_solid_color["LCD"] = {0,0,0,0,0,0,0,0}
@@ -13,72 +11,54 @@ function load_start_scene_obj()
     -- record
     -- x y z opacity sx sy r f
     obj_UI_start_scene_record_100h_plus_time_indi = {600, 460, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_100h_plus_time_indi["width"] = 320
-    obj_UI_start_scene_record_100h_plus_time_indi["height"] = 40
     obj_UI_start_scene_record_100h_plus_time_indi["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["state"] = "default"
 
     obj_UI_start_scene_record_dabo_trig = {550, 500, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_dabo_trig["width"] = 36
-    obj_UI_start_scene_record_dabo_trig["height"] = 16
     obj_UI_start_scene_record_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_dabo_trig["state"] = "default"
 
     obj_UI_start_scene_record_num_0 = {600, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_0["width"] = 12
-    obj_UI_start_scene_record_num_0["height"] = 16
     obj_UI_start_scene_record_num_0["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_0["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_0["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_0["state"] = "default"
 
     obj_UI_start_scene_record_num_1 = {613, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_1["width"] = 12
-    obj_UI_start_scene_record_num_1["height"] = 16
     obj_UI_start_scene_record_num_1["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_1["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_1["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_1["state"] = "default"
 
     obj_UI_start_scene_record_num_2 = {635, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_2["width"] = 12
-    obj_UI_start_scene_record_num_2["height"] = 16
     obj_UI_start_scene_record_num_2["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_2["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_2["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_2["state"] = "default"
 
     obj_UI_start_scene_record_num_3 = {648, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_3["width"] = 12
-    obj_UI_start_scene_record_num_3["height"] = 16
     obj_UI_start_scene_record_num_3["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_3["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_3["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_3["state"] = "default"
 
     obj_UI_start_scene_record_num_4 = {671, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_4["width"] = 12
-    obj_UI_start_scene_record_num_4["height"] = 16
     obj_UI_start_scene_record_num_4["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_4["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_4["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_4["state"] = "default"
 
     obj_UI_start_scene_record_num_5 = {684, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_5["width"] = 12
-    obj_UI_start_scene_record_num_5["height"] = 16
     obj_UI_start_scene_record_num_5["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_5["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_5["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_5["state"] = "default"
 
     obj_UI_start_scene_record_game_duration_text = {600, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_game_duration_text["width"] = 400
-    obj_UI_start_scene_record_game_duration_text["height"] = 100
     obj_UI_start_scene_record_game_duration_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_game_duration_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_game_duration_text["LCD"] = {0,0,0,0,0,0,0,0}
@@ -87,24 +67,18 @@ function load_start_scene_obj()
 
     -- config res
     obj_UI_start_scene_config_resolution_bar_mark = {1000, 530, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_bar_mark["width"] = 12
-    obj_UI_start_scene_config_resolution_bar_mark["height"] = 16
     obj_UI_start_scene_config_resolution_bar_mark["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_bar_mark["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_bar_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_bar_mark["state"] = "default"
 
     obj_UI_start_scene_config_resolution_w_x_h = {1030, 530, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_w_x_h["width"] = 136
-    obj_UI_start_scene_config_resolution_w_x_h["height"] = 20
     obj_UI_start_scene_config_resolution_w_x_h["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_w_x_h["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_w_x_h["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_w_x_h["state"] = "default"
 
     obj_UI_start_scene_config_resolution_select_res_text = {955, 480, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_select_res_text["width"] = 560
-    obj_UI_start_scene_config_resolution_select_res_text["height"] = 180
     obj_UI_start_scene_config_resolution_select_res_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_select_res_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_select_res_text["LCD"] = {0,0,0,0,0,0,0,0}
@@ -113,24 +87,18 @@ function load_start_scene_obj()
 
     -- config controller
     obj_UI_start_scene_config_controller_bar_mark_LP = {1335, 510, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_LP["width"] = 12
-    obj_UI_start_scene_config_controller_bar_mark_LP["height"] = 16
     obj_UI_start_scene_config_controller_bar_mark_LP["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_LP["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_LP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_LP["state"] = "default"
 
     obj_UI_start_scene_config_controller_bar_mark_RP = {1335, 535, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_RP["width"] = 12
-    obj_UI_start_scene_config_controller_bar_mark_RP["height"] = 16
     obj_UI_start_scene_config_controller_bar_mark_RP["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_RP["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_RP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_RP["state"] = "default"
 
     obj_UI_start_scene_config_controller_indi_text = {990, 460, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_indi_text["width"] = 480
-    obj_UI_start_scene_config_controller_indi_text["height"] = 180
     obj_UI_start_scene_config_controller_indi_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_indi_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_indi_text["LCD"] = {0,0,0,0,0,0,0,0}
@@ -139,64 +107,48 @@ function load_start_scene_obj()
 
     -- config audio
     obj_UI_start_scene_config_audio_bar_mark = {1296, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_bar_mark["width"] = 12
-    obj_UI_start_scene_config_audio_bar_mark["height"] = 16
     obj_UI_start_scene_config_audio_bar_mark["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_bar_mark["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_bar_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_bar_mark["state"] = "default"
 
     obj_UI_start_scene_config_audio_BGM_bar_light = {1055, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_light["width"] = 232
-    obj_UI_start_scene_config_audio_BGM_bar_light["height"] = 16
     obj_UI_start_scene_config_audio_BGM_bar_light["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_light["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_light["state"] = "default"
 
     obj_UI_start_scene_config_audio_SFX_bar_light = {1055, 426, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_light["width"] = 232
-    obj_UI_start_scene_config_audio_SFX_bar_light["height"] = 16
     obj_UI_start_scene_config_audio_SFX_bar_light["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_light["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_light["state"] = "default"
 
     obj_UI_start_scene_config_audio_BGM_bar_alpha = {BGM_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["width"] = 232
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["height"] = 16
     obj_UI_start_scene_config_audio_BGM_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_alpha["state"] = "default"
 
     obj_UI_start_scene_config_audio_SFX_bar_alpha = {SFX_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["width"] = 232
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["height"] = 16
     obj_UI_start_scene_config_audio_SFX_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_alpha["state"] = "default"
 
     obj_UI_start_scene_config_audio_BGM_bar_gauge = {1055, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["width"] = 232
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["height"] = 16
     obj_UI_start_scene_config_audio_BGM_bar_gauge["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_gauge["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_gauge["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_gauge["state"] = "default"
 
     obj_UI_start_scene_config_audio_SFX_bar_gauge = {1055, 426, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["width"] = 232
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["height"] = 16
     obj_UI_start_scene_config_audio_SFX_bar_gauge["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_gauge["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_gauge["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_gauge["state"] = "default"
 
     obj_UI_start_scene_config_audio_text = {995, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_text["width"] = 52
-    obj_UI_start_scene_config_audio_text["height"] = 52
     obj_UI_start_scene_config_audio_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_text["LCD"] = {0,0,0,0,0,0,0,0}
@@ -205,16 +157,12 @@ function load_start_scene_obj()
 
     -- config main
     obj_UI_start_scene_config_menu_dabo_trig = {590, 390, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_menu_dabo_trig["width"] = 36
-    obj_UI_start_scene_config_menu_dabo_trig["height"] = 16
     obj_UI_start_scene_config_menu_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_dabo_trig["state"] = "default"
 
     obj_UI_start_scene_config_menu_text = {640, 390, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_menu_text["width"] = 320
-    obj_UI_start_scene_config_menu_text["height"] = 120
     obj_UI_start_scene_config_menu_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_text["LCD"] = {0,0,0,0,0,0,0,0}
@@ -223,8 +171,6 @@ function load_start_scene_obj()
 
     -- shutter 次界面
     obj_UI_start_scene_shutter = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_shutter["width"] = 1600
-    obj_UI_start_scene_shutter["height"] = 900
     obj_UI_start_scene_shutter["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_shutter["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_shutter["LCD"] = {0,0,0,0,0,0,0,0}
@@ -233,32 +179,24 @@ function load_start_scene_obj()
 
     -- console 主界面
     obj_UI_start_scene_up_console_text = {130, 50, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_up_console_text["width"] = 340
-    obj_UI_start_scene_up_console_text["height"] = 20
     obj_UI_start_scene_up_console_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_up_console_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_up_console_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_up_console_text["state"] = "default"
 
     obj_UI_start_scene_down_console_text = {130, 75, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_down_console_text["width"] = 930
-    obj_UI_start_scene_down_console_text["height"] = 20
     obj_UI_start_scene_down_console_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_down_console_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_down_console_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_down_console_text["state"] = "default"
 
     obj_UI_start_scene_console_type_in_mark = {1065, 74, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_console_type_in_mark["width"] = 4
-    obj_UI_start_scene_console_type_in_mark["height"] = 20
     obj_UI_start_scene_console_type_in_mark["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_console_type_in_mark["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_console_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_console_type_in_mark["state"] = "default"
 
     obj_UI_start_scene_console_dabo_trig = {75, 50, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_console_dabo_trig["width"] = 36
-    obj_UI_start_scene_console_dabo_trig["height"] = 16
     obj_UI_start_scene_console_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_console_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_console_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
@@ -267,8 +205,6 @@ function load_start_scene_obj()
 
     -- option 主界面
     obj_UI_start_scene_option_text = {704, 700, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_option_text["width"] = 220
-    obj_UI_start_scene_option_text["height"] = 32
     obj_UI_start_scene_option_text["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_option_text["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_option_text["LCD"] = {0,0,0,0,0,0,0,0}
@@ -277,8 +213,6 @@ function load_start_scene_obj()
 
     -- 呼吸灯 主界面
     obj_UI_start_scene_breath_tag = {510, 695, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_breath_tag["width"] = 600
-    obj_UI_start_scene_breath_tag["height"] = 40
     obj_UI_start_scene_breath_tag["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_breath_tag["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_breath_tag["LCD"] = {0,0,0,0,0,0,0,0}
@@ -287,8 +221,6 @@ function load_start_scene_obj()
 
     -- logo 主界面
     obj_UI_start_scene_main_logo = {325, 250, nil, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_main_logo["width"] = 1000
-    obj_UI_start_scene_main_logo["height"] = 420
     obj_UI_start_scene_main_logo["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_main_logo["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_main_logo["LCD"] = {0,0,0,0,0,0,0,0}
@@ -297,8 +229,6 @@ function load_start_scene_obj()
 
     -- 背景 主界面
     obj_UI_start_scene_noise_bg = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_noise_bg["width"] = 1600
-    obj_UI_start_scene_noise_bg["height"] = 900
     obj_UI_start_scene_noise_bg["FCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_noise_bg["LCT"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_noise_bg["LCD"] = {0,0,0,0,0,0,0,0}

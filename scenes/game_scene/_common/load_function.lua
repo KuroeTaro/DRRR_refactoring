@@ -57,7 +57,7 @@ function order_load_game_scene_common(load_order)
         [2] = function()
             image_table_announcer_game_scene_act_common = {}
             for i = 0,104 do
-                image_table_announcer_game_scene_act_common[i] = love.graphics.newImage(ASSET_DATA[4]["act_#"][i+1])
+                image_table_announcer_game_scene_act_common[i] = love.graphics.newImage(ASSET_DATA[4]["act_common"][i+1])
             end
 
             image_table_announcer_game_scene_act_number = {}
@@ -84,7 +84,7 @@ function order_load_game_scene_common(load_order)
                 image_table_announcer_game_scene_lets_dance[i] = love.graphics.newImage(ASSET_DATA[4]["lets_dance"][i+1])
             end
 
-            image_HUD_game_scene_guage = love.graphics.newImage(ASSET_DATA[4]["HUD_guage"])
+            image_HUD_game_scene_gauge = love.graphics.newImage(ASSET_DATA[4]["HUD_gauge"])
 
 
         end,
