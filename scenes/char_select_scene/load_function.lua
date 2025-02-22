@@ -25,8 +25,8 @@ function load_char_select_scene_prep()
     LOAD_ONCE_TABLE = {false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 3 -- 和线程数相同
 
-	NEXT_UPDATE_BLOCK = update_char_select_scene_flash_in_0f_36f
-	NEXT_DRAW_BLOCK = draw_char_select_scene_flash_in_0f_36f
+	NEXT_UPDATE_BLOCK = update_char_select_scene_ease_in_0f_36f
+	NEXT_DRAW_BLOCK = draw_char_select_scene_ease_in_0f_36f
     NEXT_PRESET = preset_char_select_scene
 
 end
@@ -177,13 +177,13 @@ function unload_char_select_scene_require()
     end
     require("scenes/char_select_scene/load_function")
 
-    -- common_char_select_scene_reset_char_text_flash_out = nil
-    -- common_char_select_scene_reset_char_text_flash_in = nil
+    -- common_char_select_scene_reset_char_text_ease_out = nil
+    -- common_char_select_scene_reset_char_text_ease_in = nil
     -- common_char_select_scene_char_select_left_locked_exit = nil
 
-    -- draw_char_select_scene_flash_in_0f_36f = nil
-    -- draw_char_select_scene_flash_in_36f_40f = nil
-    -- draw_char_select_scene_flash_in_40f_2s10f = nil
+    -- draw_char_select_scene_ease_in_0f_36f = nil
+    -- draw_char_select_scene_ease_in_36f_40f = nil
+    -- draw_char_select_scene_ease_in_40f_2s10f = nil
     -- draw_char_select_scene_main = nil
     -- draw_char_select_scene_timer = nil
     -- draw_char_select_scene_glow = nil
@@ -201,21 +201,21 @@ function unload_char_select_scene_require()
     -- unload_char_select_scene_all = nil
     -- preset_char_select_scene = nil
 
-    -- update_char_select_scene_flash_in_0f_36f = nil
-    -- update_char_select_scene_flash_in_36f_40f = nil
-    -- update_char_select_scene_flash_in_40f_2s10f = nil
+    -- update_char_select_scene_ease_in_0f_36f = nil
+    -- update_char_select_scene_ease_in_36f_40f = nil
+    -- update_char_select_scene_ease_in_40f_2s10f = nil
     -- update_char_select_scene_main = nil
     -- update_char_select_scene_train_dummy_select = nil
-    -- update_char_select_scene_flash_out = nil
+    -- update_char_select_scene_ease_out = nil
 
     -- state_machine_UI_char_select_scene_movie_cover_loop = nil
     -- state_machine_UI_char_select_scene_timer = nil
     -- state_machine_UI_char_select_scene_ring_blink = nil
     -- state_machine_UI_char_select_scene_char_select = nil
-    -- state_machine_UI_char_select_scene_char_select_flash = nil
+    -- state_machine_UI_char_select_scene_char_select_ease = nil
     -- state_machine_UI_char_select_scene_char_select_bar_mark_select = nil
     -- state_machine_UI_char_select_scene_char_select_train_dummy = nil
-    -- state_machine_UI_char_select_scene_char_select_flash_train_dummy = nil
+    -- state_machine_UI_char_select_scene_char_select_ease_train_dummy = nil
     -- state_machine_UI_char_select_scene_char_select_bar_mark_select_train_dummy = nil
 
 end

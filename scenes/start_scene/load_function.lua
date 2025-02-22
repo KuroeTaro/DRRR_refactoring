@@ -25,7 +25,7 @@ function load_start_scene_prep()
     LOAD_ONCE_TABLE = {false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 3 -- 和线程数相同
 
-	NEXT_UPDATE_BLOCK = update_start_scene_flash_in
+	NEXT_UPDATE_BLOCK = update_start_scene_ease_in
 	NEXT_DRAW_BLOCK = draw_start_scene_main
     NEXT_PRESET = preset_start_scene
 
@@ -271,19 +271,19 @@ function unload_start_select_scene_require()
     -- unload_start_scene_all = nil
     -- preset_start_scene = nil
 
-    -- update_start_scene_flash_in = nil
+    -- update_start_scene_ease_in = nil
     -- update_start_scene_30f_1s45f = nil
     -- update_start_scene_1s45f_1s50f = nil
     -- update_start_scene_main = nil
-    -- update_start_scene_flash_out = nil
+    -- update_start_scene_ease_out = nil
     -- update_start_scene_option_twitch = nil
     -- update_start_scene_only_console_twitch = nil
-    -- update_start_scene_config_flash_in = nil
+    -- update_start_scene_config_ease_in = nil
     -- update_start_scene_config_main = nil
     -- update_start_scene_config_twitch_up = nil
     -- update_start_scene_config_twitch_down = nil
-    -- update_start_scene_config_flash_out = nil
-    -- update_start_scene_config_audio_flash_in = nil
+    -- update_start_scene_config_ease_out = nil
+    -- update_start_scene_config_audio_ease_in = nil
     -- update_start_scene_config_audio_main = nil
     -- update_start_scene_config_audio_bar_mark_twtich_up = nil
     -- update_start_scene_config_audio_bar_mark_twtich_down = nil
@@ -291,20 +291,20 @@ function unload_start_select_scene_require()
     -- update_start_scene_config_audio_bar_mark_twtich_left_with_out_alpha = nil
     -- update_start_scene_config_audio_bar_mark_twtich_right_with_alpha = nil
     -- update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha = nil
-    -- update_start_scene_config_audio_flash_out = nil
-    -- update_start_scene_config_controller_flash_in = nil
+    -- update_start_scene_config_audio_ease_out = nil
+    -- update_start_scene_config_controller_ease_in = nil
     -- update_start_scene_config_controller_main = nil
-    -- update_start_scene_config_controller_flash_out = nil
-    -- update_start_scene_config_resolution_flash_in = nil
+    -- update_start_scene_config_controller_ease_out = nil
+    -- update_start_scene_config_resolution_ease_in = nil
     -- update_start_scene_config_resolution_main = nil
     -- update_start_scene_config_resolution_bar_mark_twtich_left = nil
     -- update_start_scene_config_resolution_bar_mark_twtich_right = nil
-    -- update_start_scene_config_resolution_flash_out = nil
-    -- update_start_scene_record_flash_in = nil
+    -- update_start_scene_config_resolution_ease_out = nil
+    -- update_start_scene_record_ease_in = nil
     -- update_start_scene_record_main = nil
     -- update_start_scene_record_twitch_up = nil
     -- update_start_scene_record_twitch_down = nil
-    -- update_start_scene_record_flash_out = nil
+    -- update_start_scene_record_ease_out = nil
 
     -- state_machine_UI_start_scene_noise_BG_static_loop = nil
     -- state_machine_UI_start_scene_config_controller = nil

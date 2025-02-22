@@ -6,7 +6,7 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["f"] = 0 -- obj["f"] 逻辑上的帧数
     obj_char_game_scene_char_RP["anchor_pos"] = {150,550}
     obj_char_game_scene_char_RP["velocity"] = {0,0}
-    obj_char_game_scene_char_RP["state"] = "stand_idle"
+    obj_char_game_scene_char_RP["state"] = "before_ease_in"
     obj_char_game_scene_char_RP["character_animation_timer"] = 0
 
     obj_char_game_scene_char_RP["hitbox_list"] = {}
@@ -116,10 +116,17 @@ function order_load_game_scene_char_RP_frames(load_order)
     {
         [1] = function()
             image_table_char_game_scene_RP = {}
+
+            image_table_char_game_scene_RP["before_ease_in"] = {}
+            for i = 0,16 do
+                image_table_char_game_scene_RP["before_ease_in"][i] = love.graphics.newImage(ASSET_DATA[2]["stand_idle"][i+1])
+            end
+
             image_table_char_game_scene_RP["stand_idle"] = {}
             for i = 0,16 do
                 image_table_char_game_scene_RP["stand_idle"][i] = love.graphics.newImage(ASSET_DATA[2]["stand_idle"][i+1])
             end
+
         end,
     }
     local this_function = switch[load_order]
@@ -174,7 +181,7 @@ end
 function state_machine_char_game_scene_char_RP()
     local obj = obj_char_game_scene_char_RP
     local switch = {
-        ["stand_idle"] = function()
+        ["before_ease_in"] = function()
             character_animator(obj,anim_char_stand_idle_RP)
             if INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
 

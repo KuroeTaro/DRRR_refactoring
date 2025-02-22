@@ -241,72 +241,72 @@ end
 function load_start_scene_anim()
 
     -- 通用透明度动画
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity[0] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity[5] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity = {}
+    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity[0] = {0, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity[5] = {1, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity[0] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity[5] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity = {}
+    anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity[0] = {0.5, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity[5] = {1, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity[0] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity[5] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity = {}
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity[0] = {0, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity[5] = {0.5, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity[0] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity[5] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity = {}
+    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity[0] = {1, 5}
+    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity[5] = {0, 5}
+    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity[0] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity[5] = {0.1, 5}
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity = {}
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity[0] = {0, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity[5] = {0.1, 5}
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity[0] = {1, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity[5] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity = {}
+    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity[0] = {1, 5}
+    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity[5] = {0.5, 5}
+    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity = {}
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity[0] = {0.5, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity[5] = {0, 5}
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["length"] = 5
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity = {}
+    anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity[0] = {0.5, 5}
+    anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity[5] = {0, 5}
+    anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity["length"] = 5
+    anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity["fix_type"] = true
 
 
     
     -- solid color 闪入 闪出动画
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity = {}
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity[0] = {1, 30}
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity[30] = {0, 30}
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["prop"] = 4
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["length"] = 30
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["loop"] = false
-    anim_UI_point_linear_start_scene_solid_flash_in_opacity["fix_type"] = true
+    anim_UI_point_linear_start_scene_solid_ease_in_opacity = {}
+    anim_UI_point_linear_start_scene_solid_ease_in_opacity[0] = {1, 30}
+    anim_UI_point_linear_start_scene_solid_ease_in_opacity[30] = {0, 30}
+    anim_UI_point_linear_start_scene_solid_ease_in_opacity["prop"] = 4
+    anim_UI_point_linear_start_scene_solid_ease_in_opacity["length"] = 30
+    anim_UI_point_linear_start_scene_solid_ease_in_opacity["loop"] = false
+    anim_UI_point_linear_start_scene_solid_ease_in_opacity["fix_type"] = true
 
     
     -- option
@@ -533,29 +533,29 @@ function load_start_scene_audio()
 
     -- audio anim
 
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume = {}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[0] = {0, 5}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume[5] = {1, 5}
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["length"] = 5
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["loop"] = false
-    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume["fix_type"] = true
+    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume = {}
+    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume[0] = {0, 5}
+    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume[5] = {1, 5}
+    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume["prop"] = 1
+    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume["length"] = 5
+    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume["loop"] = false
+    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0 = {}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0[0] = {1, 5}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0[5] = {0, 5}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["length"] = 5
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["loop"] = false
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0["fix_type"] = true
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0 = {}
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0[0] = {1, 5}
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0[5] = {0, 5}
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0["prop"] = 1
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0["length"] = 5
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0["loop"] = false
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0["fix_type"] = true
 
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1 = {}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1[0] = {1, 40}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1[40] = {0, 40}
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["prop"] = 1
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["length"] = 40
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["loop"] = false
-    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1["fix_type"] = true
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1 = {}
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1[0] = {1, 40}
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1[40] = {0, 40}
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1["prop"] = 1
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1["length"] = 40
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1["loop"] = false
+    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1["fix_type"] = true
 
 end
 
@@ -618,14 +618,14 @@ function unload_start_scene_anim()
         end
     end
 
-    -- anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity = nil
-    -- anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity = nil
-    -- anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity = nil
-    -- anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity = nil
-    -- anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity = nil
-    -- anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity = nil
-    -- anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity = nil
-    -- anim_UI_point_linear_start_scene_solid_flash_in_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity = nil
+    -- anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity = nil
+    -- anim_UI_point_linear_start_scene_solid_ease_in_opacity = nil
     -- anim_UI_point_linear_start_scene_breath_tag_breath_loop_opacity = nil
     -- anim_UI_point_linear_start_scene_option_text_twitch_x = nil
     -- anim_UI_frame_start_scene_console_dabo_trig_twtich_x = nil
@@ -663,9 +663,9 @@ function unload_start_scene_audio()
     -- audio_BGM_start_scene_FTR_high = nil
     -- audio_BGM_start_scene_FTR_low = nil
 
-    -- anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume = nil
-    -- anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0 = nil
-    -- anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1 = nil
+    -- anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume = nil
+    -- anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0 = nil
+    -- anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1 = nil
     
 end
 
@@ -692,7 +692,7 @@ function unload_start_scene_all()
 end
 
 function preset_start_scene()
-    init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
+    init_point_linear_anim_with(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_ease_in_opacity)
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     play_obj_audio(audio_BGM_start_scene_FTR_high)
     play_obj_audio(audio_BGM_start_scene_FTR_low)

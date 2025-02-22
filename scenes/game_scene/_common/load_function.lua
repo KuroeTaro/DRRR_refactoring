@@ -38,23 +38,21 @@ function load_game_scene_prep()
     LOAD_ONCE_TABLE = {false,false,false,false}   -- 如果有两个线程 = {false，false} 三个 = {false，false，false} 以此类推
     LOADING_FUNCTION_AMOUNT = 4 -- 和线程数相同
 
-    GAME_MODE = 0 -- 1.训练模式 2.本地多人 3.在线多人
-	TRAINING_MODE_CONFIG["announcer"] = false
-
-    if GAME_MODE == 0 and TRAINING_MODE_CONFIG["announcer"] == false then
-        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_training_black_solid
+    -- GAME_MODE = 0
+    -- TRAINING_MODE_CONFIG["announcer"] = true
+    -- 训练模式
+    if GAME_MODE == 0 then
+        NEXT_UPDATE_BLOCK = update_game_scene_main_training
         NEXT_DRAW_BLOCK = draw_game_scene_main
         NEXT_PRESET = preset_game_scene_training
-    elseif GAME_MODE == 0 and TRAINING_MODE_CONFIG["announcer"] == true then
-        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_training_act1
-        NEXT_DRAW_BLOCK = draw_game_scene_main
-        NEXT_PRESET = preset_game_scene_training
+    -- 本地多人模式
     elseif GAME_MODE == 1 then
-        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_local_match_act1
+        NEXT_UPDATE_BLOCK = update_game_scene_main_local_match
         NEXT_DRAW_BLOCK = draw_game_scene_main
         NEXT_PRESET = preset_game_scene_match
+    -- 线上多人模式
     elseif GAME_MODE == 2 then
-        NEXT_UPDATE_BLOCK = update_game_scene_flash_in_online_match_synchronizing
+        NEXT_UPDATE_BLOCK = update_game_scene_main_online_match
         NEXT_DRAW_BLOCK = draw_game_scene_synchronizing
         NEXT_PRESET = preset_game_scene_match
     end
@@ -92,9 +90,9 @@ function order_load_game_scene_common(load_order)
                 image_table_announcer_game_scene_act_number[3][i] = love.graphics.newImage(ASSET_DATA[4]["act_3"][i+1])
             end
 
-            image_table_announcer_game_scene_HUD_flash_in = {}
+            image_table_announcer_game_scene_HUD_ease_in = {}
             for i = 0,49 do
-                image_table_announcer_game_scene_HUD_flash_in[i] = love.graphics.newImage(ASSET_DATA[4]["HUD_flash_in"][i+1])
+                image_table_announcer_game_scene_HUD_ease_in[i] = love.graphics.newImage(ASSET_DATA[4]["HUD_ease_in"][i+1])
             end
 
             image_table_announcer_game_scene_lets_dance = {}
@@ -145,6 +143,8 @@ end
 
 
 function preset_game_scene_training()
+    obj_UI_game_scene_black_solid[4] = 1
+    
 
 end
 

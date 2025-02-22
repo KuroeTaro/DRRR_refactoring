@@ -1,6 +1,6 @@
-function update_start_scene_flash_in()
+function update_start_scene_ease_in()
     SCENE_TIMER = SCENE_TIMER + 1
-    point_linear_animator(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_flash_in_opacity)
+    point_linear_animator(obj_UI_start_scene_solid_color,anim_UI_point_linear_start_scene_solid_ease_in_opacity)
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
 
     -- 场景出口
@@ -26,12 +26,12 @@ function update_start_scene_30f_1s45f()
         -- 初始化此出口所需属性 但是目前没有
 
         -- 初始化main所需要的动画机
-        init_point_linear_anim_with(obj_UI_start_scene_up_console_text,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-        init_point_linear_anim_with(obj_UI_start_scene_down_console_text,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-        init_point_linear_anim_with(obj_UI_start_scene_console_type_in_mark,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-        init_point_linear_anim_with(obj_UI_start_scene_console_dabo_trig,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-        init_point_linear_anim_with(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-        init_point_linear_anim_with(obj_UI_start_scene_breath_tag,anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity)
+        init_point_linear_anim_with(obj_UI_start_scene_up_console_text,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+        init_point_linear_anim_with(obj_UI_start_scene_down_console_text,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+        init_point_linear_anim_with(obj_UI_start_scene_console_type_in_mark,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+        init_point_linear_anim_with(obj_UI_start_scene_console_dabo_trig,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+        init_point_linear_anim_with(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+        init_point_linear_anim_with(obj_UI_start_scene_breath_tag,anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity)
 
         -- 更新 current_update_block
         current_update_block = update_start_scene_1s45f_1s50f
@@ -42,12 +42,12 @@ end
 function update_start_scene_1s45f_1s50f()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
-    point_linear_animator(obj_UI_start_scene_up_console_text,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-    point_linear_animator(obj_UI_start_scene_down_console_text,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-    point_linear_animator(obj_UI_start_scene_console_type_in_mark,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-    point_linear_animator(obj_UI_start_scene_console_dabo_trig,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-    point_linear_animator(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity)
-    point_linear_animator(obj_UI_start_scene_breath_tag,anim_UI_point_linear_start_scene_general_flash_in_0_0p1_opacity)
+    point_linear_animator(obj_UI_start_scene_up_console_text,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+    point_linear_animator(obj_UI_start_scene_down_console_text,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+    point_linear_animator(obj_UI_start_scene_console_type_in_mark,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+    point_linear_animator(obj_UI_start_scene_console_dabo_trig,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+    point_linear_animator(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity)
+    point_linear_animator(obj_UI_start_scene_breath_tag,anim_UI_point_linear_start_scene_general_ease_in_0_0p1_opacity)
 
     -- 场景出口
     if SCENE_TIMER >= 5 then 
@@ -109,7 +109,7 @@ function update_start_scene_main()
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_console_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_option_text,
@@ -151,7 +151,7 @@ function update_start_scene_main()
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_console_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_option_text,
@@ -183,20 +183,20 @@ function update_start_scene_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_solid_color,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
 
                     -- audio
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+                    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
                 )
 
                 -- 音量更新
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
 
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_flash_out
+                current_update_block = update_start_scene_ease_out
 
             end,
             [1] = function()
@@ -215,17 +215,17 @@ function update_start_scene_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_solid_color,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+                    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
                 )
                 -- 音量更新
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
 
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_flash_out
+                current_update_block = update_start_scene_ease_out
 
             end,
             [2] = function()
@@ -247,23 +247,23 @@ function update_start_scene_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_shutter,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_dabo_trig,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_text,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+                    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_low,
-                    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+                    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
                 )
 
                 -- 更新音量
@@ -271,7 +271,7 @@ function update_start_scene_main()
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
 
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_config_flash_in
+                current_update_block = update_start_scene_config_ease_in
                 current_draw_block = draw_start_scene_config_sub_scene
 
             end,
@@ -303,51 +303,51 @@ function update_start_scene_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_shutter,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_dabo_trig,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_game_duration_text,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_num_0,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_num_1,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_num_2,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_num_3,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_num_4,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_num_5,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_record_100h_plus_time_indi,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+                    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_low,
-                    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+                    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
                 )
 
                 -- 更新音量
@@ -355,7 +355,7 @@ function update_start_scene_main()
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
 
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_record_flash_in
+                current_update_block = update_start_scene_record_ease_in
                 current_draw_block = draw_start_scene_record_sub_scene
 
             end,
@@ -375,11 +375,11 @@ function update_start_scene_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_solid_color,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1
+                    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1
                 )
 
                 -- 更新音量
@@ -387,7 +387,7 @@ function update_start_scene_main()
                 update_SFX_VOLUME(audio_SFX_start_scene_scene_out)
 
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_flash_out
+                current_update_block = update_start_scene_ease_out
 
             end
         }
@@ -420,7 +420,7 @@ function update_start_scene_main()
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_console_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
         )
 
         -- 更新 current_update_block
@@ -430,15 +430,15 @@ function update_start_scene_main()
 
 end 
 
-function update_start_scene_flash_out()
+function update_start_scene_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
     point_linear_animator(
         obj_UI_start_scene_solid_color,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_1
+        anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_1
     )
     update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
 
@@ -493,17 +493,12 @@ function update_start_scene_option_twitch()
     )
     point_linear_animator(
         obj_UI_start_scene_console_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_option_text,
         anim_UI_point_linear_start_scene_option_text_twitch_x
     )
-    if(SCENE_TIMER>=5 and not get_point_linear_anim_end_state(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_option_text_twitch_x)) then
-        print("got ya")
-        print("scene_timer:",SCENE_TIMER)
-        print("obj_UI_start_scene_option_text_end:",get_point_linear_anim_end_state(obj_UI_start_scene_option_text,anim_UI_point_linear_start_scene_option_text_twitch_x))
-    end
 
     -- 场景出口
     if SCENE_TIMER >= 5 then
@@ -555,7 +550,7 @@ function update_start_scene_only_console_twitch()
     )
     point_linear_animator(
         obj_UI_start_scene_console_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
 
     -- 场景出口
@@ -580,7 +575,7 @@ end
 
 
 -- config
-function update_start_scene_config_flash_in()
+function update_start_scene_config_ease_in()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -594,24 +589,24 @@ function update_start_scene_config_flash_in()
 
     point_linear_animator(
         obj_UI_start_scene_shutter,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
 
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+        anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_low,
-        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+        anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
     )
 
     update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
@@ -721,39 +716,39 @@ function update_start_scene_config_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_audio_bar_mark,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_audio_BGM_bar_light,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_audio_SFX_bar_light,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_audio_BGM_bar_gauge,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_audio_SFX_bar_gauge,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_audio_text,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_dabo_trig,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_text,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
                 )
                 
                 -- 更新 update block
-                current_update_block = update_start_scene_config_audio_flash_in
+                current_update_block = update_start_scene_config_audio_ease_in
                 current_draw_block = draw_start_scene_config_audio_sub_scene
 
             end,
@@ -774,28 +769,28 @@ function update_start_scene_config_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_controller_bar_mark_LP,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_controller_bar_mark_RP,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_controller_indi_text,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
 
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_dabo_trig,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_text,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
                 )
 
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_config_controller_flash_in
+                current_update_block = update_start_scene_config_controller_ease_in
                 current_draw_block = draw_start_scene_config_controller_sub_scene
 
             end,
@@ -813,35 +808,35 @@ function update_start_scene_config_main()
                 obj_UI_start_scene_config_resolution_w_x_h[4] = 0
                 obj_UI_start_scene_config_resolution_select_res_text[4] = 0
     
-                    -- controller 子界面的几个object flash in 前 config main object 的设置
+                    -- controller 子界面的几个object ease in 前 config main object 的设置
                 obj_UI_start_scene_config_menu_dabo_trig[4] = 1
                 obj_UI_start_scene_config_menu_text[4] = 1
     
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_resolution_bar_mark,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_resolution_w_x_h,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_resolution_select_res_text,
-                    anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+                    anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
                 )
 
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_dabo_trig,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_text,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
                 )
                 
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_config_resolution_flash_in
+                current_update_block = update_start_scene_config_resolution_ease_in
                 current_draw_block = draw_start_scene_config_resolution_sub_scene
     
             end,
@@ -860,31 +855,31 @@ function update_start_scene_config_main()
                 -- 初始化此出口所需要的动画机
                 init_point_linear_anim_with(
                     obj_UI_start_scene_shutter,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_dabo_trig,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
                 )
                 init_point_linear_anim_with(
                     obj_UI_start_scene_config_menu_text,
-                    anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+                    anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
                 )
     
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_high,
-                    anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+                    anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
                 )
                 init_point_linear_anim_with(
                     audio_BGM_start_scene_FTR_low,
-                    anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+                    anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
                 )
     
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
                 update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
     
                 -- 更新 current_update_block
-                current_update_block = update_start_scene_config_flash_out
+                current_update_block = update_start_scene_config_ease_out
     
             end
         }
@@ -909,31 +904,31 @@ function update_start_scene_config_main()
         -- 初始化此出口所需要的动画机
         init_point_linear_anim_with(
             obj_UI_start_scene_shutter,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_text,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
 
         init_point_linear_anim_with(
             audio_BGM_start_scene_FTR_high,
-            anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+            anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
         )
         init_point_linear_anim_with(
             audio_BGM_start_scene_FTR_low,
-            anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+            anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
         )
 
         update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
         update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
 
         -- 更新 current_update_block
-        current_update_block = update_start_scene_config_flash_out
+        current_update_block = update_start_scene_config_ease_out
 
     end
 
@@ -1006,7 +1001,7 @@ function update_start_scene_config_twitch_down()
 
 end 
 
-function update_start_scene_config_flash_out()
+function update_start_scene_config_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1020,24 +1015,24 @@ function update_start_scene_config_flash_out()
 
     point_linear_animator(
         obj_UI_start_scene_shutter,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
 
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+        anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_low,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+        anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
     )
 
     update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
@@ -1062,7 +1057,7 @@ function update_start_scene_config_flash_out()
 end 
 
     -- config audio
-function update_start_scene_config_audio_flash_in()
+function update_start_scene_config_audio_ease_in()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1076,36 +1071,36 @@ function update_start_scene_config_audio_flash_in()
     
     point_linear_animator(
         obj_UI_start_scene_config_audio_bar_mark,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_BGM_bar_light,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_SFX_bar_light,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_BGM_bar_gauge,
-        anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_SFX_bar_gauge,
-        anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
 
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
     )
 
     -- 场景出口
@@ -1328,40 +1323,40 @@ function update_start_scene_config_audio_main()
         -- 初始化此出口所需要的动画机
         init_point_linear_anim_with(
             obj_UI_start_scene_config_audio_bar_mark,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_audio_BGM_bar_light,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_audio_SFX_bar_light,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_audio_BGM_bar_gauge,
-            anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_audio_SFX_bar_gauge,
-            anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_audio_text,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
 
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_text,
-            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
         )
         
         -- 更新 current_update_block
-        current_update_block = update_start_scene_config_audio_flash_out
+        current_update_block = update_start_scene_config_audio_ease_out
 
     end
 
@@ -1616,7 +1611,7 @@ function update_start_scene_config_audio_bar_mark_twtich_right_with_out_alpha()
 
 end 
 
-function update_start_scene_config_audio_flash_out()
+function update_start_scene_config_audio_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1630,36 +1625,36 @@ function update_start_scene_config_audio_flash_out()
     
     point_linear_animator(
         obj_UI_start_scene_config_audio_bar_mark,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_BGM_bar_light,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_SFX_bar_light,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_BGM_bar_gauge,
-        anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_SFX_bar_gauge,
-        anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_audio_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
 
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
     )
 
     if SCENE_TIMER >= 5 then
@@ -1681,7 +1676,7 @@ function update_start_scene_config_audio_flash_out()
 end 
 
     -- config controller 
-function update_start_scene_config_controller_flash_in()
+function update_start_scene_config_controller_ease_in()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1695,24 +1690,24 @@ function update_start_scene_config_controller_flash_in()
 
     point_linear_animator(
         obj_UI_start_scene_config_controller_bar_mark_LP,
-        anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_controller_bar_mark_RP,
-        anim_UI_point_linear_start_scene_general_flash_in_0_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_0p5_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_controller_indi_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
 
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
     )
 
     if SCENE_TIMER >= 5 then
@@ -1755,34 +1750,34 @@ function update_start_scene_config_controller_main()
         -- 初始化此出口所需要的动画机
         init_point_linear_anim_with(
             obj_UI_start_scene_config_controller_bar_mark_LP,
-            anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_controller_bar_mark_RP,
-            anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_controller_indi_text,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
 
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_text,
-            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
         )
 
         -- 更新 current_update_block
-        current_update_block = update_start_scene_config_controller_flash_out
+        current_update_block = update_start_scene_config_controller_ease_out
         
     end
 
 end 
 
-function update_start_scene_config_controller_flash_out()
+function update_start_scene_config_controller_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1796,23 +1791,23 @@ function update_start_scene_config_controller_flash_out()
 
     point_linear_animator(
         obj_UI_start_scene_config_controller_bar_mark_LP,
-        anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_controller_bar_mark_RP,
-        anim_UI_point_linear_start_scene_general_flash_out_0p5_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_0p5_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_controller_indi_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
     )
 
     if SCENE_TIMER >= 5 then
@@ -1829,7 +1824,7 @@ function update_start_scene_config_controller_flash_out()
 end 
 
     -- config resolution 
-function update_start_scene_config_resolution_flash_in()
+function update_start_scene_config_resolution_ease_in()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -1843,24 +1838,24 @@ function update_start_scene_config_resolution_flash_in()
 
     point_linear_animator(
         obj_UI_start_scene_config_resolution_bar_mark,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_resolution_w_x_h,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_resolution_select_res_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
 
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0p5_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0p5_opacity
     )
 
     if SCENE_TIMER >= 5 then
@@ -1950,28 +1945,28 @@ function update_start_scene_config_resolution_main()
         -- 初始化此出口所需要的动画机
         init_point_linear_anim_with(
             obj_UI_start_scene_config_resolution_bar_mark,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_resolution_w_x_h,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_resolution_select_res_text,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
     
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_config_menu_text,
-            anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+            anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
         )
 
         -- 更新 current_update_block
-        current_update_block = update_start_scene_config_resolution_flash_out
+        current_update_block = update_start_scene_config_resolution_ease_out
     
     end
 
@@ -2036,7 +2031,7 @@ function update_start_scene_config_resolution_bar_mark_twtich_right()
 
 end 
 
-function update_start_scene_config_resolution_flash_out()
+function update_start_scene_config_resolution_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -2050,24 +2045,24 @@ function update_start_scene_config_resolution_flash_out()
 
     point_linear_animator(
         obj_UI_start_scene_config_resolution_bar_mark,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_resolution_w_x_h,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_resolution_select_res_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
 
     point_linear_animator(
         obj_UI_start_scene_config_menu_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_config_menu_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0p5_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0p5_1_opacity
     )
 
     if SCENE_TIMER >= 5 then
@@ -2085,7 +2080,7 @@ end
 
 
 -- record
-function update_start_scene_record_flash_in()
+function update_start_scene_record_ease_in()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -2099,52 +2094,52 @@ function update_start_scene_record_flash_in()
 
     point_linear_animator(
         obj_UI_start_scene_shutter,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_game_duration_text,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_0,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_1,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_2,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_3,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_4,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_5,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_100h_plus_time_indi,
-        anim_UI_point_linear_start_scene_general_flash_in_0_1_opacity
+        anim_UI_point_linear_start_scene_general_ease_in_0_1_opacity
     )
 
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+        anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_low,
-        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+        anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
     )
 
     update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
@@ -2243,58 +2238,58 @@ function update_start_scene_record_main()
         -- 初始化此出口所需要的动画机
         init_point_linear_anim_with(
             obj_UI_start_scene_shutter,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_dabo_trig,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_game_duration_text,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_num_0,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_num_1,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_num_2,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_num_3,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_num_4,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_num_5,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             obj_UI_start_scene_record_100h_plus_time_indi,
-            anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+            anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
         )
         init_point_linear_anim_with(
             audio_BGM_start_scene_FTR_high,
-            anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+            anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
         )
         init_point_linear_anim_with(
             audio_BGM_start_scene_FTR_low,
-            anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+            anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
         )
 
         update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)
         update_BGM_VOLUME(audio_BGM_start_scene_FTR_low)
 
         -- 更新 current_update_block
-        current_update_block = update_start_scene_record_flash_out
+        current_update_block = update_start_scene_record_ease_out
 
     end
 
@@ -2354,7 +2349,7 @@ function update_start_scene_record_twitch_down()
 
 end
 
-function update_start_scene_record_flash_out()
+function update_start_scene_record_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
     state_machine_UI_start_scene_noise_BG_static_loop(obj_UI_start_scene_noise_bg)
     point_linear_animator(
@@ -2369,51 +2364,51 @@ function update_start_scene_record_flash_out()
     -- 初始化此出口所需要的动画机
     point_linear_animator(
         obj_UI_start_scene_shutter,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_dabo_trig,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_game_duration_text,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_0,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_1,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_2,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_3,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_4,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_num_5,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         obj_UI_start_scene_record_100h_plus_time_indi,
-        anim_UI_point_linear_start_scene_general_flash_out_1_0_opacity
+        anim_UI_point_linear_start_scene_general_ease_out_1_0_opacity
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_high,
-        anim_UI_point_linear_start_scene_audio_flash_in_0_1_volume
+        anim_UI_point_linear_start_scene_audio_ease_in_0_1_volume
     )
     point_linear_animator(
         audio_BGM_start_scene_FTR_low,
-        anim_UI_point_linear_start_scene_audio_flash_out_1_0_volume_0
+        anim_UI_point_linear_start_scene_audio_ease_out_1_0_volume_0
     )
 
     update_BGM_VOLUME(audio_BGM_start_scene_FTR_high)

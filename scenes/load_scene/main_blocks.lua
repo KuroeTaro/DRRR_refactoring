@@ -8,7 +8,7 @@ function update_load_scene_load_pre_timer()
     if SCENE_TIMER >= 20 then 
         load_disclaimer_logos_scene_prep()
         -------------------------------------------------------------------------
-        -- 以下直到end为止 是所有其他scene转load scene flash in之前所都必须的步骤
+        -- 以下直到end为止 是所有其他scene转load scene ease in之前所都必须的步骤
         -- 将load_disclaimer_logos_scene_prep() 替换为你所需要加载的scene对应的prep
         -------------------------------------------------------------------------
         load_scene_prep_routine()
@@ -16,7 +16,7 @@ function update_load_scene_load_pre_timer()
     end
 end
 
-function update_load_scene_flash_in()
+function update_load_scene_ease_in()
     SCENE_TIMER = SCENE_TIMER + 1
 
     -- debug
@@ -26,9 +26,9 @@ function update_load_scene_flash_in()
     -- SCENE_TIMER)
     
     -- 动画机的运行 每个obj的FCT和SCENE timer保持一致
-    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_in_x)
-    frame_animator(obj_UI_load_scene_type_in_mark,anim_UI_frame_load_scene_type_in_mark_flash_in_opacity)
-    frame_animator(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_in_opacity)
+    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_in_x)
+    frame_animator(obj_UI_load_scene_type_in_mark,anim_UI_frame_load_scene_type_in_mark_ease_in_opacity)
+    frame_animator(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_in_opacity)
 
     if audio_UI_SFX_load_scene_general_start_load["audio"]:isPlaying() == false and 
     audio_UI_SFX_load_scene_general_loading["audio"]:isPlaying() == false  and
@@ -98,18 +98,18 @@ function update_load_scene_general()
         obj_UI_load_scene_type_in_mark[4] = 0
 
         -- 初始化update所需要的动画机  obj对应的FCT设为0
-        init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_out_x)
-        init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_out_opacity)
-        init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_out_x)
-        init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_out_opacity)
+        init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_out_x)
+        init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_out_opacity)
+        init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_out_x)
+        init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_out_opacity)
 
-        -- 下一个场景为 update_load_scene_flash_out
-        current_update_block = update_load_scene_flash_out
+        -- 下一个场景为 update_load_scene_ease_out
+        current_update_block = update_load_scene_ease_out
 
     end
 end
 
-function update_load_scene_flash_out()
+function update_load_scene_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
     
     -- -- debug
@@ -119,20 +119,20 @@ function update_load_scene_flash_out()
     -- SCENE_TIMER)
 
     -- 动画机的运行 每个obj的FCT和SCENE timer保持一致
-    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_out_x)
-    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_out_opacity)
-    frame_animator(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_out_x)
-    frame_animator(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_out_opacity)
+    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_out_x)
+    frame_animator(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_out_opacity)
+    frame_animator(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_out_x)
+    frame_animator(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_out_opacity)
 
     -- 已经加载完了图像 不运行加载图像的实际线程功能
     -- run_table_order_load()
 
     -- 场景出口
-    if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_out_x) and 
-    get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_out_opacity) and
-    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_out_x) and
-    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_out_opacity) and
-    SCENE_TIMER >= 4 then
+    if get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_out_x) and 
+    get_frame_anim_end_state(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_out_opacity) and
+    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_out_x) and
+    get_frame_anim_end_state(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_out_opacity) and
+    SCENE_TIMER >= 5 then
 
         -- 将SCENE_TIMER设为 0
         -- 所有obj如果动画机正常运行应该处都处于正确的位置 不进行直接修改
@@ -171,19 +171,19 @@ function load_scene_prep_routine()
     LOADING_AUDIO_PLAYED_ONCE = false
     obj_UI_load_scene_dabo_trig[4] = 1
 
-    -- 初始化flash_in所需要的动画机  obj对应的FCT设为0
+    -- 初始化ease_in所需要的动画机  obj对应的FCT设为0
     ---------------------------------------------------------------------------------
     -- 这里使用init_frame_anim_with是因为frame animator是在运行完之后才加timer的
     -- 在这里运行确保在将SCENE_TIMER == 2的时候frame animator time为2的帧数能被实际运行
     -- 很重要 不要改
     ---------------------------------------------------------------------------------
-    init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_flash_in_x)
-    init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_frame_load_scene_type_in_mark_flash_in_opacity)
-    init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_flash_in_opacity)
+    init_frame_anim_with(obj_UI_load_scene_dabo_trig,anim_UI_frame_load_scene_dabo_trig_ease_in_x)
+    init_frame_anim_with(obj_UI_load_scene_type_in_mark,anim_UI_frame_load_scene_type_in_mark_ease_in_opacity)
+    init_frame_anim_with(obj_UI_load_scene_loading_text,anim_UI_frame_load_scene_loading_text_ease_in_opacity)
     play_obj_audio(audio_UI_SFX_load_scene_general_start_load)
 
-    -- 下一个场景为 update_load_scene_flash_in
-    current_update_block = update_load_scene_flash_in
+    -- 下一个场景为 update_load_scene_ease_in
+    current_update_block = update_load_scene_ease_in
     current_draw_block = draw_load_scene_general
     
 end

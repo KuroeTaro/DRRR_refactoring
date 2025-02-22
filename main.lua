@@ -104,6 +104,7 @@ function love.load()
 	TRAINING_MODE_CONFIG["LP_character_pos"] = -320 -- -1600 -> 1600
 	TRAINING_MODE_CONFIG["RP_character_pos"] = 320
 	TRAINING_MODE_CONFIG["announcer"] = false
+	-- to be continue
 
 	-- non-character global variable
 -------------------------------------------------
@@ -204,7 +205,7 @@ function love.load()
 
 	--	general_scene_global_variable
 	FRAMES_DRAWN = 0
-	SCENE_TIMER = -1
+	SCENE_TIMER = 0
 
 ---------------------------------------------------
 

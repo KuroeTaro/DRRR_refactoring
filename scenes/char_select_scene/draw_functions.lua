@@ -1,4 +1,4 @@
-function draw_char_select_scene_flash_in_0f_36f()
+function draw_char_select_scene_ease_in_0f_36f()
     draw_2d_image_table(
         obj_UI_char_select_scene_start_0f_110f,
         image_table_UI_char_select_scene_start_0_110f
@@ -13,7 +13,7 @@ function draw_char_select_scene_flash_in_0f_36f()
 
 end
 
-function draw_char_select_scene_flash_in_36f_40f()
+function draw_char_select_scene_ease_in_36f_40f()
     draw_2d_image_table(
         obj_UI_char_select_scene_start_0f_110f,
         image_table_UI_char_select_scene_start_0_110f
@@ -27,7 +27,7 @@ function draw_char_select_scene_flash_in_36f_40f()
 
 end
 
-function draw_char_select_scene_flash_in_40f_130f()
+function draw_char_select_scene_ease_in_40f_130f()
     draw_2d_image_table(
         obj_UI_char_select_scene_start_0f_110f,
         image_table_UI_char_select_scene_start_0_110f

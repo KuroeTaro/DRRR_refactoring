@@ -21,9 +21,9 @@ image_data["act_3"] = {}
 for i = 1,75 do
     image_data["act_3"][i] = compress_module("asset/game_scene/common/act_3/"..(i-1)..".dds")
 end
-image_data["HUD_flash_in"] = {}
+image_data["HUD_ease_in"] = {}
 for i = 1,50 do
-    image_data["HUD_flash_in"][i] = compress_module("asset/game_scene/common/HUD_flash_in/"..(i-1)..".dds")
+    image_data["HUD_ease_in"][i] = compress_module("asset/game_scene/common/HUD_ease_in/"..(i-1)..".dds")
 end
 image_data["lets_dance"] = {}
 for i = 1,40 do

@@ -2,13 +2,15 @@ function load_game_scene_common_obj()
     load_game_scene_obj_char_LP()
     load_game_scene_obj_char_RP()
     load_game_scene_stage()
-
+    load_game_scene_announcer_HUD_obj()
+    
 end
 
 
 function load_game_scene_common_anim()
     load_game_scene_anim_char_LP()
     load_game_scene_anim_char_RP()
+    load_game_scene_announcer_HUD_anim()
     
 end
 
@@ -34,12 +36,18 @@ end
 
 
 function load_game_scene_announcer_HUD_obj()
-    obj_annoucer_game_scene_black_solid = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_annoucer_game_scene_black_solid["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_annoucer_game_scene_black_solid["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_annoucer_game_scene_black_solid["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_annoucer_game_scene_black_solid["state"] = "default"
+    obj_update_flow_controller_game_scene_common = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj_update_flow_controller_game_scene_common["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_update_flow_controller_game_scene_common["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_update_flow_controller_game_scene_common["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_update_flow_controller_game_scene_common["state"] = "before_ease_in"
 
+    obj_UI_game_scene_black_solid = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj_UI_game_scene_black_solid["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_game_scene_black_solid["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_game_scene_black_solid["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_game_scene_black_solid["state"] = "default"
+    obj_UI_game_scene_black_solid["rgb"] = {7/255,19/255,31/255}
 
     obj_annoucer_game_scene_act_common = {0, 0, nil, 0, 1, 1, 0, 0}
     obj_annoucer_game_scene_act_common["FCT"] = {0,0,0,0,0,0,0,0}
@@ -198,6 +206,24 @@ function load_game_scene_announcer_HUD_obj()
     obj_HUD_game_scene_background["state"] = "default"
 
 
+end
+
+function load_game_scene_announcer_HUD_anim()
+    anim_UI_point_linear_game_scene_solid_ease_in_opacity_0_1 = {}
+    anim_UI_point_linear_game_scene_solid_ease_in_opacity_0_1[0] = {0, 5}
+    anim_UI_point_linear_game_scene_solid_ease_in_opacity_0_1[5] = {1, 5}
+    anim_UI_point_linear_game_scene_solid_ease_in_opacity_0_1["prop"] = 4
+    anim_UI_point_linear_game_scene_solid_ease_in_opacity_0_1["length"] = 5
+    anim_UI_point_linear_game_scene_solid_ease_in_opacity_0_1["loop"] = false
+    anim_UI_point_linear_game_scene_solid_ease_in_opacity_0_1["fix_type"] = true
+
+    anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0 = {}
+    anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0[0] = {1, 5}
+    anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0[5] = {0, 5}
+    anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0["prop"] = 4
+    anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0["length"] = 5
+    anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0["loop"] = false
+    anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0["fix_type"] = true
 
 
 end

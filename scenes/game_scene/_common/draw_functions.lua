@@ -26,5 +26,8 @@ function draw_game_scene_main()
 
     -- 绘制上帝光
     draw_game_scene_stage_glow()
+
+    -- 绘制ease in black solid
+    draw_solid(obj_UI_game_scene_black_solid)
     
 end
