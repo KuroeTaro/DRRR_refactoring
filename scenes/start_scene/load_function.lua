@@ -259,7 +259,7 @@ function unload_start_select_scene_require()
     -- draw_start_scene_config_controller_sub_scene = nil
     -- draw_start_scene_config_resolution_sub_scene = nil
     -- draw_start_scene_record_sub_scene = nil
-    -- draw_start_scene_sp_audio_bar_alpha = nil
+    -- draw_start_scene_sp_audio_bar = nil
     -- draw_start_scene_sp_record_100h_plus_time_indi = nil
     
     -- load_start_scene_obj = nil

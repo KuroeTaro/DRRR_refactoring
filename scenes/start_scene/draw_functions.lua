@@ -55,12 +55,12 @@ function draw_start_scene_config_audio_sub_scene()
     draw_2d_image(obj_UI_start_scene_config_audio_bar_mark,image_UI_start_scene_bar_mark)
     draw_2d_image(obj_UI_start_scene_config_audio_BGM_bar_gauge,image_UI_start_scene_config_audio_bar)
     draw_2d_image(obj_UI_start_scene_config_audio_SFX_bar_gauge,image_UI_start_scene_config_audio_bar)
-    draw_start_scene_sp_audio_bar_alpha(
+    draw_start_scene_sp_audio_bar(
         obj_UI_start_scene_config_audio_BGM_bar_light,
         obj_UI_start_scene_config_audio_BGM_bar_alpha[1],
         image_UI_start_scene_config_audio_bar
     )
-    draw_start_scene_sp_audio_bar_alpha(
+    draw_start_scene_sp_audio_bar(
         obj_UI_start_scene_config_audio_SFX_bar_light,
         obj_UI_start_scene_config_audio_SFX_bar_alpha[1],
         image_UI_start_scene_config_audio_bar
@@ -155,7 +155,7 @@ function draw_start_scene_record_sub_scene()
 
 end
 
-function draw_start_scene_sp_audio_bar_alpha(obj_light,volume,image)
+function draw_start_scene_sp_audio_bar(obj_light,volume,image)
     local x = draw_resolution_correction(obj_light[1])
     local y = draw_resolution_correction(obj_light[2])
     local sx = draw_resolution_correction(obj_light[5])

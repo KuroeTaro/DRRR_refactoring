@@ -1,4 +1,5 @@
 function update_char_select_scene_ease_in_0f_36f()
+    print(SCENE_TIMER,obj_UI_char_select_scene_movie_cover["LCT"][8])
     SCENE_TIMER = SCENE_TIMER + 1
     point_linear_animator(obj_UI_char_select_scene_black_solid,anim_UI_point_linear_char_select_scene_black_solid_ease_out_opacity)
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
@@ -66,11 +67,10 @@ end
 
 function update_char_select_scene_ease_in_40f_130f()
     SCENE_TIMER = SCENE_TIMER + 1
-    local scene_timer = SCENE_TIMER
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
     state_machine_UI_char_select_scene_start_0f_110f(obj_UI_char_select_scene_start_0f_110f)
 
-    if scene_timer < 60 then
+    if SCENE_TIMER < 60 then
         point_linear_animator(
             obj_UI_char_select_scene_glow,
             anim_UI_point_linear_char_select_scene_glow_opacity
@@ -92,7 +92,7 @@ function update_char_select_scene_ease_in_40f_130f()
             anim_UI_point_linear_char_select_scene_glow_alpha_pt5_x
         )
 
-    elseif scene_timer == 60 then
+    elseif SCENE_TIMER == 60 then
         point_linear_animator(
             obj_UI_char_select_scene_glow,
             anim_UI_point_linear_char_select_scene_glow_opacity
@@ -122,7 +122,7 @@ function update_char_select_scene_ease_in_40f_130f()
             anim_UI_point_linear_char_select_scene_icon_select_ease_in_opacity_0_0p5
         )
 
-    elseif scene_timer < 65 then
+    elseif SCENE_TIMER < 65 then
         point_linear_animator(
             obj_UI_char_select_scene_glow,
             anim_UI_point_linear_char_select_scene_glow_opacity
@@ -149,7 +149,7 @@ function update_char_select_scene_ease_in_40f_130f()
             anim_UI_point_linear_char_select_scene_icon_select_ease_in_opacity_0_0p5
         )
 
-    elseif scene_timer == 65 then
+    elseif SCENE_TIMER == 65 then
         point_linear_animator(
             obj_UI_char_select_scene_glow,
             anim_UI_point_linear_char_select_scene_glow_opacity
@@ -198,7 +198,7 @@ function update_char_select_scene_ease_in_40f_130f()
             obj_UI_char_select_scene_char_select_left_text,
             anim_UI_point_linear_char_select_scene_char_select_text_ease_in_x
         )
-    elseif scene_timer < 70 then
+    elseif SCENE_TIMER < 70 then
         point_linear_animator(
             obj_UI_char_select_scene_glow,
             anim_UI_point_linear_char_select_scene_glow_opacity
@@ -237,7 +237,7 @@ function update_char_select_scene_ease_in_40f_130f()
             obj_UI_char_select_scene_char_select_left_text,
             anim_UI_point_linear_char_select_scene_char_select_text_ease_in_x
         )
-    elseif scene_timer == 70 then
+    elseif SCENE_TIMER == 70 then
         point_linear_animator(
             obj_UI_char_select_scene_glow,
             anim_UI_point_linear_char_select_scene_glow_opacity
@@ -312,7 +312,7 @@ function update_char_select_scene_ease_in_40f_130f()
                 anim_UI_point_linear_char_select_scene_char_select_ease_in_opacity_0_1
             )
         end
-    elseif scene_timer < 75 then
+    elseif SCENE_TIMER < 75 then
         point_linear_animator(
             obj_UI_char_select_scene_glow["alpha_points"],
             anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y
@@ -354,7 +354,7 @@ function update_char_select_scene_ease_in_40f_130f()
             )
         end
 
-    elseif scene_timer == 75 then
+    elseif SCENE_TIMER == 75 then
         point_linear_animator(
             obj_UI_char_select_scene_glow["alpha_points"],
             anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y
@@ -402,7 +402,7 @@ function update_char_select_scene_ease_in_40f_130f()
             )
         end
 
-    elseif scene_timer < 90 then
+    elseif SCENE_TIMER < 90 then
         point_linear_animator(
             obj_UI_char_select_scene_glow["alpha_points"],
             anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y
@@ -440,7 +440,7 @@ function update_char_select_scene_ease_in_40f_130f()
             )
         end
         
-    elseif scene_timer == 90 then
+    elseif SCENE_TIMER == 90 then
         point_linear_animator(
             obj_UI_char_select_scene_glow["alpha_points"],
             anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y
@@ -482,7 +482,7 @@ function update_char_select_scene_ease_in_40f_130f()
         obj_UI_char_select_scene_char_select_left["ease_state"] = "ease_in"
         obj_UI_char_select_scene_char_select_right["select_state"] = "idle"
         obj_UI_char_select_scene_char_select_right["ease_state"] = "ease_in"
-    elseif scene_timer < 130 then
+    elseif SCENE_TIMER < 130 then
         point_linear_animator(
             obj_UI_char_select_scene_glow["alpha_points"],
             anim_UI_point_linear_char_select_scene_glow_alpha_pt1_y
@@ -507,7 +507,7 @@ function update_char_select_scene_ease_in_40f_130f()
     end
 
     -- 场景出口
-    if scene_timer >= 130 then 
+    if SCENE_TIMER >= 130 then 
         state_machine_UI_char_select_scene_char_select(1)
         if GAME_MODE ~= 0 then
             state_machine_UI_char_select_scene_char_select(2)
@@ -528,7 +528,6 @@ end
 
 function update_char_select_scene_main()
     SCENE_TIMER = SCENE_TIMER + 1
-    local scene_timer = SCENE_TIMER
 
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
     state_machine_UI_char_select_scene_timer(obj_UI_char_select_scene_timer)
@@ -599,7 +598,6 @@ end
 
 function update_char_select_scene_train_dummy_select()
     SCENE_TIMER = SCENE_TIMER + 1
-    local scene_timer = SCENE_TIMER
 
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
     state_machine_UI_char_select_scene_timer(obj_UI_char_select_scene_timer)
@@ -651,7 +649,6 @@ end
 
 function update_char_select_scene_ease_out()
     SCENE_TIMER = SCENE_TIMER + 1
-    local scene_timer = SCENE_TIMER
 
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)
     state_machine_UI_char_select_scene_timer(obj_UI_char_select_scene_timer)
@@ -665,7 +662,7 @@ function update_char_select_scene_ease_out()
         audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit,
         anim_UI_point_linear_char_select_scene_audio_ease_out_1_0_volume_1
     )
-
+    
     update_BGM_VOLUME(audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit)
 
     if audio_SFX_char_select_scene_ease_out["audio"]:isPlaying() == false then

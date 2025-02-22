@@ -4,12 +4,11 @@
 
 -- 控制 disclaimer and logos scene 唯一一个 obj 更新的状态机
 function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
-    local scene_timer = SCENE_TIMER
     local switch = {
         -- ease_in 之前的状态 如果达到第10帧则为下一个动画的第0帧 
         ["pre_disclaimer_ease_in"] = function() 
             -- 如果按D或者scene timer 到达10f则进入ease_in
-            if scene_timer >= 10 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 10 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 -- 设置ease in 动画
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_ease_in_opacity_0_1)
                 obj["state"] = "disclaimer_ease_in"
@@ -36,7 +35,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["disclaimer_update"] = function() 
             -- 如果按下D或者已经进入update状态120帧 就转跳到 ease out
             -- 设置不透明度为1 设置ease out 动画 跳转到ease out
-            if scene_timer >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_ease_out_opacity_1_0)
                 obj["state"] = "disclaimer_ease_out"
@@ -82,7 +81,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["kuroe_taro_s_handicraft_logo_update"] = function() 
             -- 如果ease in 动画运行完成或按下d键 跳转到 ease out
             -- 设置ease out 动画
-            if scene_timer >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_ease_out_opacity_1_0)
                 obj["state"] = "kuroe_taro_s_handicraft_logo_ease_out"
@@ -125,7 +124,7 @@ function state_machine_UI_disclaimer_and_logos_scene_singular(obj)
         ["love_logo_update"] = function() 
             -- 如果按下d 或者在update保持了120帧 跳转到 ease out
             -- 设置ease out 动画
-            if scene_timer >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
+            if SCENE_TIMER >= 120 or INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
                 obj[4] = 1
                 init_point_linear_anim_with(obj,anim_UI_point_linear_disclaimer_and_logos_scene_singular_ease_out_opacity_1_0)
                 obj["state"] = "love_logo_ease_out"
