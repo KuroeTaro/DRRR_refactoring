@@ -8,6 +8,10 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["velocity"] = {0,0}
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
     obj_char_game_scene_char_RP["character_animation_timer"] = 0
+    obj_char_game_scene_char_RP["pre_input_command"] = nil
+    obj_char_game_scene_char_RP["current_input_command"] = nil
+    obj_char_game_scene_char_RP["pre_input_command_updatable"] = false
+    obj_char_game_scene_char_RP["current_input_command_updatable"] = false
 
     obj_char_game_scene_char_RP["hitbox_list"] = {}
     obj_char_game_scene_char_RP["hurtbox_list"] = {}
@@ -15,9 +19,9 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["shadow_box_list"] = {
         {
             {-17.38, -6.38,
-            -37.88, -4.50}
+            -36.88, -4.50}
             ,
-            {-37.88, -4.50,
+            {-36.88, -4.50,
             -37.63, 6.13}
             ,
             {-37.63, 6.13,
@@ -39,12 +43,12 @@ function load_game_scene_obj_char_RP()
             32.84, 15.79}
             ,
             {32.84, 15.79,
-            38.25, 11.63}
+            37.25, 11.63}
             ,
-            {38.25, 11.63,
-            37.88, 5.00}
+            {37.25, 11.63,
+            36.88, 5.00}
             ,
-            {37.88, 5.00,
+            {36.88, 5.00,
             35.88, 0.24}
             ,
             {35.88, 0.24,
@@ -183,7 +187,10 @@ function state_machine_char_game_scene_char_RP()
     local switch = {
         ["before_ease_in"] = function()
             character_animator(obj,anim_char_stand_idle_RP)
-            if INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
+        end,
+        ["stand_idle"] = function()
+            character_animator(obj,anim_char_stand_idle_RP)
+            if INPUT_SYS_CURRENT_COMMAND_STATE[2]["D"] == "Pressing" then
 
             end
         end,

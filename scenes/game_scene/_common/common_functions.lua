@@ -47,3 +47,34 @@ function common_game_scene_calculate_shadow(line, shadow_anchor, x, y, sx, sy)
     return shadow
 
 end
+
+function common_game_scene_toggle_dynamic_HUD(toggle_value)
+    obj_HUD_game_scene_gauge[4] = toggle_value
+    obj_HUD_game_scene_timer[4] = toggle_value
+    obj_HUD_game_scene_win_mark_LP[4] = toggle_value
+    obj_HUD_game_scene_win_mark_RP[4] = toggle_value
+    obj_HUD_game_scene_checkpoint_LP[4] = toggle_value
+    obj_HUD_game_scene_checkpoint_RP[4] = toggle_value
+    obj_HUD_game_scene_health_bar_LP[4] = toggle_value
+    obj_HUD_game_scene_health_bar_RP[4] = toggle_value
+    obj_HUD_game_scene_health_bar_LP_fade[4] = toggle_value
+    obj_HUD_game_scene_health_bar_RP_fade[4] = toggle_value
+    obj_HUD_game_scene_heat_bar_LP[4] = toggle_value
+    obj_HUD_game_scene_heat_bar_RP[4] = toggle_value
+    obj_HUD_game_scene_ability_bar_LP[4] = toggle_value
+    obj_HUD_game_scene_ability_bar_RP[4] = toggle_value
+    obj_HUD_game_scene_overdrive_bar_LP[4] = toggle_value
+    obj_HUD_game_scene_overdrive_bar_RP[4] = toggle_value
+    obj_HUD_game_scene_overdrive_text_LP[4] = toggle_value
+    obj_HUD_game_scene_overdrive_text_RP[4] = toggle_value
+    obj_HUD_game_scene_background[4] = toggle_value
+
+end
+
+function common_game_scene_toggle_ease_in(toggle_value)
+    obj_annoucer_game_scene_act_common[4] = toggle_value
+    obj_annoucer_game_scene_act_num[4] = toggle_value
+    obj_HUD_game_scene_ease_in[4] = toggle_value
+    obj_annoucer_game_scene_lets_dance[4] = toggle_value
+
+end

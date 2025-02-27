@@ -1,5 +1,4 @@
 function update_char_select_scene_ease_in_0f_36f()
-    print(SCENE_TIMER,obj_UI_char_select_scene_movie_cover["LCT"][8])
     SCENE_TIMER = SCENE_TIMER + 1
     point_linear_animator(obj_UI_char_select_scene_black_solid,anim_UI_point_linear_char_select_scene_black_solid_ease_out_opacity)
     state_machine_UI_char_select_scene_movie_cover_loop(obj_UI_char_select_scene_movie_cover)

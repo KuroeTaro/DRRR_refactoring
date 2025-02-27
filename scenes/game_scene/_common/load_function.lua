@@ -100,8 +100,8 @@ function order_load_game_scene_common(load_order)
                 image_table_announcer_game_scene_lets_dance[i] = love.graphics.newImage(ASSET_DATA[4]["lets_dance"][i+1])
             end
 
+            image_HUD_game_scene_background = love.graphics.newImage(ASSET_DATA[4]["HUD_background"])
             image_HUD_game_scene_gauge = love.graphics.newImage(ASSET_DATA[4]["HUD_gauge"])
-
 
         end,
     }

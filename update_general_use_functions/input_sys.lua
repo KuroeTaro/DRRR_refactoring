@@ -60,12 +60,12 @@ function update_input()
     --并且赋值到INPUT_SYS_CURRENT_COMMAND和perCommand
     if GAME_MODE == 2 then
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_INPUT_SYS_CURRENT_COMMAND(
+            get_input_sys_current_command(
                 INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
                 nil
             )
         else 
-            get_INPUT_SYS_CURRENT_COMMAND(
+            get_input_sys_current_command(
                 INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
                 INPUT_SYS_CURRENT_JOYSTICK_TABLE[1]
             )
@@ -74,13 +74,13 @@ function update_input()
 
     else
         if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],nil)
+            get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND[1],nil)
             for i = 1,16 do
                 INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         else 
-            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[1],INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
-            get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND[2],INPUT_SYS_CURRENT_JOYSTICK_TABLE[2])
+            get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND[1],INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
+            get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND[2],INPUT_SYS_CURRENT_JOYSTICK_TABLE[2])
         end
     end
 
@@ -165,7 +165,7 @@ function update_controller()
 end
 
 --获得所有指令的现在布尔值和上一帧布尔值（键盘）
-function get_INPUT_SYS_CURRENT_COMMAND(INPUT_SYS_CURRENT_COMMAND,joystick)
+function get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND,joystick)
     --(键盘)
     if joystick == nil then
         for i = 1,16 do

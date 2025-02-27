@@ -30,4 +30,5 @@ for i = 1,40 do
     image_data["lets_dance"][i] = compress_module("asset/game_scene/common/lets_dance/"..(i-1)..".dds")
 end
 image_data["HUD_gauge"] = compress_module("asset/game_scene/common/HUD_gauge.dds")
+image_data["HUD_background"] = compress_module("asset/game_scene/common/HUD_background.dds")
 love.thread.getChannel( 'image_4' ):push( image_data )

@@ -49,13 +49,13 @@ function load_game_scene_announcer_HUD_obj()
     obj_UI_game_scene_black_solid["state"] = "default"
     obj_UI_game_scene_black_solid["rgb"] = {7/255,19/255,31/255}
 
-    obj_annoucer_game_scene_act_common = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj_annoucer_game_scene_act_common = {0, 200, nil, 0, 1, 1, 0, 0}
     obj_annoucer_game_scene_act_common["FCT"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_act_common["LCT"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_act_common["LCD"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_act_common["state"] = "default"
 
-    obj_annoucer_game_scene_act_num = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj_annoucer_game_scene_act_num = {675, 400, nil, 0, 1, 1, 0, 0}
     obj_annoucer_game_scene_act_num["FCT"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_act_num["LCT"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_act_num["LCD"] = {0,0,0,0,0,0,0,0}
@@ -66,6 +66,12 @@ function load_game_scene_announcer_HUD_obj()
     obj_annoucer_game_scene_lets_dance["LCT"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_lets_dance["LCD"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_lets_dance["state"] = "default"
+
+    obj_HUD_game_scene_ease_in = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj_HUD_game_scene_ease_in["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_ease_in["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_ease_in["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_ease_in["state"] = "default"
 
     obj_HUD_game_scene_gauge = {0, 0, nil, 0, 1, 1, 0, 0}
     obj_HUD_game_scene_gauge["FCT"] = {0,0,0,0,0,0,0,0}
