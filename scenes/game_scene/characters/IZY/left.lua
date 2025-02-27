@@ -263,7 +263,7 @@ end
 function draw_game_scene_char_LP_shadow()
     local obj = obj_char_game_scene_char_LP
     local shadow_box_list = obj["shadow_box_list"]
-    local opacity = (obj["y"]-335)/60
+    local opacity = (obj["y"]-325)/80
     local z = obj[3]
     local sx = obj[5]
     local sy = obj[6]

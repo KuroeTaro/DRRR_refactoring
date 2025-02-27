@@ -144,7 +144,6 @@ end
 
 function preset_game_scene_training()
     obj_UI_game_scene_black_solid[4] = 1
-    
 
 end
 
