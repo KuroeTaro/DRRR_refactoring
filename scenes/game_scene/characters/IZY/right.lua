@@ -263,8 +263,9 @@ function draw_game_scene_char_RP()
 end
 
 function draw_game_scene_char_RP_shadow()
-    local shadow_box_list = obj_char_game_scene_char_RP["shadow_box_list"]
     local obj = obj_char_game_scene_char_RP
+    local shadow_box_list = obj["shadow_box_list"]
+    local opacity = (obj["y"]-335)/60
     local z = obj[3]
     local sx = obj[5]
     local sy = obj[6]
@@ -272,10 +273,16 @@ function draw_game_scene_char_RP_shadow()
     local camera = obj_stage_game_scene_camera
     local camera_z = camera[3]
 
+    local shadow_cavans = love.graphics.newCanvas(
+        love.graphics.getWidth(),
+        love.graphics.getHeight()
+    )
+
     local obj_2d_pos = draw_3d_point_to_2D(camera,obj)
     local shadow_anchor_2d_pos = draw_3d_point_to_2D(camera,shadow_anchor)
     local scale = draw_resolution_correction(800)/(z-camera_z)
 
+    love.graphics.setCanvas(shadow_cavans)
     for i = 1,#shadow_box_list do
         local x = obj_2d_pos[1] + scale*sx*obj["shadow_box_pos"][i][1]
         local y = obj_2d_pos[2] + scale*sy*obj["shadow_box_pos"][i][2]
@@ -289,7 +296,12 @@ function draw_game_scene_char_RP_shadow()
             scale*sy
         )
     end
-    
+    love.graphics.setCanvas()
+
+    love.graphics.setColor(0, 0, 0, opacity)
+    love.graphics.draw(shadow_cavans)
+    love.graphics.setColor(1, 1, 1, 1)
+
 end
 
 
