@@ -51,10 +51,10 @@ end
 function common_game_scene_toggle_dynamic_HUD(toggle_value)
     obj_HUD_game_scene_gauge[4] = toggle_value
     obj_HUD_game_scene_timer[4] = toggle_value
-    obj_HUD_game_scene_win_mark_LP[4] = toggle_value
-    obj_HUD_game_scene_win_mark_RP[4] = toggle_value
-    obj_HUD_game_scene_checkpoint_LP[4] = toggle_value
-    obj_HUD_game_scene_checkpoint_RP[4] = toggle_value
+    obj_HUD_game_scene_win_marks_LP[4] = toggle_value
+    obj_HUD_game_scene_win_marks_RP[4] = toggle_value
+    obj_HUD_game_scene_match_point_LP[4] = toggle_value
+    obj_HUD_game_scene_match_point_RP[4] = toggle_value
     obj_HUD_game_scene_health_bar_LP[4] = toggle_value
     obj_HUD_game_scene_health_bar_RP[4] = toggle_value
     obj_HUD_game_scene_health_bar_LP_fade[4] = toggle_value
@@ -63,10 +63,12 @@ function common_game_scene_toggle_dynamic_HUD(toggle_value)
     obj_HUD_game_scene_heat_bar_RP[4] = toggle_value
     obj_HUD_game_scene_ability_bar_LP[4] = toggle_value
     obj_HUD_game_scene_ability_bar_RP[4] = toggle_value
-    obj_HUD_game_scene_overdrive_bar_LP[4] = toggle_value
-    obj_HUD_game_scene_overdrive_bar_RP[4] = toggle_value
+    obj_HUD_game_scene_overdrive_pie_LP[4] = toggle_value
+    obj_HUD_game_scene_overdrive_pie_RP[4] = toggle_value
     obj_HUD_game_scene_overdrive_text_LP[4] = toggle_value
     obj_HUD_game_scene_overdrive_text_RP[4] = toggle_value
+    obj_HUD_game_scene_risk_LP[4] = toggle_value
+    obj_HUD_game_scene_risk_RP[4] = toggle_value
     obj_HUD_game_scene_background[4] = toggle_value
 
 end

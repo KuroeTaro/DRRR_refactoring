@@ -100,8 +100,26 @@ function order_load_game_scene_common(load_order)
                 image_table_announcer_game_scene_lets_dance[i] = love.graphics.newImage(ASSET_DATA[4]["lets_dance"][i+1])
             end
 
-            image_HUD_game_scene_background = love.graphics.newImage(ASSET_DATA[4]["HUD_background"])
             image_HUD_game_scene_gauge = love.graphics.newImage(ASSET_DATA[4]["HUD_gauge"])
+
+            image_table_HUD_game_scene_numbers = {}
+            for i = 0,9 do
+                image_table_HUD_game_scene_numbers[i] = love.graphics.newImage(ASSET_DATA[4]["HUD_numbers"][i+1])
+            end
+            
+            image_HUD_game_scene_win_mark = love.graphics.newImage(ASSET_DATA[4]["HUD_win_mark"])
+            image_HUD_game_scene_match_point = love.graphics.newImage(ASSET_DATA[4]["HUD_match_point"])
+
+            image_HUD_game_scene_health_bar = love.graphics.newImage(ASSET_DATA[4]["HUD_health_bar"])
+            image_HUD_game_scene_heat_bar = love.graphics.newImage(ASSET_DATA[4]["HUD_heat_bar"])
+            image_HUD_game_scene_ability_bar = love.graphics.newImage(ASSET_DATA[4]["HUD_ability_bar"])
+            image_HUD_game_scene_overdrive_pie = love.graphics.newImage(ASSET_DATA[4]["HUD_overdrive_pie"])
+            image_HUD_game_scene_overdirve_text = love.graphics.newImage(ASSET_DATA[4]["HUD_overdrive_text"])
+            image_HUD_game_scene_risk_bar = love.graphics.newImage(ASSET_DATA[4]["HUD_risk_bar"])
+            image_HUD_game_scene_positive_bouns_LP = love.graphics.newImage(ASSET_DATA[4]["HUD_positive_bouns_LP"])
+            image_HUD_game_scene_positive_bouns_RP = love.graphics.newImage(ASSET_DATA[4]["HUD_positive_bouns_RP"])
+
+            image_HUD_game_scene_background = love.graphics.newImage(ASSET_DATA[4]["HUD_background"])
 
         end,
     }

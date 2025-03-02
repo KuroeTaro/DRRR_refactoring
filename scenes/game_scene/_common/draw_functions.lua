@@ -31,3 +31,27 @@ function draw_game_scene_main()
     draw_solid(obj_UI_game_scene_black_solid)
     
 end
+
+function draw_game_scene_bars(bar_obj,char_obj)
+
+end
+
+function draw_game_scene_risk_bars(bar_obj,char_obj)
+
+end
+
+function draw_game_scene_overdrive_pie(bar_obj,char_obj)
+
+end
+
+function draw_game_scene_round_timer(timer_obj)
+
+end
+
+function draw_game_scene_round_win_marks()
+
+end
+
+function draw_game_scene_overdrive_timer(timer_obj,char_obj)
+
+end

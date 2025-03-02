@@ -110,8 +110,11 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["heat"] = 0.0 -- 0.0 - 200.0
     obj_char_game_scene_char_LP["ability"] = 600.0 -- 0.0 - 600.0
     obj_char_game_scene_char_LP["overdrive"] = 600.0 -- 0.0 - 600.0
+    obj_char_game_scene_char_LP["overdrive_timer"] = 120 -- 120f - 480f
     obj_char_game_scene_char_LP["risk"] = 0.0 -- 0.0 - 300.0
+    obj_char_game_scene_char_LP["positive_bouns"] = 0.0 -- 0.0 - 600.0
 
+    
 end
 
 function order_load_game_scene_char_LP_frames(load_order)
