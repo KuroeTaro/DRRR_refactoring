@@ -99,6 +99,7 @@ function love.load()
 	ROUND_COUNTER = 1
 	WIN_MARK = {0,0}
 	CHECKPOINT_MARK = {0,0}
+	CHARACTER_DRAW_PRIORITY = 1
 
 	TRAINING_MODE_CONFIG = {}
 	TRAINING_MODE_CONFIG["LP_character_pos"] = -320 -- -1600 -> 1600
