@@ -91,6 +91,8 @@ function love.load()
 
 	modify_quit_game_reocrd()
 
+	JSON = require("dkjson")
+
 	GAME_MODE = 0 -- 1.训练模式 2.本地多人 3.在线多人
 	NETWORK_MATCH_SIDE = 1
 	OTHER_SIDE = 2
@@ -228,7 +230,7 @@ end
 function love.draw()
 	love.graphics.clear(7/255,19/255,31/255,1)
 	current_draw_block()
-	love.graphics.setColor(1, 1, 1, 0.5)
+	love.graphics.setColor(1, 0, 0, 1)
 	draw_input_sys()
 	love.graphics.print( "FRAMES_DRAWN", 0, 240)
     love.graphics.print( "GRAPHICIAL_FPS", 0, 255)

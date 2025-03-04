@@ -29,22 +29,8 @@ image_data["lets_dance"] = {}
 for i = 1,40 do
     image_data["lets_dance"][i] = compress_module("asset/game_scene/common/lets_dance/"..(i-1)..".dds")
 end
-image_data["HUD_gauge"] = compress_module("asset/game_scene/common/HUD/HUD_gauge.dds")
-image_data["HUD_numbers"] = {}
-for i = 1,10 do
-    image_data["HUD_numbers"][i] = compress_module("asset/game_scene/common/HUD/numbers/"..(i-1)..".dds")
-end
 
-image_data["HUD_win_mark"] = compress_module("asset/game_scene/common/HUD/HUD_win_mark.dds")
-image_data["HUD_match_point"] = compress_module("asset/game_scene/common/HUD/HUD_match_point.dds")
-image_data["HUD_health_bar"] = compress_module("asset/game_scene/common/HUD/HUD_health_bar.dds")
-image_data["HUD_heat_bar"] = compress_module("asset/game_scene/common/HUD/HUD_heat_bar.dds")
-image_data["HUD_ability_bar"] = compress_module("asset/game_scene/common/HUD/HUD_ability_bar.dds")
-image_data["HUD_overdrive_pie"] = compress_module("asset/game_scene/common/HUD/HUD_overdrive_pie.dds")
-image_data["HUD_overdrive_text"] = compress_module("asset/game_scene/common/HUD/HUD_overdrive_text.dds")
-image_data["HUD_risk_bar"] = compress_module("asset/game_scene/common/HUD/HUD_risk_bar.dds")
-image_data["HUD_positive_bouns_LP"] = compress_module("asset/game_scene/common/HUD/HUD_positive_bouns_LP.dds")
-image_data["HUD_positive_bouns_RP"] = compress_module("asset/game_scene/common/HUD/HUD_positive_bouns_RP.dds")
+image_data["HUD_common"] = compress_module("asset/game_scene/common/HUD/HUD_common.dds")
 
-image_data["HUD_background"] = compress_module("asset/game_scene/common/HUD/HUD_background.dds")
+image_data["HUD_background_gauge"] = compress_module("asset/game_scene/common/HUD/HUD_background_gauge.dds")
 love.thread.getChannel( 'image_4' ):push( image_data )

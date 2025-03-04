@@ -50,15 +50,12 @@ function draw_game_scene_stage_static()
     local obj = obj_stage_game_scene_stair
     draw_3d_image(camera,obj,image)
 
-    image = image_stage_game_scene_ground
-    sprite_batch = love.graphics.newSpriteBatch(image_stage_game_scene_ground)
     camera = obj_stage_game_scene_camera
     obj = obj_stage_game_scene_ground
     sprite_batch:clear()
     sprite_batch:add(0, 0)
     sprite_batch:add(1600, 0)
     sprite_batch:add(3200, 0)
-    sprite_batch:flush()
     draw_3d_image(camera,obj,sprite_batch)
 
 end
@@ -91,9 +88,10 @@ function draw_game_scene_stage_glow()
     CANVAS_ALPHA_ONLY = love.graphics.newCanvas(width,height)
 
     love.graphics.setCanvas(CANVAS_ALPHA_ONLY)
+    love.graphics.rectangle("fill", 0, 0, width, height/2)
     love.graphics.draw(
         image_stage_game_scene_stage_liner_fade_alpha,
-        0,0,0,
+        0,-camera_y*0.85,0,
         draw_resolution_correction(1),
         draw_resolution_correction(1)
     )
