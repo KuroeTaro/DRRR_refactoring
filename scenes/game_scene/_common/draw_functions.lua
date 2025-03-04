@@ -46,6 +46,18 @@ function draw_game_scene_main()
     )
     draw_game_scene_add_to_sprite_batch_bars(
         image_sprite_sheet,
+        obj_HUD_game_scene_health_bar_LP_fade,
+        "HUD_health_bar",
+        obj_char_game_scene_char_LP["health"][3]/obj_char_game_scene_char_LP["health"][2]
+    )
+    draw_game_scene_add_to_sprite_batch_bars(
+        image_sprite_sheet,
+        obj_HUD_game_scene_health_bar_RP_fade,
+        "HUD_health_bar",
+        obj_char_game_scene_char_RP["health"][3]/obj_char_game_scene_char_RP["health"][2]
+    )
+    draw_game_scene_add_to_sprite_batch_bars(
+        image_sprite_sheet,
         obj_HUD_game_scene_ability_bar_LP,
         "HUD_ability_bar",
         obj_char_game_scene_char_LP["ability"][1]/obj_char_game_scene_char_LP["ability"][2]
@@ -55,6 +67,18 @@ function draw_game_scene_main()
         obj_HUD_game_scene_ability_bar_RP,
         "HUD_ability_bar",
         obj_char_game_scene_char_RP["ability"][1]/obj_char_game_scene_char_RP["ability"][2]
+    )
+    draw_game_scene_add_to_sprite_batch_bars(
+        image_sprite_sheet,
+        obj_HUD_game_scene_heat_bar_LP,
+        "HUD_heat_bar",
+        obj_char_game_scene_char_LP["heat"][1]/obj_char_game_scene_char_LP["heat"][2]
+    )
+    draw_game_scene_add_to_sprite_batch_bars(
+        image_sprite_sheet,
+        obj_HUD_game_scene_heat_bar_RP,
+        "HUD_heat_bar",
+        obj_char_game_scene_char_RP["heat"][1]/obj_char_game_scene_char_RP["heat"][2]
     )
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
     
@@ -77,11 +101,11 @@ end
 
 -- x y z opacity sx sy r f
 function draw_game_scene_add_to_sprite_batch_bars(image_sprite_sheet,bar_obj,quad_name,percentage)
-    local x = bar_obj[1]
-    local y = bar_obj[2]
+    local x = draw_resolution_correction(bar_obj[1])
+    local y = draw_resolution_correction(bar_obj[2])
     local r = bar_obj[7]
-    local sx = bar_obj[5]
-    local sy = bar_obj[6]
+    local sx = draw_resolution_correction(bar_obj[5])
+    local sy = draw_resolution_correction(bar_obj[6])
     local opacity = bar_obj[4]
 
     local frames = image_sprite_sheet["frames"][quad_name]
