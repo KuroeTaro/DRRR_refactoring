@@ -25,7 +25,6 @@ function draw_game_scene_main()
     -- 绘制上帝光
     draw_game_scene_stage_glow() -- 5 draw calls 10
 
-    print_table(obj_HUD_game_scene_background_gauge)
     -- 绘制静态HUD
     draw_2d_image(obj_HUD_game_scene_background_gauge,image_HUD_game_scene_background_gauge) -- 1 draw call 11
 
@@ -80,6 +79,18 @@ function draw_game_scene_main()
         "HUD_heat_bar",
         obj_char_game_scene_char_RP["heat"][1]/obj_char_game_scene_char_RP["heat"][2]
     )
+    draw_game_scene_add_to_sprite_batch_risk_bars(
+        image_sprite_sheet,
+        obj_HUD_game_scene_risk_LP,
+        "HUD_risk_bar",
+        obj_char_game_scene_char_LP["risk"][1]*3/obj_char_game_scene_char_LP["risk"][2]
+    )
+    draw_game_scene_add_to_sprite_batch_risk_bars(
+        image_sprite_sheet,
+        obj_HUD_game_scene_risk_RP,
+        "HUD_risk_bar",
+        obj_char_game_scene_char_RP["risk"][1]*3/obj_char_game_scene_char_RP["risk"][2]
+    )
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
     
     -- 透过上帝光和HUD
@@ -97,6 +108,10 @@ function draw_game_scene_main()
     draw_solid(obj_UI_game_scene_black_solid)
     
 end
+
+
+
+
 
 
 -- x y z opacity sx sy r f
@@ -124,11 +139,77 @@ function draw_game_scene_add_to_sprite_batch_bars(image_sprite_sheet,bar_obj,qua
 
 end
 
-function draw_game_scene_add_to_sprite_batch_risk_bars(image_sprite_sheet,bar_obj,quad_name,percentage)
+function draw_game_scene_add_to_sprite_batch_risk_bars(image_sprite_sheet,bar_obj,quad_name,risk_value)
+    local x = draw_resolution_correction(bar_obj[1])
+    local y = draw_resolution_correction(bar_obj[2])
+    local r = bar_obj[7]
+    local sx = draw_resolution_correction(bar_obj[5])
+    local sy = draw_resolution_correction(bar_obj[6])
+    local opacity = bar_obj[4]
+
+    local x_offset = draw_resolution_correction(bar_obj[1])
+
+    local frames = image_sprite_sheet["frames"][quad_name]
+
+    local quad = love.graphics.newQuad(
+        frames[1],
+        frames[2],
+        frames[3],
+        frames[4],
+        frames[5],
+        frames[6]
+    )
+    local offset_counter = 0
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
+    for i = 1,3,1 do 
+        if risk_value >= 1 then
+            image_sprite_sheet["sprite_batch"]:add(quad, x-offset_counter*30*sx, y, r, sx, sy)
+            risk_value = risk_value - 1
+            offset_counter = offset_counter + 1
+        else
+            image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, risk_value)
+            image_sprite_sheet["sprite_batch"]:add(quad, x-offset_counter*30*sx, y, r, sx, sy)
+            break
+        end
+    end
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
 
 end
 
-function draw_game_scene_add_to_sprite_batch_overdrive_pie(image_sprite_sheet,bar_obj,quad_name,percentage)
+function draw_game_scene_add_to_sprite_batch_overdrive_pie(image_sprite_sheet,bar_obj,quad_name,overdirve_value)
+    local x = draw_resolution_correction(bar_obj[1])
+    local y = draw_resolution_correction(bar_obj[2])
+    local r = bar_obj[7]
+    local sx = draw_resolution_correction(bar_obj[5])
+    local sy = draw_resolution_correction(bar_obj[6])
+    local opacity = bar_obj[4]
+
+    local x_offset = draw_resolution_correction(bar_obj[1])
+
+    local frames = image_sprite_sheet["frames"][quad_name]
+
+    local quad = love.graphics.newQuad(
+        frames[1],
+        frames[2],
+        frames[3],
+        frames[4],
+        frames[5],
+        frames[6]
+    )
+    local offset_counter = 0
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
+    for i = 1,6,1 do 
+        if risk_value >= 1 then
+            image_sprite_sheet["sprite_batch"]:add(quad, x-offset_counter*30*sx, y, r, sx, sy)
+            risk_value = risk_value - 1
+            offset_counter = offset_counter + 1
+        else
+            image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, risk_value)
+            image_sprite_sheet["sprite_batch"]:add(quad, x-offset_counter*30*sx, y, r, sx, sy)
+            break
+        end
+    end
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
 
 end
 

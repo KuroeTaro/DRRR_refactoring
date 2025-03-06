@@ -108,4 +108,22 @@ function draw_3d_point_to_2D(camera,obj)
 
 end
 
+function drawSector(x, y, radius, startAngle, endAngle, segments)
+    -- 计算每个三角形的角度增量
+    local angleIncrement = (endAngle - startAngle) / segments
 
+    -- 画扇形
+    for i = 0, segments do
+        local angle1 = startAngle + i * angleIncrement
+        local angle2 = startAngle + (i + 1) * angleIncrement
+
+        -- 计算每个三角形的三个顶点
+        local x1 = x + radius * math.cos(angle1)
+        local y1 = y + radius * math.sin(angle1)
+        local x2 = x + radius * math.cos(angle2)
+        local y2 = y + radius * math.sin(angle2)
+
+        -- 绘制三角形
+        love.graphics.polygon("fill", x, y, x1, y1, x2, y2)
+    end
+end

@@ -18,7 +18,7 @@ function init_input()
     --加载手柄按键 键盘按键 手柄z轴 对于指令的表
     INPUT_SYS_COMMAND_TABLE = {
         "Up","Down","Left","Right",
-        "A","B","C","D",
+        "P","S","HS","K",
         "SP","Launcher","Back","Start",
         "RC","Dash","Burst","UA"
     }

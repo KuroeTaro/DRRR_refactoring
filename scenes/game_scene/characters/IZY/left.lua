@@ -107,7 +107,7 @@ function load_game_scene_obj_char_LP()
 
     
     obj_char_game_scene_char_LP["health"] = {11500, 11500, 11500, "fade_off"}
-    obj_char_game_scene_char_LP["heat"] = {0.0, 0.0, 200.0} -- 0.0 - 200.0
+    obj_char_game_scene_char_LP["heat"] = {0.0, 200.0} -- 0.0 - 200.0
     obj_char_game_scene_char_LP["ability"] = {600.0, 600.0} -- 0.0 - 600.0
     obj_char_game_scene_char_LP["overdrive"] = {600.0, 600.0, 600.0, "off"} -- 0.0 - 600.0
     obj_char_game_scene_char_LP["overdrive_timer"] = {360, 360} -- 0f - 360f
@@ -191,7 +191,7 @@ function state_machine_char_game_scene_char_LP()
         end,
         ["stand_idle"] = function()
             character_animator(obj,anim_char_stand_idle_LP)
-            if INPUT_SYS_CURRENT_COMMAND_STATE[1]["D"] == "Pressing" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE[1]["K"] == "Pressing" then
 
             end
         end,

@@ -107,8 +107,8 @@ function load_game_scene_announcer_HUD_obj()
     obj_HUD_game_scene_health_bar_RP = {915, 65, nil, 0, 1, 1, 0, 0}
     obj_HUD_game_scene_health_bar_LP_fade = {685, 65, nil, 0, -1, 1, 0, 0}
     obj_HUD_game_scene_health_bar_RP_fade = {915, 65, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_heat_bar_LP = {0, 0, nil, 0, -1, 1, 0, 0}
-    obj_HUD_game_scene_heat_bar_RP = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj_HUD_game_scene_heat_bar_LP = {678, 124, nil, 0, -1, 1, 0, 0}
+    obj_HUD_game_scene_heat_bar_RP = {0, 124, nil, 0, 1, 1, 0, 0}
     obj_HUD_game_scene_ability_bar_LP = {670, 102, nil, 0, -1, 1, 0, 0}
     obj_HUD_game_scene_ability_bar_RP = {930, 102, nil, 0, 1, 1, 0, 0}
     obj_HUD_game_scene_overdrive_pie_LP = {0, 0, nil, 0, 1, 1, 0, 0}
@@ -138,17 +138,8 @@ function load_game_scene_announcer_HUD_obj()
     obj_HUD_game_scene_overdrive_timer_RP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_overdrive_timer_RP["state"] = "default"
 
-    obj_HUD_game_scene_risk_LP = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_risk_LP["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_risk_LP["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_risk_LP["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_risk_LP["state"] = "default"
-
-    obj_HUD_game_scene_risk_RP = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_risk_RP["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_risk_RP["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_risk_RP["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_risk_RP["state"] = "default"
+    obj_HUD_game_scene_risk_LP = {255, 127, nil, 0, 1, 1, 0, 0}
+    obj_HUD_game_scene_risk_RP = {1345, 127, nil, 0, 1, 1, 0, 0}
 
     obj_HUD_game_scene_positive_bouns_LP = {0, 0, nil, 0, 1, 1, 0, 0}
     obj_HUD_game_scene_positive_bouns_LP["FCT"] = {0,0,0,0,0,0,0,0}
