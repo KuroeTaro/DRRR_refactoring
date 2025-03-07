@@ -109,7 +109,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["health"] = {11500, 11500, 11500, "fade_off"}
     obj_char_game_scene_char_LP["heat"] = {0.0, 200.0} -- 0.0 - 200.0
     obj_char_game_scene_char_LP["ability"] = {600.0, 600.0} -- 0.0 - 600.0
-    obj_char_game_scene_char_LP["overdrive"] = {600.0, 600.0, 600.0, "off"} -- 0.0 - 600.0
+    obj_char_game_scene_char_LP["overdrive"] = {600.0, 600.0, "off"} -- 0.0 - 600.0
     obj_char_game_scene_char_LP["overdrive_timer"] = {360, 360} -- 0f - 360f
     obj_char_game_scene_char_LP["risk"] = {0.0, 300.0}-- 0.0 - 300.0
     obj_char_game_scene_char_LP["positive_bouns"] = {0.0, 600.0} -- 0.0 - 600.0
@@ -183,6 +183,9 @@ end
 
 
 
+
+
+
 function state_machine_char_game_scene_char_LP()
     local obj = obj_char_game_scene_char_LP
     local switch = {
@@ -212,6 +215,8 @@ function state_machine_char_game_scene_char_LP_knife()
     if this_function then this_function() end
 
 end
+
+
 
 
 
@@ -304,6 +309,8 @@ function draw_game_scene_char_LP_shadow()
     love.graphics.setColor(1, 1, 1, 1)
     
 end
+
+
 
 
 

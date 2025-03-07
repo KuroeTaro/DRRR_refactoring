@@ -176,11 +176,15 @@ end
 
 
 
+
+
 function update_game_scene_char_RP()
     state_machine_char_game_scene_char_RP()
     -- state_machine_char_game_scene_char_RP_knife()
     
 end
+
+
 
 
 
@@ -213,6 +217,8 @@ function state_machine_char_game_scene_char_RP_knife()
     if this_function then this_function() end
 
 end
+
+
 
 
 
@@ -305,6 +311,8 @@ function draw_game_scene_char_RP_shadow()
     love.graphics.setColor(1, 1, 1, 1)
 
 end
+
+
 
 
 

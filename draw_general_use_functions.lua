@@ -19,6 +19,7 @@ function draw_2d_image(obj,image)
     love.graphics.setColor(1, 1, 1, obj[4])
     love.graphics.draw(image,x,y,r,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
+
 end 
 
 function draw_2d_image_table(obj,image_table)
@@ -37,20 +38,22 @@ function draw_2d_image_table(obj,image_table)
     love.graphics.setColor(1, 1, 1, obj[4])
     love.graphics.draw(image_table[f],x,y,r,sx,sy)
     love.graphics.setColor(1, 1, 1, 1)
+
 end
 
-function draw_solid(object)
+function draw_solid(obj)
     local w = love.graphics.getWidth()
     local h = love.graphics.getHeight()
-    local opacity = object[4]
+    local opacity = obj[4]
 
     if opacity == 0 then
         return
     end
 
-    love.graphics.setColor(object["rgb"][1],object["rgb"][2],object["rgb"][3], object[4])
+    love.graphics.setColor(obj["rgb"][1],obj["rgb"][2],obj["rgb"][3], obj[4])
     love.graphics.rectangle("fill", 0,0, w,h)
     love.graphics.setColor(1, 1, 1, 1)
+
 end
 
 function draw_3d_image(camera,obj,image)
@@ -126,4 +129,34 @@ function drawSector(x, y, radius, startAngle, endAngle, segments)
         -- 绘制三角形
         love.graphics.polygon("fill", x, y, x1, y1, x2, y2)
     end
+
+end
+
+function draw_2d_image_sprite_batch(obj,image_sprite_sheet,quad_name)
+    local x = draw_resolution_correction(obj[1])
+    local y = draw_resolution_correction(obj[2])
+    local sx = draw_resolution_correction(obj[5])
+    local sy = draw_resolution_correction(obj[6])
+    local r = obj[7]
+    local opacity = obj[4]
+
+    if opacity == 0 then
+        return
+    end
+
+    local frame = image_sprite_sheet["frames"][quad_name]
+
+    local quad = love.graphics.newQuad(
+        frame[1],
+        frame[2],
+        frame[3],
+        frame[4],
+        frame[5],
+        frame[6]
+    )
+
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, opacity)
+    image_sprite_sheet["sprite_batch"]:add(quad, x, y, r, sx, sy)
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
+
 end
