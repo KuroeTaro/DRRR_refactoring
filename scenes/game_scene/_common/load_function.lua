@@ -16,8 +16,8 @@ function load_game_scene_prep()
         "SHINRA",
         "SRT"
     }
-    local LP_name = char_id_to_name[CHAR_SELECT_LR[1]]
-    local RP_name = char_id_to_name[CHAR_SELECT_LR[2]]
+    local LP_name = char_id_to_name[CHAR_SELECT_LR["L"]]
+    local RP_name = char_id_to_name[CHAR_SELECT_LR["R"]]
     local stage_name = "alpha"
     local thread_LP_name = LP_name .. "_left"
     local thread_RP_name = RP_name .. "_right"

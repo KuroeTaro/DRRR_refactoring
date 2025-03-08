@@ -2,18 +2,21 @@ function init_input()
     INPUT_SYS_CURRENT_COMMAND = {}
     INPUT_SYS_CURRENT_COMMAND_STATE = {}
     
-    INPUT_SYS_CURRENT_COMMAND[1] = {}
-    INPUT_SYS_CURRENT_COMMAND_STATE[1] = {}
-    INPUT_SYS_CURRENT_COMMAND[2] = {}
-    INPUT_SYS_CURRENT_COMMAND_STATE[2] = {}
+    INPUT_SYS_CURRENT_COMMAND["L"] = {}
+    INPUT_SYS_CURRENT_COMMAND_STATE["L"] = {}
+    INPUT_SYS_CURRENT_COMMAND["R"] = {}
+    INPUT_SYS_CURRENT_COMMAND_STATE["R"] = {}
 
-    INPUT_SYS_CURRENT_JOYSTICK_TABLE = {}
+    INPUT_SYS_CURRENT_CONTROLLER = {}
+    -- string:keyboard ("keyboard",nil) 
+    -- joystick:joystick ("joystick",joystick) 
+    -- table:network ("network",table)
+    INPUT_SYS_CURRENT_CONTROLLER["L"] = {nil,nil} 
+    INPUT_SYS_CURRENT_CONTROLLER["R"] = {nil,nil}
 
-    INPUT_SYS_CONTROLLER_STATE = {0,0,0,0}
+    INPUT_SYS_JOYSTICK_STATE = {0,0,0,0}
 
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
-
-    INPUT_SYS_GLOBAL_PRIME_JOYSITCK = {}
 
     --加载手柄按键 键盘按键 手柄z轴 对于指令的表
     INPUT_SYS_COMMAND_TABLE = {
@@ -41,14 +44,14 @@ function init_input()
     }
     
     for i=1,16 do
-        INPUT_SYS_CURRENT_COMMAND_STATE[1][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
-        INPUT_SYS_CURRENT_COMMAND_STATE[2][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
+        INPUT_SYS_CURRENT_COMMAND_STATE["L"][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
+        INPUT_SYS_CURRENT_COMMAND_STATE["R"][INPUT_SYS_COMMAND_TABLE[i]] = "Released"
     end
 
     --初始化现指令数组
     for i = 1,16 do
-        INPUT_SYS_CURRENT_COMMAND[1][INPUT_SYS_COMMAND_TABLE[i]] = 0
-        INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
+        INPUT_SYS_CURRENT_COMMAND["L"][INPUT_SYS_COMMAND_TABLE[i]] = 0
+        INPUT_SYS_CURRENT_COMMAND["R"][INPUT_SYS_COMMAND_TABLE[i]] = 0
     end
 end
 
@@ -58,35 +61,18 @@ function update_input()
 
     --获得所有指令的现在布尔值和上一帧布尔值
     --并且赋值到INPUT_SYS_CURRENT_COMMAND和perCommand
-    if GAME_MODE == 2 then
-        if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_input_sys_current_command(
-                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
-                nil
-            )
-        else 
-            get_input_sys_current_command(
-                INPUT_SYS_CURRENT_COMMAND[NETWORK_MATCH_SIDE],
-                INPUT_SYS_CURRENT_JOYSTICK_TABLE[1]
-            )
-        end
-        -- INPUT_SYS_CURRENT_COMMAND[OTHER_SIDE] 从网络接口获取
-
-    else
-        if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-            get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND[1],nil)
-            for i = 1,16 do
-                INPUT_SYS_CURRENT_COMMAND[2][INPUT_SYS_COMMAND_TABLE[i]] = 0
-            end
-        else 
-            get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND[1],INPUT_SYS_CURRENT_JOYSTICK_TABLE[1])
-            get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND[2],INPUT_SYS_CURRENT_JOYSTICK_TABLE[2])
-        end
-    end
+    get_input_sys_current_command(
+        INPUT_SYS_CURRENT_COMMAND["L"],
+        INPUT_SYS_CURRENT_CONTROLLER["L"]
+    )
+    get_input_sys_current_command(
+        INPUT_SYS_CURRENT_COMMAND["R"],
+        INPUT_SYS_CURRENT_CONTROLLER["R"]
+    )
 
     --输入状态机
-    state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE[1],INPUT_SYS_CURRENT_COMMAND[1])
-    state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE[2],INPUT_SYS_CURRENT_COMMAND[2])
+    state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE["L"],INPUT_SYS_CURRENT_COMMAND["L"])
+    state_machine_input(INPUT_SYS_CURRENT_COMMAND_STATE["R"],INPUT_SYS_CURRENT_COMMAND["R"])
 end
 
 --将手柄按键的值转化为指令表内的数值
@@ -110,91 +96,156 @@ end
 --加载手柄
 function update_controller()
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
-    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1] and INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1]:isConnected() == false then
-        INPUT_SYS_GLOBAL_PRIME_JOYSITCK = {}
-    end
-    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] and INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2]:isConnected() == false then
-        INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] = nil
-    end
+    if GAME_MODE == 2 then
+        INPUT_SYS_CURRENT_CONTROLLER[OTHER_SIDE] = {"network",ROLLBACK_INPUT_TABLE}
+        -- 检测键盘的按键 如果有键盘按键按下则设定键盘为本侧控制器
+        if get_input_sys_anykey_keyboard() or INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then
+            INPUT_SYS_CURRENT_CONTROLLER[NETWORK_MATCH_SIDE] = {"keyboard",nil}
+        end
 
-    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK == {} or INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1] == nil then
+        -- 检测手柄的按钮 如果有手柄按键按下则设定手柄为本侧控制器
         for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
-            if (INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpleft") 
-            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpright")
-            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("a")
-            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("b"))
-            and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2]
-            then
-                INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1] = INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]
-                INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] = nil
+            if get_input_sys_anykey_joystick(INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]) then
+                INPUT_SYS_CURRENT_CONTROLLER[NETWORK_MATCH_SIDE] = {"joystick",INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]}
                 break
             end
         end
-    end
+
+    else
+        local L_controller = INPUT_SYS_CURRENT_CONTROLLER["L"]
+        local R_controller = INPUT_SYS_CURRENT_CONTROLLER["R"]
+        if L_controller[1] == nil then
+            -- 检测键盘的按键 如果有键盘按键按下则设定键盘为本侧控制器
+            if (get_input_sys_anykey_keyboard() or INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil)
+            and R_controller[1] ~= "keyboard"
+            then
+                INPUT_SYS_CURRENT_CONTROLLER["L"] = {"keyboard",nil}
+            end
     
-    if INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] == nil then
-        for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
-            if (INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpleft") 
-            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("dpright")
-            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("a")
-            or INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]:isGamepadDown("b"))
-            and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= INPUT_SYS_GLOBAL_PRIME_JOYSITCK[1]
-            then
-                INPUT_SYS_GLOBAL_PRIME_JOYSITCK[2] = INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]
-                break
+            -- 检测手柄的按钮 如果有手柄按键按下则设定手柄为本侧控制器
+            for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
+                if get_input_sys_anykey_joystick(INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]) 
+                and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= R_controller[2] 
+                then
+                    INPUT_SYS_CURRENT_CONTROLLER["L"] = {"joystick",INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]}
+                    break
+                end
             end
+
+        elseif L_controller[1] == "joystick" and L_controller[2]:isConnected() == false then
+            L_controller[1] = nil
+            L_controller[2] = nil
+            -- 检测键盘的按键 如果有键盘按键按下则设定键盘为本侧控制器
+            if (get_input_sys_anykey_keyboard() or INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil)
+            and R_controller[1] ~= "keyboard"
+            then
+                INPUT_SYS_CURRENT_CONTROLLER["L"] = {"keyboard",nil}
+            end
+    
+            -- 检测手柄的按钮 如果有手柄按键按下则设定手柄为本侧控制器
+            for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
+                if get_input_sys_anykey_joystick(INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]) 
+                and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= R_controller[2] 
+                then
+                    INPUT_SYS_CURRENT_CONTROLLER["L"] = {"joystick",INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]}
+                    break
+                end
+            end
+
         end
+
+        local L_controller = INPUT_SYS_CURRENT_CONTROLLER["L"]
+        local R_controller = INPUT_SYS_CURRENT_CONTROLLER["R"]
+        if R_controller[1] == nil then
+            if (get_input_sys_anykey_keyboard() or INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil)
+            and L_controller[1] ~= "keyboard"
+            then
+                INPUT_SYS_CURRENT_CONTROLLER["R"] = {"keyboard",nil}
+            end
+    
+            -- 检测手柄的按钮 如果有手柄按键按下则设定手柄为本侧控制器
+            for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
+                if get_input_sys_anykey_joystick(INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]) 
+                and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= L_controller[2] 
+                then
+                    INPUT_SYS_CURRENT_CONTROLLER["R"] = {"joystick",INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]}
+                    break
+                end
+            end
+        elseif R_controller[1] == "joystick" and R_controller[2]:isConnected() == false then
+            R_controller[1] = nil
+            R_controller[2] = nil
+            -- 检测键盘的按键 如果有键盘按键按下则设定键盘为本侧控制器
+            if (get_input_sys_anykey_keyboard() or INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil)
+            and L_controller[1] ~= "keyboard"
+            then
+                INPUT_SYS_CURRENT_CONTROLLER["R"] = {"keyboard",nil}
+            end
+    
+            -- 检测手柄的按钮 如果有手柄按键按下则设定手柄为本侧控制器
+            for i=1,#INPUT_SYS_CURRENT_JOYSTICK_TABLE,1 do
+                if get_input_sys_anykey_joystick(INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]) 
+                and INPUT_SYS_CURRENT_JOYSTICK_TABLE[i] ~= L_controller[2] 
+                then
+                    INPUT_SYS_CURRENT_CONTROLLER["R"] = {"joystick",INPUT_SYS_CURRENT_JOYSTICK_TABLE[i]}
+                    break
+                end
+            end
+
+        end
+
     end
 
-    INPUT_SYS_CURRENT_JOYSTICK_TABLE = INPUT_SYS_GLOBAL_PRIME_JOYSITCK
-        
-    INPUT_SYS_CONTROLLER_STATE[2] = INPUT_SYS_CONTROLLER_STATE[0]
-    INPUT_SYS_CONTROLLER_STATE[3] = INPUT_SYS_CONTROLLER_STATE[1]
+    INPUT_SYS_JOYSTICK_STATE[2] = INPUT_SYS_JOYSTICK_STATE[0]
+    INPUT_SYS_JOYSTICK_STATE[3] = INPUT_SYS_JOYSTICK_STATE[1]
 
     if INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then 
-        INPUT_SYS_CONTROLLER_STATE[0] = 0
+        INPUT_SYS_JOYSTICK_STATE[0] = 0
     else 
-        INPUT_SYS_CONTROLLER_STATE[0] = 1
+        INPUT_SYS_JOYSTICK_STATE[0] = 1
     end 
 
     if INPUT_SYS_CURRENT_JOYSTICK_TABLE[2] == nil then 
-        INPUT_SYS_CONTROLLER_STATE[1] = 0
+        INPUT_SYS_JOYSTICK_STATE[1] = 0
     else 
-        INPUT_SYS_CONTROLLER_STATE[1] = 1
+        INPUT_SYS_JOYSTICK_STATE[1] = 1
     end 
+
 end
 
 --获得所有指令的现在布尔值和上一帧布尔值（键盘）
-function get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND,joystick)
-    --(键盘)
-    if joystick == nil then
+function get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND,INPUT_SYS_CURRENT_CONTROLLER)
+    if INPUT_SYS_CURRENT_CONTROLLER[1] == "keyboard" then
         for i = 1,16 do
             if love.keyboard.isDown(INPUT_SYS_KEY_TABLE[i]) then
                 INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
             else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
-    else
+    elseif INPUT_SYS_CURRENT_CONTROLLER[1] == "joystick" then
         for i = 1,12 do
-            if get_joystick_buttom_command(joystick,INPUT_SYS_BUTTON_TABLE[i]) then
+            if get_joystick_buttom_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_BUTTON_TABLE[i]) then
                 INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 1
             else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i]] = 0
             end
         end
 
         for i = 1,2 do
-            if get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) > 0.2 then
+            if get_joystick_axis_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_AXIS_TABLE[i]) > 0.2 then
                 INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 1
             else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
             end
         end
         for i = 1,2 do
-            if get_joystick_buttom_command(joystick,INPUT_SYS_STICK_TABLE[i]) then
+            if get_joystick_buttom_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_STICK_TABLE[i]) then
                 INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 1
             else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 0
             end
         end
+    elseif INPUT_SYS_CURRENT_CONTROLLER[1] == "network" then
+        -- rollback netcode predict part gose
     end
+
 end
 
 --输入状态机
@@ -235,7 +286,39 @@ end
 function draw_input_sys()
     for i, v in ipairs(INPUT_SYS_COMMAND_TABLE) do
         love.graphics.print(v, 0, i*15-15)
-        love.graphics.print(INPUT_SYS_CURRENT_COMMAND_STATE[1][v], 100, i*15-15)
-        love.graphics.print(INPUT_SYS_CURRENT_COMMAND_STATE[2][v], 160, i*15-15)
+        love.graphics.print(INPUT_SYS_CURRENT_COMMAND_STATE["L"][v], 100, i*15-15)
+        love.graphics.print(INPUT_SYS_CURRENT_COMMAND_STATE["R"][v], 160, i*15-15)
     end 
+end
+
+
+
+
+
+function get_input_sys_anykey_keyboard()
+    for i = 1,16 do
+        if love.keyboard.isDown(INPUT_SYS_KEY_TABLE[i]) then
+            return true
+        end
+    end
+    return false
+end
+
+function get_input_sys_anykey_joystick(joystick)
+    for i = 1,12 do
+        if get_joystick_buttom_command(joystick,INPUT_SYS_BUTTON_TABLE[i]) then
+            return true
+        end
+    end
+    for i = 1,2 do
+        if get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) > 0.2 then
+            return true
+        end
+    end
+    for i = 1,2 do
+        if get_joystick_buttom_command(joystick[2],INPUT_SYS_STICK_TABLE[i]) then
+            return true
+        end
+    end
+    return false
 end

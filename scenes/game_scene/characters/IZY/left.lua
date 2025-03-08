@@ -194,7 +194,7 @@ function state_machine_char_game_scene_char_LP()
         end,
         ["stand_idle"] = function()
             character_animator(obj,anim_char_stand_idle_LP)
-            if INPUT_SYS_CURRENT_COMMAND_STATE[1]["K"] == "Pressing" then
+            if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["K"] == "Pressing" then
 
             end
         end,

@@ -78,7 +78,7 @@ function update_start_scene_main()
     )
 
     -- 场景出口
-    if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Left"] == "Pressing" then 
+    if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Left"] == "Pressing" then 
         SCENE_TIMER = 0
         -- 播放twitch音频
         play_obj_audio(audio_SFX_start_scene_click)
@@ -120,7 +120,7 @@ function update_start_scene_main()
         current_update_block = update_start_scene_option_twitch
 
     -- 场景出口 option twitch right
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Right"] == "Pressing" then 
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Right"] == "Pressing" then 
         SCENE_TIMER = 0
         -- 播放twitch音频
         play_obj_audio(audio_SFX_start_scene_click)
@@ -162,7 +162,7 @@ function update_start_scene_main()
         current_update_block = update_start_scene_option_twitch
 
     -- 场景出口 option 确认
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["K"] == "Pressing" then 
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["K"] == "Pressing" then 
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_to_main)
         local switch = {
@@ -397,14 +397,14 @@ function update_start_scene_main()
         end
 
     -- 场景出口 控制器更新
-    elseif (INPUT_SYS_CONTROLLER_STATE[0] ~= INPUT_SYS_CONTROLLER_STATE[2] or INPUT_SYS_CONTROLLER_STATE[1] ~= INPUT_SYS_CONTROLLER_STATE[3]) then 
+    elseif (INPUT_SYS_JOYSTICK_STATE[0] ~= INPUT_SYS_JOYSTICK_STATE[2] or INPUT_SYS_JOYSTICK_STATE[1] ~= INPUT_SYS_JOYSTICK_STATE[3]) then 
         SCENE_TIMER = 0
         -- 检测控制器具体变化 修改console text
-        if INPUT_SYS_CONTROLLER_STATE[0] == 0 and INPUT_SYS_CONTROLLER_STATE[1] == 0 then 
+        if INPUT_SYS_JOYSTICK_STATE[0] == 0 and INPUT_SYS_JOYSTICK_STATE[1] == 0 then 
             CONSOLE_TEXT_2_ID = 5
-        elseif INPUT_SYS_CONTROLLER_STATE[0] == 1 and INPUT_SYS_CONTROLLER_STATE[1] == 0 then 
+        elseif INPUT_SYS_JOYSTICK_STATE[0] == 1 and INPUT_SYS_JOYSTICK_STATE[1] == 0 then 
             CONSOLE_TEXT_2_ID = 6
-        elseif INPUT_SYS_CONTROLLER_STATE[0] == 1 and INPUT_SYS_CONTROLLER_STATE[1] == 1 then 
+        elseif INPUT_SYS_JOYSTICK_STATE[0] == 1 and INPUT_SYS_JOYSTICK_STATE[1] == 1 then 
             CONSOLE_TEXT_2_ID = 7
         end
         CONSOLE_TEXT_1_ID = 5
@@ -638,7 +638,7 @@ function update_start_scene_config_main()
     )
 
     -- 场景出口
-    if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Up"] == "Pressing" then
+    if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Up"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_click)
         -- 更新 config dabo trig ID
@@ -659,7 +659,7 @@ function update_start_scene_config_main()
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_twitch_up
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Down"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Down"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_click)
         -- 更新 config dabo trig ID
@@ -680,7 +680,7 @@ function update_start_scene_config_main()
         -- 更新 update block
         current_update_block = update_start_scene_config_twitch_down
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["K"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["K"] == "Pressing" then
         SCENE_TIMER = 0
 
         local switch = {
@@ -889,7 +889,7 @@ function update_start_scene_config_main()
             thisFunction() 
         end
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["HS"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["HS"] == "Pressing" then
         SCENE_TIMER = 0
         -- 播放scene out to sub
         play_obj_audio(audio_SFX_start_scene_to_main)
@@ -1129,12 +1129,12 @@ function update_start_scene_config_audio_main()
         anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
     )
 
-    if INPUT_SYS_CURRENT_COMMAND_STATE[1]["K"] == "Pressing" then
+    if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["K"] == "Pressing" then
         play_obj_audio(audio_SFX_start_scene_click)
     end
 
     -- 场景出口
-    if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Up"] == "Pressing" then
+    if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Up"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_click)
 
@@ -1161,7 +1161,7 @@ function update_start_scene_config_audio_main()
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_audio_bar_mark_twtich_up
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Down"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Down"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_click)
 
@@ -1188,7 +1188,7 @@ function update_start_scene_config_audio_main()
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_audio_bar_mark_twtich_down
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Left"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Left"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_click)
 
@@ -1242,7 +1242,7 @@ function update_start_scene_config_audio_main()
 
         end
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Right"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Right"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_click)
 
@@ -1296,7 +1296,7 @@ function update_start_scene_config_audio_main()
             
         end
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["HS"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["HS"] == "Pressing" then
         SCENE_TIMER = 0
         play_obj_audio(audio_SFX_start_scene_to_main)
 
@@ -1734,11 +1734,11 @@ function update_start_scene_config_controller_main()
         anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
     )
     -- controller indi bar mark 状态机
-    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_LP,1)
-    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_RP,2)
+    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_LP,"L")
+    state_machine_UI_start_scene_config_controller(obj_UI_start_scene_config_controller_bar_mark_RP,"R")
 
     -- 场景出口
-    if INPUT_SYS_CURRENT_COMMAND_STATE[1]["HS"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE[2]["HS"] == "Pressing" then
+    if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["HS"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE["R"]["HS"] == "Pressing" then
         SCENE_TIMER = 0
 
         play_obj_audio(audio_SFX_start_scene_to_main)
@@ -1881,7 +1881,7 @@ function update_start_scene_config_resolution_main()
         anim_UI_frame_start_scene_console_type_in_mark_blink_opacity
     )
 
-    if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Left"] == "Pressing" then
+    if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Left"] == "Pressing" then
         SCENE_TIMER = 0
 
         play_obj_audio(audio_SFX_start_scene_click)
@@ -1904,7 +1904,7 @@ function update_start_scene_config_resolution_main()
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_resolution_bar_mark_twtich_left
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Right"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Right"] == "Pressing" then
         SCENE_TIMER = 0
         
         play_obj_audio(audio_SFX_start_scene_click)
@@ -1927,10 +1927,10 @@ function update_start_scene_config_resolution_main()
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_resolution_bar_mark_twtich_right
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["K"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["K"] == "Pressing" then
         set_current_resolution()
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["HS"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["HS"] == "Pressing" then
         SCENE_TIMER = 0
 
         play_obj_audio(audio_SFX_start_scene_to_main)
@@ -2177,7 +2177,7 @@ function update_start_scene_record_main()
     obj_UI_start_scene_record_num_5[8] = GAME_DURATION[6]
 
     -- 场景出口
-    if INPUT_SYS_CURRENT_COMMAND_STATE[1]["Up"] == "Pressing" then
+    if INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Up"] == "Pressing" then
         SCENE_TIMER = 0
 
         play_obj_audio(audio_SFX_start_scene_click)
@@ -2196,7 +2196,7 @@ function update_start_scene_record_main()
         current_update_block = update_start_scene_record_twitch_up
         
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["Down"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["Down"] == "Pressing" then
         SCENE_TIMER = 0
 
         play_obj_audio(audio_SFX_start_scene_click)
@@ -2214,7 +2214,7 @@ function update_start_scene_record_main()
         -- 更新 current_update_block
         current_update_block = update_start_scene_record_twitch_down
 
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE[1]["K"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE[1]["HS"] == "Pressing" then
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["L"]["K"] == "Pressing" or INPUT_SYS_CURRENT_COMMAND_STATE["L"]["HS"] == "Pressing" then
         SCENE_TIMER = 0
 
         play_obj_audio(audio_SFX_start_scene_to_main)
