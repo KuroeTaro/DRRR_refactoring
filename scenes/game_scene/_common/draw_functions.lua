@@ -28,6 +28,9 @@ function draw_game_scene_main()
     -- 绘制静态HUD
     draw_2d_image(obj_HUD_game_scene_background_gauge,image_HUD_game_scene_background_gauge) -- 1 draw call 11
 
+    -- 绘制HUD缓入动画
+    draw_2d_image_table(obj_HUD_game_scene_ease_in,image_table_announcer_game_scene_HUD_ease_in) -- 1 draw call 16
+
     -- 绘制动态HUD
     local image_sprite_sheet = image_sprite_sheet_table_HUD_game_scene_common
     image_sprite_sheet["sprite_batch"]:clear()
@@ -192,7 +195,6 @@ function draw_game_scene_main()
     -- 绘制ease_in annoucer 和 HUD ease in
     draw_2d_image_table(obj_annoucer_game_scene_act_common,image_table_announcer_game_scene_act_common) -- 1 draw call 14
     draw_2d_image_table(obj_annoucer_game_scene_act_num,image_table_announcer_game_scene_act_number[ROUND_COUNTER]) -- 1 draw call 15
-    draw_2d_image_table(obj_HUD_game_scene_ease_in,image_table_announcer_game_scene_HUD_ease_in) -- 1 draw call 16
     draw_2d_image_table(obj_annoucer_game_scene_lets_dance,image_table_announcer_game_scene_lets_dance) -- 1 draw call 17
 
     -- 绘制ease in black solid

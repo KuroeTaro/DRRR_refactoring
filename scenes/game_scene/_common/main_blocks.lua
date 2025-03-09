@@ -63,12 +63,22 @@ function update_game_scene_main_training()
             elseif SCENE_TIMER == 105 then
                 obj_annoucer_game_scene_act_common[4] = 0
                 obj_annoucer_game_scene_act_num[4] = 0
+                obj_HUD_game_scene_timer[4] = 0
+                init_point_linear_anim_with(
+                    obj_HUD_game_scene_timer,
+                    anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1
+                )
 
             elseif SCENE_TIMER <= 115 then
                 -- do nothing
             elseif SCENE_TIMER < 135 then
                 state_machine_automatic_player_game_scene(obj_HUD_game_scene_ease_in,50)
-                
+                point_linear_animator(
+                    obj_HUD_game_scene_timer,
+                    anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1
+                )
+                print(SCENE_TIMER-116,obj_HUD_game_scene_timer[4],obj_annoucer_game_scene_lets_dance[4])
+
             elseif SCENE_TIMER < 165 then
                 state_machine_automatic_player_game_scene(obj_HUD_game_scene_ease_in,50)
                 state_machine_automatic_player_game_scene(obj_annoucer_game_scene_lets_dance,40)
@@ -77,28 +87,12 @@ function update_game_scene_main_training()
                 state_machine_automatic_player_game_scene(obj_annoucer_game_scene_lets_dance,40)
                 obj_char_game_scene_char_LP["pre_input_command_updatable"] = true
                 obj_char_game_scene_char_RP["pre_input_command_updatable"] = true
-                obj_HUD_game_scene_timer[4] = 0
-                init_point_linear_anim_with(
-                    obj_HUD_game_scene_timer,
-                    anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1
-                )
-                print(SCENE_TIMER-165,obj_HUD_game_scene_timer[4])
 
             elseif SCENE_TIMER < 175 then
                 state_machine_automatic_player_game_scene(obj_annoucer_game_scene_lets_dance,40)
-                point_linear_animator(
-                    obj_HUD_game_scene_timer,
-                    anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1
-                )
-                print(SCENE_TIMER-165,obj_HUD_game_scene_timer[4])
 
             elseif SCENE_TIMER == 175 then
                 obj_annoucer_game_scene_lets_dance[4] = 0
-                point_linear_animator(
-                    obj_HUD_game_scene_timer,
-                    anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1
-                )
-                print(SCENE_TIMER-165,obj_HUD_game_scene_timer[4])
 
             elseif SCENE_TIMER < 180 then
                 -- do nothing
@@ -108,8 +102,6 @@ function update_game_scene_main_training()
                 obj_char_game_scene_char_LP["state"] = "stand_idle"
                 obj_char_game_scene_char_RP["state"] = "stand_idle"
                 update_flow_controller["state"] = "main"
-
-                obj_HUD_game_scene_ease_in[4] = 0
 
                 common_game_scene_toggle_dynamic_HUD(1)
                 common_game_scene_toggle_ease_in(0)
