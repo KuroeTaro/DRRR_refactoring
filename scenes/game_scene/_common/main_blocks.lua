@@ -77,7 +77,6 @@ function update_game_scene_main_training()
                     obj_HUD_game_scene_timer,
                     anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1
                 )
-                print(SCENE_TIMER-116,obj_HUD_game_scene_timer[4],obj_annoucer_game_scene_lets_dance[4])
 
             elseif SCENE_TIMER < 165 then
                 state_machine_automatic_player_game_scene(obj_HUD_game_scene_ease_in,50)
