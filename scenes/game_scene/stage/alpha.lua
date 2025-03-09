@@ -44,14 +44,18 @@ end
 function draw_game_scene_stage_static()
     love.graphics.clear(115/255,115/255,115/255,1)
 
-    local image = image_stage_game_scene_stair
-    local sprite_batch = love.graphics.newSpriteBatch(image_stage_game_scene_ground)
     local camera = obj_stage_game_scene_camera
-    local obj = obj_stage_game_scene_stair
-    draw_3d_image(camera,obj,image)
 
-    camera = obj_stage_game_scene_camera
+    local obj = obj_stage_game_scene_stair
+    local sprite_batch = love.graphics.newSpriteBatch(image_stage_game_scene_stair)
+    sprite_batch:clear()
+    sprite_batch:add(0, 0)
+    sprite_batch:add(1600, 0)
+    sprite_batch:add(3200, 0)
+    draw_3d_image(camera,obj,sprite_batch)
+
     obj = obj_stage_game_scene_ground
+    sprite_batch = love.graphics.newSpriteBatch(image_stage_game_scene_ground)
     sprite_batch:clear()
     sprite_batch:add(0, 0)
     sprite_batch:add(1600, 0)

@@ -100,13 +100,13 @@ function order_load_game_scene_common(load_order)
                 image_table_announcer_game_scene_lets_dance[i] = love.graphics.newImage(ASSET_DATA[4]["lets_dance"][i+1])
             end
 
+            image_HUD_game_scene_background_gauge = love.graphics.newImage(ASSET_DATA[4]["HUD_background_gauge"])
+            
             image_sprite_sheet_table_HUD_game_scene_common = 
                 sprite_sheet_load(
                     "asset/game_scene/common/HUD/HUD_common.json",
                     love.graphics.newImage(ASSET_DATA[4]["HUD_common"])
                 )
-
-            image_HUD_game_scene_background_gauge = love.graphics.newImage(ASSET_DATA[4]["HUD_background_gauge"])
 
         end,
     }
