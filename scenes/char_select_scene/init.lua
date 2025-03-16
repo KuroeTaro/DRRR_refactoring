@@ -491,11 +491,11 @@ function load_char_select_scene_audio()
     update_SFX_VOLUME(audio_SFX_char_select_scene_ease_out)
     update_SFX_VOLUME(audio_SFX_char_select_scene_lock_SFX_L)
     update_SFX_VOLUME(audio_SFX_char_select_scene_lock_SFX_R)
-    update_SFX_VOLUME(audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit)
     update_SFX_VOLUME(audio_SFX_char_select_scene_to_main_L)
     update_SFX_VOLUME(audio_SFX_char_select_scene_to_main_R)
     update_SFX_VOLUME(audio_SFX_char_select_scene_to_sub_L)
     update_SFX_VOLUME(audio_SFX_char_select_scene_to_sub_R)
+    update_BGM_VOLUME(audio_BGM_char_select_scene_psychedelic_Parade_Re_Edit)
 
     -- audio anim
     anim_UI_point_linear_char_select_scene_audio_ease_out_1_0_volume_1 = {}

@@ -1715,6 +1715,9 @@ function update_start_scene_config_controller_ease_in()
         -- 初始化此出口所需属性 但是目前没有
         -- 初始化此出口所需要的动画机 但是目前没有
 
+        INPUT_SYS_CURRENT_CONTROLLER["L"] = {nil,nil} 
+        INPUT_SYS_CURRENT_CONTROLLER["R"] = {nil,nil}
+
         -- 更新 current_update_block
         current_update_block = update_start_scene_config_controller_main
 

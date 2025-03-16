@@ -128,14 +128,14 @@ function love.load()
 -------------------------------------------------
 	-- load_scene
 	THREAD_TABLE = {}
-    THREAD_AMOUNT = 0
-    THREAD_ONCE_TABLE = {}
-    ASSET_DATA = {}
-    LOAD_FUNCTION_TABLE = {}
-    LOAD_ORDER_TABLE = {}
-    ORDER_SIZE_TABLE = {}
+	THREAD_AMOUNT = 0
+	THREAD_ONCE_TABLE = {}
+	ASSET_DATA = {}
+	LOAD_FUNCTION_TABLE = {}
+	LOAD_ORDER_TABLE = {}
+	ORDER_SIZE_TABLE = {}
 	LOAD_ONCE_TABLE = {}
-    LOADING_FUNCTION_AMOUNT = 0
+	LOADING_FUNCTION_AMOUNT = 0
 
 	LOADING_AUDIO_PLAYED_ONCE = false
 

@@ -41,25 +41,25 @@ function draw_game_scene_main()
         obj_HUD_game_scene_health_bar_LP,
         image_sprite_sheet,
         "HUD_health_bar",
-        L_character["health"][1]/L_character["health"][2]
+        L_character["health"][1]/L_character["health"][3]
     )
     draw_game_scene_add_to_sprite_batch_bars(
         obj_HUD_game_scene_health_bar_RP,
         image_sprite_sheet,
         "HUD_health_bar",
-        R_character["health"][1]/R_character["health"][2]
+        R_character["health"][1]/R_character["health"][3]
     )
     draw_game_scene_add_to_sprite_batch_bars(
         obj_HUD_game_scene_health_bar_LP_fade,
         image_sprite_sheet,
         "HUD_health_bar",
-        L_character["health"][3]/L_character["health"][2]
+        L_character["health"][2]/L_character["health"][3]
     )
     draw_game_scene_add_to_sprite_batch_bars(
         obj_HUD_game_scene_health_bar_RP_fade,
         image_sprite_sheet,
         "HUD_health_bar",
-        R_character["health"][3]/R_character["health"][2]
+        R_character["health"][2]/R_character["health"][3]
     )
     -- ability
     draw_game_scene_add_to_sprite_batch_bars(
@@ -240,7 +240,7 @@ function draw_game_scene_add_to_sprite_batch_heat_bar_extra(obj,image_sprite_she
     local sy = draw_resolution_correction(obj[6])
     local opacity = obj[4]
 
-    x = x + 92*sx
+    x = x + 97*sx
     y = y + 11*sy
 
     local frame = image_sprite_sheet["frames"][quad_name]
@@ -257,7 +257,7 @@ function draw_game_scene_add_to_sprite_batch_heat_bar_extra(obj,image_sprite_she
     image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, opacity)
     for i = 1,3,1 do 
         if mark_value >= 1 then
-            image_sprite_sheet["sprite_batch"]:add(quad, x+offset_counter*97*sx, y, r, sx, sy)
+            image_sprite_sheet["sprite_batch"]:add(quad, x+offset_counter*97*sx, y, r, -sx, sy)
             mark_value = mark_value - 1
             offset_counter = offset_counter + 1
         else
@@ -267,7 +267,7 @@ function draw_game_scene_add_to_sprite_batch_heat_bar_extra(obj,image_sprite_she
     if mark_value >= 1 then
         x = draw_resolution_correction(obj[1])
         y = draw_resolution_correction(obj[2])
-        image_sprite_sheet["sprite_batch"]:add(quad, x+388*sx, y+6*sy, r, sx, sy)
+        image_sprite_sheet["sprite_batch"]:add(quad, x+393*sx, y+6*sy, r, -sx, sy)
     end
     image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
 
