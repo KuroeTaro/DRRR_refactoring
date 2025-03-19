@@ -8,15 +8,15 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["velocity"] = {0,0}
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
     obj_char_game_scene_char_RP["character_animation_timer"] = 0
-    obj_char_game_scene_char_RP["pre_input_command"] = nil
-    obj_char_game_scene_char_RP["current_input_command"] = nil
-    obj_char_game_scene_char_RP["pre_input_command_updatable"] = false
-    obj_char_game_scene_char_RP["current_input_command_updatable"] = false
+    obj_char_game_scene_char_RP["hurt_block_stun_anim"] = nil
+    obj_char_game_scene_char_RP["facing"] = "Right"
+    obj_char_game_scene_char_RP["cancel_command_cache"] = nil
 
-    obj_char_game_scene_char_RP["hitbox_list"] = {}
-    obj_char_game_scene_char_RP["hurtbox_list"] = {}
-    obj_char_game_scene_char_RP["projectile_list"] = {}
-    obj_char_game_scene_char_RP["shadow_box_list"] = {
+    obj_char_game_scene_char_RP["hitbox_table"] = {}
+    obj_char_game_scene_char_RP["hurtbox_table"] = {}
+    obj_char_game_scene_char_RP["projectile_table"] = {}
+    obj_char_game_scene_char_RP["VFX_table"] = {}
+    obj_char_game_scene_char_RP["shadow_box_table"] = {
         {
             {-17.38, -6.38,
             -36.88, -4.50}
@@ -105,16 +105,16 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["knife_8"] = 0 -- obj[knife_8]匕首图形上的帧数
     obj_char_game_scene_char_RP["knife_f"] = 0 -- obj[knife_8]匕首逻辑上的帧数
 
-
+    
     obj_char_game_scene_char_RP["health"] = {11500, 11500, 11500, "fade_off"}
-    obj_char_game_scene_char_RP["heat"] = {0.0,200.0} -- 0.0 - 200.0
+    obj_char_game_scene_char_RP["heat"] = {0.0, 200.0} -- 0.0 - 200.0
     obj_char_game_scene_char_RP["ability"] = {600.0, 600.0} -- 0.0 - 600.0
     obj_char_game_scene_char_RP["overdrive"] = {600.0, 600.0, "off"} -- 0.0 - 600.0
-    obj_char_game_scene_char_RP["overdrive_timer"] = {0,0,0,0} -- 120f - 360f
+    obj_char_game_scene_char_RP["overdrive_timer"] = {0,0,0,0} -- 0f 00:00 
     obj_char_game_scene_char_RP["risk"] = {0.0, 300.0}-- 0.0 - 300.0
     obj_char_game_scene_char_RP["positive_bouns"] = {0.0, 600.0} -- 0.0 - 600.0
 
-
+    
 end
 
 function order_load_game_scene_char_RP_frames(load_order)
@@ -177,7 +177,6 @@ end
 
 
 
-
 function update_game_scene_char_RP()
     state_machine_char_game_scene_char_RP()
     -- state_machine_char_game_scene_char_RP_knife()
@@ -188,20 +187,35 @@ end
 
 
 
+-- 拉后最高优先级 然后是拉下 然后是拉前 然后是跳
+-- 然后是方向组合拳脚 普通拳脚 从轻到重
+-- 然后是必杀
+-- 然后是超必杀
+-- 最后是od和霸
+-- INPUT_SYS_COMMAND_TABLE = {
+--     "Up","Down","Left","Right",
+--     "P","S","HS","K",
+--     "SP","Launcher","Back","Start",
+--     "RC","Dash","Burst","UA"
+-- }
 function state_machine_char_game_scene_char_RP()
-    local obj = obj_char_game_scene_char_RP
+    local input = INPUT_SYS_CURRENT_COMMAND_STATE["R"]
     local switch = {
         ["before_ease_in"] = function()
-            character_animator(obj,anim_char_stand_idle_RP)
+            character_animator(obj_char_game_scene_char_RP,anim_char_stand_idle_RP)
         end,
         ["stand_idle"] = function()
-            character_animator(obj,anim_char_stand_idle_RP)
-            if INPUT_SYS_CURRENT_COMMAND_STATE["R"]["K"] == "Pressing" then
+            character_animator(obj_char_game_scene_char_RP,anim_char_stand_idle_RP)
+            if input["Up"] == "Pressing" then
+                -- to pre_jump
+                
+            elseif input["Burst"] == "Pressing" then
+                -- to over_drive
 
             end
         end,
     }
-    local this_function = switch[obj["state"]]
+    local this_function = switch[obj_char_game_scene_char_RP["state"]]
     if this_function then this_function() end
 
 end
@@ -272,7 +286,7 @@ end
 
 function draw_game_scene_char_RP_shadow()
     local obj = obj_char_game_scene_char_RP
-    local shadow_box_list = obj["shadow_box_list"]
+    local shadow_box_table = obj["shadow_box_table"]
     local opacity = (obj["y"]-325)/80
     local z = obj[3]
     local sx = obj[5]
@@ -291,12 +305,12 @@ function draw_game_scene_char_RP_shadow()
     local scale = draw_resolution_correction(800)/(z-camera_z)
 
     love.graphics.setCanvas(shadow_cavans)
-    for i = 1,#shadow_box_list do
+    for i = 1,#shadow_box_table do
         local x = obj_2d_pos[1] + scale*sx*obj["shadow_box_pos"][i][1]
         local y = obj_2d_pos[2] + scale*sy*obj["shadow_box_pos"][i][2]
 
         common_game_scene_draw_shadow(
-            shadow_box_list[i],
+            shadow_box_table[i],
             shadow_anchor_2d_pos,
             x,
             y,
@@ -309,6 +323,15 @@ function draw_game_scene_char_RP_shadow()
     love.graphics.setColor(0, 0, 0, opacity)
     love.graphics.draw(shadow_cavans)
     love.graphics.setColor(1, 1, 1, 1)
+    
+end
+
+
+
+
+
+
+function insert_projectile_game_scene_char_RP(projectile_obj)
 
 end
 
@@ -317,10 +340,135 @@ end
 
 
 
-function insert_projectile_game_scene_char_RP(object_name)
-
+function insert_VFX_game_scene_char_RP_overdrive_badge()
+    local obj = {0, 0, 0, 1, 1, 1, 0, 0}
+    local char_obj = obj_char_game_scene_char_RP
+    obj["life"] = 70
+    obj[1] = char_obj["x"] - char_obj[5]*(-500)
+    obj[2] = char_obj["y"] - char_obj[6]*(865)
+    obj[3] = char_obj["z"]
+    obj[4] = 1
+    obj[5] = char_obj[5]*2
+    obj[6] = char_obj[6]*2
+    obj[7] = char_obj[7]
+    obj[8] = -1
+    obj["update"] = function(self)
+        local char_obj = obj_char_game_scene_char_RP
+        self[1] = char_obj["x"] - char_obj[5]*(-500)
+        self[2] = char_obj["y"] - char_obj[6]*(865)
+        self[3] = char_obj["z"]
+        self[4] = 1
+        self[5] = char_obj[5]
+        self[6] = char_obj[6]
+        self[7] = char_obj[7]
+        self[8] = self[8] + 1
+    end
+    obj["draw"] = function(self)
+        local camera_obj = obj_stage_game_scene_camera
+        local image_table = image_table_VFX_game_scene_RP_overdrive_badge
+        draw_3d_image_table(camera_obj,self,image_table)
+    end
+    table.insert(obj_char_game_scene_char_RP["VFX_table"],obj)
 end
 
-function insert_VFX_game_scene_char_RP(VFX_name)
+function insert_VFX_game_scene_char_RP_overdrive_airflow()
+    local obj = {0, 0, 0, 1, 1, 1, 0, 0}
+    local char_obj = obj_char_game_scene_char_RP
+    obj["life"] = 35
+    obj[1] = char_obj["x"] - char_obj[5]*(-860)
+    obj[2] = char_obj["y"] - char_obj[6]*(840)
+    obj[3] = char_obj["z"]
+    obj[4] = 1
+    obj[5] = char_obj[5]*2
+    obj[6] = char_obj[6]*2
+    obj[7] = char_obj[7]
+    obj[8] = -1
+    obj["update"] = function(self)
+        local char_obj = obj_char_game_scene_char_RP
+        self[1] = char_obj["x"] - char_obj[5]*(-500)
+        self[2] = char_obj["y"] - char_obj[6]*(865)
+        self[3] = char_obj["z"]
+        self[4] = 1
+        self[5] = char_obj[5]
+        self[6] = char_obj[6]
+        self[7] = char_obj[7]
+        self[8] = self[8] + 1
+    end
+    obj["draw"] = function(self)
+        local camera_obj = obj_stage_game_scene_camera
+        local image_table = image_table_VFX_game_scene_RP_overdrive_airflow
+        draw_3d_image_table(camera_obj,self,image_table)
+    end
+    table.insert(obj_char_game_scene_char_RP["VFX_table"],obj)
+    
+end
+
+function insert_VFX_game_scene_char_RP_overdrive_partical()
+    local obj = {}
+    obj = {0, 0, nil, 0, 1, 1, 0, 0}
+    obj["FCT"] = {0,0,0,0,0,0,0,0}
+    obj["LCT"] = {0,0,0,0,0,0,0,0}
+    obj["LCD"] = {0,0,0,0,0,0,0,0}
+    obj["state"] = "default"
+    obj["life"] = 70
+    obj["partical_speed"] = 0.016*0
+    obj["partical_time"] = 0
+    obj[8] = -1
+
+    obj["opacity_anim"] = {}
+    obj["opacity_anim"][0] = {0.00, 1}
+    obj["opacity_anim"][1] = {0.16, 2}
+    obj["opacity_anim"][2] = {0.31, 4}
+    obj["opacity_anim"][4] = {0.50, 6}
+    obj["opacity_anim"][6] = {0.63, 10}
+    obj["opacity_anim"][10] = {0.79, 15}
+    obj["opacity_anim"][15] = {0.91, 20}
+    obj["opacity_anim"][20] = {0.97, 25}
+    obj["opacity_anim"][25] = {1.00, 28}
+    obj["opacity_anim"][28] = {1.00, 30}
+    obj["opacity_anim"][30] = {1.00, 40}
+    obj["opacity_anim"][40] = {0.97, 50}
+    obj["opacity_anim"][50] = {0.88, 60}
+    obj["opacity_anim"][60] = {0.67, 63}
+    obj["opacity_anim"][63] = {0.57, 65}
+    obj["opacity_anim"][65] = {0.48, 67}
+    obj["opacity_anim"][67] = {0.36, 69}
+    obj["opacity_anim"][69] = {0.17, 70}
+    obj["opacity_anim"][70] = {0.00, 70}    
+    obj["opacity_anim"]["prop"] = 4
+    obj["opacity_anim"]["length"] = 70
+    obj["opacity_anim"]["loop"] = false
+    obj["opacity_anim"]["fix_type"] = true
+
+    obj["partical_speed_anim"] = {}
+    obj["partical_speed_anim"][0] = {0.00, 28}
+    obj["partical_speed_anim"][28] = {0.016*90, 29}
+    obj["partical_speed_anim"][29] = {0.00, 30}
+    obj["partical_speed_anim"][30] = {0.00, 70}
+    obj["partical_speed_anim"][70] = {0.016*40, 70}
+    obj["partical_speed_anim"]["prop"] = "partical_speed"
+    obj["partical_speed_anim"]["length"] = 70
+    obj["partical_speed_anim"]["loop"] = false
+    obj["partical_speed_anim"]["fix_type"] = true
+
+    obj["partical_shader"] = love.graphics.newShader("shaders/partical_shader.glsl")
+
+    obj["update"] = function(self)
+        point_linear_animator(self,self["opacity_anim"])
+        point_linear_animator(self,self["partical_speed_anim"])
+        self["partical_time"] = self["partical_time"] + self["partical_speed"]
+    end
+    obj["draw"] = function(self)
+        local shader = self["partical_shader"] 
+        shader:send("time", self["partical_time"])
+        shader:send("opacity", self[4])
+        love.graphics.setShader(shader)
+        love.graphics.rectangle("fill", 0, 0, 1600, 900, draw_resolution_correction(1), draw_resolution_correction(1))
+        love.graphics.setShader()
+    end
+    table.insert(obj_char_game_scene_char_RP["VFX_table"],obj)
+end
+
+function insert_VFX_game_scene_char_RP_overdrive_black_overlay()
 
 end

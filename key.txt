@@ -1,16 +1,25 @@
 anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity = {}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[0] = {0.00, 2}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[2] = {0.01, 4}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[4] = {0.03, 6}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[6] = {0.07, 8}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[8] = {0.13, 10}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[10] = {0.23, 12}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[12] = {0.39, 13}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[13] = {0.52, 14}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[14] = {0.70, 15}
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[15] = {1.00, 15}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[0] = {0.00, 1}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[1] = {0.16, 2}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[2] = {0.31, 4}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[4] = {0.50, 6}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[6] = {0.63, 10}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[10] = {0.79, 15}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[15] = {0.91, 20}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[20] = {0.97, 25}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[25] = {1.00, 28}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[28] = {1.00, 30}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[30] = {1.00, 40}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[40] = {0.97, 50}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[50] = {0.88, 60}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[60] = {0.67, 63}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[63] = {0.57, 65}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[65] = {0.48, 67}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[67] = {0.36, 69}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[69] = {0.17, 70}
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity[70] = {0.00, 70}
 anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity["prpty"] = 4
-anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity["length"] = 15
+anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity["length"] = 70
 anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity["loop"] = false
 anim_所属Object类型_动画机类型_所属场景名_动画所属obj名称_动画名称_opacity["fix_type"]
 

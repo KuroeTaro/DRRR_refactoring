@@ -193,7 +193,7 @@ function draw_game_scene_main()
     love.graphics.setColor(1,1,1,1)
 
     -- 绘制ease_in annoucer 和 HUD ease in
-    draw_2d_image_table(obj_annoucer_game_scene_act_common,image_table_announcer_game_scene_act_common) -- 1 draw call 14
+    draw_game_scene_act_common(obj_annoucer_game_scene_act_common,image_table_announcer_game_scene_act_common)
     draw_2d_image_table(obj_annoucer_game_scene_act_num,image_table_announcer_game_scene_act_number[ROUND_COUNTER]) -- 1 draw call 15
     draw_2d_image_table(obj_annoucer_game_scene_lets_dance,image_table_announcer_game_scene_lets_dance) -- 1 draw call 17
 
@@ -504,5 +504,28 @@ function draw_game_scene_add_to_sprite_batch_overdrive_timer(obj,image_sprite_sh
         sy
     )
     image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
+
+end
+
+function draw_game_scene_act_common(obj,image_table)
+    local x = draw_resolution_correction(obj[1])
+    local y = draw_resolution_correction(obj[2])
+    local sx = draw_resolution_correction(obj[5])
+    local sy = draw_resolution_correction(obj[6])
+    local r = obj[7]
+    local f = obj[8]
+    local opacity = obj[4]
+
+    if opacity == 0 then
+        return
+    end
+
+    if image_table[f] == nil then
+        f = 50
+    end
+
+    love.graphics.setColor(1, 1, 1, obj[4])
+    love.graphics.draw(image_table[f],x,y,r,sx,sy)
+    love.graphics.setColor(1, 1, 1, 1)
 
 end

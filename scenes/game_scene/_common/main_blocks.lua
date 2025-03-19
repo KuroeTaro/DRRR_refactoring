@@ -117,6 +117,26 @@ function update_game_scene_main_training()
             update_game_scene_char_RP()
 
         end,
+        ["LP_overdrive_pause"] = function()
+            SCENE_TIMER = SCENE_TIMER + 1
+            update_game_scene_char_LP()
+
+        end,
+        ["RP_overdrive_pause"] = function()
+            SCENE_TIMER = SCENE_TIMER + 1
+            update_game_scene_char_RP()
+
+        end,
+        ["LP_RC_pause"] = function()
+            SCENE_TIMER = SCENE_TIMER + 1
+            update_game_scene_char_LP()
+
+        end,
+        ["RP_RC_pause"] = function()
+            SCENE_TIMER = SCENE_TIMER + 1
+            update_game_scene_char_RP()
+
+        end,
     }
     local this_function = switch[update_flow_controller["state"]]
     if this_function then this_function() end

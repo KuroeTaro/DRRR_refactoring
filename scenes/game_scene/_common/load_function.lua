@@ -72,9 +72,14 @@ function order_load_game_scene_common(load_order)
         end,
         [2] = function()
             image_table_announcer_game_scene_act_common = {}
-            for i = 0,104 do
+            for i = 0,50 do
                 image_table_announcer_game_scene_act_common[i] = love.graphics.newImage(ASSET_DATA[4]["act_common"][i+1])
             end
+            
+            for i = 90,104 do
+                image_table_announcer_game_scene_act_common[i] = love.graphics.newImage(ASSET_DATA[4]["act_common"][i+1])
+            end
+            
 
             image_table_announcer_game_scene_act_number = {}
             image_table_announcer_game_scene_act_number[1] = {}
