@@ -122,7 +122,7 @@ function order_load_game_scene_char_RP_frames(load_order)
     {
         [1] = function()
             image_table_char_game_scene_RP = {}
-
+            
             image_table_char_game_scene_RP["before_ease_in"] = {}
             for i = 0,16 do
                 image_table_char_game_scene_RP["before_ease_in"][i] = love.graphics.newImage(ASSET_DATA[2]["stand_idle"][i+1])
@@ -173,8 +173,6 @@ end
 function load_game_scene_shader_char_RP()
 
 end
-
-
 
 
 function update_game_scene_char_RP()
