@@ -125,12 +125,17 @@ function order_load_game_scene_char_LP_frames(load_order)
             
             image_table_char_game_scene_LP["before_ease_in"] = {}
             for i = 0,16 do
-                image_table_char_game_scene_LP["before_ease_in"][i] = love.graphics.newImage(ASSET_DATA[1]["stand_idle"][i+1])
+                image_table_char_game_scene_LP["before_ease_in"][i] = love.graphics.newImage(ASSET_DATA[2]["stand_idle"][i+1])
             end
 
             image_table_char_game_scene_LP["stand_idle"] = {}
             for i = 0,16 do
-                image_table_char_game_scene_LP["stand_idle"][i] = love.graphics.newImage(ASSET_DATA[1]["stand_idle"][i+1])
+                image_table_char_game_scene_LP["stand_idle"][i] = love.graphics.newImage(ASSET_DATA[2]["stand_idle"][i+1])
+            end
+
+            image_table_VFX_game_scene_LP_overdrive_badge = {}
+            for i = 0,69 do
+                image_table_VFX_game_scene_LP_overdrive_badge[i] = love.graphics.newImage(ASSET_DATA[2]["overdrive_badge"][i+1])
             end
 
         end,

@@ -22,9 +22,9 @@ function order_load_game_scene_stage(load_order)
     local switch = 
     {
         [1] = function()
-            image_stage_game_scene_ground = love.graphics.newImage(ASSET_DATA[3][1])
-            image_stage_game_scene_stair = love.graphics.newImage(ASSET_DATA[3][2])
-            image_stage_game_scene_stage_liner_fade_alpha = love.graphics.newImage(ASSET_DATA[3][3])
+            image_stage_game_scene_ground = love.graphics.newImage(ASSET_DATA[4][1])
+            image_stage_game_scene_stair = love.graphics.newImage(ASSET_DATA[4][2])
+            image_stage_game_scene_stage_liner_fade_alpha = love.graphics.newImage(ASSET_DATA[4][3])
         end,
     }
     local this_function = switch[load_order]

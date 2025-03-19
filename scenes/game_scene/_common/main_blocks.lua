@@ -147,21 +147,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function update_game_scene_main_local_match()
     update_game_scene_char_LP()
     update_game_scene_char_RP()
