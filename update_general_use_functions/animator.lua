@@ -165,6 +165,11 @@ function get_point_linear_anim_end_state(obj,anim)
     end
 end
 
+function init_character_anim_with(obj,anim)
+    obj["f"] = 0
+    character_animator(obj,anim)
+end
+
 function character_animator(obj,anim)
     local key_frame_funciton = anim[obj["f"]]
 

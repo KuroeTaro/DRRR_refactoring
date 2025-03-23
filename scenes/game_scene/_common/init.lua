@@ -1,7 +1,7 @@
 function load_game_scene_common_obj()
     load_game_scene_obj_char_LP()
     load_game_scene_obj_char_RP()
-    load_game_scene_stage()
+    load_game_scene_obj_stage()
     load_game_scene_announcer_HUD_obj()
     
 end
@@ -10,6 +10,7 @@ end
 function load_game_scene_common_anim()
     load_game_scene_anim_char_LP()
     load_game_scene_anim_char_RP()
+    load_game_scene_anim_stage()
     load_game_scene_announcer_HUD_anim()
     
 end
@@ -167,5 +168,12 @@ function load_game_scene_announcer_HUD_anim()
     anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1["loop"] = false
     anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1["fix_type"] = true
 
+    anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0 = {}
+    anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0[0] = {1, 10}
+    anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0[10] = {0, 10}
+    anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0["prop"] = 4
+    anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0["length"] = 10
+    anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0["loop"] = false
+    anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0["fix_type"] = true
 
 end

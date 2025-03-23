@@ -116,28 +116,16 @@ function update_game_scene_main_training()
             update_game_scene_char_LP()
             update_game_scene_char_RP()
 
-        end,
-        ["LP_overdrive_pause"] = function()
-            SCENE_TIMER = SCENE_TIMER + 1
-            update_game_scene_char_LP()
+            update_game_scene_char_LP_VFX()
+            update_game_scene_char_LP_black_overlay()
+            update_game_scene_char_RP_VFX()
+            update_game_scene_char_RP_black_overlay()
 
-        end,
-        ["RP_overdrive_pause"] = function()
-            SCENE_TIMER = SCENE_TIMER + 1
-            update_game_scene_char_RP()
-
-        end,
-        ["LP_RC_pause"] = function()
-            SCENE_TIMER = SCENE_TIMER + 1
-            update_game_scene_char_LP()
-
-        end,
-        ["RP_RC_pause"] = function()
-            SCENE_TIMER = SCENE_TIMER + 1
-            update_game_scene_char_RP()
+            update_game_scene_stage()
 
         end,
     }
+    update_game_scene_HUD()
     local this_function = switch[update_flow_controller["state"]]
     if this_function then this_function() end
 
@@ -158,4 +146,49 @@ function update_game_scene_main_online_match()
     update_game_scene_char_LP()
     update_game_scene_char_RP()
 
+end
+
+
+
+
+function update_game_scene_HUD()
+    update_game_scene_HUD_overdrive_timer(
+        obj_char_game_scene_char_LP,
+        obj_HUD_game_scene_overdrive_timer_LP
+    )
+    update_game_scene_HUD_overdrive_timer(
+        obj_char_game_scene_char_RP,
+        obj_HUD_game_scene_overdrive_timer_RP
+    )
+end
+
+function update_game_scene_HUD_overdrive_timer(char_obj,timer_obj)
+    local switch = {
+        ["default"] = function()
+            if char_obj["overdrive"][3] == "on" then
+                timer_obj["state"] = "ease_in"
+                init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
+            end
+        end,
+        ["ease_in"] = function()
+            point_linear_animator(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
+            if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1) then
+                timer_obj["state"] = "active"
+            end
+        end,
+        ["active"] = function()
+            if char_obj["overdrive"][3] == "off" then
+                timer_obj["state"] = "ease_out"
+                init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
+            end
+        end,
+        ["ease_out"] = function()
+            point_linear_animator(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
+            if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0) then
+                timer_obj["state"] = "default"
+            end
+        end,
+    }
+    local this_function = switch[timer_obj["state"]]
+    if this_function then this_function() end
 end

@@ -97,7 +97,7 @@ end
 function update_controller()
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
     if GAME_MODE == 2 then
-        INPUT_SYS_CURRENT_CONTROLLER[OTHER_SIDE] = {"network",ROLLBACK_INPUT_TABLE}
+        INPUT_SYS_CURRENT_CONTROLLER[NETWORK_OTHER_SIDE] = {"network",ROLLBACK_INPUT_TABLE}
         -- 检测键盘的按键 如果有键盘按键按下则设定键盘为本侧控制器
         if get_input_sys_anykey_keyboard() or INPUT_SYS_CURRENT_JOYSTICK_TABLE[1] == nil then
             INPUT_SYS_CURRENT_CONTROLLER[NETWORK_MATCH_SIDE] = {"keyboard",nil}

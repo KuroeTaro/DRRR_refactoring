@@ -272,6 +272,8 @@ end
 
 function preset_game_scene_training()
     obj_UI_game_scene_black_solid[4] = 1
+    init_character_anim_with(obj_char_game_scene_char_LP,anim_char_LP_stand_idle)
+    init_character_anim_with(obj_char_game_scene_char_RP,anim_char_RP_stand_idle)
 
 end
 

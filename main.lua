@@ -94,8 +94,15 @@ function love.load()
 	JSON = require("dkjson")
 
 	GAME_MODE = 0 -- 1.训练模式 2.本地多人 3.在线多人
+	TRAINING_MATCH_SIDE = "L"
+	TRAINING_OTHER_SIDE = "R"
 	NETWORK_MATCH_SIDE = "L"
-	OTHER_SIDE = "R"
+	NETWORK_OTHER_SIDE = "R"
+
+	TRAINING_MODE_CONFIG = {}
+	TRAINING_MODE_CONFIG["LP_character_pos"] = -320 -- -1600 -> 1600
+	TRAINING_MODE_CONFIG["RP_character_pos"] = 320
+	TRAINING_MODE_CONFIG["announcer"] = true
 
 	CHAR_SELECT_LR = {}
 	CHAR_SELECT_LR["L"] = 4
@@ -118,10 +125,6 @@ function love.load()
 	ROLLBACK_INPUT_STATE_TABLE = {}
 	ROLLBACK_GAME_CACHE_TABLE = {}
 
-	TRAINING_MODE_CONFIG = {}
-	TRAINING_MODE_CONFIG["LP_character_pos"] = -320 -- -1600 -> 1600
-	TRAINING_MODE_CONFIG["RP_character_pos"] = 320
-	TRAINING_MODE_CONFIG["announcer"] = true
 	-- to be continue
 
 	-- non-character global variable

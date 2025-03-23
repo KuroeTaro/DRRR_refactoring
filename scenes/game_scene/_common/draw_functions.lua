@@ -10,6 +10,11 @@ function draw_game_scene_main()
     draw_game_scene_char_LP_shadow()
     draw_game_scene_char_RP_shadow()
 
+    draw_game_scene_char_LP_black_overlay()
+    draw_game_scene_char_RP_black_overlay()
+    draw_game_scene_char_LP_VFX()
+    draw_game_scene_char_RP_VFX()
+
     -- 绘制角色本体
     local non_UI_canvas = love.graphics.newCanvas(
         love.graphics.getWidth(),
@@ -186,7 +191,8 @@ function draw_game_scene_main()
         R_character["overdrive_timer"]
     )
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
-    
+
+
     -- 透过上帝光和HUD
     love.graphics.setColor(1,1,1,0.5)
     love.graphics.draw(non_UI_canvas) -- 1 draw call 13
