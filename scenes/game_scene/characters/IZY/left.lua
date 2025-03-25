@@ -1,3 +1,10 @@
+-- LP -> RP
+-- ASSET_DATA[2] -> ASSET_DATA[3]
+-- ["L"] -> ["R"]
+-- ["facing"] = "Left" -> ["facing"] = "Right"
+-- obj_char_game_scene_char_RP = {0, 0, 0, 1, 1, 1, 0, 0} -> obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0}
+-- obj_char_game_scene_char_RP["x"] = -320 -> obj_char_game_scene_char_RP["x"] = 320
+
 function load_game_scene_obj_char_LP()
     -- x y z opacity sx sy r f
     obj_char_game_scene_char_LP = {0, 0, 0, 1, 1, 1, 0, 0} -- obj[1-8]都为图形上的数据 obj[8]为图形上的帧数
@@ -130,30 +137,35 @@ function load_game_scene_obj_char_LP()
 end
 
 function order_load_game_scene_char_LP_frames(load_order)
+    local PLAYER_ASSET_DATA = ASSET_DATA[2]
     local switch = 
     {
         [1] = function()
-            image_table_char_game_scene_LP = {}
-            
-            image_table_char_game_scene_LP["before_ease_in"] = {}
-            for i = 0,16 do
-                image_table_char_game_scene_LP["before_ease_in"][i] = love.graphics.newImage(ASSET_DATA[2]["stand_idle"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_LP = {}
 
-            image_table_char_game_scene_LP["stand_idle"] = {}
-            for i = 0,16 do
-                image_table_char_game_scene_LP["stand_idle"][i] = love.graphics.newImage(ASSET_DATA[2]["stand_idle"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_LP["before_ease_in"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/character/IZY_stand_idle.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
+            )
 
-            image_table_char_game_scene_LP["overdrive"] = {}
-            for i = 0,14 do
-                image_table_char_game_scene_LP["overdrive"][i] = love.graphics.newImage(ASSET_DATA[2]["overdrive"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_LP["stand_idle"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/character/IZY_stand_idle.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
+            )
 
-            image_table_VFX_game_scene_LP_overdrive_badge = {}
-            for i = 0,69 do
-                image_table_VFX_game_scene_LP_overdrive_badge[i] = love.graphics.newImage(ASSET_DATA[2]["overdrive_badge"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_LP["overdrive"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/character/IZY_overdrive.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_sprite_batch"])
+            )
+
+            image_sprite_sheet_table_VFX_game_scene_LP_overdrive_badge = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_badge_sprite_batch"])
+            )
 
         end,
     }
@@ -1123,8 +1135,8 @@ end
 
 function draw_game_scene_char_LP()
     local obj = obj_char_game_scene_char_LP
-    local character_image_table = image_table_char_game_scene_LP[obj["state"]]
     local camera = obj_stage_game_scene_camera
+    local image_sprite_sheet = image_sprite_sheet_table_char_game_scene_LP[obj["state"]]
 
     local x = obj[1]
     local y = obj[2]
@@ -1156,10 +1168,12 @@ function draw_game_scene_char_LP()
         local knife_image_table = image_UI_load_scene_loading_text
         draw_3d_image(camera,knife,knife_image_table)
 
-
     end
 
-    draw_3d_image_table(camera,obj,character_image_table)
+    -- draw_3d_image_table(camera,obj,character_image_table)
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_3d_image_sprite_batch(camera,obj,image_sprite_sheet,""..f.."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
 
 end
 
@@ -1241,10 +1255,14 @@ function insert_VFX_game_scene_char_LP_overdrive_badge()
         self[8] = self[8] + 1
     end
     obj["draw"] = function(self)
-        local camera_obj = obj_stage_game_scene_camera
-        local image_table = image_table_VFX_game_scene_LP_overdrive_badge
+        local camera = obj_stage_game_scene_camera
+        local image_sprite_sheet = image_sprite_sheet_table_VFX_game_scene_LP_overdrive_badge
+        local f = self[8]
+
         love.graphics.setBlendMode("add")
-        draw_3d_image_table(camera_obj,self,image_table)
+        image_sprite_sheet["sprite_batch"]:clear()
+        draw_3d_image_sprite_batch(camera,self,image_sprite_sheet,""..f.."")
+        love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
     table.insert(char_obj["VFX_table"],obj)
@@ -1464,9 +1482,9 @@ function insert_VFX_game_scene_char_LP_overdrive_black_overlay()
     obj["draw"] = function(self)
         local canvas = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())
         love.graphics.setCanvas(canvas)
-        love.graphics.clear(0, 0, 0, 0) -- 透明背景
-        love.graphics.setColor(0, 0, 0, self[4]) -- 白色圆
+        love.graphics.setColor(0, 0, 0, self[4])
         love.graphics.circle( "fill", self["cood_res"][1], self["cood_res"][2], draw_resolution_correction(self[5]) )
+        love.graphics.setColor(1, 1, 1, 1)
         love.graphics.setCanvas()
 
         love.graphics.setShader(self["blur_shader"])

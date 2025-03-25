@@ -1,3 +1,10 @@
+-- LP -> RP
+-- ASSET_DATA[2] -> ASSET_DATA[3]
+-- ["L"] -> ["R"]
+-- ["facing"] = "Left" -> ["facing"] = "Right"
+-- obj_char_game_scene_char_RP = {0, 0, 0, 1, 1, 1, 0, 0} -> obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0}
+-- obj_char_game_scene_char_RP["x"] = -320 -> obj_char_game_scene_char_RP["x"] = 320
+
 function load_game_scene_obj_char_RP()
     -- x y z opacity sx sy r f
     obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0} -- obj[1-8]都为图形上的数据 obj[8]为图形上的帧数
@@ -9,7 +16,7 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
     obj_char_game_scene_char_RP["character_animation_timer"] = 0
     obj_char_game_scene_char_RP["hurt_block_stun_animation"] = nil
-    obj_char_game_scene_char_RP["facing"] = "Left"
+    obj_char_game_scene_char_RP["facing"] = "Right"
     obj_char_game_scene_char_RP["cancel_command_cache"] = nil
     obj_char_game_scene_char_RP["move_state"] = "idle" -- idle start_up active recovery
 
@@ -130,30 +137,35 @@ function load_game_scene_obj_char_RP()
 end
 
 function order_load_game_scene_char_RP_frames(load_order)
+    local PLAYER_ASSET_DATA = ASSET_DATA[2]
     local switch = 
     {
         [1] = function()
-            image_table_char_game_scene_RP = {}
-            
-            image_table_char_game_scene_RP["before_ease_in"] = {}
-            for i = 0,16 do
-                image_table_char_game_scene_RP["before_ease_in"][i] = love.graphics.newImage(ASSET_DATA[3]["stand_idle"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_RP = {}
 
-            image_table_char_game_scene_RP["stand_idle"] = {}
-            for i = 0,16 do
-                image_table_char_game_scene_RP["stand_idle"][i] = love.graphics.newImage(ASSET_DATA[3]["stand_idle"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_RP["before_ease_in"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/character/IZY_stand_idle.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
+            )
 
-            image_table_char_game_scene_RP["overdrive"] = {}
-            for i = 0,14 do
-                image_table_char_game_scene_RP["overdrive"][i] = love.graphics.newImage(ASSET_DATA[3]["overdrive"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_RP["stand_idle"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/character/IZY_stand_idle.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
+            )
 
-            image_table_VFX_game_scene_RP_overdrive_badge = {}
-            for i = 0,69 do
-                image_table_VFX_game_scene_RP_overdrive_badge[i] = love.graphics.newImage(ASSET_DATA[3]["overdrive_badge"][i+1])
-            end
+            image_sprite_sheet_table_char_game_scene_RP["overdrive"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/character/IZY_overdrive.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_sprite_batch"])
+            )
+
+            image_sprite_sheet_table_VFX_game_scene_RP_overdrive_badge = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_badge_sprite_batch"])
+            )
 
         end,
     }
@@ -753,7 +765,7 @@ function load_game_scene_anim_char_RP()
                 ,{272.375,543.375}
             }
         end
-        anim_char_RP_overdrive[64] = function() 
+        anim_char_RP_overdrive[60] = function() 
             char_obj[8] = 11
             char_obj["shadow_box_table"] = {
                 {
@@ -842,7 +854,7 @@ function load_game_scene_anim_char_RP()
                 ,{258.125,545.875}
             }
         end
-        anim_char_RP_overdrive[70] = function() 
+        anim_char_RP_overdrive[63] = function() 
             char_obj[8] = 12
             char_obj["shadow_box_table"] = {
                 {
@@ -931,12 +943,94 @@ function load_game_scene_anim_char_RP()
                 ,{245.125,529}
             }
         end
-        anim_char_RP_overdrive[74] = function() 
+        anim_char_RP_overdrive[67] = function() 
             char_obj[8] = 13
-            char_obj["shadow_box_pos"] ={
-                {119.75,546.5}
-                ,{241.625,528}
+            char_obj["shadow_box_table"] = {
+                {
+                    {-3.88, -21.50,
+                    -19.00, -17.38}
+                    ,
+                    {-19.00, -17.38,
+                    -20.88, -12.00}
+                    ,
+                    {-20.88, -12.00,
+                    -14.25, 15.63}
+                    ,
+                    {-14.25, 15.63,
+                    -7.63, 20.50}
+                    ,
+                    {-7.63, 20.50,
+                    3.25, 22.13}
+                    ,
+                    {3.25, 22.13,
+                    13.63, 21.25}
+                    ,
+                    {13.63, 21.25,
+                    22.50, 16.38}
+                    ,
+                    {22.50, 16.38,
+                    21.88, 4.63}
+                    ,
+                    {21.88, 4.63,
+                    11.88, -14.63}
+                    ,
+                    {11.88, -14.63,
+                    -3.88, -21.50}
+                },
+                {
+                    {-17.38, -6.38,
+                    -36.88, -4.50}
+                    ,
+                    {-36.88, -4.50,
+                    -37.63, 6.13}
+                    ,
+                    {-37.63, 6.13,
+                    -31.01, 10.17}
+                    ,
+                    {-31.01, 10.17,
+                    -17.60, 10.46}
+                    ,
+                    {-17.60, 10.46,
+                    -3.88, 18.75}
+                    ,
+                    {-3.88, 18.75,
+                    8.88, 19.50}
+                    ,
+                    {8.88, 19.50,
+                    20.75, 18.75}
+                    ,
+                    {20.75, 18.75,
+                    32.84, 15.79}
+                    ,
+                    {32.84, 15.79,
+                    37.25, 11.63}
+                    ,
+                    {37.25, 11.63,
+                    36.88, 5.00}
+                    ,
+                    {36.88, 5.00,
+                    35.88, 0.24}
+                    ,
+                    {35.88, 0.24,
+                    30.38, -2.75}
+                    ,
+                    {30.38, -2.75,
+                    23.96, -4.23}
+                    ,
+                    {23.96, -4.23,
+                    12.00, -5.00}
+                    ,
+                    {12.00, -5.00,
+                    -17.38, -6.38}
+                }
             }
+            char_obj["shadow_box_pos"] ={
+                {119.0,547.0}
+                ,{221.0,527.0}
+            }
+        end
+        anim_char_RP_overdrive[72] = function() 
+            char_obj[8] = 14
         end
         anim_char_RP_overdrive[80] = function() 
         end
@@ -1041,8 +1135,8 @@ end
 
 function draw_game_scene_char_RP()
     local obj = obj_char_game_scene_char_RP
-    local character_image_table = image_table_char_game_scene_RP[obj["state"]]
     local camera = obj_stage_game_scene_camera
+    local image_sprite_sheet = image_sprite_sheet_table_char_game_scene_RP[obj["state"]]
 
     local x = obj[1]
     local y = obj[2]
@@ -1074,10 +1168,12 @@ function draw_game_scene_char_RP()
         local knife_image_table = image_UI_load_scene_loading_text
         draw_3d_image(camera,knife,knife_image_table)
 
-
     end
 
-    draw_3d_image_table(camera,obj,character_image_table)
+    -- draw_3d_image_table(camera,obj,character_image_table)
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_3d_image_sprite_batch(camera,obj,image_sprite_sheet,""..f.."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
 
 end
 
@@ -1159,10 +1255,14 @@ function insert_VFX_game_scene_char_RP_overdrive_badge()
         self[8] = self[8] + 1
     end
     obj["draw"] = function(self)
-        local camera_obj = obj_stage_game_scene_camera
-        local image_table = image_table_VFX_game_scene_RP_overdrive_badge
+        local camera = obj_stage_game_scene_camera
+        local image_sprite_sheet = image_sprite_sheet_table_VFX_game_scene_RP_overdrive_badge
+        local f = self[8]
+
         love.graphics.setBlendMode("add")
-        draw_3d_image_table(camera_obj,self,image_table)
+        image_sprite_sheet["sprite_batch"]:clear()
+        draw_3d_image_sprite_batch(camera,self,image_sprite_sheet,""..f.."")
+        love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
     table.insert(char_obj["VFX_table"],obj)
@@ -1255,9 +1355,9 @@ function insert_VFX_game_scene_char_RP_overdrive_partical()
 
     obj["partical_shader"] = love.graphics.newShader("shaders/partical_shader.glsl")
     obj["blur_shader"] = love.graphics.newShader("shaders/gaussian_blur.glsl")
-    obj["blur_shader"]:send("Directions", 16)
-    obj["blur_shader"]:send("Quality", 5)
-    obj["blur_shader"]:send("Size", 5)
+    obj["blur_shader"]:send("Directions", 8)
+    obj["blur_shader"]:send("Quality", 2)
+    obj["blur_shader"]:send("Size", 2)
     obj["blur_shader"]:send("resolution", {love.graphics.getWidth(), love.graphics.getHeight()})
 
     obj["update"] = function(self)
@@ -1382,9 +1482,9 @@ function insert_VFX_game_scene_char_RP_overdrive_black_overlay()
     obj["draw"] = function(self)
         local canvas = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())
         love.graphics.setCanvas(canvas)
-        love.graphics.clear(0, 0, 0, 0) -- 透明背景
-        love.graphics.setColor(0, 0, 0, self[4]) -- 白色圆
+        love.graphics.setColor(0, 0, 0, self[4])
         love.graphics.circle( "fill", self["cood_res"][1], self["cood_res"][2], draw_resolution_correction(self[5]) )
+        love.graphics.setColor(1, 1, 1, 1)
         love.graphics.setCanvas()
 
         love.graphics.setShader(self["blur_shader"])

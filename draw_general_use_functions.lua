@@ -111,7 +111,7 @@ function draw_3d_point_to_2D(camera,obj)
 
 end
 
-function drawSector(x, y, radius, startAngle, endAngle, segments)
+function draw_sector(x, y, radius, startAngle, endAngle, segments)
     -- 计算每个三角形的角度增量
     local angleIncrement = (endAngle - startAngle) / segments
 
@@ -135,6 +135,36 @@ end
 function draw_2d_image_sprite_batch(obj,image_sprite_sheet,quad_name)
     local x = draw_resolution_correction(obj[1])
     local y = draw_resolution_correction(obj[2])
+    local sx = draw_resolution_correction(obj[5])
+    local sy = draw_resolution_correction(obj[6])
+    local r = obj[7]
+    local opacity = obj[4]
+
+    if opacity == 0 then
+        return
+    end
+
+    local frame = image_sprite_sheet["frames"][quad_name]
+
+    local quad = love.graphics.newQuad(
+        frame[1],
+        frame[2],
+        frame[3],
+        frame[4],
+        frame[5],
+        frame[6]
+    )
+
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, opacity)
+    image_sprite_sheet["sprite_batch"]:add(quad, x, y, r, sx, sy)
+    image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
+
+end
+
+function draw_3d_image_sprite_batch(camera,obj,image_sprite_sheet,quad_name)
+    local cood_res = draw_3d_point_to_2D(camera,obj)
+    local x = draw_resolution_correction(cood_res[1])
+    local y = draw_resolution_correction(cood_res[2])
     local sx = draw_resolution_correction(obj[5])
     local sy = draw_resolution_correction(obj[6])
     local r = obj[7]
