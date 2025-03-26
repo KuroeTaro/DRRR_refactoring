@@ -1,7 +1,7 @@
 -- LP -> RP
 -- ASSET_DATA[2] -> ASSET_DATA[3]
 -- ["L"] -> ["R"]
--- ["facing"] = "Left" -> ["facing"] = "Right"
+-- ["facing"] = "Right" -> ["facing"] = "Left"
 -- obj_char_game_scene_char_RP = {0, 0, 0, 1, 1, 1, 0, 0} -> obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0}
 -- obj_char_game_scene_char_RP["x"] = -320 -> obj_char_game_scene_char_RP["x"] = 320
 
@@ -16,7 +16,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["state"] = "before_ease_in"
     obj_char_game_scene_char_LP["character_animation_timer"] = 0
     obj_char_game_scene_char_LP["hurt_block_stun_animation"] = nil
-    obj_char_game_scene_char_LP["facing"] = "Left"
+    obj_char_game_scene_char_LP["facing"] = "Right"
     obj_char_game_scene_char_LP["cancel_command_cache"] = nil
     obj_char_game_scene_char_LP["move_state"] = "idle" -- idle start_up active recovery
 
@@ -161,7 +161,7 @@ function order_load_game_scene_char_LP_frames(load_order)
                 love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_sprite_batch"])
             )
 
-            image_sprite_sheet_table_VFX_game_scene_LP_overdrive_badge = 
+            image_sprite_sheet_VFX_game_scene_LP_overdrive_badge = 
             sprite_sheet_load(
                 "asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_badge_sprite_batch"])
@@ -1256,7 +1256,7 @@ function insert_VFX_game_scene_char_LP_overdrive_badge()
     end
     obj["draw"] = function(self)
         local camera = obj_stage_game_scene_camera
-        local image_sprite_sheet = image_sprite_sheet_table_VFX_game_scene_LP_overdrive_badge
+        local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_overdrive_badge
         local f = self[8]
 
         love.graphics.setBlendMode("add")
@@ -1294,9 +1294,12 @@ function insert_VFX_game_scene_char_LP_overdrive_airflow()
     end
     obj["draw"] = function(self)
         local camera_obj = obj_stage_game_scene_camera
-        local image_table = image_table_VFX_game_scene_overdrive_airflow
+        local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_overdrive_airflow
+        image_sprite_sheet["sprite_batch"]:clear()
+        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
+    
         love.graphics.setBlendMode("add")
-        draw_3d_image_table(camera_obj,self,image_table)
+        love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
     table.insert(char_obj["VFX_table"],obj)

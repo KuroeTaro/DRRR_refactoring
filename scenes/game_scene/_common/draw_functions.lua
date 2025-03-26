@@ -34,10 +34,14 @@ function draw_game_scene_main()
     draw_2d_image(obj_HUD_game_scene_background_gauge,image_HUD_game_scene_background_gauge) -- 1 draw call 11
 
     -- 绘制HUD缓入动画
-    draw_2d_image_table(obj_HUD_game_scene_ease_in,image_table_announcer_game_scene_HUD_ease_in) -- 1 draw call 16
+    local image_sprite_sheet = image_sprite_sheet_announcer_game_scene_HUD_ease_in
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj_HUD_game_scene_ease_in,image_sprite_sheet,""..obj_HUD_game_scene_ease_in[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
+    -- draw_2d_image_table(obj_HUD_game_scene_ease_in,image_table_announcer_game_scene_HUD_ease_in) -- 1 draw call 16
 
     -- 绘制动态HUD
-    local image_sprite_sheet = image_sprite_sheet_table_HUD_game_scene_common
+    image_sprite_sheet = image_sprite_sheet_HUD_game_scene_common
     image_sprite_sheet["sprite_batch"]:clear()
     local L_character = obj_char_game_scene_char_LP
     local R_character = obj_char_game_scene_char_RP
@@ -199,9 +203,24 @@ function draw_game_scene_main()
     love.graphics.setColor(1,1,1,1)
 
     -- 绘制ease_in annoucer 和 HUD ease in
-    draw_game_scene_act_common(obj_annoucer_game_scene_act_common,image_table_announcer_game_scene_act_common)
-    draw_2d_image_table(obj_annoucer_game_scene_act_num,image_table_announcer_game_scene_act_number[ROUND_COUNTER]) -- 1 draw call 15
-    draw_2d_image_table(obj_annoucer_game_scene_lets_dance,image_table_announcer_game_scene_lets_dance) -- 1 draw call 17
+    image_sprite_sheet = image_sprite_sheet_announcer_game_scene_act_common
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_game_scene_act_common(obj_annoucer_game_scene_act_common,image_sprite_sheet)
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
+
+    image_sprite_sheet = image_sprite_sheet_table_announcer_game_scene_act_number[ROUND_COUNTER]
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj_annoucer_game_scene_act_num,image_sprite_sheet,""..obj_annoucer_game_scene_act_num[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
+
+    image_sprite_sheet = image_sprite_sheet_announcer_game_scene_lets_dance
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj_annoucer_game_scene_lets_dance,image_sprite_sheet,""..obj_annoucer_game_scene_lets_dance[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
+
+    -- draw_game_scene_act_common(obj_annoucer_game_scene_act_common,image_table_announcer_game_scene_act_common)
+    -- draw_2d_image_table(obj_annoucer_game_scene_act_num,image_table_announcer_game_scene_act_number[ROUND_COUNTER]) -- 1 draw call 15
+    -- draw_2d_image_table(obj_annoucer_game_scene_lets_dance,image_table_announcer_game_scene_lets_dance) -- 1 draw call 17
 
     -- 绘制ease in black solid
     draw_solid(obj_UI_game_scene_black_solid)
@@ -513,12 +532,7 @@ function draw_game_scene_add_to_sprite_batch_overdrive_timer(obj,image_sprite_sh
 
 end
 
-function draw_game_scene_act_common(obj,image_table)
-    local x = draw_resolution_correction(obj[1])
-    local y = draw_resolution_correction(obj[2])
-    local sx = draw_resolution_correction(obj[5])
-    local sy = draw_resolution_correction(obj[6])
-    local r = obj[7]
+function draw_game_scene_act_common(obj,image_sprite_sheet)
     local f = obj[8]
     local opacity = obj[4]
 
@@ -526,12 +540,14 @@ function draw_game_scene_act_common(obj,image_table)
         return
     end
 
-    if image_table[f] == nil then
+    if image_sprite_sheet["frames"][""..f..""]== nil then
         f = 50
     end
 
-    love.graphics.setColor(1, 1, 1, obj[4])
-    love.graphics.draw(image_table[f],x,y,r,sx,sy)
-    love.graphics.setColor(1, 1, 1, 1)
+    draw_2d_image_sprite_batch(
+        obj,
+        image_sprite_sheet,
+        ""..f..""
+    )
 
 end

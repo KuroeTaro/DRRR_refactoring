@@ -116,10 +116,10 @@ function order_load_game_scene_common(load_order)
 
         --     image_HUD_game_scene_background_gauge = love.graphics.newImage(ASSET_DATA[4]["HUD_background_gauge"])
             
-        --     image_sprite_sheet_table_HUD_game_scene_common = 
+        --     image_sprite_sheet_HUD_game_scene_common = 
         --         sprite_sheet_load(
         --             "asset/game_scene/common/HUD/HUD_common.json",
-        --             love.graphics.newImage(ASSET_DATA[4]["HUD_common"])
+        --             love.graphics.newImage(ASSET_DATA[4]["HUD_common_sprite_batch"])
         --         )
 
         -- end,
@@ -133,29 +133,29 @@ function order_load_game_scene_act(load_order)
     local switch = 
     {
         [1] = function()
-            image_table_announcer_game_scene_act_common = {}
-            for i = 0,50 do
-                image_table_announcer_game_scene_act_common[i] = love.graphics.newImage(ASSET_DATA[5]["act_common"][i+1])
-            end
-            
-            for i = 90,104 do
-                image_table_announcer_game_scene_act_common[i] = love.graphics.newImage(ASSET_DATA[5]["act_common"][i+1])
-            end
-            
+            image_sprite_sheet_announcer_game_scene_act_common = 
+            sprite_sheet_load(
+                "asset/game_scene/common/act_common.json",
+                love.graphics.newImage(ASSET_DATA[5]["act_common_sprite_batch"])
+            )
 
-            image_table_announcer_game_scene_act_number = {}
-            image_table_announcer_game_scene_act_number[1] = {}
-            image_table_announcer_game_scene_act_number[2] = {}
-            image_table_announcer_game_scene_act_number[3] = {}
-            for i = 0,74 do
-                image_table_announcer_game_scene_act_number[1][i] = love.graphics.newImage(ASSET_DATA[5]["act_1"][i+1])
-            end
-            for i = 0,74 do
-                image_table_announcer_game_scene_act_number[2][i] = love.graphics.newImage(ASSET_DATA[5]["act_2"][i+1])
-            end
-            for i = 0,74 do
-                image_table_announcer_game_scene_act_number[3][i] = love.graphics.newImage(ASSET_DATA[5]["act_3"][i+1])
-            end
+            image_sprite_sheet_table_announcer_game_scene_act_number = {}
+            image_sprite_sheet_table_announcer_game_scene_act_number[1] = 
+            sprite_sheet_load(
+                "asset/game_scene/common/act_1.json",
+                love.graphics.newImage(ASSET_DATA[5]["act_1_sprite_batch"])
+            )
+            image_sprite_sheet_table_announcer_game_scene_act_number[2] = 
+            sprite_sheet_load(
+                "asset/game_scene/common/act_2.json",
+                love.graphics.newImage(ASSET_DATA[5]["act_2_sprite_batch"])
+            )
+            image_sprite_sheet_table_announcer_game_scene_act_number[3] = 
+            sprite_sheet_load(
+                "asset/game_scene/common/act_3.json",
+                love.graphics.newImage(ASSET_DATA[5]["act_3_sprite_batch"])
+            )
+
         end,
     }
     local this_function = switch[load_order]
@@ -166,18 +166,19 @@ function order_load_game_scene_HUD(load_order)
     local switch = 
     {
         [1] = function()
-            image_table_announcer_game_scene_HUD_ease_in = {}
-            for i = 0,49 do
-                image_table_announcer_game_scene_HUD_ease_in[i] = love.graphics.newImage(ASSET_DATA[6]["HUD_ease_in"][i+1])
-            end
-
             image_HUD_game_scene_background_gauge = love.graphics.newImage(ASSET_DATA[6]["HUD_background_gauge"])
             
-            image_sprite_sheet_table_HUD_game_scene_common = 
-                sprite_sheet_load(
-                    "asset/game_scene/common/HUD/HUD_common.json",
-                    love.graphics.newImage(ASSET_DATA[6]["HUD_common"])
-                )
+            image_sprite_sheet_HUD_game_scene_common = 
+            sprite_sheet_load(
+                "asset/game_scene/common/HUD/HUD_common.json",
+                love.graphics.newImage(ASSET_DATA[6]["HUD_common_sprite_batch"])
+            )
+
+            image_sprite_sheet_announcer_game_scene_HUD_ease_in = 
+            sprite_sheet_load(
+                "asset/game_scene/common/HUD/HUD_ease_in.json",
+                love.graphics.newImage(ASSET_DATA[6]["HUD_ease_in_sprite_batch"])
+            )
 
         end,
     }
@@ -189,10 +190,11 @@ function order_load_game_scene_lets_dance(load_order)
     local switch = 
     {
         [1] = function()
-            image_table_announcer_game_scene_lets_dance = {}
-            for i = 0,39 do
-                image_table_announcer_game_scene_lets_dance[i] = love.graphics.newImage(ASSET_DATA[7]["lets_dance"][i+1])
-            end
+            image_sprite_sheet_announcer_game_scene_lets_dance = 
+            sprite_sheet_load(
+                "asset/game_scene/common/lets_dance.json",
+                love.graphics.newImage(ASSET_DATA[7]["lets_dance_sprite_batch"])
+            )
 
         end,
     }
@@ -208,6 +210,12 @@ function order_load_game_scene_VFX(load_order)
             for i = 0,34 do
                 image_table_VFX_game_scene_overdrive_airflow[i] = love.graphics.newImage(ASSET_DATA[8]["overdrive_airflow"][i+1])
             end
+
+            image_sprite_sheet_VFX_game_scene_overdrive_airflow = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/overdrive_airflow.json",
+                love.graphics.newImage(ASSET_DATA[8]["overdrive_airflow_sprite_batch"])
+            )
 
         end,
     }

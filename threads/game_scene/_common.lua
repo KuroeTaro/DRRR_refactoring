@@ -37,6 +37,6 @@ local image_data = {"place_holder"}
 -- end
 -- image_data["HUD_background_gauge"] = compress_module("asset/game_scene/common/HUD/HUD_background_gauge.dds")
 
--- image_data["HUD_common"] = non_compress_module("asset/game_scene/common/HUD/HUD_common.png")
+-- image_data["HUD_common_sprite_batch"] = non_compress_module("asset/game_scene/common/HUD/HUD_common.png")
 
 love.thread.getChannel( 'image_1' ):push( image_data )
