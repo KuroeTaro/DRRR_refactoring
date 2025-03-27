@@ -35,8 +35,9 @@ function draw_game_scene_main()
 
     -- 绘制HUD缓入动画
     local image_sprite_sheet = image_sprite_sheet_announcer_game_scene_HUD_ease_in
+    local obj = obj_HUD_game_scene_ease_in
     image_sprite_sheet["sprite_batch"]:clear()
-    draw_2d_image_sprite_batch(obj_HUD_game_scene_ease_in,image_sprite_sheet,""..obj_HUD_game_scene_ease_in[8].."")
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
     -- draw_2d_image_table(obj_HUD_game_scene_ease_in,image_table_announcer_game_scene_HUD_ease_in) -- 1 draw call 16
 
@@ -209,13 +210,15 @@ function draw_game_scene_main()
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
 
     image_sprite_sheet = image_sprite_sheet_table_announcer_game_scene_act_number[ROUND_COUNTER]
+    obj = obj_annoucer_game_scene_act_num
     image_sprite_sheet["sprite_batch"]:clear()
-    draw_2d_image_sprite_batch(obj_annoucer_game_scene_act_num,image_sprite_sheet,""..obj_annoucer_game_scene_act_num[8].."")
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
 
     image_sprite_sheet = image_sprite_sheet_announcer_game_scene_lets_dance
+    obj = obj_annoucer_game_scene_lets_dance
     image_sprite_sheet["sprite_batch"]:clear()
-    draw_2d_image_sprite_batch(obj_annoucer_game_scene_lets_dance,image_sprite_sheet,""..obj_annoucer_game_scene_lets_dance[8].."")
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
 
     -- draw_game_scene_act_common(obj_annoucer_game_scene_act_common,image_table_announcer_game_scene_act_common)
@@ -544,10 +547,6 @@ function draw_game_scene_act_common(obj,image_sprite_sheet)
         f = 50
     end
 
-    draw_2d_image_sprite_batch(
-        obj,
-        image_sprite_sheet,
-        ""..f..""
-    )
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..f.."")
 
 end

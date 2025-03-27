@@ -18,6 +18,8 @@ function load_game_scene_obj_stage()
 
     obj_stage_game_scene_shadow_anchor = {0, 515, 800}
 
+    obj_stage_game_scene_collision_box = {0, 865, 3200, 100}
+
 end
 
 function load_game_scene_anim_stage()

@@ -1,37 +1,63 @@
 function draw_char_select_scene_ease_in_0f_36f()
-    draw_2d_image_table(
-        obj_UI_char_select_scene_start_0f_110f,
-        image_table_UI_char_select_scene_start_0_110f
-    )
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_start_0f_110f,
+    --     image_table_UI_char_select_scene_start_0_110f
+    -- )
+    local image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_start_0_110f
+    local obj = obj_UI_char_select_scene_start_0f_110f
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
     love.graphics.setBlendMode("add")
-    draw_2d_image_table(
-        obj_UI_char_select_scene_movie_cover,
-        image_table_UI_char_select_scene_movie_cover
-    )
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_movie_cover,
+    --     image_table_UI_char_select_scene_movie_cover
+    -- )
+    image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_movie_cover
+    obj = obj_UI_char_select_scene_movie_cover
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
+
     love.graphics.setBlendMode("alpha")
     draw_solid(obj_UI_char_select_scene_black_solid)
 
 end
 
 function draw_char_select_scene_ease_in_36f_40f()
-    draw_2d_image_table(
-        obj_UI_char_select_scene_start_0f_110f,
-        image_table_UI_char_select_scene_start_0_110f
-    )
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_start_0f_110f,
+    --     image_table_UI_char_select_scene_start_0_110f
+    -- )
+    local image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_start_0_110f
+    local obj = obj_UI_char_select_scene_start_0f_110f
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
     love.graphics.setBlendMode("add")
-    draw_2d_image_table(
-        obj_UI_char_select_scene_movie_cover,
-        image_table_UI_char_select_scene_movie_cover
-    )
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_movie_cover,
+    --     image_table_UI_char_select_scene_movie_cover
+    -- )
+    image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_movie_cover
+    obj = obj_UI_char_select_scene_movie_cover
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
     love.graphics.setBlendMode("alpha")
 
 end
 
 function draw_char_select_scene_ease_in_40f_130f()
-    draw_2d_image_table(
-        obj_UI_char_select_scene_start_0f_110f,
-        image_table_UI_char_select_scene_start_0_110f
-    )
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_start_0f_110f,
+    --     image_table_UI_char_select_scene_start_0_110f
+    -- )
+    local image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_start_0_110f
+    local obj = obj_UI_char_select_scene_start_0f_110f
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
     draw_2d_image(
         obj_UI_char_select_scene_icon_select_L,
         image_table_UI_char_select_scene_char_icon_alpha[obj_UI_char_select_scene_icon_select_L[8]]
@@ -78,19 +104,29 @@ function draw_char_select_scene_ease_in_40f_130f()
         obj_UI_char_select_scene_ring,
         image_UI_char_select_scene_ring
     )
-    draw_2d_image_table(
-        obj_UI_char_select_scene_movie_cover,
-        image_table_UI_char_select_scene_movie_cover
-    )
+    image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_movie_cover
+    obj = obj_UI_char_select_scene_movie_cover
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_movie_cover,
+    --     image_table_UI_char_select_scene_movie_cover
+    -- )
     love.graphics.setBlendMode("alpha")
 
 end
 
 function draw_char_select_scene_main()
-    draw_2d_image_table(
-        obj_UI_char_select_scene_start_0f_110f,
-        image_table_UI_char_select_scene_start_0_110f
-    )
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_start_0f_110f,
+    --     image_table_UI_char_select_scene_start_0_110f
+    -- )
+    local image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_start_0_110f
+    local obj = obj_UI_char_select_scene_start_0f_110f
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
     draw_2d_image(
         obj_UI_char_select_scene_icon_select_L,
         image_table_UI_char_select_scene_char_icon_alpha[obj_UI_char_select_scene_icon_select_L[8]]
@@ -138,10 +174,15 @@ function draw_char_select_scene_main()
         obj_UI_char_select_scene_ring,
         image_UI_char_select_scene_ring
     )
-    draw_2d_image_table(
-        obj_UI_char_select_scene_movie_cover,
-        image_table_UI_char_select_scene_movie_cover
-    )
+    -- draw_2d_image_table(
+    --     obj_UI_char_select_scene_movie_cover,
+    --     image_table_UI_char_select_scene_movie_cover
+    -- )
+    image_sprite_sheet = image_sprite_sheet_UI_char_select_scene_movie_cover
+    obj = obj_UI_char_select_scene_movie_cover
+    image_sprite_sheet["sprite_batch"]:clear()
+    draw_2d_image_sprite_batch(obj,image_sprite_sheet,""..obj[8].."")
+    love.graphics.draw(image_sprite_sheet["sprite_batch"])
     love.graphics.setBlendMode("alpha")
 
     draw_solid(obj_UI_char_select_scene_black_solid)

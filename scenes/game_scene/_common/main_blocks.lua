@@ -121,11 +121,12 @@ function update_game_scene_main_training()
             update_game_scene_char_RP_VFX()
             update_game_scene_char_RP_black_overlay()
 
+            update_game_scene_HUD()
+
             update_game_scene_stage()
 
         end,
     }
-    update_game_scene_HUD()
     local this_function = switch[update_flow_controller["state"]]
     if this_function then this_function() end
 
@@ -145,6 +146,19 @@ end
 function update_game_scene_main_online_match()
     update_game_scene_char_LP()
     update_game_scene_char_RP()
+
+end
+
+
+function update_interaction_character_gravity()
+    
+end
+
+function update_interaction_character_stage()
+
+end
+
+function update_interaction_between_characters()
 
 end
 

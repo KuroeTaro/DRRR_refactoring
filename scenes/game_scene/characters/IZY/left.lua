@@ -14,7 +14,6 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["anchor_pos"] = {150,550}
     obj_char_game_scene_char_LP["velocity"] = {0,0}
     obj_char_game_scene_char_LP["state"] = "before_ease_in"
-    obj_char_game_scene_char_LP["character_animation_timer"] = 0
     obj_char_game_scene_char_LP["hurt_block_stun_animation"] = nil
     obj_char_game_scene_char_LP["facing"] = "Right"
     obj_char_game_scene_char_LP["cancel_command_cache"] = nil
@@ -26,8 +25,12 @@ function load_game_scene_obj_char_LP()
     -- 当game_speed_subframe == game_speed 运行一次update
     obj_char_game_scene_char_LP["game_speed"] = 1
     obj_char_game_scene_char_LP["game_speed_subframe"] = 0
-    obj_char_game_scene_char_LP["game_speed_abnormal_countdown"] = 0
+    obj_char_game_scene_char_LP["game_speed_abnormal_realtime_countdown"] = 0
 
+    obj_char_game_scene_char_LP["gravity_correction"] = 1
+    obj_char_game_scene_char_LP["damage_correction"] = 1
+
+    obj_char_game_scene_char_LP["collision_box"] = {}
     obj_char_game_scene_char_LP["hitbox_table"] = {} --{ function值 内部为命中后的逻辑, 具体的box形状}
     obj_char_game_scene_char_LP["hurtbox_table"] = {}
     obj_char_game_scene_char_LP["hit_state"] = false -- 防止在同一动作的active多次触发
@@ -1051,22 +1054,19 @@ function update_game_scene_char_LP()
     
 end
 
-
-
-
-
--- 拉后最高优先级 然后是拉下 然后是拉前 然后是跳
--- 然后是方向组合拳脚 普通拳脚 从轻到重
--- 然后是必杀
--- 然后是超必杀
--- 最后是od和霸
--- INPUT_SYS_COMMAND_TABLE = {
---     "Up","Down","Left","Right",
---     "P","S","HS","K",
---     "SP","Launcher","Back","Start",
---     "RC","Dash","Burst","UA"
--- }
 function state_machine_char_game_scene_char_LP()
+    -- 拉后最高优先级 然后是拉下 然后是拉前 然后是跳
+    -- 然后是方向组合拳脚 普通拳脚 从轻到重
+    -- 然后是必杀
+    -- 然后是超必杀
+    -- 最后是od和霸
+    -- INPUT_SYS_COMMAND_TABLE = {
+    --     "Up","Down","Left","Right",
+    --     "P","S","HS","K",
+    --     "SP","Launcher","Back","Start",
+    --     "RC","Dash","Burst","UA"
+    -- }
+
     local input = INPUT_SYS_CURRENT_COMMAND_STATE["L"]
     local obj_char = obj_char_game_scene_char_LP
     local switch = {

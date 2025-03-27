@@ -98,10 +98,12 @@ function order_load_char_select_scene_UI_start_0_110f(load_order)
     local switch = 
     {
         [1] = function()
-            image_table_UI_char_select_scene_start_0_110f = {}
-            for i = 1,111 do
-                image_table_UI_char_select_scene_start_0_110f[i-1] = love.graphics.newImage(ASSET_DATA[2][i])
-            end
+            image_sprite_sheet_UI_char_select_scene_start_0_110f = 
+            sprite_sheet_load(
+                "asset/char_select_scene/scene_start_0_110f.json",
+                love.graphics.newImage(ASSET_DATA[2]["scene_start_0_110f"])
+            )
+
         end,
     }
     local this_function = switch[load_order]
@@ -113,10 +115,11 @@ function order_load_char_select_scene_UI_movie_cover(load_order)
     local switch = 
     {
         [1] = function()
-            image_table_UI_char_select_scene_movie_cover = {}
-            for i = 0,9 do
-                image_table_UI_char_select_scene_movie_cover[i] = love.graphics.newImage(ASSET_DATA[3][i+1])
-            end
+            image_sprite_sheet_UI_char_select_scene_movie_cover = 
+            sprite_sheet_load(
+                "asset/char_select_scene/movie_cover.json",
+                love.graphics.newImage(ASSET_DATA[3]["movie_cover"])
+            )
         end,
     }
     local this_function = switch[load_order]
@@ -128,7 +131,8 @@ end
 function unload_char_select_scene_image()
     for key in pairs(_G) do
         if key:sub(1, 26) == "image_UI_char_select_scene" 
-        or key:sub(1, 32) == "image_table_UI_char_select_scene" 
+        or key:sub(1, 32) == "image_table_UI_char_select_scene"
+        or key:sub(1, 39) == "image_sprite_sheet_UI_char_select_scene" 
         then -- 检查变量名是否以 "prefix_" 开头
             _G[key] = nil -- 删除该变量
         end
