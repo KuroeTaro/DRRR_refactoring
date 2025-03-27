@@ -14,11 +14,9 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["anchor_pos"] = {150,550}
     obj_char_game_scene_char_RP["velocity"] = {0,0}
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
-    obj_char_game_scene_char_RP["character_animation_timer"] = 0
     obj_char_game_scene_char_RP["hurt_block_stun_animation"] = nil
     obj_char_game_scene_char_RP["facing"] = "Left"
-    obj_char_game_scene_char_RP["cancel_command_cache"] = nil
-    obj_char_game_scene_char_RP["move_state"] = "idle" -- idle start_up active recovery
+    obj_char_game_scene_char_RP["move_state"] = "idle" -- idle start_up active recovery 用来设置counter punish
 
     -- 越大意味着同一帧数会被分为多少份 game_speed = 10 则 速度为1/10
     -- 如果为 game_speed == 0 则暂停
@@ -26,7 +24,7 @@ function load_game_scene_obj_char_RP()
     -- 当game_speed_subframe == game_speed 运行一次update
     obj_char_game_scene_char_RP["game_speed"] = 1
     obj_char_game_scene_char_RP["game_speed_subframe"] = 0
-    obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0
+    obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
 
     obj_char_game_scene_char_RP["gravity_correction"] = 1
     obj_char_game_scene_char_RP["damage_correction"] = 1
@@ -1254,6 +1252,9 @@ function insert_VFX_game_scene_char_RP_overdrive_badge()
         self[6] = char_obj[6]*2
         self[7] = char_obj[7]
         self[8] = self[8] + 1
+        if char_obj["state"] ~= "overdrive" then
+            self["life"] = 0
+        end
     end
     obj["draw"] = function(self)
         local camera = obj_stage_game_scene_camera
@@ -1292,6 +1293,9 @@ function insert_VFX_game_scene_char_RP_overdrive_airflow()
         self[6] = char_obj[6]*2
         self[7] = char_obj[7]
         self[8] = self[8] + 1
+        if char_obj["state"] ~= "overdrive" then
+            self["life"] = 0
+        end
     end
     obj["draw"] = function(self)
         local camera_obj = obj_stage_game_scene_camera
