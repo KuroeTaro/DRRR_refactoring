@@ -206,10 +206,10 @@ function order_load_game_scene_VFX(load_order)
     local switch = 
     {
         [1] = function()
-            image_table_VFX_game_scene_overdrive_airflow = {}
-            for i = 0,34 do
-                image_table_VFX_game_scene_overdrive_airflow[i] = love.graphics.newImage(ASSET_DATA[8]["overdrive_airflow"][i+1])
-            end
+            -- image_table_VFX_game_scene_overdrive_airflow = {}
+            -- for i = 0,34 do
+            --     image_table_VFX_game_scene_overdrive_airflow[i] = love.graphics.newImage(ASSET_DATA[8]["overdrive_airflow"][i+1])
+            -- end
 
             image_sprite_sheet_VFX_game_scene_overdrive_airflow = 
             sprite_sheet_load(

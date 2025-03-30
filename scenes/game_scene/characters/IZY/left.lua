@@ -29,9 +29,9 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["gravity_correction"] = 1
     obj_char_game_scene_char_LP["damage_correction"] = 1
 
-    obj_char_game_scene_char_LP["collision_box"] = {}
-    obj_char_game_scene_char_LP["hitbox_table"] = {} --{ function值 内部为命中后的逻辑, 具体的box形状}
-    obj_char_game_scene_char_LP["hurtbox_table"] = {}
+    obj_char_game_scene_char_LP["collision_box"] = {{0, -245, 130, 490}}
+    obj_char_game_scene_char_LP["hitbox_table"] = {nil,{}} --{ function值 内部为命中后的逻辑, 具体的box形状}
+    obj_char_game_scene_char_LP["hurtbox_table"] = {{0, -250, 150, 500}}
     obj_char_game_scene_char_LP["hit_state"] = false -- 防止在同一动作的active多次触发
     obj_char_game_scene_char_LP["projectile_table"] = {}
     obj_char_game_scene_char_LP["VFX_table"] = {}
@@ -1571,4 +1571,10 @@ function update_game_scene_char_LP_overdrive()
     elseif char_obj["state"] ~= "overdrive" then
         char_obj["overdrive"][3] = "off"
     end
+end
+
+function update_game_scene_char_LP_x_y()
+    local obj = obj_char_game_scene_char_LP
+    obj["x"] = obj["x"] + obj["velocity"][1]
+    obj["y"] = obj["y"] + obj["velocity"][2]
 end

@@ -94,8 +94,6 @@ function love.load()
 	JSON = require("dkjson")
 
 	GAME_MODE = 0 -- 1.训练模式 2.本地多人 3.在线多人
-	TRAINING_MATCH_SIDE = "L"
-	TRAINING_OTHER_SIDE = "R"
 	NETWORK_MATCH_SIDE = "L"
 	NETWORK_OTHER_SIDE = "R"
 
@@ -124,6 +122,9 @@ function love.load()
 	ROLLBACK_INPUT_TABLE = {}
 	ROLLBACK_INPUT_STATE_TABLE = {}
 	ROLLBACK_GAME_CACHE_TABLE = {}
+
+	-- game_scene_global_variable
+	GRAVITY_UNCORRECT = 80 
 
 	-- to be continue
 
@@ -220,9 +221,6 @@ function love.load()
 		{1116,122},
 		{1327,121},
 	}
-
-	-- game_scene_global_variable
-
 
 	--	general_scene_global_variable
 	FRAMES_DRAWN = 0

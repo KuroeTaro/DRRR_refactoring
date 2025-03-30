@@ -111,15 +111,19 @@ function update_game_scene_main_training()
         end,
         ["main"] = function()
             -- 更新流程
-            -- 左侧玩家的主动动作更新 改变角色速度 状态 打击受击盒
-            -- 右侧玩家的主动动作更新 改变角色速度 状态 打击受击盒
+            -- 左侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
+            -- 右侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
             -- 碰撞盒交互 调整位置
-            -- 打击受击盒交互 更新速度 VFX SFX 角色状态 改变当前位置和碰撞盒
+            -- 打击受击盒交互 更新速度 VFX SFX 角色状态更新 改变当前位置和碰撞盒
             -- 二次碰撞盒交互 调整位置
 
             SCENE_TIMER = SCENE_TIMER + 1
+
+            -- 左侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
             update_game_scene_char_LP()
+            -- 右侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
             update_game_scene_char_RP()
+
 
 
             update_game_scene_char_LP_VFX()
@@ -160,11 +164,7 @@ function update_interaction_character_gravity()
     
 end
 
-function update_interaction_character_stage()
-
-end
-
-function update_interaction_between_characters()
+function update_interaction_collision_box()
 
 end
 
