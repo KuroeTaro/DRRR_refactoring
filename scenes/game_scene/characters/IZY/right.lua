@@ -29,9 +29,9 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["gravity_correction"] = 1
     obj_char_game_scene_char_RP["damage_correction"] = 1
 
-    obj_char_game_scene_char_RP["collision_box"] = {}
-    obj_char_game_scene_char_RP["hitbox_table"] = {} --{ function值 内部为命中后的逻辑, 具体的box形状 }
-    obj_char_game_scene_char_RP["hurtbox_table"] = {}
+    obj_char_game_scene_char_RP["collision_box"] = {{0, -245, 130, 490}}
+    obj_char_game_scene_char_RP["hitbox_table"] = {nil,{}} --{ function值 内部为命中后的逻辑, 具体的box形状}
+    obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -250, 150, 500}}
     obj_char_game_scene_char_RP["hit_state"] = false -- 防止在同一动作的active多次触发
     obj_char_game_scene_char_RP["projectile_table"] = {}
     obj_char_game_scene_char_RP["VFX_table"] = {}
