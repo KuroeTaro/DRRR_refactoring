@@ -360,6 +360,14 @@ function load_char_select_scene_anim()
     anim_UI_point_linear_char_select_scene_control_method_bar_mark_locking_ease_out_opacity_1_0["loop"] = false
     anim_UI_point_linear_char_select_scene_control_method_bar_mark_locking_ease_out_opacity_1_0["fix_type"] = true
 
+    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1 = {}
+    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1[0] = {0, 5}
+    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1[5] = {1, 5}
+    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1["prop"] = 4
+    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1["length"] = 5
+    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1["loop"] = false
+    anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1["fix_type"] = true
+
     anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5 = {}
     anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5[0] = {0.25, 1}
     anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5[1] = {0.67, 2}
@@ -383,6 +391,14 @@ function load_char_select_scene_anim()
     anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5["length"] = 70
     anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5["loop"] = false
     anim_UI_point_linear_char_select_scene_char_select_locking_opacity_0p25_0p5["fix_type"] = true
+
+    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25 = {}
+    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25[0] = {0.5, 5}
+    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25[5] = {0.25, 5}
+    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25["prop"] = 4
+    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25["length"] = 5
+    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25["loop"] = false
+    anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25["fix_type"] = true
 
     anim_UI_point_linear_char_select_scene_bar_mark_up_y = {}
     anim_UI_point_linear_char_select_scene_bar_mark_up_y[0] = {0, 1}

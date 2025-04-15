@@ -11,12 +11,12 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["x"] = 320
     obj_char_game_scene_char_RP["y"] = 365
     obj_char_game_scene_char_RP["f"] = 0 -- obj["f"] 逻辑上的帧数
-    obj_char_game_scene_char_RP["anchor_pos"] = {150,550}
+    obj_char_game_scene_char_RP["anchor_pos"] = {90,520}
     obj_char_game_scene_char_RP["velocity"] = {0,0}
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
+    obj_char_game_scene_char_RP["ground_state"] = "on_land"
+    obj_char_game_scene_char_RP["hurt_state"] = "idle"
     obj_char_game_scene_char_RP["hurt_block_stun_animation"] = nil
-    obj_char_game_scene_char_RP["facing"] = "Left"
-    obj_char_game_scene_char_RP["move_state"] = "idle" -- idle start_up active recovery 用来设置counter punish
 
     -- 越大意味着同一帧数会被分为多少份 game_speed = 10 则 速度为1/10
     -- 如果为 game_speed == 0 则暂停
@@ -29,11 +29,29 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["gravity_correction"] = 1
     obj_char_game_scene_char_RP["damage_correction"] = 1
 
-    obj_char_game_scene_char_RP["collision_box"] = {{0, -245, 130, 490}}
-    obj_char_game_scene_char_RP["hitbox_table"] = {nil,{}} --{ function值 内部为命中后的逻辑, 具体的box形状}
-    obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -250, 150, 500}}
-    obj_char_game_scene_char_RP["hit_state"] = false -- 防止在同一动作的active多次触发
+    obj_char_game_scene_char_RP["push_box"] = {0, -210, 130, 420}
+    obj_char_game_scene_char_RP["collision_move_available"] = {1,1}
+    obj_char_game_scene_char_RP["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 是投还是打， function值 内部为命中后的逻辑, 具体的box形状}
+    obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -230, 150, 460}}
     obj_char_game_scene_char_RP["projectile_table"] = {}
+
+    obj_char_game_scene_char_LP["strike_active"] = false -- 防止在同一动作的active多次触发
+    obj_char_game_scene_char_LP["throw_active"] = false -- 防止在同一动作的active多次触发
+
+    obj_char_game_scene_char_LP["strike_inv"] = false
+    obj_char_game_scene_char_LP["strike_inv_countdown"] = 0
+    obj_char_game_scene_char_LP["throw_inv"] = false
+    obj_char_game_scene_char_LP["throw_inv_countdown"] = 0
+    obj_char_game_scene_char_LP["projectile_inv"] = false
+    obj_char_game_scene_char_LP["projectile_inv_countdown"] = 0
+
+    obj_char_game_scene_char_LP["strike_hit_function"] = function() end
+    obj_char_game_scene_char_LP["throw_hit_function"] = function() end
+    obj_char_game_scene_char_LP["projectile_hit_function"] = function() end
+    obj_char_game_scene_char_LP["strike_hurt_function"] = function() end
+    obj_char_game_scene_char_LP["throw_hurt_function"] = function() end
+    obj_char_game_scene_char_LP["projectile_hurt_function"] = function() end
+
     obj_char_game_scene_char_RP["VFX_table"] = {}
     obj_char_game_scene_char_RP["black_overlay_table"] = {}
     obj_char_game_scene_char_RP["shadow_box_table"] = {
@@ -70,9 +88,9 @@ function load_game_scene_obj_char_RP()
         },
         {
             {-17.38, -6.38,
-            -36.88, -4.50}
+            -37.88, -4.50}
             ,
-            {-36.88, -4.50,
+            {-37.88, -4.50,
             -37.63, 6.13}
             ,
             {-37.63, 6.13,
@@ -94,12 +112,12 @@ function load_game_scene_obj_char_RP()
             32.84, 15.79}
             ,
             {32.84, 15.79,
-            37.25, 11.63}
+            38.25, 11.63}
             ,
-            {37.25, 11.63,
-            36.88, 5.00}
+            {38.25, 11.63,
+            37.88, 5.00}
             ,
-            {36.88, 5.00,
+            {37.88, 5.00,
             35.88, 0.24}
             ,
             {35.88, 0.24,
@@ -116,8 +134,8 @@ function load_game_scene_obj_char_RP()
         }
     }
     obj_char_game_scene_char_RP["shadow_box_pos"] ={
-        {94.0,547.0}
-        ,{196.0,527.0}
+        {44.0,517.0}
+        ,{146.0,497.0}
     }
 
     obj_char_game_scene_char_RP["knife_state"] = "off"
@@ -192,7 +210,7 @@ function load_game_scene_anim_char_RP()
         anim_char_RP_stand_idle = {}
         anim_char_RP_stand_idle[0] = function() 
             char_obj[8] = 0
-            char_obj["anchor_pos"] = {150,550}
+            char_obj["anchor_pos"] = {90,520}
             char_obj["knife_anchor_pos"] = {168,210}
             char_obj["shadow_box_table"] = {
                 {
@@ -228,9 +246,9 @@ function load_game_scene_anim_char_RP()
                 },
                 {
                     {-17.38, -6.38,
-                    -36.88, -4.50}
+                    -37.88, -4.50}
                     ,
-                    {-36.88, -4.50,
+                    {-37.88, -4.50,
                     -37.63, 6.13}
                     ,
                     {-37.63, 6.13,
@@ -252,12 +270,12 @@ function load_game_scene_anim_char_RP()
                     32.84, 15.79}
                     ,
                     {32.84, 15.79,
-                    37.25, 11.63}
+                    38.25, 11.63}
                     ,
-                    {37.25, 11.63,
-                    36.88, 5.00}
+                    {38.25, 11.63,
+                    37.88, 5.00}
                     ,
-                    {36.88, 5.00,
+                    {37.88, 5.00,
                     35.88, 0.24}
                     ,
                     {35.88, 0.24,
@@ -274,8 +292,8 @@ function load_game_scene_anim_char_RP()
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {94.0,547.0}
-                ,{196.0,527.0}
+                {44.0,517.0}
+                ,{146.0,497.0}
             }
         
         end
@@ -313,7 +331,9 @@ function load_game_scene_anim_char_RP()
         end
         anim_char_RP_overdrive[0] = function()
             char_obj[8] = 0
-            char_obj["anchor_pos"] = {175,550}
+            obj_char_game_scene_char_LP["game_speed"] = 0
+            obj_char_game_scene_char_LP["game_speed_abnormal_realtime_countdown"] = 60
+            char_obj["anchor_pos"] = {169,530}
             char_obj["knife_state"] = "off"
             drain_overdrive()
             char_obj["shadow_box_table"] = {
@@ -387,8 +407,8 @@ function load_game_scene_anim_char_RP()
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {117.5,549.5}
-                ,{234.6,535.3}
+                {111.9,529.5}
+                ,{228.6,515.3}
             }
             insert_VFX_game_scene_char_RP_overdrive_badge()
             -- insert_VFX_game_scene_char_RP_overdrive_partical()
@@ -434,16 +454,16 @@ function load_game_scene_anim_char_RP()
                 -4.50, -26.13}
             }
             char_obj["shadow_box_pos"] ={
-                {103.5,549.5}
-                ,{245.4,538.8}
+                {104.5,529.5}
+                ,{246.4,518.8}
             }
         end
         anim_char_RP_overdrive[6] = function() 
             char_obj[8] = 2
             drain_overdrive()
             char_obj["shadow_box_pos"] ={
-                {93.5,549.1}
-                ,{252.8,538.4}
+                {94.5,529.1}
+                ,{253.8,518.4}
             }
         end
         anim_char_RP_overdrive[9] = function() 
@@ -485,8 +505,8 @@ function load_game_scene_anim_char_RP()
                 -6.75, -24.88}
             }
             char_obj["shadow_box_pos"] ={
-                {91.8,549.5}
-                ,{255.8,539.4}
+                {92.8,529.5}
+                ,{256.8,519.4}
             }
         end
         anim_char_RP_overdrive[14] = function() 
@@ -570,8 +590,8 @@ function load_game_scene_anim_char_RP()
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {73.25,543.375}
-                ,{268.5,543.25}
+                {70.8,523.375}
+                ,{265.5,523.25}
             }
         end
         anim_char_RP_overdrive[30] = function() 
@@ -650,8 +670,8 @@ function load_game_scene_anim_char_RP()
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {72.375,545.875}
-                ,{277.625,545.125}
+                {66.375,525.875}
+                ,{271.625,525.125}
             }
         end
         anim_char_RP_overdrive[35] = function() 
@@ -763,8 +783,8 @@ function load_game_scene_anim_char_RP()
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {78.875,538.375}
-                ,{272.375,543.375}
+                {79.875,518.375}
+                ,{273.375,523.375}
             }
         end
         anim_char_RP_overdrive[60] = function() 
@@ -852,97 +872,94 @@ function load_game_scene_anim_char_RP()
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {105.25,537.125}
-                ,{258.125,545.875}
+                {99.25,525.9}
+                ,{251.8,517.1}
             }
         end
         anim_char_RP_overdrive[63] = function() 
             char_obj[8] = 12
             char_obj["shadow_box_table"] = {
                 {
-                    {-6.25, -26.50,
-                    -21.61, -11.93}
+                    {-3.88, -21.50,
+                    -19.00, -17.38}
                     ,
-                    {-21.61, -11.93,
-                    -19.66, 6.51}
+                    {-19.00, -17.38,
+                    -20.88, -12.00}
                     ,
-                    {-19.66, 6.51,
-                    -16.36, 14.58}
+                    {-20.88, -12.00,
+                    -14.25, 15.63}
                     ,
-                    {-16.36, 14.58,
-                    -10.00, 17.50}
+                    {-14.25, 15.63,
+                    -7.63, 20.50}
                     ,
-                    {-10.00, 17.50,
-                    0.48, 19.53}
+                    {-7.63, 20.50,
+                    3.25, 22.13}
                     ,
-                    {0.48, 19.53,
-                    10.00, 18.00}
+                    {3.25, 22.13,
+                    13.63, 21.25}
                     ,
-                    {10.00, 18.00,
-                    16.48, 15.11}
+                    {13.63, 21.25,
+                    22.50, 16.38}
                     ,
-                    {16.48, 15.11,
-                    19.10, 7.99}
+                    {22.50, 16.38,
+                    21.88, 4.63}
                     ,
-                    {19.10, 7.99,
-                    16.72, 0.20}
+                    {21.88, 4.63,
+                    11.88, -14.63}
                     ,
-                    {16.72, 0.20,
-                    9.94, -15.44}
-                    ,
-                    {9.94, -15.44,
-                    -6.25, -26.50}                 
+                    {11.88, -14.63,
+                    -3.88, -21.50}
                 },
                 {
-                    {-42.25, -10.13,
-                    -58.11, 3.57}
+                    {-17.38, -6.38,
+                    -37.88, -4.50}
                     ,
-                    {-58.11, 3.57,
-                    -56.57, 7.69}
+                    {-37.88, -4.50,
+                    -37.63, 6.13}
                     ,
-                    {-56.57, 7.69,
-                    -52.46, 10.01}
+                    {-37.63, 6.13,
+                    -31.01, 10.17}
                     ,
-                    {-52.46, 10.01,
-                    -36.41, 10.76}
+                    {-31.01, 10.17,
+                    -17.60, 10.46}
                     ,
-                    {-36.41, 10.76,
-                    -29.11, 16.58}
+                    {-17.60, 10.46,
+                    -3.88, 18.75}
                     ,
-                    {-29.11, 16.58,
-                    -14.50, 20.25}
+                    {-3.88, 18.75,
+                    8.88, 19.50}
                     ,
-                    {-14.50, 20.25,
-                    0.48, 19.53}
+                    {8.88, 19.50,
+                    20.75, 18.75}
                     ,
-                    {0.48, 19.53,
-                    10.00, 18.00}
+                    {20.75, 18.75,
+                    32.84, 15.79}
                     ,
-                    {10.00, 18.00,
-                    15.98, 15.99}
+                    {32.84, 15.79,
+                    38.25, 11.63}
                     ,
-                    {15.98, 15.99,
-                    18.23, 8.87}
+                    {38.25, 11.63,
+                    37.88, 5.00}
                     ,
-                    {18.23, 8.87,
-                    15.72, 0.70}
+                    {37.88, 5.00,
+                    35.88, 0.24}
                     ,
-                    {15.72, 0.70,
-                    8.29, -3.01}
+                    {35.88, 0.24,
+                    30.38, -2.75}
                     ,
-                    {8.29, -3.01,
-                    -8.94, -4.56}
+                    {30.38, -2.75,
+                    23.96, -4.23}
                     ,
-                    {-8.94, -4.56,
-                    -14.35, -7.13}
+                    {23.96, -4.23,
+                    12.00, -5.00}
                     ,
-                    {-14.35, -7.13,
-                    -42.25, -10.13}
+                    {12.00, -5.00,
+                    -17.38, -6.38}
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {114.25,542.75}
-                ,{245.125,529}
+                {121.0,525.8}
+                ,{228.5,508.5}
             }
         end
         anim_char_RP_overdrive[67] = function() 
@@ -981,9 +998,9 @@ function load_game_scene_anim_char_RP()
                 },
                 {
                     {-17.38, -6.38,
-                    -36.88, -4.50}
+                    -37.88, -4.50}
                     ,
-                    {-36.88, -4.50,
+                    {-37.88, -4.50,
                     -37.63, 6.13}
                     ,
                     {-37.63, 6.13,
@@ -1005,12 +1022,12 @@ function load_game_scene_anim_char_RP()
                     32.84, 15.79}
                     ,
                     {32.84, 15.79,
-                    37.25, 11.63}
+                    38.25, 11.63}
                     ,
-                    {37.25, 11.63,
-                    36.88, 5.00}
+                    {38.25, 11.63,
+                    37.88, 5.00}
                     ,
-                    {36.88, 5.00,
+                    {37.88, 5.00,
                     35.88, 0.24}
                     ,
                     {35.88, 0.24,
@@ -1027,8 +1044,8 @@ function load_game_scene_anim_char_RP()
                 }
             }
             char_obj["shadow_box_pos"] ={
-                {119.0,547.0}
-                ,{221.0,527.0}
+                {123.3,527.5}
+                ,{225.5,507.5}
             }
         end
         anim_char_RP_overdrive[72] = function() 
@@ -1082,7 +1099,6 @@ function state_machine_char_game_scene_char_RP()
                 init_character_anim_with(obj_char,anim_char_RP_overdrive)
                 obj_char["state"] = "overdrive"
                 obj_char["overdrive"][3] = "on"
-
             end
         end,
         ["overdrive"] = function()
@@ -1179,7 +1195,7 @@ end
 function draw_game_scene_char_RP_shadow()
     local obj = obj_char_game_scene_char_RP
     local shadow_box_table = obj["shadow_box_table"]
-    local opacity = (obj["y"]-325)/80
+    local opacity = (obj["y"]-325)/40
     local z = obj[3]
     local sx = obj[5]
     local sy = obj[6]
@@ -1187,16 +1203,11 @@ function draw_game_scene_char_RP_shadow()
     local camera = obj_stage_game_scene_camera
     local camera_z = camera[3]
 
-    local shadow_cavans = love.graphics.newCanvas(
-        love.graphics.getWidth(),
-        love.graphics.getHeight()
-    )
-
     local obj_2d_pos = draw_3d_point_to_2D(camera,obj)
     local shadow_anchor_2d_pos = draw_3d_point_to_2D(camera,shadow_anchor)
     local scale = draw_resolution_correction(800)/(z-camera_z)
 
-    love.graphics.setCanvas(shadow_cavans)
+    love.graphics.setColor(0, 0, 0, opacity)
     for i = 1,#shadow_box_table do
         local x = obj_2d_pos[1] + scale*sx*obj["shadow_box_pos"][i][1]
         local y = obj_2d_pos[2] + scale*sy*obj["shadow_box_pos"][i][2]
@@ -1210,13 +1221,55 @@ function draw_game_scene_char_RP_shadow()
             scale*sy
         )
     end
-    love.graphics.setCanvas()
-
-    love.graphics.setColor(0, 0, 0, opacity)
-    love.graphics.draw(shadow_cavans)
     love.graphics.setColor(1, 1, 1, 1)
     
 end
+
+function draw_game_scene_char_RP_box()
+    local char_obj = obj_char_game_scene_char_RP
+    local camera = obj_stage_game_scene_camera
+
+    -- push box
+    local color = DEBUG_BOX_COLOR_YELLOW
+    local draw_box = {
+        char_obj["x"] + (char_obj["push_box"][1] - char_obj["push_box"][3]/2)*char_obj[5],
+        char_obj["y"] + char_obj["push_box"][2] - char_obj["push_box"][4]/2,
+        char_obj[3],char_obj[5],1
+    }
+    draw_box["w"] = char_obj["push_box"][3]
+    draw_box["h"] = char_obj["push_box"][4]
+    draw_3d_color_box(camera,draw_box,color)
+
+    -- hit box
+    local color = DEBUG_BOX_COLOR_RED
+    for i=1,#char_obj["hitbox_table"][3] do
+        local current_hit_box = char_obj["hitbox_table"][3][i]
+        local draw_box = {
+            char_obj["x"] + (current_hit_box[1] - current_hit_box[3]/2)*char_obj[5],
+            char_obj["y"] + current_hit_box[2] - current_hit_box[4]/2,
+            char_obj[3],char_obj[5],1
+        }
+        draw_box["w"] = current_hit_box[3]
+        draw_box["h"] = current_hit_box[4]
+        draw_3d_color_box(camera,draw_box,color)
+    end
+
+    -- hurt box
+    local color = DEBUG_BOX_COLOR_BLUE
+    for i=1,#char_obj["hurtbox_table"] do
+        local current_hurt_box = char_obj["hurtbox_table"][i]
+        local draw_box = {
+            char_obj["x"] + (current_hurt_box[1] - current_hurt_box[3]/2)*char_obj[5],
+            char_obj["y"] + current_hurt_box[2] - current_hurt_box[4]/2,
+            char_obj[3],char_obj[5],1
+        }
+        draw_box["w"] = current_hurt_box[3]
+        draw_box["h"] = current_hurt_box[4]
+        draw_3d_color_box(camera,draw_box,color)
+    end
+
+end
+
 
 
 
@@ -1226,7 +1279,13 @@ function insert_projectile_game_scene_char_RP(projectile_obj)
 
 end
 
+function update_game_scene_char_RP_projectile()
 
+end
+
+function draw_game_scene_char_RP_projectile()
+
+end
 
 
 
@@ -1449,7 +1508,7 @@ function insert_VFX_game_scene_char_RP_overdrive_black_overlay()
     obj["size_anim"] = {}
     obj["size_anim"][0] = {200, 28}
     obj["size_anim"][28] = {800, 33}
-    obj["size_anim"][33] = {1300, 33} 
+    obj["size_anim"][33] = {2600, 33} 
     obj["size_anim"]["prop"] = 5
     obj["size_anim"]["length"] = 33
     obj["size_anim"]["loop"] = false
@@ -1571,4 +1630,10 @@ function update_game_scene_char_RP_overdrive()
     elseif char_obj["state"] ~= "overdrive" then
         char_obj["overdrive"][3] = "off"
     end
+end
+
+function update_game_scene_char_RP_x_y()
+    local obj = obj_char_game_scene_char_RP
+    obj["x"] = obj["x"] + obj["velocity"][1]
+    obj["y"] = obj["y"] + obj["velocity"][2]
 end

@@ -1,9 +1,12 @@
 require("update_general_use_functions/animator")
 require("update_general_use_functions/audio_volume")
+require("update_general_use_functions/collision")
 require("update_general_use_functions/common")
 require("update_general_use_functions/game_duration")
 require("update_general_use_functions/require_scene")
 require("update_general_use_functions/input_sys")
+require("update_general_use_functions/number_error_correct")
+require("update_general_use_functions/pause")
 require("update_general_use_functions/resolution")
 require("update_general_use_functions/thread_load")
 require("draw_general_use_functions")
@@ -83,6 +86,12 @@ require("scenes/game_scene/_common/init")
 -- end
 
 function love.load()
+
+	DEBUG_PAUSE = false
+	DEBUG_BOX_COLOR_YELLOW = {1,1,0,0.5}
+	DEBUG_BOX_COLOR_BLUE = {0,0,1,0.2}
+	DEBUG_BOX_COLOR_RED = {1,0,0,0.2}
+
 	init_input()
 	-- read save data
 	read_volume_config()
@@ -235,12 +244,15 @@ end
 function love.update()
 	-- http://127.0.0.1:8000
 	require("lovebird").update()
-	update_input()
+	set_pause()
+	if not DEBUG_PAUSE then
+		update_input()
+		update_record_game_duration()
+		current_update_block()
+		collectgarbage()
+	end
 	FPS = love.timer.getFPS()
 	FRAMES_DRAWN = FRAMES_DRAWN + 1
-	update_record_game_duration()
-	current_update_block()
-	collectgarbage()
 
 end
 function love.draw()

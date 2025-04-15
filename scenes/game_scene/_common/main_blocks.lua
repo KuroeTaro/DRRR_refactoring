@@ -110,29 +110,188 @@ function update_game_scene_main_training()
 
         end,
         ["main"] = function()
-            -- 更新流程
-            -- 左侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
-            -- 右侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
-            -- 碰撞盒交互 调整位置
-            -- 打击受击盒交互 更新速度 VFX SFX 角色状态更新 改变当前位置和碰撞盒
-            -- 二次碰撞盒交互 调整位置
+            -- 获得输入 更新角色 状态 速度 和 碰撞盒
+            -- 更新VFX
+            -- loop * 10
+                -- 角色更新位置 1/10
+                -- 飞行道具更新位置 1/10
+                -- 检测push_box 更新Y位置
+                -- 检测push_box 更新X位置 static_relocate_x
+                -- 检测push_box 更新X位置 dynamic_relocate_x
+                -- 检测打击受击盒 
+                    -- 如果命中 更新角色 状态 速度 和 碰撞盒 跳出loop
+            -- 检测push_box 更新Y位置
+            -- 检测push_box 更新X位置 static_relocate_x
+            -- 检测push_box 更新X位置 dynamic_relocate_x
+
+            -- 删除已经命中的飞行道具
+
+                -- 取整角色位置
+            -- 取整飞行道具位置
+
+            -- 更新HUD
+            -- 更新场景
 
             SCENE_TIMER = SCENE_TIMER + 1
+            local char_LP = obj_char_game_scene_char_LP
+            local char_RP = obj_char_game_scene_char_RP
+            local char_LP_velocity = char_LP["velocity"]
+            local char_RP_velocity = char_RP["velocity"]
 
-            -- 左侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
+            -- 获得输入 更新角色 状态 速度 和 碰撞盒
             update_game_scene_char_LP()
-            -- 右侧玩家的主动动作更新 改变角色速度 位置 状态 打击受击盒
-            update_game_scene_char_RP()
-
-
-
+            update_game_scene_char_LP_projectile()
             update_game_scene_char_LP_VFX()
             update_game_scene_char_LP_black_overlay()
+
+            update_game_scene_char_RP()
+            update_game_scene_char_RP_projectile()
             update_game_scene_char_RP_VFX()
             update_game_scene_char_RP_black_overlay()
 
-            update_game_scene_HUD()
+            local hit_hurt_break_flag = false
 
+            for i = 1,10 do
+                -- 角色更新位置 1/10
+                char_LP["x"] = char_LP["x"] + char_LP_velocity[1]/10
+                char_RP["x"] = char_RP["x"] + char_RP_velocity[1]/10
+                char_LP["y"] = char_LP["y"] + char_LP_velocity[2]/10
+                char_RP["y"] = char_RP["y"] + char_RP_velocity[2]/10
+
+                -- 飞行道具更新位置 1/10
+                for i = 1,#char_LP["projectile_table"] do
+                    local current_projectile = char_LP["projectile_table"][i]
+                    current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/10
+                    current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/10
+                end
+                for i = 1,#char_RP["projectile_table"] do
+                    local current_projectile = char_LP["projectile_table"][i]
+                    current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/10
+                    current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/10
+                end
+
+                -- 检测push_box 更新Y位置
+                push_box_relocate_y(char_LP)
+                push_box_relocate_y(char_RP)
+
+                -- 检测push_box 更新X位置 static_relocate_x
+                push_box_stage_relocate_x(char_LP)
+                push_box_stage_relocate_x(char_RP)
+
+                -- 检测push_box 更新X位置 dynamic_relocate_x
+                push_box_dynamic_normal_aabb_relocate_x(char_LP,char_RP)
+
+
+                -- 打击受击检测
+                -- 检测飞行道具人物打击盒交互
+                for i = 1,#char_RP["projectile_table"] do
+                    local current_projectile = char_RP["projectile_table"][i]
+                    if strike_hurt_box_test(char_LP,current_projectile) then
+                        current_projectile["strike_hurt_function"]()
+                        char_LP["strike_hit_function"](current_projectile)
+                    end
+                end
+                for i = 1,#char_LP["projectile_table"] do
+                    local current_projectile = char_RP["projectile_table"][i]
+                    if strike_hurt_box_test(char_RP,current_projectile) then
+                        current_projectile["strike_hurt_function"]()
+                        char_RP["strike_hit_function"](current_projectile)
+                    end
+                end
+
+                -- 检测飞行道具相杀
+                for i = 1,#char_RP["projectile_table"] do
+                    local RP_projectile = char_RP["projectile_table"][i]
+                    for i = j,#char_LP["projectile_table"] do
+                        local LP_projectile = char_LP["projectile_table"][j]
+                        projectile_clash_test(RP_projectile,LP_projectile)
+                    end
+                end
+
+                -- 检测飞行道具人物受击盒交互
+                for i = 1,#char_RP["projectile_table"] do
+                    local current_projectile = char_RP["projectile_table"][i]
+                    if projectile_hurt_box_test(current_projectile,char_LP) then
+                        char_LP["projectile_hurt_function"](current_projectile)
+                        current_projectile["projectile_hit_function"]()
+                    end
+                end
+                for i = 1,#char_LP["projectile_table"] do
+                    local current_projectile = char_RP["projectile_table"][i]
+                    if projectile_hurt_box_test(current_projectile,char_RP) then
+                        char_RP["projectile_hurt_function"](current_projectile)
+                        current_projectile["projectile_hit_function"]()
+                    end
+                end
+
+                -- 保留双康使用的LP_hurt_strike_accur RP_hurt_strike_accur
+                local LP_hurt_strike_accur = strike_hurt_box_test(char_RP,char_LP)
+                local RP_hurt_strike_accur = strike_hurt_box_test(char_LP,char_RP)
+
+                -- 检测打击受击盒交互
+                if LP_hurt_strike_accur then
+                    char_LP["strike_hurt_function"](char_RP)
+                    char_RP["strike_hit_function"](char_LP)
+                end
+                if RP_hurt_strike_accur then
+                    char_RP["strike_hurt_function"](char_LP)
+                    char_LP["strike_hit_function"](char_RP)
+                end
+
+                -- 检测双康
+                if LP_hurt_strike_accur and RP_hurt_strike_accur then
+                    -- 删除两边的hitstop 回中摄像头
+                end
+
+                -- 检测投受击盒交互
+                if throw_hurt_box_test(char_RP,char_LP) then
+                    char_LP["throw_hurt_function"](char_RP)
+                    char_RP["throw_hit_function"](char_LP)
+                end
+                if throw_hurt_box_test(char_LP,char_RP) then
+                    char_RP["throw_hurt_function"](char_LP)
+                    char_LP["throw_hit_function"](char_RP)
+                end
+
+                -- 检测相杀
+                if hit_hurt_box_clash_test() then
+
+                end
+
+            end
+
+            -- 检测push_box 更新Y位置
+            push_box_relocate_y(char_LP)
+            push_box_relocate_y(char_RP)
+
+            -- 检测push_box 更新X位置 static_relocate_x
+            push_box_stage_relocate_x(char_LP)
+            push_box_stage_relocate_x(char_RP)
+
+            -- 检测push_box 更新X位置 dynamic_relocate_x
+            push_box_dynamic_normal_aabb_relocate_x(char_LP,char_RP)
+
+            -- 删除已经到寿命的飞行道具
+            for i = #char_LP["projectile_table"], 1, -1 do -- 反向遍历，便于删除元素
+                local object = char_LP["projectile_table"][i]
+                object["life"] = object["life"] - 1 -- 减少寿命
+                object["update"](object)
+                if object["life"] <= 0 then
+                    table.remove(char_LP["projectile_table"], i) -- 寿命耗尽，从列表中移除
+                end
+            end
+            for i = #char_RP["projectile_table"], 1, -1 do -- 反向遍历，便于删除元素
+                local object = char_RP["projectile_table"][i]
+                object["life"] = object["life"] - 1 -- 减少寿命
+                object["update"](object)
+                if object["life"] <= 0 then
+                    table.remove(char_RP["projectile_table"], i) -- 寿命耗尽，从列表中移除
+                end
+            end
+
+            -- 更新HUD
+            -- 更新场景
+            update_game_scene_HUD()
             update_game_scene_stage()
 
         end,
@@ -158,18 +317,6 @@ function update_game_scene_main_online_match()
     update_game_scene_char_RP()
 
 end
-
-
-function update_interaction_character_gravity()
-    
-end
-
-function update_interaction_collision_box()
-
-end
-
-
-
 
 function update_game_scene_HUD()
     update_game_scene_HUD_overdrive_timer(

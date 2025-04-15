@@ -7,8 +7,18 @@ function draw_game_scene_main()
     draw_game_scene_char_RP_logic_graphic_pos_sync()
 
     -- 绘制角色阴影
+    local shadow_cavans = love.graphics.newCanvas(
+        love.graphics.getWidth(),
+        love.graphics.getHeight()
+    )
+    love.graphics.setCanvas(shadow_cavans)
     draw_game_scene_char_LP_shadow()
     draw_game_scene_char_RP_shadow()
+    love.graphics.setCanvas()
+
+    love.graphics.setColor(1, 1, 1, 0.5)
+    love.graphics.draw(shadow_cavans)
+    love.graphics.setColor(1, 1, 1, 1)
 
     draw_game_scene_char_LP_black_overlay()
     draw_game_scene_char_RP_black_overlay()
@@ -21,6 +31,7 @@ function draw_game_scene_main()
         love.graphics.getHeight()
     )
     love.graphics.setCanvas(non_UI_canvas)
+    -- draw_projectile
     draw_game_scene_char_LP() -- IZAYA 2 draw calls 3
     draw_game_scene_char_RP() -- IZAYA 2 draw calls 4
     love.graphics.setCanvas()
@@ -224,6 +235,13 @@ function draw_game_scene_main()
     -- draw_game_scene_act_common(obj_annoucer_game_scene_act_common,image_table_announcer_game_scene_act_common)
     -- draw_2d_image_table(obj_annoucer_game_scene_act_num,image_table_announcer_game_scene_act_number[ROUND_COUNTER]) -- 1 draw call 15
     -- draw_2d_image_table(obj_annoucer_game_scene_lets_dance,image_table_announcer_game_scene_lets_dance) -- 1 draw call 17
+
+
+    -- DEBUG
+    draw_game_scene_char_LP_box()
+    draw_game_scene_char_RP_box()
+
+
 
     -- 绘制ease in black solid
     draw_solid(obj_UI_game_scene_black_solid)

@@ -49,3 +49,7 @@ function sprite_sheet_load(json_file, image)
     }
 
 end
+
+function round(x)
+    return math.floor(x + 0.5)
+end

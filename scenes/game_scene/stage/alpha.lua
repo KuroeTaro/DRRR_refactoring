@@ -18,8 +18,6 @@ function load_game_scene_obj_stage()
 
     obj_stage_game_scene_shadow_anchor = {0, 515, 800}
 
-    obj_stage_game_scene_collision_box = {0, 865, 3200, 100}
-
 end
 
 function load_game_scene_anim_stage()
@@ -58,7 +56,7 @@ function load_game_scene_anim_stage()
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x["prop"] = 1
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x["length"] = 78
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x["loop"] = false
-    anim_stage_point_linear_game_scene_camera_overdrive_shake_x["fix_type"] = true
+    anim_stage_point_linear_game_scene_camera_overdrive_shake_x["fix_type"] = false
 
 
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y = {}
@@ -96,7 +94,7 @@ function load_game_scene_anim_stage()
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y["prop"] = 2
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y["length"] = 78
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y["loop"] = false
-    anim_stage_point_linear_game_scene_camera_overdrive_shake_y["fix_type"] = true
+    anim_stage_point_linear_game_scene_camera_overdrive_shake_y["fix_type"] = false
 
 end
 

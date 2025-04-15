@@ -644,6 +644,51 @@ function update_char_select_scene_train_dummy_select()
 
     end
 
+    if ( 
+        obj_UI_char_select_scene_char_select_left["select_state"] == "locked" 
+        or obj_UI_char_select_scene_char_select_left["select_state"] == "locking"
+    )
+    and obj_UI_char_select_scene_char_select_right["select_state"] == "idle"
+    and INPUT_SYS_CURRENT_COMMAND_STATE["L"]["HS"] == "Pressing"
+    then 
+        obj_UI_char_select_scene_char_select_right["select_state"] = "idle"
+        obj_UI_char_select_scene_char_select_right["ease_state"] = "ease_in"
+        
+        obj_UI_char_select_scene_char_select_right_char[1] = 1600
+        obj_UI_char_select_scene_char_select_right_char[2] = 900
+        obj_UI_char_select_scene_char_select_right_char[7] = 0
+        obj_UI_char_select_scene_char_select_right_text[1] = 1600
+        obj_UI_char_select_scene_char_select_right_text[2] = 900
+        obj_UI_char_select_scene_char_select_right_text[7] = 0
+
+        obj_UI_char_select_scene_char_select_left["select_state"] = "unlocking"
+
+        obj_UI_char_select_scene_icon_select_L[1] = ICON_COVER_POSITION[CHAR_SELECT_LR["L"]][1]
+        obj_UI_char_select_scene_icon_select_L[2] = ICON_COVER_POSITION[CHAR_SELECT_LR["L"]][2]
+        obj_UI_char_select_scene_icon_select_L[8] = CHAR_SELECT_LR["L"]
+        obj_UI_char_select_scene_icon_select_L[4] = 0.5
+
+        -- 初始化此出口所需要的动画机
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_char_select_left,
+            anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_bar_mark_L,
+            anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1
+        )
+        init_point_linear_anim_with(
+            obj_UI_char_select_scene_control_method_L,
+            anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1
+        )
+
+        play_obj_audio(audio_SFX_char_select_scene_to_main_L)
+
+        -- 更新 current_update_block
+        current_update_block = update_char_select_scene_main
+
+    end
+
 end 
 
 function update_char_select_scene_ease_out()

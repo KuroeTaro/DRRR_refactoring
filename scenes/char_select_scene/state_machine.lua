@@ -280,6 +280,27 @@ function state_machine_UI_char_select_scene_char_select(input_id)
         end,
         ["locked"] = function()
         end,
+        ["unlocking"] = function()
+            point_linear_animator(
+                obj,
+                anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25
+            )
+            point_linear_animator(
+                obj_bar_mark,
+                anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1
+            )
+            point_linear_animator(
+                obj_control_method,
+                anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1
+            )
+
+            if get_point_linear_anim_end_state(obj,anim_UI_point_linear_char_select_scene_char_select_unlocking_opacity_0p5_0p25)
+            and get_point_linear_anim_end_state(obj_bar_mark,anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1)
+            and get_point_linear_anim_end_state(obj_control_method,anim_UI_point_linear_char_select_scene_control_method_bar_mark_unlocking_ease_in_opacity_0_1)
+            then
+                obj["select_state"] = "selected"
+            end
+        end,
     }
 
     state_machine_UI_char_select_scene_char_select_ease(obj,obj_char,obj_text,obj_icon_cover,audio_click,input_id)
