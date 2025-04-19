@@ -20,6 +20,7 @@ function draw_game_scene_main()
     love.graphics.draw(shadow_cavans)
     love.graphics.setColor(1, 1, 1, 1)
 
+    -- 绘制VFX
     draw_game_scene_char_LP_black_overlay()
     draw_game_scene_char_RP_black_overlay()
     draw_game_scene_char_LP_VFX()

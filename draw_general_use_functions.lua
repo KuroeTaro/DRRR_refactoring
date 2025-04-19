@@ -67,6 +67,10 @@ function draw_3d_image(camera,obj,image)
     local scale = draw_resolution_correction(800)/(z-camera_z)
     local cood_res = draw_3d_point_to_2D(camera,obj)
 
+    if opacity == 0 then
+        return
+    end
+
     love.graphics.setColor(1, 1, 1, opacity)
     love.graphics.draw(image,cood_res[1],cood_res[2],r,sx*scale,sy*scale)
     love.graphics.setColor(1, 1, 1, 1)
@@ -83,6 +87,10 @@ function draw_3d_image_table(camera,obj,image_table)
     local camera_z = camera[3]
     local scale = draw_resolution_correction(800)/(z-camera_z)
     local cood_res = draw_3d_point_to_2D(camera,obj)
+
+    if opacity == 0 then
+        return
+    end
 
     love.graphics.setColor(1, 1, 1, opacity)
     love.graphics.draw(image_table[f],cood_res[1],cood_res[2],r,sx*scale,sy*scale)
@@ -163,15 +171,14 @@ end
 
 function draw_3d_image_sprite_batch(camera,obj,image_sprite_sheet,quad_name)
     local z = obj[3]
-    local camera_z = camera[3]
-    local cood_res = draw_3d_point_to_2D(camera,obj)
-    local x = draw_resolution_correction(cood_res[1])
-    local y = draw_resolution_correction(cood_res[2])
-    local sx = draw_resolution_correction(obj[5])
-    local sy = draw_resolution_correction(obj[6])
-    local scale = draw_resolution_correction(800)/(z-camera_z)
+    local sx = obj[5]
+    local sy = obj[6]
     local r = obj[7]
+    local f = obj[8]
     local opacity = obj[4]
+    local camera_z = camera[3]
+    local scale = draw_resolution_correction(800)/(z-camera_z)
+    local cood_res = draw_3d_point_to_2D(camera,obj)
 
     if opacity == 0 then
         return
@@ -189,7 +196,7 @@ function draw_3d_image_sprite_batch(camera,obj,image_sprite_sheet,quad_name)
     )
 
     image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, opacity)
-    image_sprite_sheet["sprite_batch"]:add(quad, x, y, r, sx*scale, sy*scale)
+    image_sprite_sheet["sprite_batch"]:add(quad, cood_res[1], cood_res[2], r, sx*scale, sy*scale)
     image_sprite_sheet["sprite_batch"]:setColor(1, 1, 1, 1)
 
 end
@@ -206,7 +213,8 @@ function draw_3d_color_box(camera,obj_box,color)
     local scale = draw_resolution_correction(800)/(z-camera_z)
 
     love.graphics.setColor(color[1], color[2], color[3], color[4])
-    love.graphics.rectangle("fill", x, y, obj_box["w"]*scale*sx, obj_box["h"]*scale*sy)
-    love.graphics.rectangle("line", x, y, obj_box["w"]*scale*sx, obj_box["h"]*scale*sy)
+    love.graphics.rectangle("fill", cood_res[1], cood_res[2], obj_box["w"]*scale*sx, obj_box["h"]*scale*sy)
+    love.graphics.rectangle("line", cood_res[1], cood_res[2], obj_box["w"]*scale*sx, obj_box["h"]*scale*sy)
     love.graphics.setColor(1,1,1,1)
+    
 end

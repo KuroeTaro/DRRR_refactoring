@@ -3,6 +3,9 @@ function load_game_scene_common_obj()
     load_game_scene_obj_char_RP()
     load_game_scene_obj_stage()
     load_game_scene_announcer_HUD_obj()
+    if 	CHAR_SELECT_LR["L"] == CHAR_SELECT_LR["R"] then
+        obj_char_game_scene_char_RP["contrast"] = 2
+    end
     
 end
 
@@ -17,13 +20,27 @@ end
 
 
 function load_game_scene_common_audio()
-    
+    audio_SFX_game_scene_annoucer_ease_in = {1}
+    audio_SFX_game_scene_annoucer_ease_in["LCT"] = {0}
+    audio_SFX_game_scene_annoucer_ease_in["LCD"] = {0}
+    audio_SFX_game_scene_annoucer_ease_in["audio"] = love.audio.newSource("asset/game_scene/common/audio/annoucer_ease_in.mp3","static")
+
+    audio_SFX_game_scene_overdrive = {1}
+    audio_SFX_game_scene_overdrive["LCT"] = {0}
+    audio_SFX_game_scene_overdrive["LCD"] = {0}
+    audio_SFX_game_scene_overdrive["audio"] = love.audio.newSource("asset/game_scene/common/audio/overdrive.mp3","static")
+
+
+    update_SFX_VOLUME(audio_SFX_game_scene_annoucer_ease_in)
+    update_SFX_VOLUME(audio_SFX_game_scene_overdrive)
+
 end
 
 
 function load_game_scene_common_shader()
     shader_game_scene_fractal_noise = love.graphics.newShader("shaders/game_fractal_noise.glsl")
     shader_game_scene_radial_blur = love.graphics.newShader("shaders/radial_blur.glsl")
+    shader_game_scene_brightness_contrast = love.graphics.newShader("shaders/brightness_contrast.glsl")
     
     CANVAS = love.graphics.newCanvas(1600,900)
     CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)
@@ -175,5 +192,21 @@ function load_game_scene_announcer_HUD_anim()
     anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0["length"] = 10
     anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0["loop"] = false
     anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0["fix_type"] = true
+
+    anim_char_point_linear_overdrive_brightness_ease_in = {}
+    anim_char_point_linear_overdrive_brightness_ease_in[0] = {0, 32}
+    anim_char_point_linear_overdrive_brightness_ease_in[32] = {0.2, 32}
+    anim_char_point_linear_overdrive_brightness_ease_in["prop"] = "brightness"
+    anim_char_point_linear_overdrive_brightness_ease_in["length"] = 32
+    anim_char_point_linear_overdrive_brightness_ease_in["loop"] = false
+    anim_char_point_linear_overdrive_brightness_ease_in["fix_type"] = false
+
+    anim_char_point_linear_overdrive_brightness_ease_out = {}
+    anim_char_point_linear_overdrive_brightness_ease_out[0] = {0.2, 10}
+    anim_char_point_linear_overdrive_brightness_ease_out[10] = {0, 10}
+    anim_char_point_linear_overdrive_brightness_ease_out["prop"] = "brightness"
+    anim_char_point_linear_overdrive_brightness_ease_out["length"] = 10
+    anim_char_point_linear_overdrive_brightness_ease_out["loop"] = false
+    anim_char_point_linear_overdrive_brightness_ease_out["fix_type"] = false
 
 end

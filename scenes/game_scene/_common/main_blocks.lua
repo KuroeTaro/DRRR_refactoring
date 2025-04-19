@@ -19,6 +19,7 @@ function update_game_scene_main_training()
                 else
                     update_flow_controller["state"] = "annoucer_ease_in_1"
                     common_game_scene_toggle_ease_in(1)
+                    play_obj_audio(audio_SFX_game_scene_annoucer_ease_in)
 
                 end
 
@@ -26,8 +27,8 @@ function update_game_scene_main_training()
         end,
         ["black_solid_ease_in"] = function()
             SCENE_TIMER = SCENE_TIMER + 1
-            update_game_scene_char_LP()
-            update_game_scene_char_RP()
+            update_game_scene_char()
+            
             point_linear_animator(
                 obj_UI_game_scene_black_solid,
                 anim_UI_point_linear_game_scene_solid_ease_out_opacity_1_0
@@ -46,6 +47,8 @@ function update_game_scene_main_training()
         end,
         ["annoucer_ease_in_1"] = function()
             SCENE_TIMER = SCENE_TIMER + 1
+            update_game_scene_char()
+
             if SCENE_TIMER <= 5 then
                 point_linear_animator(
                     obj_UI_game_scene_black_solid,
@@ -105,9 +108,6 @@ function update_game_scene_main_training()
                 
             end
 
-            update_game_scene_char_LP()
-            update_game_scene_char_RP()
-
         end,
         ["main"] = function()
             -- 获得输入 更新角色 状态 速度 和 碰撞盒
@@ -135,39 +135,40 @@ function update_game_scene_main_training()
             SCENE_TIMER = SCENE_TIMER + 1
             local char_LP = obj_char_game_scene_char_LP
             local char_RP = obj_char_game_scene_char_RP
+
+            -- 获得输入 更新角色 状态 速度 和 碰撞盒
+            -- 会被game_speed限制
+            update_game_scene_char()
+
             local char_LP_velocity = char_LP["velocity"]
             local char_RP_velocity = char_RP["velocity"]
 
-            -- 获得输入 更新角色 状态 速度 和 碰撞盒
-            update_game_scene_char_LP()
-            update_game_scene_char_LP_projectile()
-            update_game_scene_char_LP_VFX()
-            update_game_scene_char_LP_black_overlay()
-
-            update_game_scene_char_RP()
-            update_game_scene_char_RP_projectile()
-            update_game_scene_char_RP_VFX()
-            update_game_scene_char_RP_black_overlay()
-
-            local hit_hurt_break_flag = false
-
+            -- 进行push box hit box hurt box的检测
             for i = 1,10 do
-                -- 角色更新位置 1/10
-                char_LP["x"] = char_LP["x"] + char_LP_velocity[1]/10
-                char_RP["x"] = char_RP["x"] + char_RP_velocity[1]/10
-                char_LP["y"] = char_LP["y"] + char_LP_velocity[2]/10
-                char_RP["y"] = char_RP["y"] + char_RP_velocity[2]/10
+                -- 更新角色和飞行道具位置
+                if char_LP["game_speed"] ~= 0 then
+                    -- 角色更新位置 1/10
+                    char_LP["x"] = char_LP["x"] + char_LP_velocity[1]/(10* char_LP["game_speed"])
+                    char_LP["y"] = char_LP["y"] + char_LP_velocity[2]/(10* char_LP["game_speed"])
 
-                -- 飞行道具更新位置 1/10
-                for i = 1,#char_LP["projectile_table"] do
-                    local current_projectile = char_LP["projectile_table"][i]
-                    current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/10
-                    current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/10
+                    -- 飞行道具更新位置 1/10
+                    for i = 1,#char_LP["projectile_table"] do
+                        local current_projectile = char_LP["projectile_table"][i]
+                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(10* char_LP["game_speed"])
+                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(10* char_LP["game_speed"])
+                    end
                 end
-                for i = 1,#char_RP["projectile_table"] do
-                    local current_projectile = char_LP["projectile_table"][i]
-                    current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/10
-                    current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/10
+                if char_RP["game_speed"] ~= 0 then
+                    -- 角色更新位置 1/10
+                    char_RP["x"] = char_RP["x"] + char_RP_velocity[1]/(10* char_RP["game_speed"])
+                    char_RP["y"] = char_RP["y"] + char_RP_velocity[2]/(10* char_RP["game_speed"])
+
+                    -- 飞行道具更新位置 1/10
+                    for i = 1,#char_RP["projectile_table"] do
+                        local current_projectile = char_LP["projectile_table"][i]
+                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(10* char_RP["game_speed"])
+                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(10* char_RP["game_speed"])
+                    end
                 end
 
                 -- 检测push_box 更新Y位置
@@ -335,11 +336,14 @@ function update_game_scene_HUD_overdrive_timer(char_obj,timer_obj)
             if char_obj["overdrive"][3] == "on" then
                 timer_obj["state"] = "ease_in"
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
+                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_in)
             end
         end,
         ["ease_in"] = function()
             point_linear_animator(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
-            if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1) then
+            point_linear_animator(char_obj,anim_char_point_linear_overdrive_brightness_ease_in)
+            if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1) 
+            and get_point_linear_anim_end_state(char_obj,anim_char_point_linear_overdrive_brightness_ease_in) then
                 timer_obj["state"] = "active"
             end
         end,
@@ -347,15 +351,70 @@ function update_game_scene_HUD_overdrive_timer(char_obj,timer_obj)
             if char_obj["overdrive"][3] == "off" then
                 timer_obj["state"] = "ease_out"
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
+                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_out)
             end
         end,
         ["ease_out"] = function()
             point_linear_animator(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
-            if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0) then
+            point_linear_animator(char_obj,anim_char_point_linear_overdrive_brightness_ease_out)
+            if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0) 
+            and get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)  then
                 timer_obj["state"] = "default"
             end
         end,
     }
     local this_function = switch[timer_obj["state"]]
     if this_function then this_function() end
+end
+
+function update_game_scene_char()
+    local char_LP = obj_char_game_scene_char_LP
+    local char_RP = obj_char_game_scene_char_RP
+    
+    if char_LP["game_speed"] >= 1 then
+        char_LP["game_speed_subframe"] = char_LP["game_speed_subframe"] + 1
+    end
+    if char_LP["game_speed"] ~= 1 then 
+        if char_LP["game_speed_abnormal_realtime_countdown"] > 0 then
+            char_LP["game_speed_abnormal_realtime_countdown"] = char_LP["game_speed_abnormal_realtime_countdown"] - 1
+        end
+        if char_LP["game_speed_abnormal_realtime_countdown"] <= 0 then
+            char_LP["game_speed_abnormal_realtime_countdown"] = 0
+            char_LP["game_speed"] = 1
+        end
+    end
+
+    if char_RP["game_speed"] >= 1 then
+        char_RP["game_speed_subframe"] = char_RP["game_speed_subframe"] + 1
+    end
+    if char_RP["game_speed"] ~= 1 then 
+        if char_RP["game_speed_abnormal_realtime_countdown"] > 0 then
+            char_RP["game_speed_abnormal_realtime_countdown"] = char_RP["game_speed_abnormal_realtime_countdown"] - 1
+        end
+        if char_RP["game_speed_abnormal_realtime_countdown"] <= 0 then
+            char_RP["game_speed_abnormal_realtime_countdown"] = 0
+            char_RP["game_speed"] = 1
+        end
+    end
+
+
+    if char_LP["game_speed"] ~= 0 
+    and char_LP["game_speed_subframe"] >= char_LP["game_speed"]
+    then
+        update_game_scene_char_LP()
+        update_game_scene_char_LP_projectile()
+        update_game_scene_char_LP_VFX()
+        update_game_scene_char_LP_black_overlay()
+        char_LP["game_speed_subframe"] = 1
+    end
+
+    if char_RP["game_speed"] ~= 0 
+    and char_RP["game_speed_subframe"] >= char_RP["game_speed"]
+    then
+        update_game_scene_char_RP()
+        update_game_scene_char_RP_projectile()
+        update_game_scene_char_RP_VFX()
+        update_game_scene_char_RP_black_overlay()
+        char_RP["game_speed_subframe"] = 1
+    end
 end

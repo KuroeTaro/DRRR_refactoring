@@ -217,6 +217,12 @@ function order_load_game_scene_VFX(load_order)
                 love.graphics.newImage(ASSET_DATA[8]["overdrive_airflow_sprite_batch"])
             )
 
+            image_sprite_sheet_VFX_game_scene_overdrive_partical = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/overdrive_partical.json",
+                love.graphics.newImage(ASSET_DATA[8]["overdrive_partical_sprite_batch"])
+            )
+
         end,
     }
     local this_function = switch[load_order]
@@ -233,6 +239,12 @@ function load_game_scene_require(LP_name,RP_name,stage_name)
     require_all_in_folder("scenes/game_scene/_common")
     require("scenes/game_scene/characters/" .. LP_name .. "/left")
     require("scenes/game_scene/characters/" .. RP_name .. "/right")
+    require("scenes/game_scene/characters/" .. LP_name .. "/_anim")
+    require("scenes/game_scene/characters/" .. RP_name .. "/_anim")
+    require("scenes/game_scene/characters/" .. LP_name .. "/_projectile")
+    require("scenes/game_scene/characters/" .. RP_name .. "/_projectile")
+    require("scenes/game_scene/characters/" .. LP_name .. "/_VFX")
+    require("scenes/game_scene/characters/" .. RP_name .. "/_VFX")
     require("scenes/game_scene/stage/" .. stage_name)
 
 end

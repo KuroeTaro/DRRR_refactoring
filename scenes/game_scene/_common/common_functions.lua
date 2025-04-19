@@ -79,3 +79,11 @@ function common_game_scene_toggle_ease_in(toggle_value)
     obj_annoucer_game_scene_lets_dance[4] = toggle_value
 
 end
+
+function common_game_scene_change_character(side)
+    if side == "L" then
+        return obj_char_game_scene_char_RP
+    elseif side == "R" then
+        return obj_char_game_scene_char_LP
+    end
+end

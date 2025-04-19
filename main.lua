@@ -2,11 +2,11 @@ require("update_general_use_functions/animator")
 require("update_general_use_functions/audio_volume")
 require("update_general_use_functions/collision")
 require("update_general_use_functions/common")
+require("update_general_use_functions/debug")
 require("update_general_use_functions/game_duration")
 require("update_general_use_functions/require_scene")
 require("update_general_use_functions/input_sys")
 require("update_general_use_functions/number_error_correct")
-require("update_general_use_functions/pause")
 require("update_general_use_functions/resolution")
 require("update_general_use_functions/thread_load")
 require("draw_general_use_functions")
@@ -88,6 +88,7 @@ require("scenes/game_scene/_common/init")
 function love.load()
 
 	DEBUG_PAUSE = false
+	DEBUG_HITBOX_SHOWS = false
 	DEBUG_BOX_COLOR_YELLOW = {1,1,0,0.5}
 	DEBUG_BOX_COLOR_BLUE = {0,0,1,0.2}
 	DEBUG_BOX_COLOR_RED = {1,0,0,0.2}
@@ -245,6 +246,7 @@ function love.update()
 	-- http://127.0.0.1:8000
 	require("lovebird").update()
 	set_pause()
+	set_show_hitbox()
 	if not DEBUG_PAUSE then
 		update_input()
 		update_record_game_duration()

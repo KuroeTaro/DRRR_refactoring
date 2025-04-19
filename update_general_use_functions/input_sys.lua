@@ -19,6 +19,7 @@ function init_input()
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
 
     --加载手柄按键 键盘按键 手柄z轴 对于指令的表
+    -- SP + 拉后 = 拉盾
     INPUT_SYS_COMMAND_TABLE = {
         "Up","Down","Left","Right",
         "P","S","HS","K",
@@ -321,4 +322,12 @@ function get_input_sys_anykey_joystick(joystick)
         end
     end
     return false
+end
+
+function test_input_sys_press_or_hold(input)
+    if input == "Pressing" or input == "Holding" then
+        return true
+    else
+        return false
+    end
 end
