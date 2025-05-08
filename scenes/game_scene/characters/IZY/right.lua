@@ -3,7 +3,6 @@
 -- "R" -> "R"
 -- obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0} -> obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0}
 -- obj_char_game_scene_char_RP["x"] = 320 -> obj_char_game_scene_char_RP["x"] = 320
--- obj_char_game_scene_char_RP["contrast"] = 1.2 -> obj_char_game_scene_char_RP["contrast"] = 1.2.2
 
 function load_game_scene_obj_char_RP()
     -- x y z opacity sx sy r f
@@ -14,6 +13,8 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["side_flag"] = "R"
     obj_char_game_scene_char_RP["contrast"] = 1
     obj_char_game_scene_char_RP["brightness"] = 0
+    obj_char_game_scene_char_RP["brightness_const"] = 0
+    obj_char_game_scene_char_RP["brightness_end_const"] = 0.2
     obj_char_game_scene_char_RP["FCT"] = {}
     obj_char_game_scene_char_RP["LCT"] = {}
     obj_char_game_scene_char_RP["LCD"] = {}
@@ -39,14 +40,16 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["game_speed"] = 1
     obj_char_game_scene_char_RP["game_speed_subframe"] = 1
     obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
-
+    obj_char_game_scene_char_RP["hitstop_countdown"] = 0
+    obj_char_game_scene_char_RP["blockstop_countdown"] = 0
+    
     obj_char_game_scene_char_RP["gravity_correction"] = 1
     obj_char_game_scene_char_RP["damage_correction"] = 1
 
-    obj_char_game_scene_char_RP["push_box"] = {0, -210, 130, 420}
+    obj_char_game_scene_char_RP["push_box"] = {0, -185, 130, 370}
     obj_char_game_scene_char_RP["collision_move_available"] = {1,1}
     obj_char_game_scene_char_RP["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 是投还是打， function值 内部为命中后的逻辑, 具体的box形状}
-    obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -230, 150, 460}}
+    obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
     obj_char_game_scene_char_RP["projectile_table"] = {}
 
     obj_char_game_scene_char_RP["strike_active"] = false -- 防止在同一动作的active多次触发
@@ -180,19 +183,26 @@ function order_load_game_scene_char_RP_frames(load_order)
 
             image_sprite_sheet_table_char_game_scene_RP["before_ease_in"] = 
             sprite_sheet_load(
-                "asset/game_scene/characters/IZY/character/IZY_stand_idle.json",
+                "asset/game_scene/characters/IZY/_character/IZY_stand_idle.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
             )
 
             image_sprite_sheet_table_char_game_scene_RP["stand_idle"] = 
             sprite_sheet_load(
-                "asset/game_scene/characters/IZY/character/IZY_stand_idle.json",
+                "asset/game_scene/characters/IZY/_character/IZY_stand_idle.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
             )
+            
+            image_sprite_sheet_table_char_game_scene_RP["5P"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_5P.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["5P_sprite_batch"])
+            )
+
 
             image_sprite_sheet_table_char_game_scene_RP["overdrive"] = 
             sprite_sheet_load(
-                "asset/game_scene/characters/IZY/character/IZY_overdrive.json",
+                "asset/game_scene/characters/IZY/_character/IZY_overdrive.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_sprite_batch"])
             )
 
@@ -261,10 +271,10 @@ function state_machine_char_game_scene_char_RP()
     --     "RC","Dash","Burst","UA"
     -- }
 
-    -- sp + 拉前 + p 扔球
-    -- sp + k 翻滚
-    -- sp + 拉前 + s 拔枪
-    -- sp + 拉下 + s 双手构/蛇刹
+    -- sp + 拉前/回中 + p 扔球
+    -- sp + 拉前/回中 + k 翻滚
+    -- sp + 拉前/回中 + s 拔枪
+    -- sp + 拉下/下前 + s 双手构/蛇刹
     -- sp + luncher 普通投
 
     local input = INPUT_SYS_CURRENT_COMMAND_STATE["R"]

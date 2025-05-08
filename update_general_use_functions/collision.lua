@@ -39,7 +39,7 @@ function push_box_relocate_y(obj)
     local box = collision_box_to_real_world_box(obj,"push_box")
     local stage_B_collision = 365
     local box_B_collision = box[2]+box[4]/2
-    obj["y"] = math.min(box_B_collision,stage_B_collision)
+    obj["y"] = math.max(box_B_collision,stage_B_collision)
 
 end
 
@@ -158,7 +158,7 @@ function projectile_hurt_box_test(hit_obj,hurt_obj)
 
 end
 
-function hit_hurt_box_clash_test()
+function strike_hit_box_clash_test()
 
 end
 

@@ -90,8 +90,8 @@ function love.load()
 	DEBUG_PAUSE = false
 	DEBUG_HITBOX_SHOWS = false
 	DEBUG_BOX_COLOR_YELLOW = {1,1,0,0.5}
-	DEBUG_BOX_COLOR_BLUE = {0,0,1,0.2}
-	DEBUG_BOX_COLOR_RED = {1,0,0,0.2}
+	DEBUG_BOX_COLOR_BLUE = {0,180/255,1,0.5}
+	DEBUG_BOX_COLOR_RED = {1,0,0,0.5}
 
 	init_input()
 	-- read save data

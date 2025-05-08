@@ -19,7 +19,18 @@ function init_input()
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
 
     --加载手柄按键 键盘按键 手柄z轴 对于指令的表
-    -- SP + 拉后 = 拉盾
+    -- SP + 1/4/7 + dash = 拉盾
+    -- SP + 3/6/9 + P = SPM1
+    -- SP + 2/5/8 + P = SPM2
+    -- SP + 3/6/9 + K = SPM3
+    -- SP + 2/5/8 + K = SPM4
+    -- SP + 3/6/9 + S = SPM5
+    -- SP + 2/5/8 + S = SPM6
+    -- SP + 3/6/9 + HS = SPM7
+    -- SP + 2/5/8 + HS = SPM8
+    -- SP + 3/6/9 + Launcher = 26D
+    -- SP + 2/5/8 + Launcher = 24D
+
     INPUT_SYS_COMMAND_TABLE = {
         "Up","Down","Left","Right",
         "P","S","HS","K",
@@ -33,7 +44,7 @@ function init_input()
         "leftshoulder","rightshoulder","back","start"
     }
         
-    INPUT_SYS_AXIS_TABLE = {"triggerleft","triggerright"}
+    INPUT_SYS_AXIS_TABLE = {"triggerleft","triggerright","leftx","righty"}
 
     INPUT_SYS_STICK_TABLE = {"leftstick","rightstick"}
 
@@ -237,6 +248,24 @@ function get_input_sys_current_command(INPUT_SYS_CURRENT_COMMAND,INPUT_SYS_CURRE
             else INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+12]] = 0
             end
         end
+
+        -- 使用摇杆进行精准方向操作修正
+        if get_joystick_axis_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_AXIS_TABLE[3]) > 0.5 then
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[4]] = 1
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[3]] = 0
+        elseif get_joystick_axis_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_AXIS_TABLE[3]) < -0.5 then
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[3]] = 1
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[4]] = 0
+        end
+
+        if get_joystick_axis_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_AXIS_TABLE[4]) > 0.5 then
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[2]] = 1
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[1]] = 0
+        elseif get_joystick_axis_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_AXIS_TABLE[4]) < -0.5 then
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[1]] = 1
+            INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[2]] = 0
+        end
+        
         for i = 1,2 do
             if get_joystick_buttom_command(INPUT_SYS_CURRENT_CONTROLLER[2],INPUT_SYS_STICK_TABLE[i]) then
                 INPUT_SYS_CURRENT_COMMAND[INPUT_SYS_COMMAND_TABLE[i+14]] = 1
@@ -313,6 +342,12 @@ function get_input_sys_anykey_joystick(joystick)
     end
     for i = 1,2 do
         if get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) > 0.2 then
+            return true
+        end
+    end
+    for i = 3,4 do
+        if get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) > 0.5 
+        or get_joystick_axis_command(joystick,INPUT_SYS_AXIS_TABLE[i]) < -0.5 then
             return true
         end
     end

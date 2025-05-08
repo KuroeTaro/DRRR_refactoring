@@ -112,9 +112,9 @@ function update_game_scene_main_training()
         ["main"] = function()
             -- 获得输入 更新角色 状态 速度 和 碰撞盒
             -- 更新VFX
-            -- loop * 10
-                -- 角色更新位置 1/10
-                -- 飞行道具更新位置 1/10
+            -- loop * 16
+                -- 角色更新位置 1/16
+                -- 飞行道具更新位置 1/16
                 -- 检测push_box 更新Y位置
                 -- 检测push_box 更新X位置 static_relocate_x
                 -- 检测push_box 更新X位置 dynamic_relocate_x
@@ -144,30 +144,30 @@ function update_game_scene_main_training()
             local char_RP_velocity = char_RP["velocity"]
 
             -- 进行push box hit box hurt box的检测
-            for i = 1,10 do
+            for i = 1,16 do
                 -- 更新角色和飞行道具位置
                 if char_LP["game_speed"] ~= 0 then
                     -- 角色更新位置 1/10
-                    char_LP["x"] = char_LP["x"] + char_LP_velocity[1]/(10* char_LP["game_speed"])
-                    char_LP["y"] = char_LP["y"] + char_LP_velocity[2]/(10* char_LP["game_speed"])
+                    char_LP["x"] = char_LP["x"] + char_LP_velocity[1]/(16* char_LP["game_speed"])
+                    char_LP["y"] = char_LP["y"] + char_LP_velocity[2]/(16* char_LP["game_speed"])
 
                     -- 飞行道具更新位置 1/10
                     for i = 1,#char_LP["projectile_table"] do
                         local current_projectile = char_LP["projectile_table"][i]
-                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(10* char_LP["game_speed"])
-                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(10* char_LP["game_speed"])
+                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(16* char_LP["game_speed"])
+                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(16* char_LP["game_speed"])
                     end
                 end
                 if char_RP["game_speed"] ~= 0 then
                     -- 角色更新位置 1/10
-                    char_RP["x"] = char_RP["x"] + char_RP_velocity[1]/(10* char_RP["game_speed"])
-                    char_RP["y"] = char_RP["y"] + char_RP_velocity[2]/(10* char_RP["game_speed"])
+                    char_RP["x"] = char_RP["x"] + char_RP_velocity[1]/(16* char_RP["game_speed"])
+                    char_RP["y"] = char_RP["y"] + char_RP_velocity[2]/(16* char_RP["game_speed"])
 
                     -- 飞行道具更新位置 1/10
                     for i = 1,#char_RP["projectile_table"] do
                         local current_projectile = char_LP["projectile_table"][i]
-                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(10* char_RP["game_speed"])
-                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(10* char_RP["game_speed"])
+                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(16* char_RP["game_speed"])
+                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(16* char_RP["game_speed"])
                     end
                 end
 
@@ -184,6 +184,16 @@ function update_game_scene_main_training()
 
 
                 -- 打击受击检测
+                -- 检测投受击盒交互
+                if throw_hurt_box_test(char_RP,char_LP) then
+                    char_LP["throw_hurt_function"](char_RP)
+                    char_RP["throw_hit_function"](char_LP)
+                end
+                if throw_hurt_box_test(char_LP,char_RP) then
+                    char_RP["throw_hurt_function"](char_LP)
+                    char_LP["throw_hit_function"](char_RP)
+                end
+
                 -- 检测飞行道具人物打击盒交互
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
@@ -231,31 +241,27 @@ function update_game_scene_main_training()
 
                 -- 检测打击受击盒交互
                 if LP_hurt_strike_accur then
-                    char_LP["strike_hurt_function"](char_RP)
                     char_RP["strike_hit_function"](char_LP)
                 end
                 if RP_hurt_strike_accur then
-                    char_RP["strike_hurt_function"](char_LP)
                     char_LP["strike_hit_function"](char_RP)
+                end
+                if LP_hurt_strike_accur then
+                    char_LP["strike_hurt_function"](char_RP)
+                end
+                if RP_hurt_strike_accur then
+                    char_RP["strike_hurt_function"](char_LP)
                 end
 
                 -- 检测双康
                 if LP_hurt_strike_accur and RP_hurt_strike_accur then
                     -- 删除两边的hitstop 回中摄像头
-                end
-
-                -- 检测投受击盒交互
-                if throw_hurt_box_test(char_RP,char_LP) then
-                    char_LP["throw_hurt_function"](char_RP)
-                    char_RP["throw_hit_function"](char_LP)
-                end
-                if throw_hurt_box_test(char_LP,char_RP) then
-                    char_RP["throw_hurt_function"](char_LP)
-                    char_LP["throw_hit_function"](char_RP)
+                    char_LP["hitstop_countdown"] = 0
+                    char_RP["hitstop_countdown"] = 0
                 end
 
                 -- 检测相杀
-                if hit_hurt_box_clash_test() then
+                if strike_hit_box_clash_test() then
 
                 end
 
@@ -335,6 +341,7 @@ function update_game_scene_HUD_overdrive_timer(char_obj,timer_obj)
         ["default"] = function()
             if char_obj["overdrive"][3] == "on" then
                 timer_obj["state"] = "ease_in"
+                char_obj["brightness"] = char_obj["brightness_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
                 init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_in)
             end
@@ -345,11 +352,18 @@ function update_game_scene_HUD_overdrive_timer(char_obj,timer_obj)
             if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1) 
             and get_point_linear_anim_end_state(char_obj,anim_char_point_linear_overdrive_brightness_ease_in) then
                 timer_obj["state"] = "active"
+                char_obj["brightness"] = char_obj["brightness_end_const"]
+            elseif char_obj["overdrive"][3] == "off" then
+                timer_obj["state"] = "ease_out"
+                char_obj["brightness"] = char_obj["brightness_end_const"]
+                init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
+                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_out)
             end
         end,
         ["active"] = function()
             if char_obj["overdrive"][3] == "off" then
                 timer_obj["state"] = "ease_out"
+                char_obj["brightness"] = char_obj["brightness_end_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
                 init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_out)
             end
@@ -360,6 +374,12 @@ function update_game_scene_HUD_overdrive_timer(char_obj,timer_obj)
             if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0) 
             and get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)  then
                 timer_obj["state"] = "default"
+                char_obj["brightness"] = char_obj["brightness_const"]
+            elseif char_obj["overdrive"][3] == "on" then
+                timer_obj["state"] = "ease_in"
+                char_obj["brightness"] = char_obj["brightness_const"]
+                init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
+                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_in)
             end
         end,
     }

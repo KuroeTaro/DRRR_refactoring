@@ -87,6 +87,10 @@ function load_game_scene_anim_char_IZY_stand_idle(char_obj)
             {44.0,517.0}
             ,{146.0,497.0}
         }
+
+        char_obj["push_box"] = {0, -185, 130, 370}
+        char_obj["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 是投还是打， function值 内部为命中后的逻辑, 具体的box形状}
+        char_obj["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
     
     end
     for i = 1,16 do
@@ -122,10 +126,10 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
         end
     end
     anim_char_overdrive[0] = function()
+        drain_overdrive()
         char_obj[8] = 0
         char_obj["anchor_pos"] = {169,530}
         char_obj["knife_state"] = "off"
-        drain_overdrive()
         char_obj["shadow_box_table"] = {
             {
                 {-5.25, -22.00,
@@ -200,12 +204,9 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {111.9,529.5}
             ,{228.6,515.3}
         }
-
-        play_obj_audio(audio_SFX_game_scene_overdrive)
-
-        insert_VFX_game_scene_char_overdrive_badge(char_obj,side)
-        insert_VFX_game_scene_char_overdrive_partical(char_obj)
-        insert_VFX_game_scene_char_overdrive_black_overlay(char_obj)
+        char_obj["push_box"] = {0, -185, 130, 370}
+        char_obj["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 是投还是打， function值 内部为命中后的逻辑, 具体的box形状}
+        char_obj["hurtbox_table"] = {}
 
         char_obj["strike_inv"] = true
         char_obj["strike_inv_countdown"] = 80
@@ -215,19 +216,18 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
         char_obj["projectile_inv_countdown"] = 80
         char_obj["burst_inv"] = true
         char_obj["burst_inv_countdown"] = 80
+
+        play_obj_audio(audio_SFX_game_scene_overdrive)
+
+        insert_VFX_game_scene_char_overdrive_badge(char_obj,side)
+        insert_VFX_game_scene_char_overdrive_partical(char_obj)
+        insert_VFX_game_scene_char_overdrive_black_overlay(char_obj)
         
     end
     anim_char_overdrive[3] = function() 
-        char_obj[8] = 1
         drain_overdrive()
-        -- idle状态下OD 恢复为3+13
-        -- 攻击状态下OD 恢复为3+3
-        -- block_stun状态下OD 恢复为3+23
-        common_game_scene_change_character(side)["game_speed"] = 0
-        common_game_scene_change_character(side)["game_speed_subframe"] = 0
-        common_game_scene_change_character(side)["game_speed_abnormal_realtime_countdown"] = 80 - 13
-        char_obj["shadow_box_table"][2] = 
-        {
+        char_obj[8] = 1
+        char_obj["shadow_box_table"][2] = {
             {-4.50, -26.13,
             -39.48, -9.43}
             ,
@@ -265,20 +265,25 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {104.5,529.5}
             ,{246.4,518.8}
         }
+        -- idle状态下OD 恢复为3+13
+        -- 攻击状态下OD 恢复为3+3
+        -- block_stun状态下OD 恢复为3+23
+        common_game_scene_change_character(side)["game_speed"] = 0
+        common_game_scene_change_character(side)["game_speed_subframe"] = 0
+        common_game_scene_change_character(side)["game_speed_abnormal_realtime_countdown"] = 80 - 13
     end
     anim_char_overdrive[6] = function() 
-        char_obj[8] = 2
         drain_overdrive()
+        char_obj[8] = 2
         char_obj["shadow_box_pos"] ={
             {94.5,529.1}
             ,{253.8,518.4}
         }
     end
     anim_char_overdrive[9] = function() 
-        char_obj[8] = 3
         drain_overdrive()
-        char_obj["shadow_box_table"][2] = 
-        {
+        char_obj[8] = 3
+        char_obj["shadow_box_table"][2] = {
             {-6.75, -24.88,
             -37.36, -9.43}
             ,
@@ -318,14 +323,15 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
         }
     end
     anim_char_overdrive[14] = function() 
-        char_obj[8] = 4
         drain_overdrive()
+        char_obj[8] = 4
     end
     anim_char_overdrive[19] = function() 
-        char_obj[8] = 5
         drain_overdrive()
+        char_obj[8] = 5
     end
     anim_char_overdrive[28] = function() 
+        drain_overdrive()
         char_obj[8] = 6
         char_obj["shadow_box_table"] = {
             {
@@ -401,13 +407,13 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {70.8,523.375}
             ,{265.5,523.25}
         }
-        drain_overdrive()
     end
     anim_char_overdrive[30] = function()
-        insert_VFX_game_scene_char_overdrive_airflow(char_obj)
         drain_overdrive()
+        insert_VFX_game_scene_char_overdrive_airflow(char_obj)
     end
     anim_char_overdrive[32] = function() 
+        drain_overdrive()
         char_obj[8] = 8
         char_obj["shadow_box_table"] = {
             {
@@ -483,13 +489,13 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {66.375,525.875}
             ,{271.625,525.125}
         }
-        drain_overdrive()
     end
     anim_char_overdrive[35] = function() 
-        char_obj[8] = 7
         drain_overdrive()
+        char_obj[8] = 7
     end
     anim_char_overdrive[38] = function() 
+        drain_overdrive()
         if char_obj["health"][1]/char_obj["health"][3] > 0.85 then
             char_obj["overdrive_timer"] = {0,2,0,0}
         elseif char_obj["health"][1]/char_obj["health"][3] > 0.60 then
@@ -503,33 +509,33 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
         end
         char_obj["overdrive"][3] = "on"
         char_obj[8] = 9
-        drain_overdrive()
     end
     anim_char_overdrive[41] = function() 
-        char_obj[8] = 7
         drain_overdrive()
+        char_obj[8] = 7
     end
     anim_char_overdrive[44] = function() 
-        char_obj[8] = 8
         drain_overdrive()
+        char_obj[8] = 8
     end
     anim_char_overdrive[47] = function() 
-        char_obj[8] = 9
         drain_overdrive()
+        char_obj[8] = 9
     end
     anim_char_overdrive[50] = function() 
-        char_obj[8] = 7
         drain_overdrive()
+        char_obj[8] = 7
     end
     anim_char_overdrive[53] = function() 
-        char_obj[8] = 8
         drain_overdrive()
+        char_obj[8] = 8
     end
     anim_char_overdrive[56] = function() 
-        char_obj[8] = 9
         drain_overdrive()
+        char_obj[8] = 9
     end
     anim_char_overdrive[58] = function() 
+        drain_overdrive()
         char_obj[8] = 10
         char_obj["shadow_box_table"] = {
             {
@@ -605,9 +611,9 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {79.875,518.375}
             ,{273.375,523.375}
         }
-        drain_overdrive()
     end
     anim_char_overdrive[60] = function() 
+        drain_overdrive()
         char_obj[8] = 11
         char_obj["shadow_box_table"] = {
             {
@@ -695,9 +701,9 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {99.25,525.9}
             ,{251.8,517.1}
         }
-        drain_overdrive()
     end
     anim_char_overdrive[63] = function() 
+        drain_overdrive()
         char_obj[8] = 12
         char_obj["shadow_box_table"] = {
             {
@@ -782,9 +788,9 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {121.0,525.8}
             ,{228.5,508.5}
         }
-        drain_overdrive()
     end
     anim_char_overdrive[67] = function() 
+        drain_overdrive()
         char_obj[8] = 13
         char_obj["shadow_box_table"] = {
             {
@@ -869,13 +875,13 @@ function load_game_scene_anim_char_IZY_overdrive(char_obj,side)
             {123.3,527.5}
             ,{225.5,507.5}
         }
-        drain_overdrive()
     end
     anim_char_overdrive[72] = function() 
-        char_obj[8] = 14
         drain_overdrive()
+        char_obj[8] = 14
     end
-    anim_char_overdrive[80] = function() 
+    anim_char_overdrive[80] = function()
+        char_obj["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}} 
     end
 
     return anim_char_overdrive

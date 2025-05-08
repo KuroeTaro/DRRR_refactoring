@@ -35,6 +35,9 @@ function draw_game_scene_main()
     -- draw_projectile
     draw_game_scene_char_LP() -- IZAYA 2 draw calls 3
     draw_game_scene_char_RP() -- IZAYA 2 draw calls 4
+    love.graphics.setColor(1,1,1,0.5)
+    draw_game_scene_char_LP()
+    love.graphics.setColor(1,1,1,1)
     love.graphics.setCanvas()
 
     love.graphics.draw(non_UI_canvas) -- 1 draw call 5

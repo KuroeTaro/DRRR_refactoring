@@ -4,7 +4,10 @@ function load_game_scene_common_obj()
     load_game_scene_obj_stage()
     load_game_scene_announcer_HUD_obj()
     if 	CHAR_SELECT_LR["L"] == CHAR_SELECT_LR["R"] then
-        obj_char_game_scene_char_RP["contrast"] = 2
+        obj_char_game_scene_char_RP["contrast"] = -1
+        obj_char_game_scene_char_RP["brightness"] = 0.9
+        obj_char_game_scene_char_RP["brightness_const"] = 0.9
+        obj_char_game_scene_char_RP["brightness_end_const"] = 1.1
     end
     
 end
