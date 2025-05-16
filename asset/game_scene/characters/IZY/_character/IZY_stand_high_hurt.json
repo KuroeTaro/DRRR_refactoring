@@ -1,0 +1,60 @@
+{"frames": {
+
+"0":
+{
+	"frame": {"x":0,"y":0,"w":400,"h":540},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":540},
+	"sourceSize": {"w":400,"h":540}
+},
+"1":
+{
+	"frame": {"x":400,"y":0,"w":400,"h":540},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":540},
+	"sourceSize": {"w":400,"h":540}
+},
+"2":
+{
+	"frame": {"x":800,"y":0,"w":400,"h":540},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":540},
+	"sourceSize": {"w":400,"h":540}
+},
+"3":
+{
+	"frame": {"x":1200,"y":0,"w":400,"h":540},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":540},
+	"sourceSize": {"w":400,"h":540}
+},
+"4":
+{
+	"frame": {"x":1600,"y":0,"w":400,"h":540},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":540},
+	"sourceSize": {"w":400,"h":540}
+},
+"5":
+{
+	"frame": {"x":2000,"y":0,"w":400,"h":540},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":540},
+	"sourceSize": {"w":400,"h":540}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "IZY_stand_high_hurt",
+	"format": "RGBA8888",
+	"size": {"w":2400,"h":540},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b03c4afc9a33f5d74f685803f8111f14:9b05e2216de9372b812e302e8e9a9afc:2b442d42bd25d1329d546e31691981ff$"
+}
+}

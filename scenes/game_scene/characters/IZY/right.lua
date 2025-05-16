@@ -10,47 +10,15 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["x"] = 320
     obj_char_game_scene_char_RP["y"] = 365
     obj_char_game_scene_char_RP["f"] = -1 -- obj["f"] 逻辑上的帧数
-    obj_char_game_scene_char_RP["side_flag"] = "R"
-    obj_char_game_scene_char_RP["contrast"] = 1
-    obj_char_game_scene_char_RP["brightness"] = 0
-    obj_char_game_scene_char_RP["brightness_const"] = 0
-    obj_char_game_scene_char_RP["brightness_end_const"] = 0.2
     obj_char_game_scene_char_RP["FCT"] = {}
     obj_char_game_scene_char_RP["LCT"] = {}
     obj_char_game_scene_char_RP["LCD"] = {}
-    obj_char_game_scene_char_RP["FCT"]["contrast"] = 0
-    obj_char_game_scene_char_RP["LCT"]["contrast"] = 0
-    obj_char_game_scene_char_RP["LCD"]["contrast"] = 0
-    obj_char_game_scene_char_RP["FCT"]["brightness"] = 0
-    obj_char_game_scene_char_RP["LCT"]["brightness"] = 0
-    obj_char_game_scene_char_RP["LCD"]["brightness"] = 0
 
-
-    obj_char_game_scene_char_RP["anchor_pos"] = {90,520}
-    obj_char_game_scene_char_RP["velocity"] = {0,0}
+    -- state
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
-    obj_char_game_scene_char_RP["ground_state"] = "on_land"
-    obj_char_game_scene_char_RP["hurt_state"] = "idle"
+    obj_char_game_scene_char_RP["height_state"] = "stand" -- stand crouch air
+    obj_char_game_scene_char_RP["hurt_state"] = "idle" -- no_counter counter_1 counter_2 counter_3 block fd_block GP parry
     obj_char_game_scene_char_RP["hurt_block_stun_animation"] = nil
-
-    -- 越大意味着同一帧数会被分为多少份 game_speed = 10 则 速度为1/10
-    -- 如果为 game_speed == 0 则暂停
-    -- 当前game_speed中 记录已经运行了多少 game_speed_subframe
-    -- 当game_speed_subframe == game_speed 运行一次update
-    obj_char_game_scene_char_RP["game_speed"] = 1
-    obj_char_game_scene_char_RP["game_speed_subframe"] = 1
-    obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
-    obj_char_game_scene_char_RP["hitstop_countdown"] = 0
-    obj_char_game_scene_char_RP["blockstop_countdown"] = 0
-    
-    obj_char_game_scene_char_RP["gravity_correction"] = 1
-    obj_char_game_scene_char_RP["damage_correction"] = 1
-
-    obj_char_game_scene_char_RP["push_box"] = {0, -185, 130, 370}
-    obj_char_game_scene_char_RP["collision_move_available"] = {1,1}
-    obj_char_game_scene_char_RP["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 是投还是打， function值 内部为命中后的逻辑, 具体的box形状}
-    obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
-    obj_char_game_scene_char_RP["projectile_table"] = {}
 
     obj_char_game_scene_char_RP["strike_active"] = false -- 防止在同一动作的active多次触发
     obj_char_game_scene_char_RP["throw_active"] = false -- 防止在同一动作的active多次触发
@@ -71,6 +39,47 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["throw_hurt_function"] = function() end
     obj_char_game_scene_char_RP["projectile_hurt_function"] = function() end
 
+    obj_char_game_scene_char_RP["knife_state"] = "off"
+    obj_char_game_scene_char_RP["knife_anchor_pos"] = {168,210}
+    obj_char_game_scene_char_RP["knife_animation"] = nil
+    obj_char_game_scene_char_RP["knife_8"] = 0 -- obj[knife_8]匕首图形上的帧数
+    obj_char_game_scene_char_RP["knife_f"] = 0 -- obj[knife_8]匕首逻辑上的帧数
+
+    -- state_number
+    obj_char_game_scene_char_RP["player_side"] = "R"
+    obj_char_game_scene_char_RP["velocity"] = {0,0}
+    obj_char_game_scene_char_RP["gravity"] = 9.8
+    obj_char_game_scene_char_RP["friction"] = 9.8
+    obj_char_game_scene_char_RP["health"] = {11500, 11500, 11500, "fade_off"}
+    obj_char_game_scene_char_RP["heat"] = {0.0, 200.0} -- 0.0 - 200.0
+    obj_char_game_scene_char_RP["ability"] = {600.0, 600.0} -- 0.0 - 600.0
+    obj_char_game_scene_char_RP["overdrive"] = {600.0, 600.0, "off"} -- 0.0 - 600.0
+    obj_char_game_scene_char_RP["overdrive_timer"] = {0,0,0,0} -- 0f 00:00 
+    obj_char_game_scene_char_RP["overdrive_drain_speed"] = 24
+    obj_char_game_scene_char_RP["risk"] = {0.0, 300.0}-- 0.0 - 300.0
+    obj_char_game_scene_char_RP["positive_bouns"] = {0.0, 600.0} -- 0.0 - 600.0
+    obj_char_game_scene_char_RP["hurt_horizontal_velocity_correction"] = 1
+    obj_char_game_scene_char_RP["hurt_gravity_correction"] = 1
+    obj_char_game_scene_char_RP["hurt_damage_correction"] = 1
+
+    -- game_speed
+    obj_char_game_scene_char_RP["game_speed"] = 1
+    obj_char_game_scene_char_RP["game_speed_subframe"] = 1
+    obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
+    obj_char_game_scene_char_RP["hitstop_countdown"] = 0
+    obj_char_game_scene_char_RP["blockedstop_countdown"] = 0
+    obj_char_game_scene_char_RP["hurtstop_countdown"] = 0
+    obj_char_game_scene_char_RP["blockstop_countdown"] = 0
+    obj_char_game_scene_char_RP["hurt_wiggle_amount"] = 0
+
+    -- collide
+    obj_char_game_scene_char_RP["push_box"] = {0, -185, 130, 370}
+    obj_char_game_scene_char_RP["collision_move_available"] = {1,1}
+    obj_char_game_scene_char_RP["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 是投还是打， function值 内部为命中后的逻辑, 具体的box形状}
+    obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
+
+    -- sub_obj
+    obj_char_game_scene_char_RP["projectile_table"] = {}
     obj_char_game_scene_char_RP["VFX_table"] = {}
     obj_char_game_scene_char_RP["black_overlay_table"] = {}
     obj_char_game_scene_char_RP["shadow_box_table"] = {
@@ -157,20 +166,18 @@ function load_game_scene_obj_char_RP()
         ,{146.0,497.0}
     }
 
-    obj_char_game_scene_char_RP["knife_state"] = "off"
-    obj_char_game_scene_char_RP["knife_anchor_pos"] = {168,210}
-    obj_char_game_scene_char_RP["knife_animation"] = nil
-    obj_char_game_scene_char_RP["knife_8"] = 0 -- obj[knife_8]匕首图形上的帧数
-    obj_char_game_scene_char_RP["knife_f"] = 0 -- obj[knife_8]匕首逻辑上的帧数
-
-    obj_char_game_scene_char_RP["health"] = {11500, 11500, 11500, "fade_off"}
-    obj_char_game_scene_char_RP["heat"] = {0.0, 200.0} -- 0.0 - 200.0
-    obj_char_game_scene_char_RP["ability"] = {600.0, 600.0} -- 0.0 - 600.0
-    obj_char_game_scene_char_RP["overdrive"] = {600.0, 600.0, "off"} -- 0.0 - 600.0
-    obj_char_game_scene_char_RP["overdrive_timer"] = {0,0,0,0} -- 0f 00:00 
-    obj_char_game_scene_char_RP["overdrive_drain_speed"] = 24
-    obj_char_game_scene_char_RP["risk"] = {0.0, 300.0}-- 0.0 - 300.0
-    obj_char_game_scene_char_RP["positive_bouns"] = {0.0, 600.0} -- 0.0 - 600.0
+    -- draw_correction
+    obj_char_game_scene_char_RP["anchor_pos"] = {90,520}
+    obj_char_game_scene_char_RP["contrast"] = 1
+    obj_char_game_scene_char_RP["brightness"] = 0
+    obj_char_game_scene_char_RP["brightness_const"] = 0
+    obj_char_game_scene_char_RP["brightness_end_const"] = 0.2
+    obj_char_game_scene_char_RP["FCT"]["contrast"] = 0
+    obj_char_game_scene_char_RP["LCT"]["contrast"] = 0
+    obj_char_game_scene_char_RP["LCD"]["contrast"] = 0
+    obj_char_game_scene_char_RP["FCT"]["brightness"] = 0
+    obj_char_game_scene_char_RP["LCT"]["brightness"] = 0
+    obj_char_game_scene_char_RP["LCD"]["brightness"] = 0
 
 end
 
@@ -187,17 +194,14 @@ function order_load_game_scene_char_RP_frames(load_order)
                 love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
             )
 
+
+
             image_sprite_sheet_table_char_game_scene_RP["stand_idle"] = 
             sprite_sheet_load(
                 "asset/game_scene/characters/IZY/_character/IZY_stand_idle.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
             )
-            
-            image_sprite_sheet_table_char_game_scene_RP["5P"] = 
-            sprite_sheet_load(
-                "asset/game_scene/characters/IZY/_character/IZY_5P.json",
-                love.graphics.newImage(PLAYER_ASSET_DATA["5P_sprite_batch"])
-            )
+
 
 
             image_sprite_sheet_table_char_game_scene_RP["overdrive"] = 
@@ -205,7 +209,22 @@ function order_load_game_scene_char_RP_frames(load_order)
                 "asset/game_scene/characters/IZY/_character/IZY_overdrive.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_sprite_batch"])
             )
+            image_sprite_sheet_table_char_game_scene_RP["5P"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_5P.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["5P_sprite_batch"])
+            )
 
+
+
+            image_sprite_sheet_table_char_game_scene_RP["stand_high_hurt"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_stand_high_hurt.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["stand_high_hurt_sprite_batch"])
+            )
+
+
+            
             image_sprite_sheet_VFX_game_scene_RP_overdrive_badge = 
             sprite_sheet_load(
                 "asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.json",

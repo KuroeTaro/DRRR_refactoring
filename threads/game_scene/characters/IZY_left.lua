@@ -20,8 +20,15 @@ local image_data = {}
 -- end
 
 image_data["stand_idle_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_stand_idle.dds")
+
+
 image_data["5P_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_5P.dds")
 image_data["overdrive_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_overdrive.dds")
+
+
+image_data["stand_high_hurt_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_stand_high_hurt.dds")
+
+
 image_data["overdrive_badge_sprite_batch"] = compress_module("asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.dds")
 
 love.thread.getChannel( 'image_2' ):push( image_data )

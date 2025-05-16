@@ -84,7 +84,7 @@ end
 function insert_VFX_game_scene_char_overdrive_partical(char_obj)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     local camera_obj = obj_stage_game_scene_camera
-    if char_obj["side_flag"] == "L" then
+    if char_obj["player_side"] == "L" then
         obj["life"] = 80
         obj[1] = camera_obj[1] - 800
         obj[2] = camera_obj[2] - 450
@@ -95,7 +95,7 @@ function insert_VFX_game_scene_char_overdrive_partical(char_obj)
         obj[7] = 0
         obj[8] = 0
         obj["f"] = -1
-    elseif char_obj["side_flag"] == "R" then
+    elseif char_obj["player_side"] == "R" then
         obj["life"] = 80
         obj[1] = camera_obj[1] + 800
         obj[2] = camera_obj[2] - 450
