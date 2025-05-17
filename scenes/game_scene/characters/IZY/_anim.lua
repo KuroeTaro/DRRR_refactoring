@@ -970,16 +970,27 @@ function load_game_scene_anim_char_IZY_5P(char_obj,side)
             char_obj["overdrive"][1] = 
             math.min(char_obj["overdrive"][1] + 12,char_obj["overdrive"][2])
         end
-        if char_obj["overdrive"][1] < char_obj["overdrive"][2] then
-            char_obj["overdrive"][1] = 
-            math.min(char_obj["overdrive"][1] + 12,char_obj["overdrive"][2])
+        if char_obj["heat"][1] < char_obj["heat"][2] then
+            char_obj["heat"][1] = 
+            math.min(char_obj["heat"][1] + 5,char_obj["heat"][2])
+        end
+        if char_obj["ability"][1] < char_obj["ability"][2] then
+            char_obj["ability"][1] = 
+            math.min(char_obj["ability"][1] + 5,char_obj["ability"][2])
+        end
+    end
+
+    for i = 0,30 do
+        anim_char_stand_5P[i] = function()
+            -- state
+            add_heat_ability_overdrive()
         end
     end
 
     anim_char_stand_5P[0] = function() 
         -- draw
         char_obj[8] = 0
-        char_obj["anchor_pos"] = {90,520}
+        char_obj["anchor_pos"] = {193,515}
         char_obj["knife_anchor_pos"] = {168,210}
         char_obj["shadow_box_table"] = {
             {
@@ -1067,20 +1078,110 @@ function load_game_scene_anim_char_IZY_5P(char_obj,side)
 
         -- hit_hurt_push_box
         char_obj["push_box"] = {0, -185, 130, 370}
-        char_obj["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 打 投 指令投， function值 内部为命中后的逻辑, 具体的box形状}
+        char_obj["hitbox_table"] = {} --{ 攻击类型 打 投 指令投， function值 内部为命中后的逻辑, 具体的box形状}
         char_obj["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
 
         -- state
         char_obj["friction"] = 4.2
+        char_obj["hit_counter_state"] = 1
+        char_obj["hurt_state"] = "counter"
+        char_obj["throw_inv"] = true
+        char_obj["throw_inv_countdown"] = 8
+        add_heat_ability_overdrive()
     end
     anim_char_stand_5P[2] = function() 
         -- draw
         char_obj[8] = 1
+        char_obj["shadow_box_table"] = {
+            {
+                {-3.88, -21.50,
+                -19.00, -17.38}
+                ,
+                {-19.00, -17.38,
+                -20.88, -12.00}
+                ,
+                {-20.88, -12.00,
+                -14.25, 15.63}
+                ,
+                {-14.25, 15.63,
+                -7.63, 20.50}
+                ,
+                {-7.63, 20.50,
+                3.25, 22.13}
+                ,
+                {3.25, 22.13,
+                13.63, 21.25}
+                ,
+                {13.63, 21.25,
+                22.50, 16.38}
+                ,
+                {22.50, 16.38,
+                21.88, 4.63}
+                ,
+                {21.88, 4.63,
+                11.88, -14.63}
+                ,
+                {11.88, -14.63,
+                -3.88, -21.50}
+            },
+            {
+                {-17.38, -6.38,
+                -37.88, -4.50}
+                ,
+                {-37.88, -4.50,
+                -37.63, 6.13}
+                ,
+                {-37.63, 6.13,
+                -31.01, 10.17}
+                ,
+                {-31.01, 10.17,
+                -17.60, 10.46}
+                ,
+                {-17.60, 10.46,
+                -3.88, 18.75}
+                ,
+                {-3.88, 18.75,
+                8.88, 19.50}
+                ,
+                {8.88, 19.50,
+                20.75, 18.75}
+                ,
+                {20.75, 18.75,
+                32.84, 15.79}
+                ,
+                {32.84, 15.79,
+                38.25, 11.63}
+                ,
+                {38.25, 11.63,
+                37.88, 5.00}
+                ,
+                {37.88, 5.00,
+                35.88, 0.24}
+                ,
+                {35.88, 0.24,
+                30.38, -2.75}
+                ,
+                {30.38, -2.75,
+                23.96, -4.23}
+                ,
+                {23.96, -4.23,
+                12.00, -5.00}
+                ,
+                {12.00, -5.00,
+                -17.38, -6.38}
+            }
+        }
+        char_obj["shadow_box_pos"] ={
+            {44.0,517.0}
+            ,{146.0,497.0}
+        }
+
+        -- state
+        add_heat_ability_overdrive()
     end
     anim_char_stand_5P[4] = function() 
         -- draw
         char_obj[8] = 2
-        char_obj["knife_anchor_pos"] = {168,210}
         char_obj["shadow_box_table"] = {
             {
                 {-3.88, -21.50,
@@ -1166,12 +1267,20 @@ function load_game_scene_anim_char_IZY_5P(char_obj,side)
         }
 
         -- hit_hurt_push_box
-        char_obj["push_box"] = {0, -185, 130, 370}
-        char_obj["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 打 投 指令投， function值 内部为命中后的逻辑, 具体的box形状}
-        char_obj["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
+        char_obj["hitbox_table"] = {{119, -416, 260, 98}} --{ 攻击类型 打 投 指令投, 具体的box形状}
+        char_obj["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50},{119, -416, 320, 128}}
 
         -- state
-        char_obj["friction"] = 4.2
+        add_heat_ability_overdrive()
+        char_obj["hurt_animation"] = anim_char_LP_5P_hurt
+        char_obj["block_animation"] = anim_char_LP_5P_block
+        char_obj["strike_active"] = false 
+        char_obj["hit_function"] = function()
+            char_obj["state"] = "hit_stop"
+        end
+        char_obj["hurt_function"] = function() 
+            common_game_scene_change_character(side)["state"] = "hurt_stop"
+        end
     end
 
     return anim_char_stand_5P

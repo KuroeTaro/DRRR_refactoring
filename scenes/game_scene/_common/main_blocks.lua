@@ -185,28 +185,36 @@ function update_game_scene_main_training()
 
                 -- 打击受击检测
                 -- 检测投受击盒交互
-                if throw_hurt_box_test(char_RP,char_LP) then
-                    char_LP["throw_hurt_function"](char_RP)
-                    char_RP["throw_hit_function"](char_LP)
+                local LP_hurt_throw_accur = throw_hurt_box_test(char_RP,char_LP) -- (obj_hit,obj_hurt)
+                local RP_hurt_throw_accur = throw_hurt_box_test(char_LP,char_RP)
+
+                -- 检测打击受击盒交互
+                if LP_hurt_throw_accur then
+                    char_RP["hit_function"]() -- RP更新主动攻击状态
                 end
-                if throw_hurt_box_test(char_LP,char_RP) then
-                    char_RP["throw_hurt_function"](char_LP)
-                    char_LP["throw_hit_function"](char_RP)
+                if RP_hurt_throw_accur then
+                    char_LP["hit_function"]() -- LP更新主动攻击状态
+                end
+                if LP_hurt_throw_accur then
+                    char_LP["hurt_function"](char_RP) -- RP更新被攻击状态
+                end
+                if RP_hurt_throw_accur then
+                    char_RP["hurt_function"](char_LP) -- LP更新被攻击状态
                 end
 
                 -- 检测飞行道具人物打击盒交互
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if strike_hurt_box_test(char_LP,current_projectile) then
-                        current_projectile["strike_hurt_function"]()
-                        char_LP["strike_hit_function"](current_projectile)
+                        char_LP["hit_function"]()
+                        current_projectile["hurt_function"](char_LP)
                     end
                 end
                 for i = 1,#char_LP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if strike_hurt_box_test(char_RP,current_projectile) then
-                        current_projectile["strike_hurt_function"]()
-                        char_RP["strike_hit_function"](current_projectile)
+                        char_RP["hit_function"]()
+                        current_projectile["hurt_function"](char_RP)
                     end
                 end
 
@@ -223,34 +231,34 @@ function update_game_scene_main_training()
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if projectile_hurt_box_test(current_projectile,char_LP) then
-                        char_LP["projectile_hurt_function"](current_projectile)
-                        current_projectile["projectile_hit_function"]()
+                        current_projectile["hit_function"]() -- 飞行道具更新主动攻击状态
+                        char_LP["hurt_function"](current_projectile) --LP更新
                     end
                 end
                 for i = 1,#char_LP["projectile_table"] do
-                    local current_projectile = char_RP["projectile_table"][i]
+                    local current_projectile = char_LP["projectile_table"][i]
                     if projectile_hurt_box_test(current_projectile,char_RP) then
-                        char_RP["projectile_hurt_function"](current_projectile)
-                        current_projectile["projectile_hit_function"]()
+                        current_projectile["hit_function"]()
+                        char_RP["hurt_function"](current_projectile)
                     end
                 end
 
                 -- 保留双康使用的LP_hurt_strike_accur RP_hurt_strike_accur
-                local LP_hurt_strike_accur = strike_hurt_box_test(char_RP,char_LP)
+                local LP_hurt_strike_accur = strike_hurt_box_test(char_RP,char_LP) -- (obj_hit,obj_hurt)
                 local RP_hurt_strike_accur = strike_hurt_box_test(char_LP,char_RP)
 
                 -- 检测打击受击盒交互
                 if LP_hurt_strike_accur then
-                    char_RP["strike_hit_function"](char_LP)
+                    char_RP["hit_function"]() -- RP更新主动攻击状态
                 end
                 if RP_hurt_strike_accur then
-                    char_LP["strike_hit_function"](char_RP)
+                    char_LP["hit_function"]() -- LP更新主动攻击状态
                 end
                 if LP_hurt_strike_accur then
-                    char_LP["strike_hurt_function"](char_RP)
+                    char_LP["hurt_function"](char_RP) -- RP更新被攻击状态
                 end
                 if RP_hurt_strike_accur then
-                    char_RP["strike_hurt_function"](char_LP)
+                    char_RP["hurt_function"](char_LP) -- LP更新被攻击状态
                 end
 
                 -- 检测双康

@@ -15,10 +15,14 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["LCD"] = {}
 
     -- state
+    obj_char_game_scene_char_RP["type"] = "character"
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
     obj_char_game_scene_char_RP["height_state"] = "stand" -- stand crouch air
-    obj_char_game_scene_char_RP["hurt_state"] = "idle" -- no_counter counter_1 counter_2 counter_3 block fd_block GP parry
-    obj_char_game_scene_char_RP["hurt_block_stun_animation"] = nil
+    obj_char_game_scene_char_RP["hit_type_state"] = "none" -- none strike throw
+    obj_char_game_scene_char_RP["hit_counter_state"] = 1 -- 当前攻击counter等级 1 small 2 mid 3 big
+    obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle punish counter block fd_block GP parry
+    obj_char_game_scene_char_RP["hurt_animation"] = nil
+    obj_char_game_scene_char_RP["block_animation"] = nil
 
     obj_char_game_scene_char_RP["strike_active"] = false -- 防止在同一动作的active多次触发
     obj_char_game_scene_char_RP["throw_active"] = false -- 防止在同一动作的active多次触发
@@ -32,12 +36,8 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["burst_inv"] = false
     obj_char_game_scene_char_RP["burst_inv_countdown"] = 0
 
-    obj_char_game_scene_char_RP["strike_hit_function"] = function() end
-    obj_char_game_scene_char_RP["throw_hit_function"] = function() end
-    obj_char_game_scene_char_RP["projectile_hit_function"] = function() end
-    obj_char_game_scene_char_RP["strike_hurt_function"] = function() end
-    obj_char_game_scene_char_RP["throw_hurt_function"] = function() end
-    obj_char_game_scene_char_RP["projectile_hurt_function"] = function() end
+    obj_char_game_scene_char_RP["hit_function"] = function() end
+    obj_char_game_scene_char_RP["hurt_function"] = function() end
 
     obj_char_game_scene_char_RP["knife_state"] = "off"
     obj_char_game_scene_char_RP["knife_anchor_pos"] = {168,210}
@@ -66,16 +66,13 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["game_speed"] = 1
     obj_char_game_scene_char_RP["game_speed_subframe"] = 1
     obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
-    obj_char_game_scene_char_RP["hitstop_countdown"] = 0
-    obj_char_game_scene_char_RP["blockedstop_countdown"] = 0
-    obj_char_game_scene_char_RP["hurtstop_countdown"] = 0
-    obj_char_game_scene_char_RP["blockstop_countdown"] = 0
-    obj_char_game_scene_char_RP["hurt_wiggle_amount"] = 0
+    obj_char_game_scene_char_RP["hit_hurt_block_stop_countdown"] = 0
+    obj_char_game_scene_char_RP["hurt_wiggle_amount"] = {0,0}
 
     -- collide
     obj_char_game_scene_char_RP["push_box"] = {0, -185, 130, 370}
     obj_char_game_scene_char_RP["collision_move_available"] = {1,1}
-    obj_char_game_scene_char_RP["hitbox_table"] = {nil,nil,{}} --{ 攻击类型 是投还是打， function值 内部为命中后的逻辑, 具体的box形状}
+    obj_char_game_scene_char_RP["hitbox_table"] = {nil,{}} --{ 攻击类型 是投还是打，具体的box形状}
     obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
 
     -- sub_obj
@@ -359,8 +356,8 @@ end
 
 function draw_game_scene_char_RP_logic_graphic_pos_sync()
     local obj = obj_char_game_scene_char_RP
-    obj[1] = obj["x"]-obj[5]*obj["anchor_pos"][1]
-    obj[2] = obj["y"]-obj[6]*obj["anchor_pos"][2]
+    obj[1] = obj["x"]+obj["hurt_wiggle_amount"][1]-obj[5]*obj["anchor_pos"][1]
+    obj[2] = obj["y"]+obj["hurt_wiggle_amount"][2]-obj[6]*obj["anchor_pos"][2]
 end
 
 function draw_game_scene_char_RP()
@@ -467,8 +464,8 @@ function draw_game_scene_char_RP_box()
 
     -- hit box
     local color = DEBUG_BOX_COLOR_RED
-    for i=1,#char_obj["hitbox_table"][3] do
-        local current_hit_box = char_obj["hitbox_table"][3][i]
+    for i=1,#char_obj["hitbox_table"] do
+        local current_hit_box = char_obj["hitbox_table"][i]
         local draw_box = {
             char_obj["x"] + (current_hit_box[1] - current_hit_box[3]/2)*char_obj[5],
             char_obj["y"] + current_hit_box[2] - current_hit_box[4]/2,
