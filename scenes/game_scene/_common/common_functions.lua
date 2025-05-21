@@ -99,6 +99,13 @@ end
 function common_game_scene_hit_function(char_obj)
     -- 只需要设置hitstop
     char_obj["state_cache"] = char_obj["state"]
-    char_obj["state"] = "hit_stop"
+    char_obj["state"] = "hitstop"
+
+end
+
+function common_game_scene_hurt_function(char_obj)
+    -- 只需要设置hurtstop
+    char_obj["state_cache"] = char_obj["state"]
+    char_obj["state"] = "hurtstop"
 
 end

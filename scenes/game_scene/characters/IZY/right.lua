@@ -24,8 +24,15 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["hit_type_state"] = "none" -- none strike throw burst
     obj_char_game_scene_char_RP["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
     obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle punish counter GP parry
-    obj_char_game_scene_char_RP["hurt_animation"] = nil
-    obj_char_game_scene_char_RP["block_animation"] = nil
+    obj_char_game_scene_char_RP["stand_hurt_animation"] = nil
+    obj_char_game_scene_char_RP["stand_block_animation"] = nil
+    obj_char_game_scene_char_RP["crouch_hurt_animation"] = nil
+    obj_char_game_scene_char_RP["crouch_block_animation"] = nil
+    obj_char_game_scene_char_RP["air_hurt_animation"] = nil
+    obj_char_game_scene_char_RP["air_block_animation"] = nil
+
+    obj_char_game_scene_char_RP["current_hurt_animation"] = nil
+    obj_char_game_scene_char_RP["current_block_animation"] = nil
     obj_char_game_scene_char_RP["current_animation_length"] = 0 -- 如果为0则是循环动画
 
     obj_char_game_scene_char_RP["strike_active"] = false -- 防止在同一动作的active多次触发
@@ -70,17 +77,17 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["game_speed"] = 1
     obj_char_game_scene_char_RP["game_speed_subframe"] = 1
     obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
-    obj_char_game_scene_char_RP["hit_hurt_block_stop_countdown"] = 0
-    obj_char_game_scene_char_RP["hurt_stop_wiggle_x"] = 0
-    obj_char_game_scene_char_RP["hurt_stop_wiggle_y"] = 0
-    obj_char_game_scene_char_RP["FCT"]["hurt_stop_wiggle_x"] = 0
-    obj_char_game_scene_char_RP["LCT"]["hurt_stop_wiggle_x"] = 0
-    obj_char_game_scene_char_RP["LCD"]["hurt_stop_wiggle_x"] = 0
-    obj_char_game_scene_char_RP["FCT"]["hurt_stop_wiggle_y"] = 0
-    obj_char_game_scene_char_RP["LCT"]["hurt_stop_wiggle_y"] = 0
-    obj_char_game_scene_char_RP["LCD"]["hurt_stop_wiggle_y"] = 0
-    obj_char_game_scene_char_RP["current_hurt_stop_wiggle_x_animation"] = {}
-    obj_char_game_scene_char_RP["current_hurt_stop_wiggle_y_animation"] = {}
+    obj_char_game_scene_char_RP["hit_hurt_blockstop_countdown"] = 0
+    obj_char_game_scene_char_RP["hurtstop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["hurtstop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["FCT"]["hurtstop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["LCT"]["hurtstop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["LCD"]["hurtstop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["FCT"]["hurtstop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["LCT"]["hurtstop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["LCD"]["hurtstop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["current_hurtstop_wiggle_x_animation"] = {}
+    obj_char_game_scene_char_RP["current_hurtstop_wiggle_y_animation"] = {}
 
     -- collide
     obj_char_game_scene_char_RP["pushbox"] = {0, -185, 130, 370}
@@ -255,6 +262,18 @@ function load_game_scene_anim_char_RP()
     anim_char_RP_overdrive = load_game_scene_anim_char_IZY_overdrive(char_obj,"R")
     -- 拳脚动画
     anim_char_RP_5P = load_game_scene_anim_char_IZY_5P(char_obj,"R")
+    anim_char_RP_5P_stand_hurt_high = load_game_scene_anim_char_IZY_5P_stand_hurt_high(char_obj,"R")
+
+end
+
+function load_game_scene_hurtbox_data_RP()
+    obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"] = {}
+    obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][0] = {{-10, -200, 195, 400},{-27, -430, 100, 60}}
+    obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][1] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
+    obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][2] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
+    obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][3] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
+    obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][4] = {{-9, -200, 200, 400},{-34, -425, 115, 50}}
+    obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][5] = {{-9, -200, 200, 400},{-34, -425, 115, 50}}
 
 end
 
@@ -303,13 +322,21 @@ function state_machine_char_game_scene_char_RP()
         ["before_ease_in"] = function()
             character_animator(obj_char,anim_char_RP_stand_idle)
         end,
-        ["hit_stop"] = function()
-            character_animator(obj_char,anim_char_RP_stand_idle)
+        ["hitstop"] = function()
+            if obj_char["hit_hurt_blockstop_countdown"] > 0 then
+                obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
+            else
+                obj_char["state"] = obj_char["state_cache"]
+            end
         end,
-        ["hurt_stop"] = function()
-            character_animator(obj_char,anim_char_RP_stand_idle)
+        ["hurtstop"] = function()
+            if obj_char["hit_hurt_blockstop_countdown"] > 0 then
+                obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
+            else
+                obj_char["state"] = obj_char["state_cache"]
+            end
         end,
-        ["block_stop"] = function()
+        ["blockstop"] = function()
             character_animator(obj_char,anim_char_RP_stand_idle)
         end,
         ["stand_idle"] = function()
@@ -391,8 +418,8 @@ end
 
 function draw_game_scene_char_RP_logic_graphic_pos_sync()
     local obj = obj_char_game_scene_char_RP
-    obj[1] = obj["x"]+obj["hurt_stop_wiggle_x"]-obj[5]*obj["anchor_pos"][1]
-    obj[2] = obj["y"]+obj["hurt_stop_wiggle_y"]-obj[6]*obj["anchor_pos"][2]
+    obj[1] = obj["x"]+obj["hurtstop_wiggle_x"]-obj[5]*obj["anchor_pos"][1]
+    obj[2] = obj["y"]+obj["hurtstop_wiggle_y"]-obj[6]*obj["anchor_pos"][2]
 end
 
 function draw_game_scene_char_RP()

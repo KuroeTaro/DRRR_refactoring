@@ -85,14 +85,18 @@ function load_game_scene_anim_char_IZY_stand_idle(char_obj)
             ,{146.0625,496.1875}
         }
 
-
         -- state
         char_obj["height_state"] = "stand" -- stand crouch air
         char_obj["hit_type_state"] = "none" -- none strike throw burst
         char_obj["hit_counter_state"] = 1 -- 当前攻击counter等级 1 small 2 mid 3 big
         char_obj["hurt_state"] = "idle" -- idle punish counter GP parry
-        char_obj["hurt_animation"] = nil
-        char_obj["block_animation"] = nil
+        char_obj["stand_hurt_animation"] = nil
+        char_obj["stand_block_animation"] = nil
+        char_obj["crouch_hurt_animation"] = nil
+        char_obj["crouch_block_animation"] = nil
+        char_obj["air_hurt_animation"] = nil
+        char_obj["air_block_animation"] = nil
+
 
         char_obj["strike_active"] = false -- 防止在同一动作的active多次触发
         char_obj["throw_active"] = false -- 防止在同一动作的active多次触发
@@ -1118,6 +1122,13 @@ function load_game_scene_anim_char_IZY_5P(char_obj,side)
         char_obj["hit_type_state"] = "strike" -- none strike throw burst
         char_obj["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
         char_obj["hurt_state"] = "counter" -- idle punish counter block fd_block GP parry
+        char_obj["stand_hurt_animation"] = anim_char_LP_5P_stand_hurt_high
+        char_obj["stand_block_animation"] = nil     -- anim_char_LP_5P_stand_block_high
+        char_obj["crouch_hurt_animation"] = nil     -- anim_char_LP_5P_crouch_hurt
+        char_obj["crouch_block_animation"] = nil    -- anim_char_LP_5P_crouch_block
+        char_obj["air_hurt_animation"] = nil        -- anim_char_LP_5P_air_hurt
+        char_obj["air_block_animation"] = nil       -- anim_char_LP_5P_air_block
+        
         char_obj["friction"] = friction
         char_obj["throw_inv"] = true
         char_obj["throw_inv_countdown"] = 8
@@ -1142,7 +1153,7 @@ function load_game_scene_anim_char_IZY_5P(char_obj,side)
         add_heat_ability_overdrive()
         char_obj["strike_active"] = true 
         char_obj["hit_function"] = common_game_scene_hit_function
-        char_obj["hit_hurt_block_stop_countdown"] = 10
+        char_obj["hit_hurt_blockstop_countdown"] = 10
             -- 根据状态设置hitstop状态和动画 存储缓存状态 使得结束hitstop状态后可以回到5p后续动画
         char_obj["hurt_function"] = function() 
             -- 根据对方的状态设置hurtstop状态 动画
@@ -1441,11 +1452,12 @@ function load_game_scene_anim_char_IZY_5P(char_obj,side)
 
 end
 
-function load_game_scene_anim_char_IZY_5P_hurt_stand_high(char_obj,side)
+function load_game_scene_anim_char_IZY_5P_stand_hurt_high(char_obj,side)
     local res = {}
     local overdrive_add = 0.05
     local heat_add = 0.05
     local ability_add = 0.05
+    local other_side_char_obj = common_game_scene_change_character(side)
     local other_side_hurtbox_data = common_game_scene_change_character_hurtbox(side)
     local function add_heat_ability_overdrive()
         if char_obj["overdrive"][1] < char_obj["overdrive"][2] then
@@ -1568,10 +1580,14 @@ function load_game_scene_anim_char_IZY_5P_hurt_stand_high(char_obj,side)
         char_obj["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][0]
 
         -- state
+        local hurt_horizontal_velocity = 10
+        if other_side_char_obj["hurt_state"] == "counter" then
+            hurt_horizontal_velocity = hurt_horizontal_velocity * 1.5
+        end
         if char_obj["x"] < common_game_scene_change_character(side)["x"] then
-            char_obj["velocity"] = {10,0} -- 根据当前敌我x位置变化
+            char_obj["velocity"] = {hurt_horizontal_velocity,0} -- 根据当前敌我x位置变化
         elseif char_obj["x"] > common_game_scene_change_character(side)["x"] then
-            char_obj["velocity"] = {-10,0} -- 根据当前敌我x位置变化
+            char_obj["velocity"] = {-hurt_horizontal_velocity,0} -- 根据当前敌我x位置变化
         else
             char_obj["velocity"] = {0,0} -- 根据当前敌我x位置变化
         end
@@ -1583,7 +1599,6 @@ function load_game_scene_anim_char_IZY_5P_hurt_stand_high(char_obj,side)
         char_obj["throw_inv_countdown"] = 18
         add_heat_ability_overdrive()
     end
-
     res[2] = function() 
         -- draw
         char_obj[8] = 2
@@ -1677,7 +1692,6 @@ function load_game_scene_anim_char_IZY_5P_hurt_stand_high(char_obj,side)
         -- state
         add_heat_ability_overdrive()
     end
-
     res[6] = function() 
         -- draw
         char_obj[8] = 3
@@ -1768,7 +1782,6 @@ function load_game_scene_anim_char_IZY_5P_hurt_stand_high(char_obj,side)
         -- state
         add_heat_ability_overdrive()
     end
-
     res[9] = function() 
         -- draw
         char_obj[8] = 4
@@ -1862,7 +1875,6 @@ function load_game_scene_anim_char_IZY_5P_hurt_stand_high(char_obj,side)
         -- state
         add_heat_ability_overdrive()
     end
-
     res[11] = function() 
         -- draw
         char_obj[8] = 5
@@ -1953,7 +1965,6 @@ function load_game_scene_anim_char_IZY_5P_hurt_stand_high(char_obj,side)
         -- state
         add_heat_ability_overdrive()
     end
-
     res[13] = function() 
         -- animation end
     end
