@@ -26,7 +26,7 @@ image_data["5P_sprite_batch"] = compress_module("asset/game_scene/characters/IZY
 image_data["overdrive_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_overdrive.dds")
 
 
-image_data["stand_high_hurt_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_stand_high_hurt.dds")
+image_data["stand_hurt_high_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_stand_hurt_high.dds")
 
 
 image_data["overdrive_badge_sprite_batch"] = compress_module("asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.dds")

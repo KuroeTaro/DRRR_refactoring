@@ -15,14 +15,18 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["LCD"] = {}
 
     -- state
+    obj_char_game_scene_char_RP["player_side"] = "R"
     obj_char_game_scene_char_RP["type"] = "character"
     obj_char_game_scene_char_RP["state"] = "before_ease_in"
+    obj_char_game_scene_char_RP["state_cache"] = "none"
+    obj_char_game_scene_char_RP["sprite_sheet_state"] = "stand_idle"
     obj_char_game_scene_char_RP["height_state"] = "stand" -- stand crouch air
-    obj_char_game_scene_char_RP["hit_type_state"] = "none" -- none strike throw
-    obj_char_game_scene_char_RP["hit_counter_state"] = 1 -- 当前攻击counter等级 1 small 2 mid 3 big
-    obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle punish counter block fd_block GP parry
+    obj_char_game_scene_char_RP["hit_type_state"] = "none" -- none strike throw burst
+    obj_char_game_scene_char_RP["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
+    obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle punish counter GP parry
     obj_char_game_scene_char_RP["hurt_animation"] = nil
     obj_char_game_scene_char_RP["block_animation"] = nil
+    obj_char_game_scene_char_RP["current_animation_length"] = 0 -- 如果为0则是循环动画
 
     obj_char_game_scene_char_RP["strike_active"] = false -- 防止在同一动作的active多次触发
     obj_char_game_scene_char_RP["throw_active"] = false -- 防止在同一动作的active多次触发
@@ -38,6 +42,7 @@ function load_game_scene_obj_char_RP()
 
     obj_char_game_scene_char_RP["hit_function"] = function() end
     obj_char_game_scene_char_RP["hurt_function"] = function() end
+    obj_char_game_scene_char_RP["parry_function"] = function() end
 
     obj_char_game_scene_char_RP["knife_state"] = "off"
     obj_char_game_scene_char_RP["knife_anchor_pos"] = {168,210}
@@ -46,7 +51,6 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["knife_f"] = 0 -- obj[knife_8]匕首逻辑上的帧数
 
     -- state_number
-    obj_char_game_scene_char_RP["player_side"] = "R"
     obj_char_game_scene_char_RP["velocity"] = {0,0}
     obj_char_game_scene_char_RP["gravity"] = 9.8
     obj_char_game_scene_char_RP["friction"] = 9.8
@@ -67,12 +71,21 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["game_speed_subframe"] = 1
     obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
     obj_char_game_scene_char_RP["hit_hurt_block_stop_countdown"] = 0
-    obj_char_game_scene_char_RP["hurt_wiggle_amount"] = {0,0}
+    obj_char_game_scene_char_RP["hurt_stop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["hurt_stop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["FCT"]["hurt_stop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["LCT"]["hurt_stop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["LCD"]["hurt_stop_wiggle_x"] = 0
+    obj_char_game_scene_char_RP["FCT"]["hurt_stop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["LCT"]["hurt_stop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["LCD"]["hurt_stop_wiggle_y"] = 0
+    obj_char_game_scene_char_RP["current_hurt_stop_wiggle_x_animation"] = {}
+    obj_char_game_scene_char_RP["current_hurt_stop_wiggle_y_animation"] = {}
 
     -- collide
-    obj_char_game_scene_char_RP["push_box"] = {0, -185, 130, 370}
+    obj_char_game_scene_char_RP["pushbox"] = {0, -185, 130, 370}
     obj_char_game_scene_char_RP["collision_move_available"] = {1,1}
-    obj_char_game_scene_char_RP["hitbox_table"] = {nil,{}} --{ 攻击类型 是投还是打，具体的box形状}
+    obj_char_game_scene_char_RP["hitbox_table"] = {}
     obj_char_game_scene_char_RP["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
 
     -- sub_obj
@@ -81,86 +94,83 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["black_overlay_table"] = {}
     obj_char_game_scene_char_RP["shadow_box_table"] = {
         {
-            {-3.88, -21.50,
-            -19.00, -17.38}
+            {-6.75, -20.00,
+            -19.38, -3.88}
             ,
-            {-19.00, -17.38,
-            -20.88, -12.00}
+            {-19.38, -3.88,
+            -15.88, 12.75}
             ,
-            {-20.88, -12.00,
-            -14.25, 15.63}
+            {-15.88, 12.75,
+            -7.13, 21.13}
             ,
-            {-14.25, 15.63,
-            -7.63, 20.50}
+            {-7.13, 21.13,
+            2.50, 22.00}
             ,
-            {-7.63, 20.50,
-            3.25, 22.13}
+            {2.50, 22.00,
+            19.13, 17.50}
             ,
-            {3.25, 22.13,
-            13.63, 21.25}
+            {19.13, 17.50,
+            19.63, 5.38}
             ,
-            {13.63, 21.25,
-            22.50, 16.38}
+            {19.63, 5.38,
+            12.46, -7.97}
             ,
-            {22.50, 16.38,
-            21.88, 4.63}
-            ,
-            {21.88, 4.63,
-            11.88, -14.63}
-            ,
-            {11.88, -14.63,
-            -3.88, -21.50}
+            {12.46, -7.97,
+            -6.75, -20.00}
         },
         {
-            {-17.38, -6.38,
-            -37.88, -4.50}
+            {-22.38, -8.50,
+            -37.50, -2.38}
             ,
-            {-37.88, -4.50,
-            -37.63, 6.13}
+            {-37.50, -2.38,
+            -37.56, 5.31}
             ,
-            {-37.63, 6.13,
-            -31.01, 10.17}
+            {-37.56, 5.31,
+            -34.44, 8.81}
             ,
-            {-31.01, 10.17,
-            -17.60, 10.46}
+            {-34.44, 8.81,
+            -28.51, 10.75}
             ,
-            {-17.60, 10.46,
-            -3.88, 18.75}
+            {-28.51, 10.75,
+            -18.38, 10.44}
             ,
-            {-3.88, 18.75,
-            8.88, 19.50}
+            {-18.38, 10.44,
+            -2.63, 18.94}
             ,
-            {8.88, 19.50,
-            20.75, 18.75}
+            {-2.63, 18.94,
+            8.94, 19.81}
             ,
-            {20.75, 18.75,
-            32.84, 15.79}
+            {8.94, 19.81,
+            26.19, 17.75}
             ,
-            {32.84, 15.79,
-            38.25, 11.63}
+            {26.19, 17.75,
+            34.02, 15.55}
             ,
-            {38.25, 11.63,
-            37.88, 5.00}
+            {34.02, 15.55,
+            37.19, 11.00}
             ,
-            {37.88, 5.00,
-            35.88, 0.24}
+            {37.19, 11.00,
+            36.50, 3.38}
             ,
-            {35.88, 0.24,
-            30.38, -2.75}
+            {36.50, 3.38,
+            31.93, -0.54}
             ,
-            {30.38, -2.75,
-            23.96, -4.23}
+            {31.93, -0.54,
+            25.50, -2.75}
             ,
-            {23.96, -4.23,
-            12.00, -5.00}
+            {25.50, -2.75,
+            12.19, -3.44}
             ,
-            {12.00, -5.00,
-            -17.38, -6.38}
+            {12.19, -3.44,
+            7.38, -8.75}
+            ,
+            {7.38, -8.75,
+            -22.38, -8.50}
         }
     }
     obj_char_game_scene_char_RP["shadow_box_pos"] ={
-        {44.0,517.0}
-        ,{146.0,497.0}
+        {44.625,516.875}
+        ,{146.0625,496.1875}
     }
 
     -- draw_correction
@@ -185,14 +195,6 @@ function order_load_game_scene_char_RP_frames(load_order)
         [1] = function()
             image_sprite_sheet_table_char_game_scene_RP = {}
 
-            image_sprite_sheet_table_char_game_scene_RP["before_ease_in"] = 
-            sprite_sheet_load(
-                "asset/game_scene/characters/IZY/_character/IZY_stand_idle.json",
-                love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
-            )
-
-
-
             image_sprite_sheet_table_char_game_scene_RP["stand_idle"] = 
             sprite_sheet_load(
                 "asset/game_scene/characters/IZY/_character/IZY_stand_idle.json",
@@ -214,10 +216,10 @@ function order_load_game_scene_char_RP_frames(load_order)
 
 
 
-            image_sprite_sheet_table_char_game_scene_RP["stand_high_hurt"] = 
+            image_sprite_sheet_table_char_game_scene_RP["stand_hurt_high"] = 
             sprite_sheet_load(
-                "asset/game_scene/characters/IZY/_character/IZY_stand_high_hurt.json",
-                love.graphics.newImage(PLAYER_ASSET_DATA["stand_high_hurt_sprite_batch"])
+                "asset/game_scene/characters/IZY/_character/IZY_stand_hurt_high.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["stand_hurt_high_sprite_batch"])
             )
 
 
@@ -251,6 +253,8 @@ function load_game_scene_anim_char_RP()
     anim_char_RP_stand_idle = load_game_scene_anim_char_IZY_stand_idle(char_obj)
     -- overdrive启动动画
     anim_char_RP_overdrive = load_game_scene_anim_char_IZY_overdrive(char_obj,"R")
+    -- 拳脚动画
+    anim_char_RP_5P = load_game_scene_anim_char_IZY_5P(char_obj,"R")
 
 end
 
@@ -299,6 +303,15 @@ function state_machine_char_game_scene_char_RP()
         ["before_ease_in"] = function()
             character_animator(obj_char,anim_char_RP_stand_idle)
         end,
+        ["hit_stop"] = function()
+            character_animator(obj_char,anim_char_RP_stand_idle)
+        end,
+        ["hurt_stop"] = function()
+            character_animator(obj_char,anim_char_RP_stand_idle)
+        end,
+        ["block_stop"] = function()
+            character_animator(obj_char,anim_char_RP_stand_idle)
+        end,
         ["stand_idle"] = function()
             character_animator(obj_char,anim_char_RP_stand_idle)
             if test_input_sys_press_or_hold(input["UP"]) then
@@ -308,7 +321,15 @@ function state_machine_char_game_scene_char_RP()
                 -- to over_drive
                 init_character_anim_with(obj_char,anim_char_RP_overdrive)
                 obj_char["state"] = "overdrive"
+                obj_char["sprite_sheet_state"] = "overdrive"
                 obj_char["overdrive"][3] = "on"
+                obj_char["current_animation_length"] = 80
+            elseif test_input_sys_press_or_hold(input["P"]) then
+                -- to 5P
+                init_character_anim_with(obj_char,anim_char_RP_5P)
+                obj_char["state"] = "5P"
+                obj_char["sprite_sheet_state"] = "5P"
+                obj_char["current_animation_length"] = 31
             end
         end,
         ["overdrive"] = function()
@@ -316,11 +337,25 @@ function state_machine_char_game_scene_char_RP()
             if test_input_sys_press_or_hold(input["RC"]) and obj_char["f"] < 29 then
                 -- to overdrive RC
                 
-            elseif obj_char["f"] >= 80 then
+            elseif obj_char["f"] >= obj_char["current_animation_length"] then
                 -- to idle
                 init_character_anim_with(obj_char,anim_char_RP_stand_idle)
                 obj_char[8] = 0
                 obj_char["state"] = "stand_idle"
+                obj_char["sprite_sheet_state"] = "stand_idle"
+                obj_char["current_animation_length"] = 0
+            end
+        end,
+        ["5P"] = function()
+            character_animator(obj_char,anim_char_RP_5P)
+            
+            if obj_char["f"] >= obj_char["current_animation_length"] then
+                -- to idle
+                init_character_anim_with(obj_char,anim_char_RP_stand_idle)
+                obj_char[8] = 0
+                obj_char["state"] = "stand_idle"
+                obj_char["sprite_sheet_state"] = "stand_idle"
+                obj_char["current_animation_length"] = 0
             end
         end,
     }
@@ -356,14 +391,14 @@ end
 
 function draw_game_scene_char_RP_logic_graphic_pos_sync()
     local obj = obj_char_game_scene_char_RP
-    obj[1] = obj["x"]+obj["hurt_wiggle_amount"][1]-obj[5]*obj["anchor_pos"][1]
-    obj[2] = obj["y"]+obj["hurt_wiggle_amount"][2]-obj[6]*obj["anchor_pos"][2]
+    obj[1] = obj["x"]+obj["hurt_stop_wiggle_x"]-obj[5]*obj["anchor_pos"][1]
+    obj[2] = obj["y"]+obj["hurt_stop_wiggle_y"]-obj[6]*obj["anchor_pos"][2]
 end
 
 function draw_game_scene_char_RP()
     local obj = obj_char_game_scene_char_RP
     local camera = obj_stage_game_scene_camera
-    local image_sprite_sheet = image_sprite_sheet_table_char_game_scene_RP[obj["state"]]
+    local image_sprite_sheet = image_sprite_sheet_table_char_game_scene_RP[obj["sprite_sheet_state"]]
 
     local x = obj[1]
     local y = obj[2]
@@ -451,44 +486,44 @@ function draw_game_scene_char_RP_box()
     local char_obj = obj_char_game_scene_char_RP
     local camera = obj_stage_game_scene_camera
 
-    -- push box
-    local color = DEBUG_BOX_COLOR_YELLOW
-    local push_box = {
-        char_obj["x"] + (char_obj["push_box"][1] - char_obj["push_box"][3]/2)*char_obj[5],
-        char_obj["y"] + char_obj["push_box"][2] - char_obj["push_box"][4]/2,
-        char_obj[3],char_obj[5],1
-    }
-    push_box["w"] = char_obj["push_box"][3]
-    push_box["h"] = char_obj["push_box"][4]
-    draw_3d_color_box(camera,push_box,color)
+    -- hurt box
+    local color = DEBUG_BOX_COLOR_BLUE
+    for i=1,#char_obj["hurtbox_table"] do
+        local current_hurtbox = char_obj["hurtbox_table"][i]
+        local draw_box = {
+            char_obj["x"] + (current_hurtbox[1] - current_hurtbox[3]/2)*char_obj[5],
+            char_obj["y"] + current_hurtbox[2] - current_hurtbox[4]/2,
+            char_obj[3],char_obj[5],1
+        }
+        draw_box["w"] = current_hurtbox[3]
+        draw_box["h"] = current_hurtbox[4]
+        draw_3d_color_box(camera,draw_box,color)
+    end
 
     -- hit box
     local color = DEBUG_BOX_COLOR_RED
     for i=1,#char_obj["hitbox_table"] do
-        local current_hit_box = char_obj["hitbox_table"][i]
+        local current_hitbox = char_obj["hitbox_table"][i]
         local draw_box = {
-            char_obj["x"] + (current_hit_box[1] - current_hit_box[3]/2)*char_obj[5],
-            char_obj["y"] + current_hit_box[2] - current_hit_box[4]/2,
+            char_obj["x"] + (current_hitbox[1] - current_hitbox[3]/2)*char_obj[5],
+            char_obj["y"] + current_hitbox[2] - current_hitbox[4]/2,
             char_obj[3],char_obj[5],1
         }
-        draw_box["w"] = current_hit_box[3]
-        draw_box["h"] = current_hit_box[4]
+        draw_box["w"] = current_hitbox[3]
+        draw_box["h"] = current_hitbox[4]
         draw_3d_color_box(camera,draw_box,color)
     end
 
-    -- hurt box
-    local color = DEBUG_BOX_COLOR_BLUE
-    for i=1,#char_obj["hurtbox_table"] do
-        local current_hurt_box = char_obj["hurtbox_table"][i]
-        local draw_box = {
-            char_obj["x"] + (current_hurt_box[1] - current_hurt_box[3]/2)*char_obj[5],
-            char_obj["y"] + current_hurt_box[2] - current_hurt_box[4]/2,
-            char_obj[3],char_obj[5],1
-        }
-        draw_box["w"] = current_hurt_box[3]
-        draw_box["h"] = current_hurt_box[4]
-        draw_3d_color_box(camera,draw_box,color)
-    end
+    -- push box
+    local color = DEBUG_BOX_COLOR_YELLOW
+    local pushbox = {
+        char_obj["x"] + (char_obj["pushbox"][1] - char_obj["pushbox"][3]/2)*char_obj[5],
+        char_obj["y"] + char_obj["pushbox"][2] - char_obj["pushbox"][4]/2,
+        char_obj[3],char_obj[5],1
+    }
+    pushbox["w"] = char_obj["pushbox"][3]
+    pushbox["h"] = char_obj["pushbox"][4]
+    draw_3d_color_box(camera,pushbox,color)
 
 end
 

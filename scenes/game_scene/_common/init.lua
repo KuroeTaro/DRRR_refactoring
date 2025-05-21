@@ -44,6 +44,7 @@ function load_game_scene_common_shader()
     shader_game_scene_fractal_noise = love.graphics.newShader("shaders/game_fractal_noise.glsl")
     shader_game_scene_radial_blur = love.graphics.newShader("shaders/radial_blur.glsl")
     shader_game_scene_brightness_contrast = love.graphics.newShader("shaders/brightness_contrast.glsl")
+    shader_game_scene_bc7_alpha_fix = love.graphics.newShader("shaders/bc7_alpha_fix.glsl")
     
     CANVAS = love.graphics.newCanvas(1600,900)
     CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)

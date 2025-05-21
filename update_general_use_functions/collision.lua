@@ -1,15 +1,24 @@
--- 所有push_box hit_box hurt_box的长宽都必须是双数 要能被2整除 使得box的每个判定均匀的分布在最小单位
--- 所有push_box 必须在对象的左右中央 下方锚点在0上
+-- 所有pushbox hitbox hurtbox的长宽都必须是双数 要能被2整除 使得box的每个判定均匀的分布在最小单位
+-- 所有pushbox 必须在对象的左右中央 下方锚点在0上
 
-function collision_box_to_real_world_box(obj,box_name)
-    local res = {
-        obj[box_name][1]*obj[5] + obj["x"],
-        obj[box_name][2]*obj[6] + obj["y"],
-        obj[box_name][3],
-        obj[box_name][4]
-    }
-
-    return res
+function collision_box_to_real_world_box(obj,box_name,box)
+    if box_name == "pushbox" then
+        local res = {
+            obj[box_name][1]*obj[5] + obj["x"],
+            obj[box_name][2]*obj[6] + obj["y"],
+            obj[box_name][3],
+            obj[box_name][4]
+        }
+        return res
+    else
+        local res = {
+            box[1]*obj[5] + obj["x"],
+            box[2]*obj[6] + obj["y"],
+            box[3],
+            box[4]
+        }
+        return res
+    end
 
 end
 
@@ -35,16 +44,16 @@ end
 
 
 
-function push_box_relocate_y(obj)
-    local box = collision_box_to_real_world_box(obj,"push_box")
+function pushbox_relocate_y(obj)
+    local box = collision_box_to_real_world_box(obj,"pushbox")
     local stage_B_collision = 365
     local box_B_collision = box[2]+box[4]/2
     obj["y"] = math.max(box_B_collision,stage_B_collision)
 
 end
 
-function push_box_stage_relocate_x(obj)
-    local box = collision_box_to_real_world_box(obj,"push_box")
+function pushbox_stage_relocate_x(obj)
+    local box = collision_box_to_real_world_box(obj,"pushbox")
     local left_stage_collision = -1600.0
     local right_stage_collision = 1600.0
     if box[1] - box[3]/2 <= left_stage_collision then
@@ -59,9 +68,9 @@ function push_box_stage_relocate_x(obj)
     
 end
 
-function push_box_dynamic_normal_aabb_relocate_x(obj_L,obj_R)
-    local box_L = collision_box_to_real_world_box(obj_L,"push_box")
-    local box_R = collision_box_to_real_world_box(obj_R,"push_box")
+function pushbox_dynamic_normal_aabb_relocate_x(obj_L,obj_R)
+    local box_L = collision_box_to_real_world_box(obj_L,"pushbox")
+    local box_R = collision_box_to_real_world_box(obj_R,"pushbox")
     if collision_box_aabb_detection(box_L,box_R) then
         local mid_v = (obj_L["velocity"][1]+obj_R["velocity"][1])/2
         obj_L["velocity"][1] = mid_v
@@ -146,19 +155,32 @@ end
 
 
 
-function strike_hurt_box_test(hit_obj,hurt_obj)
+function strike_hurtbox_test(hit_obj,hurt_obj)
+    if hit_obj["hit_type_state"] ~= "strike" or hurt_obj["strike_inv"] == true or hit_obj["strike_active"] == false then
+        return false
+    end
+    for i=1,#hit_obj["hitbox_table"] do
+        local current_hitbox = collision_box_to_real_world_box(hit_obj,"hitbox",hit_obj["hitbox_table"][i])
+        for j=1,#hurt_obj["hurtbox_table"] do
+            local current_hurtbox = collision_box_to_real_world_box(hurt_obj,"hurtbox",hurt_obj["hurtbox_table"][i])
+            if collision_box_aabb_detection(current_hitbox,current_hurtbox) then
+                hit_obj["strike_active"] = false
+                return true
+            end
+        end
+    end
+    return false
+end
+
+function throw_hurtbox_test(hit_obj,hurt_obj)
 
 end
 
-function throw_hurt_box_test(hit_obj,hurt_obj)
+function projectile_hurtbox_test(hit_obj,hurt_obj)
 
 end
 
-function projectile_hurt_box_test(hit_obj,hurt_obj)
-
-end
-
-function strike_hit_box_clash_test()
+function strike_hitbox_clash_test()
 
 end
 
@@ -168,14 +190,14 @@ end
     -- loop * 10
         -- 角色更新位置 1/10
             -- 如果为第十次 使用存储角色位置速度
-        -- 检测push_box 更新Y位置
-        -- 检测push_box 更新X位置 static_relocate_x
-        -- 检测push_box 更新X位置 dynamic_relocate_x
+        -- 检测pushbox 更新Y位置
+        -- 检测pushbox 更新X位置 static_relocate_x
+        -- 检测pushbox 更新X位置 dynamic_relocate_x
         -- 检测打击受击盒 
             -- 如果命中 更新角色 状态 速度 和 碰撞盒 跳出loop
-    -- 检测push_box 更新Y位置
-    -- 检测push_box 更新X位置 static_relocate_x
-    -- 检测push_box 更新X位置 dynamic_relocate_x
+    -- 检测pushbox 更新Y位置
+    -- 检测pushbox 更新X位置 static_relocate_x
+    -- 检测pushbox 更新X位置 dynamic_relocate_x
 
 
 
@@ -191,9 +213,9 @@ end
 
 -- optimal CCD algo but not 100% currect
 -------------------------------------------------------------------------------------------------
-    -- function push_box_dynamic_CCD(obj_A,obj_B,time_enter,time_exit)
-    --     local box_A_start = collision_box_to_real_world_box(obj_A,"push_box")
-    --     local box_B_start = collision_box_to_real_world_box(obj_B,"push_box")
+    -- function pushbox_dynamic_CCD(obj_A,obj_B,time_enter,time_exit)
+    --     local box_A_start = collision_box_to_real_world_box(obj_A,"pushbox")
+    --     local box_B_start = collision_box_to_real_world_box(obj_B,"pushbox")
     --     local velocity_A = obj_A["velocity"]
     --     local velocity_B = obj_B["velocity"]
     --     local box_A_end = {

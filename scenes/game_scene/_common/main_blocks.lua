@@ -43,6 +43,8 @@ function update_game_scene_main_training()
             then
                 SCENE_TIMER = 0
                 update_flow_controller["state"] = "main"
+                obj_char_game_scene_char_LP["state"] = "stand_idle"
+                obj_char_game_scene_char_RP["state"] = "stand_idle"
             end
         end,
         ["annoucer_ease_in_1"] = function()
@@ -115,14 +117,14 @@ function update_game_scene_main_training()
             -- loop * 16
                 -- 角色更新位置 1/16
                 -- 飞行道具更新位置 1/16
-                -- 检测push_box 更新Y位置
-                -- 检测push_box 更新X位置 static_relocate_x
-                -- 检测push_box 更新X位置 dynamic_relocate_x
+                -- 检测pushbox 更新Y位置
+                -- 检测pushbox 更新X位置 static_relocate_x
+                -- 检测pushbox 更新X位置 dynamic_relocate_x
                 -- 检测打击受击盒 
                     -- 如果命中 更新角色 状态 速度 和 碰撞盒 跳出loop
-            -- 检测push_box 更新Y位置
-            -- 检测push_box 更新X位置 static_relocate_x
-            -- 检测push_box 更新X位置 dynamic_relocate_x
+            -- 检测pushbox 更新Y位置
+            -- 检测pushbox 更新X位置 static_relocate_x
+            -- 检测pushbox 更新X位置 dynamic_relocate_x
 
             -- 删除已经命中的飞行道具
 
@@ -171,29 +173,29 @@ function update_game_scene_main_training()
                     end
                 end
 
-                -- 检测push_box 更新Y位置
-                push_box_relocate_y(char_LP)
-                push_box_relocate_y(char_RP)
+                -- 检测pushbox 更新Y位置
+                pushbox_relocate_y(char_LP)
+                pushbox_relocate_y(char_RP)
 
-                -- 检测push_box 更新X位置 static_relocate_x
-                push_box_stage_relocate_x(char_LP)
-                push_box_stage_relocate_x(char_RP)
+                -- 检测pushbox 更新X位置 static_relocate_x
+                pushbox_stage_relocate_x(char_LP)
+                pushbox_stage_relocate_x(char_RP)
 
-                -- 检测push_box 更新X位置 dynamic_relocate_x
-                push_box_dynamic_normal_aabb_relocate_x(char_LP,char_RP)
+                -- 检测pushbox 更新X位置 dynamic_relocate_x
+                pushbox_dynamic_normal_aabb_relocate_x(char_LP,char_RP)
 
 
                 -- 打击受击检测
                 -- 检测投受击盒交互
-                local LP_hurt_throw_accur = throw_hurt_box_test(char_RP,char_LP) -- (obj_hit,obj_hurt)
-                local RP_hurt_throw_accur = throw_hurt_box_test(char_LP,char_RP)
+                local LP_hurt_throw_accur = throw_hurtbox_test(char_RP,char_LP) -- (obj_hit,obj_hurt)
+                local RP_hurt_throw_accur = throw_hurtbox_test(char_LP,char_RP)
 
                 -- 检测打击受击盒交互
                 if LP_hurt_throw_accur then
-                    char_RP["hit_function"]() -- RP更新主动攻击状态
+                    char_RP["hit_function"](char_RP) -- RP更新主动攻击状态
                 end
                 if RP_hurt_throw_accur then
-                    char_LP["hit_function"]() -- LP更新主动攻击状态
+                    char_LP["hit_function"](char_LP) -- LP更新主动攻击状态
                 end
                 if LP_hurt_throw_accur then
                     char_LP["hurt_function"](char_RP) -- RP更新被攻击状态
@@ -205,15 +207,15 @@ function update_game_scene_main_training()
                 -- 检测飞行道具人物打击盒交互
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
-                    if strike_hurt_box_test(char_LP,current_projectile) then
-                        char_LP["hit_function"]()
+                    if strike_hurtbox_test(char_LP,current_projectile) then
+                        char_LP["hit_function"](char_LP)
                         current_projectile["hurt_function"](char_LP)
                     end
                 end
                 for i = 1,#char_LP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
-                    if strike_hurt_box_test(char_RP,current_projectile) then
-                        char_RP["hit_function"]()
+                    if strike_hurtbox_test(char_RP,current_projectile) then
+                        char_RP["hit_function"](char_RP)
                         current_projectile["hurt_function"](char_RP)
                     end
                 end
@@ -230,29 +232,29 @@ function update_game_scene_main_training()
                 -- 检测飞行道具人物受击盒交互
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
-                    if projectile_hurt_box_test(current_projectile,char_LP) then
-                        current_projectile["hit_function"]() -- 飞行道具更新主动攻击状态
+                    if projectile_hurtbox_test(current_projectile,char_LP) then
+                        current_projectile["hit_function"](current_projectile) -- 飞行道具更新主动攻击状态
                         char_LP["hurt_function"](current_projectile) --LP更新
                     end
                 end
                 for i = 1,#char_LP["projectile_table"] do
                     local current_projectile = char_LP["projectile_table"][i]
-                    if projectile_hurt_box_test(current_projectile,char_RP) then
-                        current_projectile["hit_function"]()
+                    if projectile_hurtbox_test(current_projectile,char_RP) then
+                        current_projectile["hit_function"](current_projectile)
                         char_RP["hurt_function"](current_projectile)
                     end
                 end
 
                 -- 保留双康使用的LP_hurt_strike_accur RP_hurt_strike_accur
-                local LP_hurt_strike_accur = strike_hurt_box_test(char_RP,char_LP) -- (obj_hit,obj_hurt)
-                local RP_hurt_strike_accur = strike_hurt_box_test(char_LP,char_RP)
+                local LP_hurt_strike_accur = strike_hurtbox_test(char_RP,char_LP) -- (obj_hit,obj_hurt)
+                local RP_hurt_strike_accur = strike_hurtbox_test(char_LP,char_RP)
 
                 -- 检测打击受击盒交互
                 if LP_hurt_strike_accur then
-                    char_RP["hit_function"]() -- RP更新主动攻击状态
+                    char_RP["hit_function"](char_RP) -- RP更新主动攻击状态
                 end
                 if RP_hurt_strike_accur then
-                    char_LP["hit_function"]() -- LP更新主动攻击状态
+                    char_LP["hit_function"](char_LP) -- LP更新主动攻击状态
                 end
                 if LP_hurt_strike_accur then
                     char_LP["hurt_function"](char_RP) -- RP更新被攻击状态
@@ -269,22 +271,22 @@ function update_game_scene_main_training()
                 end
 
                 -- 检测相杀
-                if strike_hit_box_clash_test() then
+                if strike_hitbox_clash_test() then
 
                 end
 
             end
 
-            -- 检测push_box 更新Y位置
-            push_box_relocate_y(char_LP)
-            push_box_relocate_y(char_RP)
+            -- 检测pushbox 更新Y位置
+            pushbox_relocate_y(char_LP)
+            pushbox_relocate_y(char_RP)
 
-            -- 检测push_box 更新X位置 static_relocate_x
-            push_box_stage_relocate_x(char_LP)
-            push_box_stage_relocate_x(char_RP)
+            -- 检测pushbox 更新X位置 static_relocate_x
+            pushbox_stage_relocate_x(char_LP)
+            pushbox_stage_relocate_x(char_RP)
 
-            -- 检测push_box 更新X位置 dynamic_relocate_x
-            push_box_dynamic_normal_aabb_relocate_x(char_LP,char_RP)
+            -- 检测pushbox 更新X位置 dynamic_relocate_x
+            pushbox_dynamic_normal_aabb_relocate_x(char_LP,char_RP)
 
             -- 删除已经到寿命的飞行道具
             for i = #char_LP["projectile_table"], 1, -1 do -- 反向遍历，便于删除元素

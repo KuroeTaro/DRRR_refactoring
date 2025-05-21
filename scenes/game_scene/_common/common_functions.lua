@@ -87,3 +87,18 @@ function common_game_scene_change_character(side)
         return obj_char_game_scene_char_LP
     end
 end
+
+function common_game_scene_change_character_hurtbox(side)
+    if side == "L" then
+        return obj_hurtboxs_data_game_scene_char_RP
+    elseif side == "R" then
+        return obj_hurtboxs_data_game_scene_char_LP
+    end
+end
+
+function common_game_scene_hit_function(char_obj)
+    -- 只需要设置hitstop
+    char_obj["state_cache"] = char_obj["state"]
+    char_obj["state"] = "hit_stop"
+
+end
