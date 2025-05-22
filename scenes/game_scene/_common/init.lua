@@ -21,6 +21,12 @@ function load_game_scene_common_anim()
     
 end
 
+function load_game_scene_hurtbox_data()
+    load_game_scene_hurtbox_data_LP()
+    load_game_scene_hurtbox_data_RP()
+    
+end
+
 
 function load_game_scene_common_audio()
     audio_SFX_game_scene_annoucer_ease_in = {1}

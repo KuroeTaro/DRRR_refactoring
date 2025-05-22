@@ -21,9 +21,9 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["state_cache"] = "none"
     obj_char_game_scene_char_RP["sprite_sheet_state"] = "stand_idle"
     obj_char_game_scene_char_RP["height_state"] = "stand" -- stand crouch air
+    obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle block hurted punish counter GP parry
     obj_char_game_scene_char_RP["hit_type_state"] = "none" -- none strike throw burst
     obj_char_game_scene_char_RP["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
-    obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle punish counter GP parry
     obj_char_game_scene_char_RP["stand_hurt_animation"] = nil
     obj_char_game_scene_char_RP["stand_block_animation"] = nil
     obj_char_game_scene_char_RP["crouch_hurt_animation"] = nil
@@ -59,8 +59,9 @@ function load_game_scene_obj_char_RP()
 
     -- state_number
     obj_char_game_scene_char_RP["velocity"] = {0,0}
+    obj_char_game_scene_char_RP["velocity_cache"] = {0,0}
     obj_char_game_scene_char_RP["gravity"] = 9.8
-    obj_char_game_scene_char_RP["friction"] = 9.8
+    obj_char_game_scene_char_RP["friction"] = 4
     obj_char_game_scene_char_RP["health"] = {11500, 11500, 11500, "fade_off"}
     obj_char_game_scene_char_RP["heat"] = {0.0, 200.0} -- 0.0 - 200.0
     obj_char_game_scene_char_RP["ability"] = {600.0, 600.0} -- 0.0 - 600.0
@@ -255,18 +256,19 @@ function order_load_game_scene_char_RP_frames(load_order)
 end
 
 function load_game_scene_anim_char_RP()
-    local char_obj = obj_char_game_scene_char_RP
+    local obj_char = obj_char_game_scene_char_RP
     -- 站姿待机动画
-    anim_char_RP_stand_idle = load_game_scene_anim_char_IZY_stand_idle(char_obj)
+    anim_char_RP_stand_idle = load_game_scene_anim_char_IZY_stand_idle(obj_char)
     -- overdrive启动动画
-    anim_char_RP_overdrive = load_game_scene_anim_char_IZY_overdrive(char_obj,"R")
+    anim_char_RP_overdrive = load_game_scene_anim_char_IZY_overdrive(obj_char,"R")
     -- 拳脚动画
-    anim_char_RP_5P = load_game_scene_anim_char_IZY_5P(char_obj,"R")
-    anim_char_RP_5P_stand_hurt_high = load_game_scene_anim_char_IZY_5P_stand_hurt_high(char_obj,"R")
+    anim_char_RP_5P_stand_hurt_high = load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,"R")
+    anim_char_RP_5P = load_game_scene_anim_char_IZY_5P(obj_char,"R")
 
 end
 
 function load_game_scene_hurtbox_data_RP()
+    obj_hurtboxs_data_game_scene_char_RP = {}
     obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"] = {}
     obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][0] = {{-10, -200, 195, 400},{-27, -430, 100, 60}}
     obj_hurtboxs_data_game_scene_char_RP["stand_hurt_high"][1] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
@@ -334,10 +336,24 @@ function state_machine_char_game_scene_char_RP()
                 obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
             else
                 obj_char["state"] = obj_char["state_cache"]
+                obj_char["velocity"] = obj_char["velocity_cache"]
             end
         end,
         ["blockstop"] = function()
             character_animator(obj_char,anim_char_RP_stand_idle)
+        end,
+        ["hurt"] = function()
+            character_animator(obj_char,obj_char["current_hurt_animation"])
+            if obj_char["f"] >= obj_char["current_animation_length"] then
+                if obj_char["height_state"] == "stand" then
+                    -- to idle
+                    init_character_anim_with(obj_char,anim_char_RP_stand_idle)
+                    obj_char["state"] = "stand_idle"
+                end
+            end
+        end,
+        ["block"] = function()
+            character_animator(obj_char,obj_char["current_block_animation"])
         end,
         ["stand_idle"] = function()
             character_animator(obj_char,anim_char_RP_stand_idle)
@@ -348,15 +364,10 @@ function state_machine_char_game_scene_char_RP()
                 -- to over_drive
                 init_character_anim_with(obj_char,anim_char_RP_overdrive)
                 obj_char["state"] = "overdrive"
-                obj_char["sprite_sheet_state"] = "overdrive"
-                obj_char["overdrive"][3] = "on"
-                obj_char["current_animation_length"] = 80
             elseif test_input_sys_press_or_hold(input["P"]) then
                 -- to 5P
                 init_character_anim_with(obj_char,anim_char_RP_5P)
                 obj_char["state"] = "5P"
-                obj_char["sprite_sheet_state"] = "5P"
-                obj_char["current_animation_length"] = 31
             end
         end,
         ["overdrive"] = function()
@@ -367,10 +378,7 @@ function state_machine_char_game_scene_char_RP()
             elseif obj_char["f"] >= obj_char["current_animation_length"] then
                 -- to idle
                 init_character_anim_with(obj_char,anim_char_RP_stand_idle)
-                obj_char[8] = 0
                 obj_char["state"] = "stand_idle"
-                obj_char["sprite_sheet_state"] = "stand_idle"
-                obj_char["current_animation_length"] = 0
             end
         end,
         ["5P"] = function()
@@ -379,10 +387,7 @@ function state_machine_char_game_scene_char_RP()
             if obj_char["f"] >= obj_char["current_animation_length"] then
                 -- to idle
                 init_character_anim_with(obj_char,anim_char_RP_stand_idle)
-                obj_char[8] = 0
                 obj_char["state"] = "stand_idle"
-                obj_char["sprite_sheet_state"] = "stand_idle"
-                obj_char["current_animation_length"] = 0
             end
         end,
     }
@@ -505,51 +510,71 @@ function draw_game_scene_char_RP_shadow()
     
 end
 
-function draw_game_scene_char_RP_box()
+function draw_game_scene_char_RP_hurtbox()
     if not DEBUG_HITBOX_SHOWS then
         return
     end
 
-    local char_obj = obj_char_game_scene_char_RP
+    local obj_char = obj_char_game_scene_char_RP
     local camera = obj_stage_game_scene_camera
 
     -- hurt box
     local color = DEBUG_BOX_COLOR_BLUE
-    for i=1,#char_obj["hurtbox_table"] do
-        local current_hurtbox = char_obj["hurtbox_table"][i]
+    for i=1,#obj_char["hurtbox_table"] do
+        local current_hurtbox = obj_char["hurtbox_table"][i]
         local draw_box = {
-            char_obj["x"] + (current_hurtbox[1] - current_hurtbox[3]/2)*char_obj[5],
-            char_obj["y"] + current_hurtbox[2] - current_hurtbox[4]/2,
-            char_obj[3],char_obj[5],1
+            obj_char["x"] + (current_hurtbox[1] - current_hurtbox[3]/2)*obj_char[5],
+            obj_char["y"] + current_hurtbox[2] - current_hurtbox[4]/2,
+            obj_char[3],obj_char[5],1
         }
         draw_box["w"] = current_hurtbox[3]
         draw_box["h"] = current_hurtbox[4]
         draw_3d_color_box(camera,draw_box,color)
     end
 
+end
+
+function draw_game_scene_char_RP_hitbox()
+    if not DEBUG_HITBOX_SHOWS then
+        return
+    end
+
+    local obj_char = obj_char_game_scene_char_RP
+    local camera = obj_stage_game_scene_camera
+
     -- hit box
     local color = DEBUG_BOX_COLOR_RED
-    for i=1,#char_obj["hitbox_table"] do
-        local current_hitbox = char_obj["hitbox_table"][i]
+    for i=1,#obj_char["hitbox_table"] do
+        local current_hitbox = obj_char["hitbox_table"][i]
         local draw_box = {
-            char_obj["x"] + (current_hitbox[1] - current_hitbox[3]/2)*char_obj[5],
-            char_obj["y"] + current_hitbox[2] - current_hitbox[4]/2,
-            char_obj[3],char_obj[5],1
+            obj_char["x"] + (current_hitbox[1] - current_hitbox[3]/2)*obj_char[5],
+            obj_char["y"] + current_hitbox[2] - current_hitbox[4]/2,
+            obj_char[3],obj_char[5],1
         }
         draw_box["w"] = current_hitbox[3]
         draw_box["h"] = current_hitbox[4]
         draw_3d_color_box(camera,draw_box,color)
     end
 
+end
+
+function draw_game_scene_char_RP_pushbox()
+    if not DEBUG_HITBOX_SHOWS then
+        return
+    end
+
+    local obj_char = obj_char_game_scene_char_RP
+    local camera = obj_stage_game_scene_camera
+
     -- push box
     local color = DEBUG_BOX_COLOR_YELLOW
     local pushbox = {
-        char_obj["x"] + (char_obj["pushbox"][1] - char_obj["pushbox"][3]/2)*char_obj[5],
-        char_obj["y"] + char_obj["pushbox"][2] - char_obj["pushbox"][4]/2,
-        char_obj[3],char_obj[5],1
+        obj_char["x"] + (obj_char["pushbox"][1] - obj_char["pushbox"][3]/2)*obj_char[5],
+        obj_char["y"] + obj_char["pushbox"][2] - obj_char["pushbox"][4]/2,
+        obj_char[3],obj_char[5],1
     }
-    pushbox["w"] = char_obj["pushbox"][3]
-    pushbox["h"] = char_obj["pushbox"][4]
+    pushbox["w"] = obj_char["pushbox"][3]
+    pushbox["h"] = obj_char["pushbox"][4]
     draw_3d_color_box(camera,pushbox,color)
 
 end
@@ -617,27 +642,27 @@ end
 
 
 function update_game_scene_char_RP_overdrive()
-    local char_obj = obj_char_game_scene_char_RP
-    if char_obj["state"] ~= "overdrive" and 
-    char_obj["overdrive_timer"][1] + char_obj["overdrive_timer"][2] +
-    char_obj["overdrive_timer"][3] + char_obj["overdrive_timer"][4] ~= 0
+    local obj_char = obj_char_game_scene_char_RP
+    if obj_char["state"] ~= "overdrive" and 
+    obj_char["overdrive_timer"][1] + obj_char["overdrive_timer"][2] +
+    obj_char["overdrive_timer"][3] + obj_char["overdrive_timer"][4] ~= 0
     then
-        if char_obj["overdrive_timer"][4] == 0 and char_obj["overdrive_timer"][3] ~= 0 then 
-            char_obj["overdrive_timer"][3] = char_obj["overdrive_timer"][3] - 1
-            char_obj["overdrive_timer"][4] = 9
-        elseif char_obj["overdrive_timer"][4] > 0 then
-            char_obj["overdrive_timer"][4] = char_obj["overdrive_timer"][4] - 1
+        if obj_char["overdrive_timer"][4] == 0 and obj_char["overdrive_timer"][3] ~= 0 then 
+            obj_char["overdrive_timer"][3] = obj_char["overdrive_timer"][3] - 1
+            obj_char["overdrive_timer"][4] = 9
+        elseif obj_char["overdrive_timer"][4] > 0 then
+            obj_char["overdrive_timer"][4] = obj_char["overdrive_timer"][4] - 1
         end
-        if char_obj["overdrive_timer"][3] == 0 and char_obj["overdrive_timer"][2] ~= 0 then 
-            char_obj["overdrive_timer"][2] = char_obj["overdrive_timer"][2] - 1
-            char_obj["overdrive_timer"][3] = 5
+        if obj_char["overdrive_timer"][3] == 0 and obj_char["overdrive_timer"][2] ~= 0 then 
+            obj_char["overdrive_timer"][2] = obj_char["overdrive_timer"][2] - 1
+            obj_char["overdrive_timer"][3] = 5
         end
-        if char_obj["overdrive_timer"][2] < 0 and char_obj["overdrive_timer"][1] ~= 0 then 
-            char_obj["overdrive_timer"][1] = char_obj["overdrive_timer"][1] - 1
-            char_obj["overdrive_timer"][2] = 9
+        if obj_char["overdrive_timer"][2] < 0 and obj_char["overdrive_timer"][1] ~= 0 then 
+            obj_char["overdrive_timer"][1] = obj_char["overdrive_timer"][1] - 1
+            obj_char["overdrive_timer"][2] = 9
         end
-    elseif char_obj["state"] ~= "overdrive" then
-        char_obj["overdrive"][3] = "off"
+    elseif obj_char["state"] ~= "overdrive" then
+        obj_char["overdrive"][3] = "off"
     end
 end
 

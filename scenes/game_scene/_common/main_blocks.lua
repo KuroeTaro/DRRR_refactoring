@@ -198,10 +198,10 @@ function update_game_scene_main_training()
                     char_LP["hit_function"](char_LP) -- LP更新主动攻击状态
                 end
                 if LP_hurt_throw_accur then
-                    char_LP["hurt_function"](char_RP) -- RP更新被攻击状态
+                    char_RP["hurt_function"](char_LP) -- RP更新被攻击状态
                 end
                 if RP_hurt_throw_accur then
-                    char_RP["hurt_function"](char_LP) -- LP更新被攻击状态
+                    char_LP["hurt_function"](char_RP) -- LP更新被攻击状态
                 end
 
                 -- 检测飞行道具人物打击盒交互
@@ -257,10 +257,10 @@ function update_game_scene_main_training()
                     char_LP["hit_function"](char_LP) -- LP更新主动攻击状态
                 end
                 if LP_hurt_strike_accur then
-                    char_LP["hurt_function"](char_RP) -- RP更新被攻击状态
+                    char_RP["hurt_function"](char_LP) -- RP更新被攻击状态
                 end
                 if RP_hurt_strike_accur then
-                    char_RP["hurt_function"](char_LP) -- LP更新被攻击状态
+                    char_LP["hurt_function"](char_RP) -- LP更新被攻击状态
                 end
 
                 -- 检测双康
@@ -306,6 +306,9 @@ function update_game_scene_main_training()
                 end
             end
 
+            -- 更新阻力
+            update_game_scene_friction()
+
             -- 更新HUD
             -- 更新场景
             update_game_scene_HUD()
@@ -328,13 +331,29 @@ function update_game_scene_main_local_match()
 
 end
 
-
 function update_game_scene_main_online_match()
     update_game_scene_char_LP()
     update_game_scene_char_RP()
 
 end
 
+
+
+
+function update_game_scene_friction()
+    local char_LP = obj_char_game_scene_char_LP
+    local char_RP = obj_char_game_scene_char_RP
+    if char_LP["velocity"][1] > 0 then
+        char_LP["velocity"][1] = math.max(char_LP["velocity"][1] - char_LP["friction"],0)
+    elseif char_LP["velocity"][1] < 0 then
+        char_LP["velocity"][1] = math.min(char_LP["velocity"][1] + char_LP["friction"],0)
+    end
+    if char_RP["velocity"][1] > 0 then
+        char_RP["velocity"][1] = math.max(char_RP["velocity"][1] - char_RP["friction"],0)
+    elseif char_RP["velocity"][1] < 0 then
+        char_RP["velocity"][1] = math.min(char_RP["velocity"][1] + char_RP["friction"],0)
+    end
+end
 function update_game_scene_HUD()
     update_game_scene_HUD_overdrive_timer(
         obj_char_game_scene_char_LP,
@@ -346,50 +365,50 @@ function update_game_scene_HUD()
     )
 end
 
-function update_game_scene_HUD_overdrive_timer(char_obj,timer_obj)
+function update_game_scene_HUD_overdrive_timer(obj_char,timer_obj)
     local switch = {
         ["default"] = function()
-            if char_obj["overdrive"][3] == "on" then
+            if obj_char["overdrive"][3] == "on" then
                 timer_obj["state"] = "ease_in"
-                char_obj["brightness"] = char_obj["brightness_const"]
+                obj_char["brightness"] = obj_char["brightness_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
-                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_in)
+                init_point_linear_anim_with(obj_char,anim_char_point_linear_overdrive_brightness_ease_in)
             end
         end,
         ["ease_in"] = function()
             point_linear_animator(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
-            point_linear_animator(char_obj,anim_char_point_linear_overdrive_brightness_ease_in)
+            point_linear_animator(obj_char,anim_char_point_linear_overdrive_brightness_ease_in)
             if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1) 
-            and get_point_linear_anim_end_state(char_obj,anim_char_point_linear_overdrive_brightness_ease_in) then
+            and get_point_linear_anim_end_state(obj_char,anim_char_point_linear_overdrive_brightness_ease_in) then
                 timer_obj["state"] = "active"
-                char_obj["brightness"] = char_obj["brightness_end_const"]
-            elseif char_obj["overdrive"][3] == "off" then
+                obj_char["brightness"] = obj_char["brightness_end_const"]
+            elseif obj_char["overdrive"][3] == "off" then
                 timer_obj["state"] = "ease_out"
-                char_obj["brightness"] = char_obj["brightness_end_const"]
+                obj_char["brightness"] = obj_char["brightness_end_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
-                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_out)
+                init_point_linear_anim_with(obj_char,anim_char_point_linear_overdrive_brightness_ease_out)
             end
         end,
         ["active"] = function()
-            if char_obj["overdrive"][3] == "off" then
+            if obj_char["overdrive"][3] == "off" then
                 timer_obj["state"] = "ease_out"
-                char_obj["brightness"] = char_obj["brightness_end_const"]
+                obj_char["brightness"] = obj_char["brightness_end_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
-                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_out)
+                init_point_linear_anim_with(obj_char,anim_char_point_linear_overdrive_brightness_ease_out)
             end
         end,
         ["ease_out"] = function()
             point_linear_animator(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
-            point_linear_animator(char_obj,anim_char_point_linear_overdrive_brightness_ease_out)
+            point_linear_animator(obj_char,anim_char_point_linear_overdrive_brightness_ease_out)
             if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0) 
             and get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)  then
                 timer_obj["state"] = "default"
-                char_obj["brightness"] = char_obj["brightness_const"]
-            elseif char_obj["overdrive"][3] == "on" then
+                obj_char["brightness"] = obj_char["brightness_const"]
+            elseif obj_char["overdrive"][3] == "on" then
                 timer_obj["state"] = "ease_in"
-                char_obj["brightness"] = char_obj["brightness_const"]
+                obj_char["brightness"] = obj_char["brightness_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1)
-                init_point_linear_anim_with(char_obj,anim_char_point_linear_overdrive_brightness_ease_in)
+                init_point_linear_anim_with(obj_char,anim_char_point_linear_overdrive_brightness_ease_in)
             end
         end,
     }

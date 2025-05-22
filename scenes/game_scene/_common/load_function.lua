@@ -75,6 +75,7 @@ function order_load_game_scene_common(load_order)
     {
         [1] = function()
             load_game_scene_common_obj()
+            load_game_scene_hurtbox_data()
             load_game_scene_common_anim()
             load_game_scene_common_audio()
             load_game_scene_common_shader()

@@ -1,4 +1,4 @@
-function insert_VFX_game_scene_char_overdrive_badge(char_obj,side)
+function insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     if side == "L" then
         image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_overdrive_badge
@@ -7,24 +7,24 @@ function insert_VFX_game_scene_char_overdrive_badge(char_obj,side)
     end 
     
     obj["life"] = 70
-    obj[1] = char_obj["x"] - char_obj[5]*(500)
-    obj[2] = char_obj["y"] - char_obj[6]*(865)
-    obj[3] = char_obj[3]
+    obj[1] = obj_char["x"] - obj_char[5]*(500)
+    obj[2] = obj_char["y"] - obj_char[6]*(865)
+    obj[3] = obj_char[3]
     obj[4] = 1
-    obj[5] = char_obj[5]*2
-    obj[6] = char_obj[6]*2
-    obj[7] = char_obj[7]
+    obj[5] = obj_char[5]*2
+    obj[6] = obj_char[6]*2
+    obj[7] = obj_char[7]
     obj[8] = -1
     obj["update"] = function(self)
-        self[1] = char_obj["x"] - char_obj[5]*(500)
-        self[2] = char_obj["y"] - char_obj[6]*(865)
-        self[3] = char_obj[3]
+        self[1] = obj_char["x"] - obj_char[5]*(500)
+        self[2] = obj_char["y"] - obj_char[6]*(865)
+        self[3] = obj_char[3]
         self[4] = 1
-        self[5] = char_obj[5]*2
-        self[6] = char_obj[6]*2
-        self[7] = char_obj[7]
+        self[5] = obj_char[5]*2
+        self[6] = obj_char[6]*2
+        self[7] = obj_char[7]
         self[8] = self[8] + 1
-        if char_obj["state"] ~= "overdrive" then
+        if obj_char["state"] ~= "overdrive" then
             self["life"] = 0
         end
     end
@@ -38,32 +38,32 @@ function insert_VFX_game_scene_char_overdrive_badge(char_obj,side)
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
-    table.insert(char_obj["VFX_table"],obj)
+    table.insert(obj_char["VFX_table"],obj)
 end
 
-function insert_VFX_game_scene_char_overdrive_airflow(char_obj)
+function insert_VFX_game_scene_char_overdrive_airflow(obj_char)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     obj["life"] = 35
-    obj[1] = char_obj["x"] - char_obj[5]*(860)
-    obj[2] = char_obj["y"] - char_obj[6]*(845)
-    obj[3] = char_obj[3]
+    obj[1] = obj_char["x"] - obj_char[5]*(860)
+    obj[2] = obj_char["y"] - obj_char[6]*(845)
+    obj[3] = obj_char[3]
     obj[4] = 1
-    obj[5] = char_obj[5]*2
-    obj[6] = char_obj[6]*2
-    obj[7] = char_obj[7]
+    obj[5] = obj_char[5]*2
+    obj[6] = obj_char[6]*2
+    obj[7] = obj_char[7]
     obj[8] = -1
     obj["update"] = function(self)
-        -- self[1] = char_obj["x"] + char_obj[5]*(-860)/2
-        -- self[2] = char_obj["y"] + char_obj[6]*(840)
-        self[1] = char_obj["x"] - char_obj[5]*(860)
-        self[2] = char_obj["y"] - char_obj[6]*(845)
-        self[3] = char_obj[3]
+        -- self[1] = obj_char["x"] + obj_char[5]*(-860)/2
+        -- self[2] = obj_char["y"] + obj_char[6]*(840)
+        self[1] = obj_char["x"] - obj_char[5]*(860)
+        self[2] = obj_char["y"] - obj_char[6]*(845)
+        self[3] = obj_char[3]
         self[4] = 1
-        self[5] = char_obj[5]*2
-        self[6] = char_obj[6]*2
-        self[7] = char_obj[7]
+        self[5] = obj_char[5]*2
+        self[6] = obj_char[6]*2
+        self[7] = obj_char[7]
         self[8] = self[8] + 1
-        if char_obj["state"] ~= "overdrive" then
+        if obj_char["state"] ~= "overdrive" then
             self["life"] = 0
         end
     end
@@ -77,14 +77,14 @@ function insert_VFX_game_scene_char_overdrive_airflow(char_obj)
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
-    table.insert(char_obj["VFX_table"],obj)
+    table.insert(obj_char["VFX_table"],obj)
     
 end
 
-function insert_VFX_game_scene_char_overdrive_partical(char_obj)
+function insert_VFX_game_scene_char_overdrive_partical(obj_char)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     local camera_obj = obj_stage_game_scene_camera
-    if char_obj["player_side"] == "L" then
+    if obj_char["player_side"] == "L" then
         obj["life"] = 80
         obj[1] = camera_obj[1] - 800
         obj[2] = camera_obj[2] - 450
@@ -95,7 +95,7 @@ function insert_VFX_game_scene_char_overdrive_partical(char_obj)
         obj[7] = 0
         obj[8] = 0
         obj["f"] = -1
-    elseif char_obj["player_side"] == "R" then
+    elseif obj_char["player_side"] == "R" then
         obj["life"] = 80
         obj[1] = camera_obj[1] + 800
         obj[2] = camera_obj[2] - 450
@@ -113,7 +113,7 @@ function insert_VFX_game_scene_char_overdrive_partical(char_obj)
             self[8] = self[8] + 1
             self["f"] = -1
         end
-        if char_obj["state"] ~= "overdrive" then
+        if obj_char["state"] ~= "overdrive" then
             self["life"] = 0
         end
     end
@@ -139,25 +139,25 @@ function insert_VFX_game_scene_char_overdrive_partical(char_obj)
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
-    table.insert(char_obj["VFX_table"],obj)
+    table.insert(obj_char["VFX_table"],obj)
 end
 
-function insert_VFX_game_scene_char_overdrive_black_overlay(char_obj)
+function insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
     local obj = {0, 0, 0, 1, 0, 0, 0, 0}
     local camera_obj = obj_stage_game_scene_camera
     obj["FCT"] = {0,0,0,0,0,0,0,0}
     obj["LCT"] = {0,0,0,0,0,0,0,0}
     obj["LCD"] = {0,0,0,0,0,0,0,0}
     obj["life"] = 42
-    obj[1] = char_obj["x"]
-    obj[2] = char_obj["y"] - char_obj[6]*(360)
-    obj[3] = char_obj[3]
+    obj[1] = obj_char["x"]
+    obj[2] = obj_char["y"] - obj_char[6]*(360)
+    obj[3] = obj_char[3]
     obj[4] = 1
     obj[5] = 0
     obj[6] = 0
     obj[7] = 0
     obj[8] = 0
-    obj["cood_res"] = draw_3d_point_to_2D(camera_obj,char_obj)
+    obj["cood_res"] = draw_3d_point_to_2D(camera_obj,obj_char)
     obj["state"] = "ease_in"
     obj["blur_shader"] = love.graphics.newShader("shaders/gaussian_blur.glsl")
     obj["blur_shader"]:send("Directions", 16)
@@ -201,9 +201,9 @@ function insert_VFX_game_scene_char_overdrive_black_overlay(char_obj)
     obj["size_anim"]["fix_type"] = true
 
     obj["update"] = function(self)
-        self[1] = char_obj["x"]
-        self[2] = char_obj["y"] - char_obj[6]*(300)
-        self[3] = char_obj[3]
+        self[1] = obj_char["x"]
+        self[2] = obj_char["y"] - obj_char[6]*(300)
+        self[3] = obj_char[3]
         self["cood_res"] = draw_3d_point_to_2D(camera_obj,self)
 
         local switch = {
@@ -212,9 +212,9 @@ function insert_VFX_game_scene_char_overdrive_black_overlay(char_obj)
                 point_linear_animator(self,self["size_anim"])
                 point_linear_animator(self,self["opacity_ease_in_anim"])
                 self["life"] = 42
-                if char_obj["overdrive_timer"][1] + char_obj["overdrive_timer"][2] 
-                + char_obj["overdrive_timer"][3] + char_obj["overdrive_timer"][4] == 0 
-                and char_obj["state"] ~= "overdrive" then
+                if obj_char["overdrive_timer"][1] + obj_char["overdrive_timer"][2] 
+                + obj_char["overdrive_timer"][3] + obj_char["overdrive_timer"][4] == 0 
+                and obj_char["state"] ~= "overdrive" then
                     self["state"] = "ease_out"
                     self["life"] = 10
                     self[4] = 0.50
@@ -245,6 +245,6 @@ function insert_VFX_game_scene_char_overdrive_black_overlay(char_obj)
         love.graphics.setShader()
 
     end
-    table.insert(char_obj["black_overlay_table"],obj)
+    table.insert(obj_char["black_overlay_table"],obj)
 
 end
