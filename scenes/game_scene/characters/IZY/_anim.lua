@@ -217,7 +217,7 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
                 -22.38, -8.50}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {44.625,516.875}
             ,{146.0625,496.1875}
         }
@@ -398,7 +398,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
                 -4.50, -26.13}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {111.9,529.5}
             ,{228.6,515.3}
         }
@@ -464,7 +464,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
             {1.56, -4.44,
             -4.50, -26.13}
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {104.5,529.5}
             ,{246.4,518.8}
         }
@@ -478,7 +478,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
 
         -- draw_correction
         obj_char[8] = 2
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {94.5,529.1}
             ,{253.8,518.4}
         }
@@ -523,7 +523,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
             {1.56, -4.44,
             -6.75, -24.88}
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {92.8,529.5}
             ,{256.8,519.4}
         }
@@ -618,7 +618,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
                 -10.63, -21.88}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {70.8,523.375}
             ,{265.5,523.25}
         }
@@ -706,7 +706,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
                 -7.88, -22.75}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {66.375,525.875}
             ,{271.625,525.125}
         }
@@ -855,7 +855,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
                 -10.38, -29.00}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {79.875,518.375}
             ,{273.375,523.375}
         }
@@ -948,7 +948,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
                 -25.63, -30.38}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {99.25,525.9}
             ,{251.8,517.1}
         }
@@ -1038,7 +1038,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
                 -17.38, -6.38}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {121.0,525.8}
             ,{228.5,508.5}
         }
@@ -1125,7 +1125,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
                 -22.38, -8.50}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {123.625,526.875}
             ,{225.0625,506.1875}
         }
@@ -1292,7 +1292,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
                 -22.38, -9.38}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {147.625,511.875}
             ,{249.0625,491.1875}
         }
@@ -1602,7 +1602,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
                 -22.38, -8.50}
             }
         }
-        obj_char["shadow_box_pos"] ={
+        obj_char["shadow_box_pos"] = {
             {147.625,511.875}
             ,{249.0625,491.1875}
         }
@@ -1765,7 +1765,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
                 -17.38, -6.38}
             }
         }
-        other_side_obj_char["shadow_box_pos"] ={
+        other_side_obj_char["shadow_box_pos"] = {
             {44.0,517.0}
             ,{146.0,497.0}
         }
@@ -1861,7 +1861,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
                 -17.38, -6.38}
             }
         }
-        other_side_obj_char["shadow_box_pos"] ={
+        other_side_obj_char["shadow_box_pos"] = {
             {44.0,517.0}
             ,{146.0,497.0}
         }
@@ -1953,7 +1953,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
                 -17.38, -6.38}
             }
         }
-        other_side_obj_char["shadow_box_pos"] ={
+        other_side_obj_char["shadow_box_pos"] = {
             {44.0,517.0}
             ,{146.0,497.0}
         }
@@ -2048,7 +2048,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
                 -17.38, -6.38}
             }
         }
-        other_side_obj_char["shadow_box_pos"] ={
+        other_side_obj_char["shadow_box_pos"] = {
             {44.0,517.0}
             ,{146.0,497.0}
         }
@@ -2140,7 +2140,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
                 -17.38, -6.38}
             }
         }
-        other_side_obj_char["shadow_box_pos"] ={
+        other_side_obj_char["shadow_box_pos"] = {
             {44.0,517.0}
             ,{146.0,497.0}
         }

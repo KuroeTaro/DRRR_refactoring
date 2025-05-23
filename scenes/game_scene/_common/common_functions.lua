@@ -96,6 +96,11 @@ function common_game_scene_change_character_hurtbox(side)
     end
 end
 
+
+
+
+
+
 function common_game_scene_hit_function(obj_char)
     -- 只需要设置hitstop
     obj_char["state_cache"] = obj_char["state"]
@@ -120,4 +125,20 @@ function common_game_scene_hurt_function(obj_char)
     init_character_anim_with(obj_char,obj_char["current_hurt_animation"])
     obj_char["hit_hurt_blockstop_countdown"] = hit_side_obj_char["hit_hurt_blockstop_countdown"] 
 
+end
+
+
+
+
+function common_game_scene_create_wiggle_animation(length,prop,wiggle_amount)
+    local mid_length = (length-length%2)/2
+    local res_anim = {}
+    res_anim[0] = {0, mid_length}
+    res_anim[mid_length] = {wiggle_amount, length}
+    res_anim[length] = {0, length}
+    res_anim["prop"] = prop
+    res_anim["length"] = length
+    res_anim["loop"] = false
+    res_anim["fix_type"] = true
+    return res_anim
 end

@@ -19,7 +19,7 @@ function init_input()
     INPUT_SYS_CURRENT_JOYSTICK_TABLE = love.joystick.getJoysticks()
 
     --加载手柄按键 键盘按键 手柄z轴 对于指令的表
-    -- SP + 1/4/7 + dash = 拉盾
+    -- SP + 1/4/7 = 拉盾
     -- SP + 3/6/9 + P = SPM1
     -- SP + 2/5/8 + P = SPM2
     -- SP + 3/6/9 + K = SPM3

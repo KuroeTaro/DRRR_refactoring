@@ -176,10 +176,13 @@ function load_game_scene_obj_char_RP()
             -22.38, -8.50}
         }
     }
-    obj_char_game_scene_char_RP["shadow_box_pos"] ={
+    obj_char_game_scene_char_RP["shadow_box_pos"] = {
         {44.625,516.875}
         ,{146.0625,496.1875}
     }
+
+    -- command_cache
+    obj_char_game_scene_char_RP["command_cache"] = {}
 
     -- draw_correction
     obj_char_game_scene_char_RP["anchor_pos"] = {90,520}
