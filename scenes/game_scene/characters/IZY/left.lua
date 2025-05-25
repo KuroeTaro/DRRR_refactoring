@@ -31,8 +31,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["air_hurt_animation"] = nil
     obj_char_game_scene_char_LP["air_block_animation"] = nil
 
-    obj_char_game_scene_char_LP["current_hurt_animation"] = nil
-    obj_char_game_scene_char_LP["current_block_animation"] = nil
+    obj_char_game_scene_char_LP["current_animation"] = nil
     obj_char_game_scene_char_LP["current_animation_length"] = 0 -- 如果为0则是循环动画
 
     obj_char_game_scene_char_LP["strike_active"] = false -- 防止在同一动作的active多次触发
@@ -268,9 +267,11 @@ function load_game_scene_anim_char_LP()
     anim_char_LP_5P_stand_hurt_high = load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,"L")
     anim_char_LP_5P = load_game_scene_anim_char_IZY_5P(obj_char,"L")
 
+    obj_char["current_animation"] = anim_char_LP_stand_idle
+
 end
 
-function load_game_scene_hurtbox_data_LP()
+function load_game_scene_hurtbox_shadowbox_data_LP()
     obj_hurtboxs_data_game_scene_char_LP = {}
     obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"] = {}
     obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][0] = {{-10, -200, 195, 400},{-27, -430, 100, 60}}
@@ -279,6 +280,622 @@ function load_game_scene_hurtbox_data_LP()
     obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][3] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
     obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][4] = {{-9, -200, 200, 400},{-34, -425, 115, 50}}
     obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][5] = {{-9, -200, 200, 400},{-34, -425, 115, 50}}
+
+    obj_shadowboxs_data_game_scene_char_LP = {}
+    obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"] = {}
+    obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"][0] = {
+        {
+            {
+                {-6.75, -20.00,
+                -17.13, -3.88}
+                ,
+                {-17.13, -3.88,
+                -16.80, 8.03}
+                ,
+                {-16.80, 8.03,
+                -15.25, 14.69}
+                ,
+                {-15.25, 14.69,
+                -12.92, 17.53}
+                ,
+                {-12.92, 17.53,
+                -9.31, 20.25}
+                ,
+                {-9.31, 20.25,
+                -2.22, 22.21}
+                ,
+                {-2.22, 22.21,
+                5.00, 22.88}
+                ,
+                {5.00, 22.88,
+                10.41, 21.87}
+                ,
+                {10.41, 21.87,
+                15.00, 19.69}
+                ,
+                {15.00, 19.69,
+                18.09, 16.96}
+                ,
+                {18.09, 16.96,
+                19.13, 14.63}
+                ,
+                {19.13, 14.63,
+                18.46, -3.60}
+                ,
+                {18.46, -3.60,
+                -6.75, -20.00}
+            },
+            {
+                {-20.75, -8.25,
+                -35.38, -3.75}
+                ,
+                {-35.38, -3.75,
+                -35.19, 2.44}
+                ,
+                {-35.19, 2.44,
+                -32.69, 7.81}
+                ,
+                {-32.69, 7.81,
+                -27.13, 10.50}
+                ,
+                {-27.13, 10.50,
+                -15.38, 10.69}
+                ,
+                {-15.38, 10.69,
+                -2.75, 18.44}
+                ,
+                {-2.75, 18.44,
+                10.69, 19.94}
+                ,
+                {10.69, 19.94,
+                26.19, 18.25}
+                ,
+                {26.19, 18.25,
+                34.02, 15.55}
+                ,
+                {34.02, 15.55,
+                37.19, 11.00}
+                ,
+                {37.19, 11.00,
+                36.81, 3.19}
+                ,
+                {36.81, 3.19,
+                33.68, -0.54}
+                ,
+                {33.68, -0.54,
+                26.25, -3.13}
+                ,
+                {26.25, -3.13,
+                14.31, -3.94}
+                ,
+                {14.31, -3.94,
+                8.13, -9.00}
+                ,
+                {8.13, -9.00,
+                -20.75, -8.25}
+            }
+        },
+        {
+            {148.5,514}
+            ,{285.375,494.8125}
+        }
+    }
+    obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"][1] = {
+        {
+            {
+                {-6.75, -20.00,
+                -19.38, -4.25}
+                ,
+                {-19.38, -4.25,
+                -16.56, 10.50}
+                ,
+                {-16.56, 10.50,
+                -15.41, 14.22}
+                ,
+                {-15.41, 14.22,
+                -12.22, 17.85}
+                ,
+                {-12.22, 17.85,
+                -7.75, 20.75}
+                ,
+                {-7.75, 20.75,
+                0.12, 21.25}
+                ,
+                {0.12, 21.25,
+                9.06, 20.94}
+                ,
+                {9.06, 20.94,
+                15.49, 19.19}
+                ,
+                {15.49, 19.19,
+                18.81, 16.31}
+                ,
+                {18.81, 16.31,
+                19.65, 11.30}
+                ,
+                {19.65, 11.30,
+                18.94, 4.50}
+                ,
+                {18.94, 4.50,
+                16.89, -0.53}
+                ,
+                {16.89, -0.53,
+                12.46, -7.97}
+                ,
+                {12.46, -7.97,
+                -6.75, -20.00}
+            },
+            {
+                {-18.50, -10.38,
+                -27.75, -6.75}
+                ,
+                {-27.75, -6.75,
+                -27.56, -0.56}
+                ,
+                {-27.56, -0.56,
+                -23.81, 4.44}
+                ,
+                {-23.81, 4.44,
+                -19.51, 7.50}
+                ,
+                {-19.51, 7.50,
+                -13.13, 8.56}
+                ,
+                {-13.13, 8.56,
+                0.38, 17.56}
+                ,
+                {0.38, 17.56,
+                11.94, 18.81}
+                ,
+                {11.94, 18.81,
+                26.19, 17.75}
+                ,
+                {26.19, 17.75,
+                34.02, 15.55}
+                ,
+                {34.02, 15.55,
+                37.19, 11.00}
+                ,
+                {37.19, 11.00,
+                37.31, 3.19}
+                ,
+                {37.31, 3.19,
+                33.68, -1.04}
+                ,
+                {33.68, -1.04,
+                27.63, -3.50}
+                ,
+                {27.63, -3.50,
+                19.56, -4.06}
+                ,
+                {19.56, -4.06,
+                9.88, -10.25}
+                ,
+                {9.88, -10.25,
+                -18.50, -10.38}
+            }
+        },
+        {
+            {146.375,511.375}
+            ,{312,478.5625}
+        }
+    }
+    obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"][2] = {
+        {
+            {
+                {-6.75, -20.00,
+                -19.38, -4.25}
+                ,
+                {-19.38, -4.25,
+                -17.83, 6.84}
+                ,
+                {-17.83, 6.84,
+                -15.25, 14.69}
+                ,
+                {-15.25, 14.69,
+                -12.51, 18.63}
+                ,
+                {-12.51, 18.63,
+                -7.56, 21.13}
+                ,
+                {-7.56, 21.13,
+                0.57, 21.70}
+                ,
+                {0.57, 21.70,
+                9.00, 21.50}
+                ,
+                {9.00, 21.50,
+                16.38, 18.88}
+                ,
+                {16.38, 18.88,
+                19.75, 16.23}
+                ,
+                {19.75, 16.23,
+                20.12, 11.06}
+                ,
+                {20.12, 11.06,
+                19.63, 5.38}
+                ,
+                {19.63, 5.38,
+                17.17, -0.36}
+                ,
+                {17.17, -0.36,
+                12.46, -7.97}
+                ,
+                {12.46, -7.97,
+                -6.75, -20.00}
+            },
+            {
+                {-18.50, -10.38,
+                -27.94, -6.50}
+                ,
+                {-27.94, -6.50,
+                -26.69, 0.75}
+                ,
+                {-26.69, 0.75,
+                -24.00, 4.25}
+                ,
+                {-24.00, 4.25,
+                -19.51, 7.50}
+                ,
+                {-19.51, 7.50,
+                -13.13, 8.56}
+                ,
+                {-13.13, 8.56,
+                -0.50, 17.56}
+                ,
+                {-0.50, 17.56,
+                11.94, 18.81}
+                ,
+                {11.94, 18.81,
+                26.19, 17.75}
+                ,
+                {26.19, 17.75,
+                34.02, 15.55}
+                ,
+                {34.02, 15.55,
+                37.19, 11.00}
+                ,
+                {37.19, 11.00,
+                36.50, 3.38}
+                ,
+                {36.50, 3.38,
+                33.68, -1.04}
+                ,
+                {33.68, -1.04,
+                27.63, -3.50}
+                ,
+                {27.63, -3.50,
+                19.56, -4.06}
+                ,
+                {19.56, -4.06,
+                9.88, -10.25}
+                ,
+                {9.88, -10.25,
+                -18.50, -10.38}
+            }
+        },
+        {
+            {149,511}
+            ,{307.5,490.8125}
+        }
+    }
+    obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"][3] = {
+        {
+            {
+                {-6.75, -20.00,
+                -19.38, -4.25}
+                ,
+                {-19.38, -4.25,
+                -17.25, 8.13}
+                ,
+                {-17.25, 8.13,
+                -15.25, 14.69}
+                ,
+                {-15.25, 14.69,
+                -11.59, 18.63}
+                ,
+                {-11.59, 18.63,
+                -7.56, 21.13}
+                ,
+                {-7.56, 21.13,
+                1.00, 21.93}
+                ,
+                {1.00, 21.93,
+                8.75, 21.55}
+                ,
+                {8.75, 21.55,
+                13.00, 20.63}
+                ,
+                {13.00, 20.63,
+                15.97, 19.62}
+                ,
+                {15.97, 19.62,
+                19.13, 17.63}
+                ,
+                {19.13, 17.63,
+                20.21, 13.62}
+                ,
+                {20.21, 13.62,
+                19.63, 7.14}
+                ,
+                {19.63, 7.14,
+                18.50, 1.88}
+                ,
+                {18.50, 1.88,
+                16.28, -2.69}
+                ,
+                {16.28, -2.69,
+                12.46, -7.97}
+                ,
+                {12.46, -7.97,
+                -6.75, -20.00}
+            },
+            {
+                {-18.50, -10.38,
+                -28.38, -6.50}
+                ,
+                {-28.38, -6.50,
+                -27.75, 1.00}
+                ,
+                {-27.75, 1.00,
+                -24.81, 4.69}
+                ,
+                {-24.81, 4.69,
+                -19.51, 7.50}
+                ,
+                {-19.51, 7.50,
+                -14.50, 8.56}
+                ,
+                {-14.50, 8.56,
+                -1.38, 17.94}
+                ,
+                {-1.38, 17.94,
+                11.94, 18.81}
+                ,
+                {11.94, 18.81,
+                26.19, 17.75}
+                ,
+                {26.19, 17.75,
+                34.02, 15.55}
+                ,
+                {34.02, 15.55,
+                37.19, 11.00}
+                ,
+                {37.19, 11.00,
+                36.50, 3.38}
+                ,
+                {36.50, 3.38,
+                33.68, -1.04}
+                ,
+                {33.68, -1.04,
+                27.63, -3.50}
+                ,
+                {27.63, -3.50,
+                19.56, -4.06}
+                ,
+                {19.56, -4.06,
+                9.88, -10.25}
+                ,
+                {9.88, -10.25,
+                -18.50, -10.38}
+            }
+        },
+        {
+            {150.75,511}
+            ,{300.875,492.5625}
+        }
+    }
+    obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"][4] = {
+        {
+            {
+                {-6.75, -20.00,
+                -19.38, -4.25}
+                ,
+                {-19.38, -4.25,
+                -17.67, 6.75}
+                ,
+                {-17.67, 6.75,
+                -15.25, 14.69}
+                ,
+                {-15.25, 14.69,
+                -11.67, 18.93}
+                ,
+                {-11.67, 18.93,
+                -7.56, 21.13}
+                ,
+                {-7.56, 21.13,
+                1.00, 22.01}
+                ,
+                {1.00, 22.01,
+                8.63, 21.50}
+                ,
+                {8.63, 21.50,
+                14.49, 19.91}
+                ,
+                {14.49, 19.91,
+                19.13, 17.50}
+                ,
+                {19.13, 17.50,
+                20.27, 12.62}
+                ,
+                {20.27, 12.62,
+                19.63, 5.38}
+                ,
+                {19.63, 5.38,
+                15.93, -1.84}
+                ,
+                {15.93, -1.84,
+                12.46, -7.97}
+                ,
+                {12.46, -7.97,
+                -6.75, -20.00}
+            },
+            {
+                {-22.38, -8.50,
+                -37.94, -2.38}
+                ,
+                {-37.94, -2.38,
+                -37.81, 5.31}
+                ,
+                {-37.81, 5.31,
+                -35.13, 9.00}
+                ,
+                {-35.13, 9.00,
+                -28.51, 10.75}
+                ,
+                {-28.51, 10.75,
+                -18.38, 10.44}
+                ,
+                {-18.38, 10.44,
+                -2.63, 18.94}
+                ,
+                {-2.63, 18.94,
+                8.94, 19.81}
+                ,
+                {8.94, 19.81,
+                26.19, 17.75}
+                ,
+                {26.19, 17.75,
+                34.02, 15.55}
+                ,
+                {34.02, 15.55,
+                37.19, 11.00}
+                ,
+                {37.19, 11.00,
+                36.50, 3.38}
+                ,
+                {36.50, 3.38,
+                31.93, -0.54}
+                ,
+                {31.93, -0.54,
+                25.50, -2.75}
+                ,
+                {25.50, -2.75,
+                12.19, -3.44}
+                ,
+                {12.19, -3.44,
+                7.38, -8.75}
+                ,
+                {7.38, -8.75,
+                -22.38, -8.50}
+            }
+        },
+        {
+            {156.375,512.375}
+            ,{295.125,493.5625}
+        }
+    }
+    obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"][5] = {
+        {
+            {
+                {-6.75, -20.00,
+                -19.38, -3.88}
+                ,
+                {-19.38, -3.88,
+                -17.89, 6.18}
+                ,
+                {-17.89, 6.18,
+                -16.31, 12.75}
+                ,
+                {-16.31, 12.75,
+                -15.51, 15.19}
+                ,
+                {-15.51, 15.19,
+                -13.59, 17.83}
+                ,
+                {-13.59, 17.83,
+                -7.81, 21.19}
+                ,
+                {-7.81, 21.19,
+                -3.25, 21.78}
+                ,
+                {-3.25, 21.78,
+                2.50, 22.00}
+                ,
+                {2.50, 22.00,
+                9.85, 21.72}
+                ,
+                {9.85, 21.72,
+                14.65, 20.60}
+                ,
+                {14.65, 20.60,
+                18.25, 18.19}
+                ,
+                {18.25, 18.19,
+                19.95, 14.75}
+                ,
+                {19.95, 14.75,
+                20.11, 10.31}
+                ,
+                {20.11, 10.31,
+                19.25, 5.38}
+                ,
+                {19.25, 5.38,
+                16.23, -1.21}
+                ,
+                {16.23, -1.21,
+                12.46, -7.97}
+                ,
+                {12.46, -7.97,
+                -6.75, -20.00}
+            },
+            {
+                {-22.38, -8.50,
+                -37.50, -2.38}
+                ,
+                {-37.50, -2.38,
+                -37.56, 5.31}
+                ,
+                {-37.56, 5.31,
+                -34.44, 8.81}
+                ,
+                {-34.44, 8.81,
+                -28.51, 10.75}
+                ,
+                {-28.51, 10.75,
+                -18.38, 10.44}
+                ,
+                {-18.38, 10.44,
+                -2.63, 18.94}
+                ,
+                {-2.63, 18.94,
+                8.94, 19.81}
+                ,
+                {8.94, 19.81,
+                26.19, 17.75}
+                ,
+                {26.19, 17.75,
+                34.02, 15.55}
+                ,
+                {34.02, 15.55,
+                37.19, 11.00}
+                ,
+                {37.19, 11.00,
+                36.50, 3.38}
+                ,
+                {36.50, 3.38,
+                31.93, -0.54}
+                ,
+                {31.93, -0.54,
+                25.50, -2.75}
+                ,
+                {25.50, -2.75,
+                12.19, -3.44}
+                ,
+                {12.19, -3.44,
+                7.38, -8.75}
+                ,
+                {7.38, -8.75,
+                -22.38, -8.50}
+            }
+        },
+        {
+            {164.625,515.875}
+            ,{274.375,496}
+        }
+    }
+
 
 end
 
@@ -325,7 +942,7 @@ function state_machine_char_game_scene_char_LP()
     local obj_char = obj_char_game_scene_char_LP
     local switch = {
         ["before_ease_in"] = function()
-            character_animator(obj_char,anim_char_LP_stand_idle)
+            character_animator(obj_char,obj_char["current_animation"])
         end,
         ["hitstop"] = function()
             if obj_char["hit_hurt_blockstop_countdown"] > 0 then
@@ -343,53 +960,58 @@ function state_machine_char_game_scene_char_LP()
             end
         end,
         ["blockstop"] = function()
-            character_animator(obj_char,anim_char_LP_stand_idle)
+
         end,
         ["hurt"] = function()
-            character_animator(obj_char,obj_char["current_hurt_animation"])
+            character_animator(obj_char,obj_char["current_animation"])
             if obj_char["f"] >= obj_char["current_animation_length"] then
                 if obj_char["height_state"] == "stand" then
                     -- to idle
-                    init_character_anim_with(obj_char,anim_char_LP_stand_idle)
+                    obj_char["current_animation"] = anim_char_LP_stand_idle
+                    init_character_anim_with(obj_char,obj_char["current_animation"])
                     obj_char["state"] = "stand_idle"
                 end
             end
         end,
         ["block"] = function()
-            character_animator(obj_char,obj_char["current_block_animation"])
+            character_animator(obj_char,obj_char["current_animation"])
         end,
         ["stand_idle"] = function()
-            character_animator(obj_char,anim_char_LP_stand_idle)
+            character_animator(obj_char,obj_char["current_animation"])
             if test_input_sys_press_or_hold(input["UP"]) then
                 -- to pre_jump
                 
             elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
                 -- to over_drive
-                init_character_anim_with(obj_char,anim_char_LP_overdrive)
+                obj_char["current_animation"] = anim_char_LP_overdrive
+                init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "overdrive"
             elseif test_input_sys_press_or_hold(input["P"]) then
                 -- to 5P
-                init_character_anim_with(obj_char,anim_char_LP_5P)
+                obj_char["current_animation"] = anim_char_LP_5P
+                init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "5P"
             end
         end,
         ["overdrive"] = function()
-            character_animator(obj_char,anim_char_LP_overdrive)
+            character_animator(obj_char,obj_char["current_animation"])
             if test_input_sys_press_or_hold(input["RC"]) and obj_char["f"] < 29 then
                 -- to overdrive RC
                 
             elseif obj_char["f"] >= obj_char["current_animation_length"] then
                 -- to idle
-                init_character_anim_with(obj_char,anim_char_LP_stand_idle)
+                obj_char["current_animation"] = anim_char_LP_stand_idle
+                init_character_anim_with(obj_char,obj_char["current_animation"] )
                 obj_char["state"] = "stand_idle"
             end
         end,
         ["5P"] = function()
-            character_animator(obj_char,anim_char_LP_5P)
+            character_animator(obj_char,obj_char["current_animation"])
             
             if obj_char["f"] >= obj_char["current_animation_length"] then
                 -- to idle
-                init_character_anim_with(obj_char,anim_char_LP_stand_idle)
+                obj_char["current_animation"] = anim_char_LP_stand_idle
+                init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "stand_idle"
             end
         end,

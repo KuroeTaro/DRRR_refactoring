@@ -12,8 +12,6 @@
 -- obj_char["air_hurt_animation"] = nil
 -- obj_char["air_block_animation"] = nil
 
--- obj_char["current_hurt_animation"] = nil
--- obj_char["current_block_animation"] = nil
 -- obj_char["current_animation_length"] = 0 -- 如果为0则是循环动画
 
 -- obj_char["strike_active"] = false -- 防止在同一动作的active多次触发
@@ -116,8 +114,6 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
         obj_char["air_hurt_animation"] = nil
         obj_char["air_block_animation"] = nil
 
-        obj_char["current_hurt_animation"] = nil
-        obj_char["current_block_animation"] = nil
         obj_char["current_animation_length"] = 0 -- 如果为0则是循环动画
 
         obj_char["strike_active"] = false -- 防止在同一动作的active多次触发
@@ -276,8 +272,6 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
         obj_char["air_hurt_animation"] = nil
         obj_char["air_block_animation"] = nil
 
-        obj_char["current_hurt_animation"] = nil
-        obj_char["current_block_animation"] = nil
         obj_char["current_animation_length"] = 80 -- 如果为0则是循环动画
 
         obj_char["strike_active"] = false -- 防止在同一动作的active多次触发
@@ -1189,8 +1183,6 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         obj_char["air_hurt_animation"] = nil
         obj_char["air_block_animation"] = nil
 
-        obj_char["current_hurt_animation"] = nil
-        obj_char["current_block_animation"] = nil
         obj_char["current_animation_length"] = 31 -- 如果为0则是循环动画
 
         obj_char["strike_active"] = false -- 防止在同一动作的active多次触发
@@ -1609,6 +1601,9 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         -- draw_correction
         obj_char[8] = 9
     end
+    res[30] = function() 
+        obj_char["hurt_state"] = "idle"
+    end
     res[31] = function() 
         -- animation end
     end
@@ -1624,6 +1619,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
     local ability_add = 0.05
     local other_side_obj_char = common_game_scene_change_character(side)
     local other_side_hurtbox_data = common_game_scene_change_character_hurtbox(side)
+    local other_side_shadowbox_data = common_game_scene_change_character_shadowbox(side)
     local function add_heat_ability_overdrive()
         if other_side_obj_char["overdrive"][1] < other_side_obj_char["overdrive"][2] then
             other_side_obj_char["overdrive"][1] = 
@@ -1674,6 +1670,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         other_side_obj_char["hit_counter_state"] = 1 -- 当前攻击counter等级 1 small 2 mid 3 big
         other_side_obj_char["throw_inv"] = true
         other_side_obj_char["throw_inv_countdown"] = 18
+        
         other_side_obj_char["current_animation_length"] = 13
 
         -- state_number
@@ -1686,89 +1683,8 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         other_side_obj_char["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][0]
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = {
-            {
-                {-3.88, -21.50,
-                -19.00, -17.38}
-                ,
-                {-19.00, -17.38,
-                -20.88, -12.00}
-                ,
-                {-20.88, -12.00,
-                -14.25, 15.63}
-                ,
-                {-14.25, 15.63,
-                -7.63, 20.50}
-                ,
-                {-7.63, 20.50,
-                3.25, 22.13}
-                ,
-                {3.25, 22.13,
-                13.63, 21.25}
-                ,
-                {13.63, 21.25,
-                22.50, 16.38}
-                ,
-                {22.50, 16.38,
-                21.88, 4.63}
-                ,
-                {21.88, 4.63,
-                11.88, -14.63}
-                ,
-                {11.88, -14.63,
-                -3.88, -21.50}
-            },
-            {
-                {-17.38, -6.38,
-                -37.88, -4.50}
-                ,
-                {-37.88, -4.50,
-                -37.63, 6.13}
-                ,
-                {-37.63, 6.13,
-                -31.01, 10.17}
-                ,
-                {-31.01, 10.17,
-                -17.60, 10.46}
-                ,
-                {-17.60, 10.46,
-                -3.88, 18.75}
-                ,
-                {-3.88, 18.75,
-                8.88, 19.50}
-                ,
-                {8.88, 19.50,
-                20.75, 18.75}
-                ,
-                {20.75, 18.75,
-                32.84, 15.79}
-                ,
-                {32.84, 15.79,
-                38.25, 11.63}
-                ,
-                {38.25, 11.63,
-                37.88, 5.00}
-                ,
-                {37.88, 5.00,
-                35.88, 0.24}
-                ,
-                {35.88, 0.24,
-                30.38, -2.75}
-                ,
-                {30.38, -2.75,
-                23.96, -4.23}
-                ,
-                {23.96, -4.23,
-                12.00, -5.00}
-                ,
-                {12.00, -5.00,
-                -17.38, -6.38}
-            }
-        }
-        other_side_obj_char["shadow_box_pos"] = {
-            {44.0,517.0}
-            ,{146.0,497.0}
-        }
+        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][0][1]
+        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][0][2]
 
         -- draw_correction
         other_side_obj_char[8] = 0
@@ -1782,89 +1698,8 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         other_side_obj_char["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][2]
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = {
-            {
-                {-3.88, -21.50,
-                -19.00, -17.38}
-                ,
-                {-19.00, -17.38,
-                -20.88, -12.00}
-                ,
-                {-20.88, -12.00,
-                -14.25, 15.63}
-                ,
-                {-14.25, 15.63,
-                -7.63, 20.50}
-                ,
-                {-7.63, 20.50,
-                3.25, 22.13}
-                ,
-                {3.25, 22.13,
-                13.63, 21.25}
-                ,
-                {13.63, 21.25,
-                22.50, 16.38}
-                ,
-                {22.50, 16.38,
-                21.88, 4.63}
-                ,
-                {21.88, 4.63,
-                11.88, -14.63}
-                ,
-                {11.88, -14.63,
-                -3.88, -21.50}
-            },
-            {
-                {-17.38, -6.38,
-                -37.88, -4.50}
-                ,
-                {-37.88, -4.50,
-                -37.63, 6.13}
-                ,
-                {-37.63, 6.13,
-                -31.01, 10.17}
-                ,
-                {-31.01, 10.17,
-                -17.60, 10.46}
-                ,
-                {-17.60, 10.46,
-                -3.88, 18.75}
-                ,
-                {-3.88, 18.75,
-                8.88, 19.50}
-                ,
-                {8.88, 19.50,
-                20.75, 18.75}
-                ,
-                {20.75, 18.75,
-                32.84, 15.79}
-                ,
-                {32.84, 15.79,
-                38.25, 11.63}
-                ,
-                {38.25, 11.63,
-                37.88, 5.00}
-                ,
-                {37.88, 5.00,
-                35.88, 0.24}
-                ,
-                {35.88, 0.24,
-                30.38, -2.75}
-                ,
-                {30.38, -2.75,
-                23.96, -4.23}
-                ,
-                {23.96, -4.23,
-                12.00, -5.00}
-                ,
-                {12.00, -5.00,
-                -17.38, -6.38}
-            }
-        }
-        other_side_obj_char["shadow_box_pos"] = {
-            {44.0,517.0}
-            ,{146.0,497.0}
-        }
+        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][2][1]
+        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][2][2]
         
         -- draw_correction
         other_side_obj_char[8] = 2
@@ -1874,89 +1709,8 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         add_heat_ability_overdrive()
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = {
-            {
-                {-3.88, -21.50,
-                -19.00, -17.38}
-                ,
-                {-19.00, -17.38,
-                -20.88, -12.00}
-                ,
-                {-20.88, -12.00,
-                -14.25, 15.63}
-                ,
-                {-14.25, 15.63,
-                -7.63, 20.50}
-                ,
-                {-7.63, 20.50,
-                3.25, 22.13}
-                ,
-                {3.25, 22.13,
-                13.63, 21.25}
-                ,
-                {13.63, 21.25,
-                22.50, 16.38}
-                ,
-                {22.50, 16.38,
-                21.88, 4.63}
-                ,
-                {21.88, 4.63,
-                11.88, -14.63}
-                ,
-                {11.88, -14.63,
-                -3.88, -21.50}
-            },
-            {
-                {-17.38, -6.38,
-                -37.88, -4.50}
-                ,
-                {-37.88, -4.50,
-                -37.63, 6.13}
-                ,
-                {-37.63, 6.13,
-                -31.01, 10.17}
-                ,
-                {-31.01, 10.17,
-                -17.60, 10.46}
-                ,
-                {-17.60, 10.46,
-                -3.88, 18.75}
-                ,
-                {-3.88, 18.75,
-                8.88, 19.50}
-                ,
-                {8.88, 19.50,
-                20.75, 18.75}
-                ,
-                {20.75, 18.75,
-                32.84, 15.79}
-                ,
-                {32.84, 15.79,
-                38.25, 11.63}
-                ,
-                {38.25, 11.63,
-                37.88, 5.00}
-                ,
-                {37.88, 5.00,
-                35.88, 0.24}
-                ,
-                {35.88, 0.24,
-                30.38, -2.75}
-                ,
-                {30.38, -2.75,
-                23.96, -4.23}
-                ,
-                {23.96, -4.23,
-                12.00, -5.00}
-                ,
-                {12.00, -5.00,
-                -17.38, -6.38}
-            }
-        }
-        other_side_obj_char["shadow_box_pos"] = {
-            {44.0,517.0}
-            ,{146.0,497.0}
-        }
+        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][3][1]
+        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][3][2]
 
         -- draw_correction
         other_side_obj_char[8] = 3
@@ -1969,89 +1723,8 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         other_side_obj_char["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][4]
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = {
-            {
-                {-3.88, -21.50,
-                -19.00, -17.38}
-                ,
-                {-19.00, -17.38,
-                -20.88, -12.00}
-                ,
-                {-20.88, -12.00,
-                -14.25, 15.63}
-                ,
-                {-14.25, 15.63,
-                -7.63, 20.50}
-                ,
-                {-7.63, 20.50,
-                3.25, 22.13}
-                ,
-                {3.25, 22.13,
-                13.63, 21.25}
-                ,
-                {13.63, 21.25,
-                22.50, 16.38}
-                ,
-                {22.50, 16.38,
-                21.88, 4.63}
-                ,
-                {21.88, 4.63,
-                11.88, -14.63}
-                ,
-                {11.88, -14.63,
-                -3.88, -21.50}
-            },
-            {
-                {-17.38, -6.38,
-                -37.88, -4.50}
-                ,
-                {-37.88, -4.50,
-                -37.63, 6.13}
-                ,
-                {-37.63, 6.13,
-                -31.01, 10.17}
-                ,
-                {-31.01, 10.17,
-                -17.60, 10.46}
-                ,
-                {-17.60, 10.46,
-                -3.88, 18.75}
-                ,
-                {-3.88, 18.75,
-                8.88, 19.50}
-                ,
-                {8.88, 19.50,
-                20.75, 18.75}
-                ,
-                {20.75, 18.75,
-                32.84, 15.79}
-                ,
-                {32.84, 15.79,
-                38.25, 11.63}
-                ,
-                {38.25, 11.63,
-                37.88, 5.00}
-                ,
-                {37.88, 5.00,
-                35.88, 0.24}
-                ,
-                {35.88, 0.24,
-                30.38, -2.75}
-                ,
-                {30.38, -2.75,
-                23.96, -4.23}
-                ,
-                {23.96, -4.23,
-                12.00, -5.00}
-                ,
-                {12.00, -5.00,
-                -17.38, -6.38}
-            }
-        }
-        other_side_obj_char["shadow_box_pos"] = {
-            {44.0,517.0}
-            ,{146.0,497.0}
-        }
+        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][4][1]
+        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][4][2]
 
         -- draw_correction
         other_side_obj_char[8] = 4
@@ -2061,89 +1734,8 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         add_heat_ability_overdrive()
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = {
-            {
-                {-3.88, -21.50,
-                -19.00, -17.38}
-                ,
-                {-19.00, -17.38,
-                -20.88, -12.00}
-                ,
-                {-20.88, -12.00,
-                -14.25, 15.63}
-                ,
-                {-14.25, 15.63,
-                -7.63, 20.50}
-                ,
-                {-7.63, 20.50,
-                3.25, 22.13}
-                ,
-                {3.25, 22.13,
-                13.63, 21.25}
-                ,
-                {13.63, 21.25,
-                22.50, 16.38}
-                ,
-                {22.50, 16.38,
-                21.88, 4.63}
-                ,
-                {21.88, 4.63,
-                11.88, -14.63}
-                ,
-                {11.88, -14.63,
-                -3.88, -21.50}
-            },
-            {
-                {-17.38, -6.38,
-                -37.88, -4.50}
-                ,
-                {-37.88, -4.50,
-                -37.63, 6.13}
-                ,
-                {-37.63, 6.13,
-                -31.01, 10.17}
-                ,
-                {-31.01, 10.17,
-                -17.60, 10.46}
-                ,
-                {-17.60, 10.46,
-                -3.88, 18.75}
-                ,
-                {-3.88, 18.75,
-                8.88, 19.50}
-                ,
-                {8.88, 19.50,
-                20.75, 18.75}
-                ,
-                {20.75, 18.75,
-                32.84, 15.79}
-                ,
-                {32.84, 15.79,
-                38.25, 11.63}
-                ,
-                {38.25, 11.63,
-                37.88, 5.00}
-                ,
-                {37.88, 5.00,
-                35.88, 0.24}
-                ,
-                {35.88, 0.24,
-                30.38, -2.75}
-                ,
-                {30.38, -2.75,
-                23.96, -4.23}
-                ,
-                {23.96, -4.23,
-                12.00, -5.00}
-                ,
-                {12.00, -5.00,
-                -17.38, -6.38}
-            }
-        }
-        other_side_obj_char["shadow_box_pos"] = {
-            {44.0,517.0}
-            ,{146.0,497.0}
-        }
+        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][5][1]
+        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][5][2]
 
         -- draw_correction
         other_side_obj_char[8] = 5

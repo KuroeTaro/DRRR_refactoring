@@ -21,9 +21,9 @@ function load_game_scene_common_anim()
     
 end
 
-function load_game_scene_hurtbox_data()
-    load_game_scene_hurtbox_data_LP()
-    load_game_scene_hurtbox_data_RP()
+function load_game_scene_hurtbox_shadowbox_data()
+    load_game_scene_hurtbox_shadowbox_data_LP()
+    load_game_scene_hurtbox_shadowbox_data_RP()
     
 end
 

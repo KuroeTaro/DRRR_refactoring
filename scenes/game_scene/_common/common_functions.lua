@@ -96,6 +96,13 @@ function common_game_scene_change_character_hurtbox(side)
     end
 end
 
+function common_game_scene_change_character_shadowbox(side)
+    if side == "L" then
+        return obj_shadowboxs_data_game_scene_char_RP
+    elseif side == "R" then
+        return obj_shadowboxs_data_game_scene_char_LP
+    end
+end
 
 
 
@@ -115,14 +122,14 @@ function common_game_scene_hurt_function(obj_char)
     obj_char["state_cache"] = "hurt"
     obj_char["state"] = "hurtstop"
     if obj_char["height_state"] == "stand" then
-        obj_char["current_hurt_animation"] = hit_side_obj_char["stand_hurt_animation"]
+        obj_char["current_animation"] = hit_side_obj_char["stand_hurt_animation"]
     elseif obj_char["height_state"] == "crouch" then
-        obj_char["current_hurt_animation"] = hit_side_obj_char["crouch_hurt_animation"]
+        obj_char["current_animation"] = hit_side_obj_char["crouch_hurt_animation"]
     elseif obj_char["height_state"] == "air" then
-        obj_char["current_hurt_animation"] = hit_side_obj_char["air_hurt_animation"]
+        obj_char["current_animation"] = hit_side_obj_char["air_hurt_animation"]
     end
 
-    init_character_anim_with(obj_char,obj_char["current_hurt_animation"])
+    init_character_anim_with(obj_char,obj_char["current_animation"])
     obj_char["hit_hurt_blockstop_countdown"] = hit_side_obj_char["hit_hurt_blockstop_countdown"] 
 
 end
