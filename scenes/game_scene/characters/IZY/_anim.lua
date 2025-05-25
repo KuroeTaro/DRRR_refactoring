@@ -77,7 +77,7 @@
 
 -- -- sub_obj
 -- obj_char["projectile_table"] = {}
--- obj_char["VFX_table"] = {}
+-- obj_char["VFX_back_character_table"] = {}
 -- obj_char["black_overlay_table"] = {}
 -- obj_char["shadow_box_table"] = {}
 -- obj_char["shadow_box_pos"] = {}

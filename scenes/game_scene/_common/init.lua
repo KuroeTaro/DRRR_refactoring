@@ -51,6 +51,9 @@ function load_game_scene_common_shader()
     shader_game_scene_radial_blur = love.graphics.newShader("shaders/radial_blur.glsl")
     shader_game_scene_brightness_contrast = love.graphics.newShader("shaders/brightness_contrast.glsl")
     shader_game_scene_bc7_alpha_fix = love.graphics.newShader("shaders/bc7_alpha_fix.glsl")
+    shader_game_scene_character_shadow_blur = love.graphics.newShader("shaders/character_shadow_blur.glsl")
+    shader_game_scene_character_shadow_blur:send("radius", 1.0 / 1000.0) -- 模糊强度，基于画布分辨率
+    shader_game_scene_character_shadow_blur:send("alpha", 0.5) -- 透明度
     
     CANVAS = love.graphics.newCanvas(1600,900)
     CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)

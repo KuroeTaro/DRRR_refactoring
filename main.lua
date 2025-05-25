@@ -94,6 +94,7 @@ function love.load()
 	DEBUG_BOX_COLOR_RED = {1,0,0,0.5}
 
 	init_input()
+
 	-- read save data
 	read_volume_config()
 	read_game_duration()

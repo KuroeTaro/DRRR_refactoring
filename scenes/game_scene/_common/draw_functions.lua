@@ -16,9 +16,9 @@ function draw_game_scene_main()
     draw_game_scene_char_RP_shadow()
     love.graphics.setCanvas()
 
-    love.graphics.setColor(1, 1, 1, 0.5)
+    love.graphics.setShader(shader_game_scene_character_shadow_blur)
     love.graphics.draw(shadow_cavans)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setShader()
 
     -- 绘制VFX
     draw_game_scene_char_LP_black_overlay()
@@ -242,8 +242,6 @@ function draw_game_scene_main()
 
 
     -- DEBUG
-    -- draw_game_scene_char_LP_box()
-    -- draw_game_scene_char_RP_box()
     draw_game_scene_char_LP_hurtbox()
     draw_game_scene_char_RP_hurtbox()
     draw_game_scene_char_LP_hitbox()

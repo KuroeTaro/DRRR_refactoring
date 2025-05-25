@@ -97,7 +97,8 @@ function load_game_scene_obj_char_RP()
 
     -- sub_obj
     obj_char_game_scene_char_RP["projectile_table"] = {}
-    obj_char_game_scene_char_RP["VFX_table"] = {}
+    obj_char_game_scene_char_RP["VFX_front_character_table"] = {}
+    obj_char_game_scene_char_RP["VFX_back_character_table"] = {}
     obj_char_game_scene_char_RP["black_overlay_table"] = {}
     obj_char_game_scene_char_RP["shadow_box_table"] = {
         {
@@ -1227,19 +1228,19 @@ function draw_game_scene_char_RP_projectile()
 end
 
 function update_game_scene_char_RP_VFX()
-    for i = #obj_char_game_scene_char_RP["VFX_table"], 1, -1 do -- 反向遍历，便于删除元素
-        local object = obj_char_game_scene_char_RP["VFX_table"][i]
+    for i = #obj_char_game_scene_char_RP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_back_character_table"][i]
         object["life"] = object["life"] - 1 -- 减少寿命
         object["update"](object)
         if object["life"] <= 0 then
-            table.remove(obj_char_game_scene_char_RP["VFX_table"], i) -- 寿命耗尽，从列表中移除
+            table.remove(obj_char_game_scene_char_RP["VFX_back_character_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
 end
 
 function draw_game_scene_char_RP_VFX()
-    for i = #obj_char_game_scene_char_RP["VFX_table"], 1, -1 do -- 反向遍历，便于删除元素
-        local object = obj_char_game_scene_char_RP["VFX_table"][i]
+    for i = #obj_char_game_scene_char_RP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_back_character_table"][i]
         object["draw"](object)
     end
 end

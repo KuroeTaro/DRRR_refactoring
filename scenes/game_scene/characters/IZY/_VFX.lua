@@ -38,7 +38,7 @@ function insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
-    table.insert(obj_char["VFX_table"],obj)
+    table.insert(obj_char["VFX_back_character_table"],obj)
 end
 
 function insert_VFX_game_scene_char_overdrive_airflow(obj_char)
@@ -77,7 +77,7 @@ function insert_VFX_game_scene_char_overdrive_airflow(obj_char)
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
-    table.insert(obj_char["VFX_table"],obj)
+    table.insert(obj_char["VFX_back_character_table"],obj)
     
 end
 
@@ -139,7 +139,7 @@ function insert_VFX_game_scene_char_overdrive_partical(obj_char)
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
         love.graphics.setBlendMode("alpha")
     end
-    table.insert(obj_char["VFX_table"],obj)
+    table.insert(obj_char["VFX_back_character_table"],obj)
 end
 
 function insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)

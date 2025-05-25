@@ -14,6 +14,7 @@ function love.conf(t)
     -- t.window.width = 1600
     -- t.window.height = 900
     t.window.title = "DRRR.ver.1/8.002"
+    -- t.window.msaa = 16  -- 设置采样级别（4x 或 8x）
     t.window.vsync = 1
     t.modules.physics = false 
     t.modules.touch = false 
