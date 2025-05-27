@@ -21,9 +21,11 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["state_cache"] = "none"
     obj_char_game_scene_char_LP["sprite_sheet_state"] = "stand_idle"
     obj_char_game_scene_char_LP["height_state"] = "stand" -- stand crouch air
-    obj_char_game_scene_char_LP["hurt_state"] = "idle" -- idle block hurted punish counter GP parry
     obj_char_game_scene_char_LP["hit_type_state"] = "none" -- none strike throw burst
-    obj_char_game_scene_char_LP["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
+    obj_char_game_scene_char_LP["hit_guard_type_state"] = "none" -- none all low high
+    obj_char_game_scene_char_LP["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
+    obj_char_game_scene_char_LP["hurt_state"] = "idle" -- idle unblock punish counter GP parry
+    obj_char_game_scene_char_LP["move_state"] = "none" -- none startup active recovery
     obj_char_game_scene_char_LP["stand_hurt_animation"] = nil
     obj_char_game_scene_char_LP["stand_block_animation"] = nil
     obj_char_game_scene_char_LP["crouch_hurt_animation"] = nil
@@ -78,16 +80,6 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["game_speed_subframe"] = 1
     obj_char_game_scene_char_LP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
     obj_char_game_scene_char_LP["hit_hurt_blockstop_countdown"] = 0
-    obj_char_game_scene_char_LP["hurtstop_wiggle_x"] = 0
-    obj_char_game_scene_char_LP["hurtstop_wiggle_y"] = 0
-    obj_char_game_scene_char_LP["FCT"]["hurtstop_wiggle_x"] = 0
-    obj_char_game_scene_char_LP["LCT"]["hurtstop_wiggle_x"] = 0
-    obj_char_game_scene_char_LP["LCD"]["hurtstop_wiggle_x"] = 0
-    obj_char_game_scene_char_LP["FCT"]["hurtstop_wiggle_y"] = 0
-    obj_char_game_scene_char_LP["LCT"]["hurtstop_wiggle_y"] = 0
-    obj_char_game_scene_char_LP["LCD"]["hurtstop_wiggle_y"] = 0
-    obj_char_game_scene_char_LP["current_hurtstop_wiggle_x_animation"] = {}
-    obj_char_game_scene_char_LP["current_hurtstop_wiggle_y_animation"] = {}
 
     -- collide
     obj_char_game_scene_char_LP["pushbox"] = {0, -185, 130, 370}
@@ -181,21 +173,26 @@ function load_game_scene_obj_char_LP()
         ,{146.0625,496.1875}
     }
 
+    obj_char_game_scene_char_LP["hit_VFX_insert_function"] = nil
+    obj_char_game_scene_char_LP["hit_VFX_insert_function_argument"] = nil
+    obj_char_game_scene_char_LP["hit_SFX"] = nil
+
     -- command_cache
     obj_char_game_scene_char_LP["command_cache"] = {}
-
+    obj_char_game_scene_char_LP["command_cache_load_countdown"] = 0
+    obj_char_game_scene_char_LP["block_command_cache_countdown"] = 0
+    
     -- draw_correction
+    obj_char_game_scene_char_LP[8] = 0
     obj_char_game_scene_char_LP["anchor_pos"] = {90,520}
     obj_char_game_scene_char_LP["contrast"] = 1
     obj_char_game_scene_char_LP["brightness"] = 0
     obj_char_game_scene_char_LP["brightness_const"] = 0
     obj_char_game_scene_char_LP["brightness_end_const"] = 0.2
-    obj_char_game_scene_char_LP["FCT"]["contrast"] = 0
-    obj_char_game_scene_char_LP["LCT"]["contrast"] = 0
-    obj_char_game_scene_char_LP["LCD"]["contrast"] = 0
-    obj_char_game_scene_char_LP["FCT"]["brightness"] = 0
-    obj_char_game_scene_char_LP["LCT"]["brightness"] = 0
-    obj_char_game_scene_char_LP["LCD"]["brightness"] = 0
+    obj_char_game_scene_char_LP["hurtstop_wiggle_x"] = 0
+    obj_char_game_scene_char_LP["hurtstop_wiggle_y"] = 0
+    obj_char_game_scene_char_LP["current_hurtstop_wiggle_x_animation"] = nil
+    obj_char_game_scene_char_LP["current_hurtstop_wiggle_y_animation"] = nil
 
 end
 
@@ -955,9 +952,13 @@ function state_machine_char_game_scene_char_LP()
         ["hurtstop"] = function()
             if obj_char["hit_hurt_blockstop_countdown"] > 0 then
                 obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
+                point_linear_animator(obj_char,obj_char["current_hurtstop_wiggle_x_animation"])
+                point_linear_animator(obj_char,obj_char["current_hurtstop_wiggle_y_animation"])
             else
                 obj_char["state"] = obj_char["state_cache"]
                 obj_char["velocity"] = obj_char["velocity_cache"]
+                obj_char["hurtstop_wiggle_x"] = 0
+                obj_char["hurtstop_wiggle_y"] = 0
             end
         end,
         ["blockstop"] = function()
@@ -1049,8 +1050,8 @@ end
 
 function draw_game_scene_char_LP_logic_graphic_pos_sync()
     local obj = obj_char_game_scene_char_LP
-    obj[1] = obj["x"]+obj["hurtstop_wiggle_x"]-obj[5]*obj["anchor_pos"][1]
-    obj[2] = obj["y"]+obj["hurtstop_wiggle_y"]-obj[6]*obj["anchor_pos"][2]
+    obj[1] = obj["x"]+(obj["hurtstop_wiggle_x"]*(math.random()-0.5)*2)-obj[5]*obj["anchor_pos"][1]
+    obj[2] = obj["y"]+(obj["hurtstop_wiggle_y"]*(math.random()-0.5)*2)-obj[6]*obj["anchor_pos"][2]
 end
 
 function draw_game_scene_char_LP()
@@ -1236,11 +1237,26 @@ function update_game_scene_char_LP_VFX()
             table.remove(obj_char_game_scene_char_LP["VFX_back_character_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
+    for i = #obj_char_game_scene_char_LP["VFX_front_character_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_LP["VFX_front_character_table"][i]
+        object["life"] = object["life"] - 1 -- 减少寿命
+        object["update"](object)
+        if object["life"] <= 0 then
+            table.remove(obj_char_game_scene_char_LP["VFX_front_character_table"], i) -- 寿命耗尽，从列表中移除
+        end
+    end
 end
 
-function draw_game_scene_char_LP_VFX()
+function draw_game_scene_char_LP_VFX_back()
     for i = #obj_char_game_scene_char_LP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_LP["VFX_back_character_table"][i]
+        object["draw"](object)
+    end
+end
+
+function draw_game_scene_char_LP_VFX_front()
+    for i = #obj_char_game_scene_char_LP["VFX_front_character_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_LP["VFX_front_character_table"][i]
         object["draw"](object)
     end
 end

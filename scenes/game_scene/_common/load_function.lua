@@ -207,11 +207,6 @@ function order_load_game_scene_VFX(load_order)
     local switch = 
     {
         [1] = function()
-            -- image_table_VFX_game_scene_overdrive_airflow = {}
-            -- for i = 0,34 do
-            --     image_table_VFX_game_scene_overdrive_airflow[i] = love.graphics.newImage(ASSET_DATA[8]["overdrive_airflow"][i+1])
-            -- end
-
             image_sprite_sheet_VFX_game_scene_overdrive_airflow = 
             sprite_sheet_load(
                 "asset/game_scene/VFX/overdrive_airflow.json",
@@ -222,6 +217,12 @@ function order_load_game_scene_VFX(load_order)
             sprite_sheet_load(
                 "asset/game_scene/VFX/overdrive_partical.json",
                 love.graphics.newImage(ASSET_DATA[8]["overdrive_partical_sprite_batch"])
+            )
+
+            image_sprite_sheet_VFX_game_scene_light_blast = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/hit_VFX/light_blast.json",
+                love.graphics.newImage(ASSET_DATA[8]["light_blast_sprite_batch"])
             )
 
         end,

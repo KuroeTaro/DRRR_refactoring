@@ -23,8 +23,8 @@ function draw_game_scene_main()
     -- 绘制VFX
     draw_game_scene_char_LP_black_overlay()
     draw_game_scene_char_RP_black_overlay()
-    draw_game_scene_char_LP_VFX()
-    draw_game_scene_char_RP_VFX()
+    draw_game_scene_char_LP_VFX_back()
+    draw_game_scene_char_RP_VFX_back()
 
     -- 绘制角色本体
     local non_UI_canvas = love.graphics.newCanvas(
@@ -32,6 +32,10 @@ function draw_game_scene_main()
         love.graphics.getHeight()
     )
     love.graphics.setCanvas(non_UI_canvas)
+
+    draw_game_scene_char_LP_VFX_front()
+    draw_game_scene_char_RP_VFX_front()
+
     -- draw_projectile
     draw_game_scene_char_LP() -- IZAYA 2 draw calls 3
     draw_game_scene_char_RP() -- IZAYA 2 draw calls 4

@@ -2,9 +2,11 @@
 -- obj_char["f"] = nil
 -- obj_char["sprite_sheet_state"] = "stand_idle"
 -- obj_char["height_state"] = "stand" -- stand crouch air
--- obj_char["hurt_state"] = "idle" -- idle block hurted punish counter GP parry
 -- obj_char["hit_type_state"] = "none" -- none strike throw burst
--- obj_char["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
+-- obj_char["hit_guard_type_state"] = "none" -- none all low high
+-- obj_char["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
+-- obj_char["hurt_state"] = "idle" -- idle unblock punish counter GP parry
+-- obj_char["move_state"] = "none" -- none startup active recovery
 -- obj_char["stand_hurt_animation"] = nil
 -- obj_char["stand_block_animation"] = nil
 -- obj_char["crouch_hurt_animation"] = nil
@@ -60,14 +62,8 @@
 -- obj_char["hit_hurt_blockstop_countdown"] = 0
 -- obj_char["hurtstop_wiggle_x"] = 0
 -- obj_char["hurtstop_wiggle_y"] = 0
--- obj_char["FCT"]["hurtstop_wiggle_x"] = 0
--- obj_char["LCT"]["hurtstop_wiggle_x"] = 0
--- obj_char["LCD"]["hurtstop_wiggle_x"] = 0
--- obj_char["FCT"]["hurtstop_wiggle_y"] = 0
--- obj_char["LCT"]["hurtstop_wiggle_y"] = 0
--- obj_char["LCD"]["hurtstop_wiggle_y"] = 0
--- obj_char["current_hurtstop_wiggle_x_animation"] = {}
--- obj_char["current_hurtstop_wiggle_y_animation"] = {}
+-- obj_char["current_hurtstop_wiggle_x_animation"] = nil
+-- obj_char["current_hurtstop_wiggle_y_animation"] = nil
 
 -- -- collide
 -- obj_char["pushbox"] = {0, -185, 130, 370}
@@ -89,13 +85,10 @@
 -- obj_char["brightness"] = 0
 -- obj_char["brightness_const"] = 0
 -- obj_char["brightness_end_const"] = 0.2
--- obj_char["FCT"]["contrast"] = 0
--- obj_char["LCT"]["contrast"] = 0
--- obj_char["LCD"]["contrast"] = 0
--- obj_char["FCT"]["brightness"] = 0
--- obj_char["LCT"]["brightness"] = 0
--- obj_char["LCD"]["brightness"] = 0
-
+-- obj_char["hurtstop_wiggle_x"] = 0
+-- obj_char["hurtstop_wiggle_y"] = 0
+-- obj_char["current_hurtstop_wiggle_x_animation"] = nil
+-- obj_char["current_hurtstop_wiggle_y_animation"] = nil
 
 
 function load_game_scene_anim_char_IZY_stand_idle(obj_char)
@@ -104,20 +97,13 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
         -- state
         obj_char["sprite_sheet_state"] = "stand_idle"
         obj_char["height_state"] = "stand" -- stand crouch air
-        obj_char["hurt_state"] = "idle" -- idle block hurted punish counter GP parry
         obj_char["hit_type_state"] = "none" -- none strike throw burst
-        obj_char["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
-        obj_char["stand_hurt_animation"] = nil
-        obj_char["stand_block_animation"] = nil
-        obj_char["crouch_hurt_animation"] = nil
-        obj_char["crouch_block_animation"] = nil
-        obj_char["air_hurt_animation"] = nil
-        obj_char["air_block_animation"] = nil
+        obj_char["hit_guard_type_state"] = "none" -- none all low high
+        obj_char["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
+        obj_char["hurt_state"] = "idle" -- idle unblock punish counter GP parry
+        obj_char["move_state"] = "none" -- none startup active recovery
 
         obj_char["current_animation_length"] = 0 -- 如果为0则是循环动画
-
-        obj_char["strike_active"] = false -- 防止在同一动作的active多次触发
-        obj_char["throw_active"] = false -- 防止在同一动作的active多次触发
 
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
@@ -218,6 +204,10 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
             ,{146.0625,496.1875}
         }
 
+        -- command_cache
+        obj_char["command_cache"] = {}
+        obj_char["command_cache_load_countdown"] = 0
+
         -- draw_correction
         obj_char[8] = 0
         obj_char["anchor_pos"] = {90,520}
@@ -240,42 +230,39 @@ end
 
 function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     local res = {}
+    local other_side_obj_char = common_game_scene_change_character(side)
     -- 更新hitbox table 有一个全屏的红框
     -- 更新逻辑为没有伤害 没有硬直 只是速度调为0
 
-    local function drain_overdrive()
+    local function update_move_overdrive_state()
         if obj_char["overdrive"][1] > 0 then
             obj_char["overdrive"][1] = 
             obj_char["overdrive"][1] - obj_char["overdrive_drain_speed"]
         elseif obj_char["overdrive"][1] < 0 then
             obj_char["overdrive"][1] = 0
         end
+        if other_side_obj_char["game_speed_abnormal_realtime_countdown"] == 0 and obj_char["f"] > 3 then
+            obj_char["move_state"] = "recovery"
+        end
     end
 
     for i = 0,79 do
         res[i] = function()
             -- state
-            drain_overdrive()
+            update_move_overdrive_state()
         end
     end
     res[0] = function()
-        --  state
+        -- state
         obj_char["sprite_sheet_state"] = "overdrive"
         obj_char["height_state"] = "stand"
-        obj_char["hurt_state"] = "idle"
         obj_char["hit_type_state"] = "none"
-        obj_char["hit_counter_state"] = 1
-        obj_char["stand_hurt_animation"] = nil
-        obj_char["stand_block_animation"] = nil
-        obj_char["crouch_hurt_animation"] = nil
-        obj_char["crouch_block_animation"] = nil
-        obj_char["air_hurt_animation"] = nil
-        obj_char["air_block_animation"] = nil
+        obj_char["hit_guard_type_state"] = "none" -- none all low high
+        obj_char["hit_counter_state"] = 0
+        obj_char["hurt_state"] = "idle" -- idle unblock punish counter GP parry
+        obj_char["move_state"] = "startup" -- none startup active recovery
 
         obj_char["current_animation_length"] = 80 -- 如果为0则是循环动画
-
-        obj_char["strike_active"] = false -- 防止在同一动作的active多次触发
-        obj_char["throw_active"] = false -- 防止在同一动作的active多次触发
 
         obj_char["strike_inv"] = true
         obj_char["strike_inv_countdown"] = 80
@@ -290,8 +277,11 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
         obj_char["hurt_function"] = function() end
         obj_char["parry_function"] = function() end
 
+        obj_char["knife_state"] = "off"
+        obj_char["knife_anchor_pos"] = {168,210}
+
         -- state_number
-        drain_overdrive()
+        update_move_overdrive_state()
         obj_char["velocity"] = {0,0}
         obj_char["velocity_cache"] = {0,0}
         obj_char["gravity"] = 9.8
@@ -305,16 +295,6 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
         obj_char["game_speed_subframe"] = 1
         obj_char["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
         obj_char["hit_hurt_blockstop_countdown"] = 0
-        obj_char["hurtstop_wiggle_x"] = 0
-        obj_char["hurtstop_wiggle_y"] = 0
-        obj_char["FCT"]["hurtstop_wiggle_x"] = 0
-        obj_char["LCT"]["hurtstop_wiggle_x"] = 0
-        obj_char["LCD"]["hurtstop_wiggle_x"] = 0
-        obj_char["FCT"]["hurtstop_wiggle_y"] = 0
-        obj_char["LCT"]["hurtstop_wiggle_y"] = 0
-        obj_char["LCD"]["hurtstop_wiggle_y"] = 0
-        obj_char["current_hurtstop_wiggle_x_animation"] = {}
-        obj_char["current_hurtstop_wiggle_y_animation"] = {}
 
         -- collide
         obj_char["pushbox"] = {0, -185, 130, 370}
@@ -397,29 +377,36 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
             ,{228.6,515.3}
         }
 
+        -- command_cache
+        obj_char["command_cache"] = {}
+        obj_char["command_cache_load_countdown"] = 80
+
         -- draw_correction
         obj_char[8] = 0
         obj_char["anchor_pos"] = {169,530}
+        obj_char["hurtstop_wiggle_x"] = 0
+        obj_char["hurtstop_wiggle_y"] = 0
+        obj_char["current_hurtstop_wiggle_x_animation"] = nil
+        obj_char["current_hurtstop_wiggle_y_animation"] = nil
 
         -- VFX
-        insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
-        insert_VFX_game_scene_char_overdrive_partical(obj_char)
-        insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
+        insert_VFX_game_scene_char_overdrive_badge_IZY(obj_char,side)
+        insert_VFX_game_scene_char_overdrive_partical_IZY(obj_char)
+        insert_VFX_game_scene_char_overdrive_black_overlay_IZY(obj_char)
     end
     res[3] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
             -- idle状态下OD 恢复为3+13
             -- 攻击状态下OD 恢复为3+3
             -- block_stun状态下OD 恢复为3+23
-        local other_side_obj_char = common_game_scene_change_character(side)
         other_side_obj_char["game_speed"] = 0
         other_side_obj_char["game_speed_subframe"] = 0
-        if obj_char["hurt_state"] == "idle" then
+        if obj_char["hurt_state"] == "idle" or  obj_char["unblock"] == "idle" then
             other_side_obj_char["game_speed_abnormal_realtime_countdown"] = 80 - 13 ---- 之后对面玩家根据情况不同要改
-        elseif other_side_obj_char["hurt_state"] == "hurted" then
+        elseif obj_char["state"] == "hitstop" then
             other_side_obj_char["game_speed_abnormal_realtime_countdown"] = 80 - 3 ---- 之后对面玩家根据情况不同要改
-        elseif obj_char["hurt_state"] == "block" then
+        elseif obj_char["state"] == "blockstop" then
             other_side_obj_char["game_speed_abnormal_realtime_countdown"] = 80 - 23 ---- 之后对面玩家根据情况不同要改
         end
 
@@ -468,7 +455,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[6] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 2
@@ -479,7 +466,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[9] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 3
@@ -524,21 +511,21 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[14] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 4
     end
     res[19] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 5
     end
     res[28] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 6
@@ -619,14 +606,14 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[30] = function()
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- VFX
-        insert_VFX_game_scene_char_overdrive_airflow(obj_char)
+        insert_VFX_game_scene_char_overdrive_airflow_IZY(obj_char)
     end
     res[32] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 8
@@ -707,14 +694,14 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[35] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 7
     end
     res[38] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
         if obj_char["health"][1]/obj_char["health"][3] > 0.85 then
             obj_char["overdrive_timer"] = {0,2,0,0}
         elseif obj_char["health"][1]/obj_char["health"][3] > 0.60 then
@@ -733,49 +720,49 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[41] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 7
     end
     res[44] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 8
     end
     res[47] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 9
     end
     res[50] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 7
     end
     res[53] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 8
     end
     res[56] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 9
     end
     res[58] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 10
@@ -856,7 +843,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[60] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 11
@@ -949,7 +936,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[63] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 12
@@ -1039,7 +1026,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[67] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 13
@@ -1126,7 +1113,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     end
     res[72] = function() 
         -- state & state_number
-        drain_overdrive()
+        update_move_overdrive_state()
 
         -- draw_correction
         obj_char[8] = 14
@@ -1173,9 +1160,11 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         -- state
         obj_char["sprite_sheet_state"] = "5P"
         obj_char["height_state"] = "stand" -- stand crouch air
-        obj_char["hurt_state"] = "counter" -- idle block hurted punish counter GP parry
         obj_char["hit_type_state"] = "strike" -- none strike throw burst
+        obj_char["hit_guard_type_state"] = "all" -- none all low high
         obj_char["hit_counter_state"] = 1 -- 当前攻击counter等级 0 1 2 3
+        obj_char["hurt_state"] = "counter" -- idle unblock punish counter GP parry
+        obj_char["move_state"] = "startup" -- none startup active recovery
         obj_char["stand_hurt_animation"] = anim_char_LP_5P_stand_hurt_high
         obj_char["stand_block_animation"] = nil
         obj_char["crouch_hurt_animation"] = nil
@@ -1185,9 +1174,6 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
 
         obj_char["current_animation_length"] = 31 -- 如果为0则是循环动画
 
-        obj_char["strike_active"] = false -- 防止在同一动作的active多次触发
-        obj_char["throw_active"] = false -- 防止在同一动作的active多次触发
-
         obj_char["throw_inv"] = true
         obj_char["throw_inv_countdown"] = 8
 
@@ -1196,8 +1182,8 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         obj_char["parry_function"] = function() end
 
         -- state_number
-        obj_char["friction"] = friction
         add_heat_ability_overdrive()
+        obj_char["friction"] = friction
 
         -- collide
         obj_char["pushbox"] = {0, -185, 130, 370}
@@ -1288,6 +1274,14 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
             {147.625,511.875}
             ,{249.0625,491.1875}
         }
+        obj_char["hit_VFX_insert_function"] = insert_VFX_game_scene_char_light_blast
+        obj_char["hit_VFX_insert_function_argument"] = {obj_char,99,-514}
+        obj_char["hit_SFX"] = nil
+
+        -- command_cache
+        obj_char["command_cache"] = {}
+        obj_char["command_cache_load_countdown"] = 0
+        obj_char["block_command_cache_countdown"] = 0
 
         -- draw_correction
         obj_char[8] = 0
@@ -1302,6 +1296,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
     end
     res[4] = function() 
         -- state & state_number
+        obj_char["move_state"] = "active" -- none startup active recovery
         obj_char["strike_active"] = true 
         obj_char["hit_function"] = common_game_scene_hit_function
         obj_char["hit_hurt_blockstop_countdown"] = 10
@@ -1325,11 +1320,13 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
     end
     res[8] = function() 
         -- state
+        obj_char["hit_type_state"] = "none" -- none strike throw burst
+        obj_char["hit_guard_type_state"] = "none" -- none all low high
+        obj_char["hit_counter_state"] = 1
+        obj_char["hurt_state"] = "punish" -- idle unblock punish counter GP parry
+        obj_char["move_state"] = "recovery" -- none startup active recovery
         obj_char["strike_active"] = false
         obj_char["hit_function"] = function() end
-        obj_char["hit_type_state"] = "none" -- none strike throw burst
-        obj_char["hurt_state"] = "punish" -- idle punish counter block fd_block GP parry
-        obj_char["hit_counter_state"] = 1
         add_heat_ability_overdrive()
 
         -- collide
@@ -1601,9 +1598,6 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         -- draw_correction
         obj_char[8] = 9
     end
-    res[30] = function() 
-        obj_char["hurt_state"] = "idle"
-    end
     res[31] = function() 
         -- animation end
     end
@@ -1642,13 +1636,38 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         end
     end
 
-    res[0] = function() 
-        -- state
-        other_side_obj_char["sprite_sheet_state"] = "stand_hurt_high"
+    res[0] = function()
         local hurt_horizontal_velocity = 44
         if other_side_obj_char["hurt_state"] == "counter" then
             hurt_horizontal_velocity = hurt_horizontal_velocity * 1.5
         end
+
+        -- state
+        other_side_obj_char["sprite_sheet_state"] = "stand_hurt_high"
+        other_side_obj_char["height_state"] = "stand" -- stand crouch air
+        other_side_obj_char["hit_type_state"] = "none" -- none strike throw burst
+        other_side_obj_char["hit_guard_type_state"] = "none" -- none all low high
+        other_side_obj_char["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
+        other_side_obj_char["hurt_state"] = "unblock" -- idle unblock punish counter GP parry
+        other_side_obj_char["move_state"] = "none" -- none startup active recovery
+
+        other_side_obj_char["current_animation_length"] = 13
+
+        other_side_obj_char["strike_inv"] = false
+        other_side_obj_char["strike_inv_countdown"] = 0
+        other_side_obj_char["throw_inv"] = true
+        other_side_obj_char["throw_inv_countdown"] = 18
+        other_side_obj_char["projectile_inv"] = false
+        other_side_obj_char["projectile_inv_countdown"] = 0
+        other_side_obj_char["burst_inv"] = false
+        other_side_obj_char["burst_inv_countdown"] = 0
+
+        other_side_obj_char["hit_function"] = function() end
+        other_side_obj_char["hurt_function"] = function() end
+        other_side_obj_char["parry_function"] = function() end
+
+         -- state_number
+        other_side_obj_char["velocity"] = {0,0}
         if other_side_obj_char["x"] < obj_char["x"] then
             other_side_obj_char["velocity_cache"] = {
                 - hurt_horizontal_velocity,
@@ -1665,15 +1684,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
                 other_side_obj_char["velocity"][1]
             } -- 根据当前敌我x位置变化
         end
-        other_side_obj_char["velocity"] = {0,0}
-        other_side_obj_char["hit_type_state"] = "none" -- none strike throw burst
-        other_side_obj_char["hit_counter_state"] = 1 -- 当前攻击counter等级 1 small 2 mid 3 big
-        other_side_obj_char["throw_inv"] = true
-        other_side_obj_char["throw_inv_countdown"] = 18
-        
-        other_side_obj_char["current_animation_length"] = 13
 
-        -- state_number
         other_side_obj_char["friction"] = 4
         add_heat_ability_overdrive()
 
@@ -1689,6 +1700,20 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
         -- draw_correction
         other_side_obj_char[8] = 0
         other_side_obj_char["anchor_pos"] = {209,520}
+        other_side_obj_char["hurtstop_wiggle_x"] = 0
+        other_side_obj_char["hurtstop_wiggle_y"] = 0
+        other_side_obj_char["current_hurtstop_wiggle_x_animation"] = 
+            common_game_scene_create_wiggle_animation(
+                obj_char["hit_hurt_blockstop_countdown"],
+                "hurtstop_wiggle_x",
+                12
+            )
+        other_side_obj_char["current_hurtstop_wiggle_y_animation"] = 
+            common_game_scene_create_wiggle_animation(
+                obj_char["hit_hurt_blockstop_countdown"],
+                "hurtstop_wiggle_y",
+                4
+            )
     end
     res[2] = function() 
         -- state

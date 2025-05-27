@@ -130,7 +130,14 @@ function common_game_scene_hurt_function(obj_char)
     end
 
     init_character_anim_with(obj_char,obj_char["current_animation"])
-    obj_char["hit_hurt_blockstop_countdown"] = hit_side_obj_char["hit_hurt_blockstop_countdown"] 
+    init_point_linear_anim_with(obj_char,obj_char["current_hurtstop_wiggle_x_animation"])
+    init_point_linear_anim_with(obj_char,obj_char["current_hurtstop_wiggle_y_animation"])
+    obj_char["hit_hurt_blockstop_countdown"] = hit_side_obj_char["hit_hurt_blockstop_countdown"]
+    hit_side_obj_char["hit_VFX_insert_function"](
+        hit_side_obj_char["hit_VFX_insert_function_argument"][1],
+        hit_side_obj_char["hit_VFX_insert_function_argument"][2],
+        hit_side_obj_char["hit_VFX_insert_function_argument"][3]
+    )
 
 end
 

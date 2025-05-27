@@ -1,4 +1,4 @@
-function insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
+function insert_VFX_game_scene_char_overdrive_badge_IZY(obj_char,side)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     if side == "L" then
         image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_overdrive_badge
@@ -41,7 +41,7 @@ function insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
     table.insert(obj_char["VFX_back_character_table"],obj)
 end
 
-function insert_VFX_game_scene_char_overdrive_airflow(obj_char)
+function insert_VFX_game_scene_char_overdrive_airflow_IZY(obj_char)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     obj["life"] = 35
     obj[1] = obj_char["x"] - obj_char[5]*(860)
@@ -81,7 +81,7 @@ function insert_VFX_game_scene_char_overdrive_airflow(obj_char)
     
 end
 
-function insert_VFX_game_scene_char_overdrive_partical(obj_char)
+function insert_VFX_game_scene_char_overdrive_partical_IZY(obj_char)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     local camera_obj = obj_stage_game_scene_camera
     if obj_char["player_side"] == "L" then
@@ -142,7 +142,7 @@ function insert_VFX_game_scene_char_overdrive_partical(obj_char)
     table.insert(obj_char["VFX_back_character_table"],obj)
 end
 
-function insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
+function insert_VFX_game_scene_char_overdrive_black_overlay_IZY(obj_char)
     local obj = {0, 0, 0, 1, 0, 0, 0, 0}
     local camera_obj = obj_stage_game_scene_camera
     obj["FCT"] = {0,0,0,0,0,0,0,0}
