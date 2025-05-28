@@ -33,6 +33,11 @@ function insert_VFX_game_scene_char_light_blast(obj_char,x,y)
         self[6] = obj_char[6]
         self[7] = obj_char[7]
         frame_animator(self,self["animation"])
+        if obj_char["state"] == "5P" or obj_char["state"] == "hitstop" then
+            self["life"] = self["life"] - 1
+        else
+            self["life"] = 0
+        end
     end
     obj["draw"] = function(self)
         local camera_obj = obj_stage_game_scene_camera

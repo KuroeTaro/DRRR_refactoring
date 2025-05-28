@@ -1,8 +1,8 @@
 function load_game_scene_obj_stage()
     obj_stage_game_scene_camera = {0, 0, -800}
-    obj_stage_game_scene_camera["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_stage_game_scene_camera["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_stage_game_scene_camera["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_stage_game_scene_camera["FCT"] = {}
+    obj_stage_game_scene_camera["LCT"] = {}
+    obj_stage_game_scene_camera["LCD"] = {}
     obj_stage_game_scene_camera["state"] = "main"
     obj_stage_game_scene_camera["enclose_percentage"] = 0.0
     obj_stage_game_scene_camera["non_enclose_position"] = {0, 0, -800}

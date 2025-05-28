@@ -1,5 +1,6 @@
 function insert_VFX_game_scene_char_overdrive_badge_IZY(obj_char,side)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
+    local image_sprite_sheet = nil
     if side == "L" then
         image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_overdrive_badge
     elseif side == "R" then
@@ -24,6 +25,7 @@ function insert_VFX_game_scene_char_overdrive_badge_IZY(obj_char,side)
         self[6] = obj_char[6]*2
         self[7] = obj_char[7]
         self[8] = self[8] + 1
+        self["life"] = self["life"] - 1
         if obj_char["state"] ~= "overdrive" then
             self["life"] = 0
         end
@@ -63,6 +65,7 @@ function insert_VFX_game_scene_char_overdrive_airflow_IZY(obj_char)
         self[6] = obj_char[6]*2
         self[7] = obj_char[7]
         self[8] = self[8] + 1
+        self["life"] = self["life"] - 1
         if obj_char["state"] ~= "overdrive" then
             self["life"] = 0
         end
@@ -113,6 +116,7 @@ function insert_VFX_game_scene_char_overdrive_partical_IZY(obj_char)
             self[8] = self[8] + 1
             self["f"] = -1
         end
+        self["life"] = self["life"] - 1
         if obj_char["state"] ~= "overdrive" then
             self["life"] = 0
         end
@@ -145,9 +149,9 @@ end
 function insert_VFX_game_scene_char_overdrive_black_overlay_IZY(obj_char)
     local obj = {0, 0, 0, 1, 0, 0, 0, 0}
     local camera_obj = obj_stage_game_scene_camera
-    obj["FCT"] = {0,0,0,0,0,0,0,0}
-    obj["LCT"] = {0,0,0,0,0,0,0,0}
-    obj["LCD"] = {0,0,0,0,0,0,0,0}
+    obj["FCT"] = {}
+    obj["LCT"] = {}
+    obj["LCD"] = {}
     obj["life"] = 42
     obj[1] = obj_char["x"]
     obj[2] = obj_char["y"] - obj_char[6]*(360)
@@ -231,6 +235,7 @@ function insert_VFX_game_scene_char_overdrive_black_overlay_IZY(obj_char)
         local this_function = switch[self["state"]]
         if this_function then this_function() end
 
+        self["life"] = self["life"] - 1
     end
     obj["draw"] = function(self)
         local canvas = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())
@@ -246,5 +251,67 @@ function insert_VFX_game_scene_char_overdrive_black_overlay_IZY(obj_char)
 
     end
     table.insert(obj_char["black_overlay_table"],obj)
+
+end
+
+function insert_VFX_game_scene_char_5P_whiff(obj_char,side)
+    local obj = {0, 0, 0, 1, 1, 1, 0, 0}
+    obj["life"] = 8
+    obj[1] = obj_char["x"] + obj_char[5]*(-253)
+    obj[2] = obj_char["y"] + obj_char[6]*(-462)
+    obj[3] = obj_char[3]
+    obj[4] = 0.75
+    obj[5] = obj_char[5]
+    obj[6] = obj_char[6]
+    obj[7] = obj_char[7]
+    obj[8] = -1
+    obj["FCT"] = {}
+    obj["LCT"] = {}
+    obj["LCD"] = {}
+    obj["animation"] = {}
+    obj["animation"][0] = 0
+    obj["animation"][2] = 1
+    obj["animation"][4] = 2
+    obj["animation"][6] = 3
+    obj["animation"]["prop"] = 8
+    obj["animation"]["length"] = 6
+    obj["animation"]["loop"] = false
+    obj["animation"]["fix_type"] = true
+    init_frame_anim_with(obj,obj["animation"])
+    obj["update"] = function(self)
+        -- self[1] = obj_char["x"] + obj_char[5]*(-860)/2
+        -- self[2] = obj_char["y"] + obj_char[6]*(840)
+        self[1] = obj_char["x"] + obj_char[5]*(-253)
+        self[2] = obj_char["y"] + obj_char[6]*(-462)
+        self[3] = obj_char[3]
+        self[4] = 0.75
+        self[5] = obj_char[5]
+        self[6] = obj_char[6]
+        self[7] = obj_char[7]
+        if obj_char["state"] == "5P" then
+            frame_animator(self,self["animation"])
+            self["life"] = self["life"] - 1
+        elseif obj_char["state"] == "hitstop" then
+            -- do nothing
+        else
+            self["life"] = 0
+        end
+    end
+    obj["draw"] = function(self)
+        local camera_obj = obj_stage_game_scene_camera
+        if side == "L" then
+            image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_overdrive_badge
+        elseif side == "R" then
+            image_sprite_sheet = image_sprite_sheet_VFX_game_scene_RP_overdrive_badge
+        end 
+        local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_5P_whiff
+        image_sprite_sheet["sprite_batch"]:clear()
+        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
+    
+        love.graphics.setColor(0,0,0,obj[4])
+        love.graphics.draw(image_sprite_sheet["sprite_batch"])
+        love.graphics.setColor(1,1,1,1)
+    end
+    table.insert(obj_char["VFX_front_character_table"],obj)
 
 end

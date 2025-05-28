@@ -1,8 +1,8 @@
 function load_disclaimer_and_logos_scene_obj()
     obj_UI_disclaimer_and_logos_scene_singular = {175, 125, nil, 0, 1, 1, 0, 0}
-    obj_UI_disclaimer_and_logos_scene_singular["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_disclaimer_and_logos_scene_singular["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_disclaimer_and_logos_scene_singular["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_disclaimer_and_logos_scene_singular["FCT"] = {}
+    obj_UI_disclaimer_and_logos_scene_singular["LCT"] = {}
+    obj_UI_disclaimer_and_logos_scene_singular["LCD"] = {}
     obj_UI_disclaimer_and_logos_scene_singular["state"] = "pre_disclaimer_ease_in"
 
 end

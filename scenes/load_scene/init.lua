@@ -5,21 +5,21 @@ function init_load_scene_obj()
     -- 场景object
     -- x y z opacity sx sy r f
     obj_UI_load_scene_loading_text = {1350, 800, nil, 0, 1, 1, 0, 0}
-    obj_UI_load_scene_loading_text["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_loading_text["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_loading_text["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_loading_text["FCT"] = {}
+    obj_UI_load_scene_loading_text["LCT"] = {}
+    obj_UI_load_scene_loading_text["LCD"] = {}
     obj_UI_load_scene_loading_text["state"] = "default"
 
     obj_UI_load_scene_type_in_mark = {1460, 798, nil, 0, 1, 1, 0, 0}
-    obj_UI_load_scene_type_in_mark["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_type_in_mark["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_type_in_mark["FCT"] = {}
+    obj_UI_load_scene_type_in_mark["LCT"] = {}
+    obj_UI_load_scene_type_in_mark["LCD"] = {}
     obj_UI_load_scene_type_in_mark["state"] = "default"
 
     obj_UI_load_scene_dabo_trig = {1280, 800, nil, 0, 1, 1, 0, 0}
-    obj_UI_load_scene_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_UI_load_scene_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
+    obj_UI_load_scene_dabo_trig["FCT"] = {}
+    obj_UI_load_scene_dabo_trig["LCT"] = {}
+    obj_UI_load_scene_dabo_trig["LCD"] = {}
     obj_UI_load_scene_dabo_trig["state"] = "default"
 
 end

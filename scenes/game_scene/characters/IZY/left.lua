@@ -237,6 +237,11 @@ function order_load_game_scene_char_LP_frames(load_order)
                 "asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_badge_sprite_batch"])
             )
+            image_sprite_sheet_VFX_game_scene_LP_5P_whiff = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/whiff_VFX/IZY/5P.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["5P_whiff_VFX_sprite_batch"])
+            )
 
         end,
     }
@@ -1213,7 +1218,6 @@ end
 function update_game_scene_char_LP_projectile()
     for i = #obj_char_game_scene_char_LP["projectile_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_LP["projectile_table"][i]
-        object["life"] = object["life"] - 1 -- 减少寿命
         object["update"](object)
         if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_LP["projectile_table"], i) -- 寿命耗尽，从列表中移除
@@ -1231,7 +1235,6 @@ end
 function update_game_scene_char_LP_VFX()
     for i = #obj_char_game_scene_char_LP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_LP["VFX_back_character_table"][i]
-        object["life"] = object["life"] - 1 -- 减少寿命
         object["update"](object)
         if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_LP["VFX_back_character_table"], i) -- 寿命耗尽，从列表中移除
@@ -1239,7 +1242,6 @@ function update_game_scene_char_LP_VFX()
     end
     for i = #obj_char_game_scene_char_LP["VFX_front_character_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_LP["VFX_front_character_table"][i]
-        object["life"] = object["life"] - 1 -- 减少寿命
         object["update"](object)
         if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_LP["VFX_front_character_table"], i) -- 寿命耗尽，从列表中移除
