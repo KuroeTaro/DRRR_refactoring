@@ -1,120 +1,120 @@
 function load_char_select_scene_obj()
     -- 覆盖黑色前景
     obj_UI_char_select_scene_black_solid = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_black_solid["FCT"] = {}
-    obj_UI_char_select_scene_black_solid["LCT"] = {}
-    obj_UI_char_select_scene_black_solid["LCD"] = {}
+    obj_UI_char_select_scene_black_solid["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_black_solid["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_black_solid["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_black_solid["state"] = "default"
     obj_UI_char_select_scene_black_solid["rgb"] = {7/255,19/255,31/255}
     
     -- 覆盖电影噪点
     obj_UI_char_select_scene_movie_cover = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_movie_cover["FCT"] = {}
-    obj_UI_char_select_scene_movie_cover["LCT"] = {}
-    obj_UI_char_select_scene_movie_cover["LCD"] = {}
+    obj_UI_char_select_scene_movie_cover["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_movie_cover["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_movie_cover["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_movie_cover["state"] = "default"
 
     obj_UI_char_select_scene_start_0f_110f = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_start_0f_110f["FCT"] = {}
-    obj_UI_char_select_scene_start_0f_110f["LCT"] = {}
-    obj_UI_char_select_scene_start_0f_110f["LCD"] = {}
+    obj_UI_char_select_scene_start_0f_110f["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_start_0f_110f["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_start_0f_110f["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_start_0f_110f["state"] = "default"
 
     -- 光环
     obj_UI_char_select_scene_ring = {0, 0, nil, 0.75, 1, 1, 0, 0}
-    obj_UI_char_select_scene_ring["FCT"] = {}
-    obj_UI_char_select_scene_ring["LCT"] = {}
-    obj_UI_char_select_scene_ring["LCD"] = {}
+    obj_UI_char_select_scene_ring["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_ring["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_ring["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_ring["state"] = "default"
     
     obj_UI_char_select_scene_glow = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_glow["FCT"] = {}
-    obj_UI_char_select_scene_glow["LCT"] = {}
-    obj_UI_char_select_scene_glow["LCD"] = {}
+    obj_UI_char_select_scene_glow["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_glow["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_glow["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_glow["state"] = "default"
     obj_UI_char_select_scene_glow["alpha_points"] = {0,0, 0,262, 384,900, 1600,900, 1600,149, 587,0}
     obj_UI_char_select_scene_glow["alpha_points"]["LCT"] = {0,0, 0,0, 0,0, 0,0, 0,0, 0,0}
     obj_UI_char_select_scene_glow["alpha_points"]["LCD"] = {0,0, 0,0, 0,0, 0,0, 0,0, 0,0}
     
     obj_UI_char_select_scene_bar_mark_L = {55, 509, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_bar_mark_L["FCT"] = {}
-    obj_UI_char_select_scene_bar_mark_L["LCT"] = {}
-    obj_UI_char_select_scene_bar_mark_L["LCD"] = {}
+    obj_UI_char_select_scene_bar_mark_L["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_L["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_L["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_L["state"] = "idle"
     
     obj_UI_char_select_scene_bar_mark_R = {1545, 739, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_bar_mark_R["FCT"] = {}
-    obj_UI_char_select_scene_bar_mark_R["LCT"] = {}
-    obj_UI_char_select_scene_bar_mark_R["LCD"] = {}
+    obj_UI_char_select_scene_bar_mark_R["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_R["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_bar_mark_R["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_bar_mark_R["state"] = "idle"
     
     obj_UI_char_select_scene_control_method_L = {90, 470, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_control_method_L["FCT"] = {}
-    obj_UI_char_select_scene_control_method_L["LCT"] = {}
-    obj_UI_char_select_scene_control_method_L["LCD"] = {}
+    obj_UI_char_select_scene_control_method_L["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_L["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_L["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_L["state"] = "default"
     
     obj_UI_char_select_scene_control_method_R = {1236, 700, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_control_method_R["FCT"] = {}
-    obj_UI_char_select_scene_control_method_R["LCT"] = {}
-    obj_UI_char_select_scene_control_method_R["LCD"] = {}
+    obj_UI_char_select_scene_control_method_R["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_R["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_control_method_R["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_control_method_R["state"] = "default"
 
     obj_UI_char_select_scene_timer = {1321, 815, nil, 0, 1, 1, 0, 0}
-    obj_UI_char_select_scene_timer["FCT"] = {}
-    obj_UI_char_select_scene_timer["LCT"] = {}
-    obj_UI_char_select_scene_timer["LCD"] = {}
+    obj_UI_char_select_scene_timer["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_timer["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_timer["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_timer["state"] = "default"
     obj_UI_char_select_scene_timer["time"] = {6,0,60}
     
     obj_UI_char_select_scene_char_select_left = {-33, 110, nil, 0, 1, 1, 0, 4}
-    obj_UI_char_select_scene_char_select_left["FCT"] = {}
-    obj_UI_char_select_scene_char_select_left["LCT"] = {}
-    obj_UI_char_select_scene_char_select_left["LCD"] = {}
+    obj_UI_char_select_scene_char_select_left["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left["select_state"] = "idle"
     obj_UI_char_select_scene_char_select_left["ease_state"] = "ease_in"
     
     obj_UI_char_select_scene_char_select_left_char = {-200, -52, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_char_select_left_char["FCT"] = {}
-    obj_UI_char_select_scene_char_select_left_char["LCT"] = {}
-    obj_UI_char_select_scene_char_select_left_char["LCD"] = {}
+    obj_UI_char_select_scene_char_select_left_char["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_char["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_char["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_char["state"] = "default"
     
     obj_UI_char_select_scene_char_select_left_text = {375, -179, nil, 1, 1, 1, 0.192, 0}
-    obj_UI_char_select_scene_char_select_left_text["FCT"] = {}
-    obj_UI_char_select_scene_char_select_left_text["LCT"] = {}
-    obj_UI_char_select_scene_char_select_left_text["LCD"] = {}
+    obj_UI_char_select_scene_char_select_left_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_left_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_left_text["state"] = "default"
     
     obj_UI_char_select_scene_char_select_right = {-25, 335, nil, 0, 1, 1, 0, 5}
-    obj_UI_char_select_scene_char_select_right["FCT"] = {}
-    obj_UI_char_select_scene_char_select_right["LCT"] = {}
-    obj_UI_char_select_scene_char_select_right["LCD"] = {}
+    obj_UI_char_select_scene_char_select_right["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right["select_state"] = "idle"
     obj_UI_char_select_scene_char_select_right["ease_state"] = "ease_in"
     
     obj_UI_char_select_scene_char_select_right_char = {610, -12, nil, 1, 1, 1, 0, 0}
-    obj_UI_char_select_scene_char_select_right_char["FCT"] = {}
-    obj_UI_char_select_scene_char_select_right_char["LCT"] = {}
-    obj_UI_char_select_scene_char_select_right_char["LCD"] = {}
+    obj_UI_char_select_scene_char_select_right_char["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_char["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_char["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_char["state"] = "default"
     
     obj_UI_char_select_scene_char_select_right_text = {1291, -36, nil, 1, 1, 1, 0.436, 0}
-    obj_UI_char_select_scene_char_select_right_text["FCT"] = {}
-    obj_UI_char_select_scene_char_select_right_text["LCT"] = {}
-    obj_UI_char_select_scene_char_select_right_text["LCD"] = {}
+    obj_UI_char_select_scene_char_select_right_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_char_select_right_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_char_select_right_text["state"] = "default"
     
     obj_UI_char_select_scene_icon_select_L = {603, 349, nil, 0, 1, 1, 0, 4}
-    obj_UI_char_select_scene_icon_select_L["FCT"] = {}
-    obj_UI_char_select_scene_icon_select_L["LCT"] = {}
-    obj_UI_char_select_scene_icon_select_L["LCD"] = {}
+    obj_UI_char_select_scene_icon_select_L["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_L["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_L["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_select_L["state"] = "default"
     
     obj_UI_char_select_scene_icon_select_R = {760, 166, nil, 0, 1, 1, 0, 5}
-    obj_UI_char_select_scene_icon_select_R["FCT"] = {}
-    obj_UI_char_select_scene_icon_select_R["LCT"] = {}
-    obj_UI_char_select_scene_icon_select_R["LCD"] = {}
+    obj_UI_char_select_scene_icon_select_R["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_R["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_char_select_scene_icon_select_R["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_char_select_scene_icon_select_R["state"] = "default"
 
 end

@@ -1,7 +1,7 @@
 function load_game_scene_obj_stage()
     obj_stage_game_scene_camera = {0, 0, -800}
-    obj_stage_game_scene_camera["FCT"] = {}
-    obj_stage_game_scene_camera["LCT"] = {}
+    obj_stage_game_scene_camera["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_stage_game_scene_camera["LCT"] = {0,0,0,0,0,0,0,0}
     obj_stage_game_scene_camera["LCD"] = {}
     obj_stage_game_scene_camera["state"] = "main"
     obj_stage_game_scene_camera["enclose_percentage"] = 0.0
@@ -148,7 +148,7 @@ end
 
 
 function draw_game_scene_stage_static()
-    love.graphics.clear(115/255,115/255,115/255,1)
+    love.graphics.clear(90/255,90/255,90/255,1)
 
     local camera = obj_stage_game_scene_camera
 

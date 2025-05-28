@@ -10,9 +10,9 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["x"] = -320
     obj_char_game_scene_char_LP["y"] = 365
     obj_char_game_scene_char_LP["f"] = -1 -- obj["f"] 逻辑上的帧数
-    obj_char_game_scene_char_LP["FCT"] = {}
-    obj_char_game_scene_char_LP["LCT"] = {}
-    obj_char_game_scene_char_LP["LCD"] = {}
+    obj_char_game_scene_char_LP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_char_game_scene_char_LP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_char_game_scene_char_LP["LCD"] = {0,0,0,0,0,0,0,0}
 
     -- state
     obj_char_game_scene_char_LP["player_side"] = "L"

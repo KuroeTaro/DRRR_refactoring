@@ -1,9 +1,9 @@
 function load_start_scene_obj()
     -- 主界面 全覆盖 solid color
     obj_UI_start_scene_solid_color = {0, 0, 0, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_solid_color["FCT"] = {}
-    obj_UI_start_scene_solid_color["LCT"] = {}
-    obj_UI_start_scene_solid_color["LCD"] = {}
+    obj_UI_start_scene_solid_color["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_solid_color["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_solid_color["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_solid_color["state"] = "default"
     obj_UI_start_scene_solid_color["rgb"] = {7/255,19/255,31/255}
 
@@ -11,227 +11,227 @@ function load_start_scene_obj()
     -- record
     -- x y z opacity sx sy r f
     obj_UI_start_scene_record_100h_plus_time_indi = {600, 460, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_100h_plus_time_indi["FCT"] = {}
-    obj_UI_start_scene_record_100h_plus_time_indi["LCT"] = {}
-    obj_UI_start_scene_record_100h_plus_time_indi["LCD"] = {}
+    obj_UI_start_scene_record_100h_plus_time_indi["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_100h_plus_time_indi["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_100h_plus_time_indi["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_100h_plus_time_indi["state"] = "default"
 
     obj_UI_start_scene_record_dabo_trig = {550, 500, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_dabo_trig["FCT"] = {}
-    obj_UI_start_scene_record_dabo_trig["LCT"] = {}
-    obj_UI_start_scene_record_dabo_trig["LCD"] = {}
+    obj_UI_start_scene_record_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_dabo_trig["state"] = "default"
 
     obj_UI_start_scene_record_num_0 = {600, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_0["FCT"] = {}
-    obj_UI_start_scene_record_num_0["LCT"] = {}
-    obj_UI_start_scene_record_num_0["LCD"] = {}
+    obj_UI_start_scene_record_num_0["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_0["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_0["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_0["state"] = "default"
 
     obj_UI_start_scene_record_num_1 = {613, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_1["FCT"] = {}
-    obj_UI_start_scene_record_num_1["LCT"] = {}
-    obj_UI_start_scene_record_num_1["LCD"] = {}
+    obj_UI_start_scene_record_num_1["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_1["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_1["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_1["state"] = "default"
 
     obj_UI_start_scene_record_num_2 = {635, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_2["FCT"] = {}
-    obj_UI_start_scene_record_num_2["LCT"] = {}
-    obj_UI_start_scene_record_num_2["LCD"] = {}
+    obj_UI_start_scene_record_num_2["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_2["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_2["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_2["state"] = "default"
 
     obj_UI_start_scene_record_num_3 = {648, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_3["FCT"] = {}
-    obj_UI_start_scene_record_num_3["LCT"] = {}
-    obj_UI_start_scene_record_num_3["LCD"] = {}
+    obj_UI_start_scene_record_num_3["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_3["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_3["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_3["state"] = "default"
 
     obj_UI_start_scene_record_num_4 = {671, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_4["FCT"] = {}
-    obj_UI_start_scene_record_num_4["LCT"] = {}
-    obj_UI_start_scene_record_num_4["LCD"] = {}
+    obj_UI_start_scene_record_num_4["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_4["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_4["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_4["state"] = "default"
 
     obj_UI_start_scene_record_num_5 = {684, 425, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_num_5["FCT"] = {}
-    obj_UI_start_scene_record_num_5["LCT"] = {}
-    obj_UI_start_scene_record_num_5["LCD"] = {}
+    obj_UI_start_scene_record_num_5["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_5["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_num_5["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_num_5["state"] = "default"
 
     obj_UI_start_scene_record_game_duration_text = {600, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_record_game_duration_text["FCT"] = {}
-    obj_UI_start_scene_record_game_duration_text["LCT"] = {}
-    obj_UI_start_scene_record_game_duration_text["LCD"] = {}
+    obj_UI_start_scene_record_game_duration_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_game_duration_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_record_game_duration_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_record_game_duration_text["state"] = "default"
 
 
     -- config res
     obj_UI_start_scene_config_resolution_bar_mark = {1000, 530, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_bar_mark["FCT"] = {}
-    obj_UI_start_scene_config_resolution_bar_mark["LCT"] = {}
-    obj_UI_start_scene_config_resolution_bar_mark["LCD"] = {}
+    obj_UI_start_scene_config_resolution_bar_mark["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_resolution_bar_mark["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_resolution_bar_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_bar_mark["state"] = "default"
 
     obj_UI_start_scene_config_resolution_w_x_h = {1030, 530, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_w_x_h["FCT"] = {}
-    obj_UI_start_scene_config_resolution_w_x_h["LCT"] = {}
-    obj_UI_start_scene_config_resolution_w_x_h["LCD"] = {}
+    obj_UI_start_scene_config_resolution_w_x_h["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_resolution_w_x_h["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_resolution_w_x_h["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_w_x_h["state"] = "default"
 
     obj_UI_start_scene_config_resolution_select_res_text = {955, 480, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_resolution_select_res_text["FCT"] = {}
-    obj_UI_start_scene_config_resolution_select_res_text["LCT"] = {}
-    obj_UI_start_scene_config_resolution_select_res_text["LCD"] = {}
+    obj_UI_start_scene_config_resolution_select_res_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_resolution_select_res_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_resolution_select_res_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_resolution_select_res_text["state"] = "default"
 
 
     -- config controller
     obj_UI_start_scene_config_controller_bar_mark_LP = {1335, 510, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_LP["FCT"] = {}
-    obj_UI_start_scene_config_controller_bar_mark_LP["LCT"] = {}
-    obj_UI_start_scene_config_controller_bar_mark_LP["LCD"] = {}
+    obj_UI_start_scene_config_controller_bar_mark_LP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_LP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_LP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_LP["state"] = "default"
 
     obj_UI_start_scene_config_controller_bar_mark_RP = {1335, 535, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_bar_mark_RP["FCT"] = {}
-    obj_UI_start_scene_config_controller_bar_mark_RP["LCT"] = {}
-    obj_UI_start_scene_config_controller_bar_mark_RP["LCD"] = {}
+    obj_UI_start_scene_config_controller_bar_mark_RP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_RP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_bar_mark_RP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_bar_mark_RP["state"] = "default"
 
     obj_UI_start_scene_config_controller_indi_text = {990, 460, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_controller_indi_text["FCT"] = {}
-    obj_UI_start_scene_config_controller_indi_text["LCT"] = {}
-    obj_UI_start_scene_config_controller_indi_text["LCD"] = {}
+    obj_UI_start_scene_config_controller_indi_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_indi_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_controller_indi_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_controller_indi_text["state"] = "default"
 
 
     -- config audio
     obj_UI_start_scene_config_audio_bar_mark = {1296, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_bar_mark["FCT"] = {}
-    obj_UI_start_scene_config_audio_bar_mark["LCT"] = {}
-    obj_UI_start_scene_config_audio_bar_mark["LCD"] = {}
+    obj_UI_start_scene_config_audio_bar_mark["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_bar_mark["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_bar_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_bar_mark["state"] = "default"
 
     obj_UI_start_scene_config_audio_BGM_bar_light = {1055, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_light["FCT"] = {}
-    obj_UI_start_scene_config_audio_BGM_bar_light["LCT"] = {}
-    obj_UI_start_scene_config_audio_BGM_bar_light["LCD"] = {}
+    obj_UI_start_scene_config_audio_BGM_bar_light["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_light["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_light["state"] = "default"
 
     obj_UI_start_scene_config_audio_SFX_bar_light = {1055, 426, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_light["FCT"] = {}
-    obj_UI_start_scene_config_audio_SFX_bar_light["LCT"] = {}
-    obj_UI_start_scene_config_audio_SFX_bar_light["LCD"] = {}
+    obj_UI_start_scene_config_audio_SFX_bar_light["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_light["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_light["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_light["state"] = "default"
 
     obj_UI_start_scene_config_audio_BGM_bar_alpha = {BGM_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["FCT"] = {}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCT"] = {}
-    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCD"] = {}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_alpha["state"] = "default"
 
     obj_UI_start_scene_config_audio_SFX_bar_alpha = {SFX_VOLUME*23, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["FCT"] = {}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCT"] = {}
-    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCD"] = {}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_alpha["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_alpha["state"] = "default"
 
     obj_UI_start_scene_config_audio_BGM_bar_gauge = {1055, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["FCT"] = {}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["LCT"] = {}
-    obj_UI_start_scene_config_audio_BGM_bar_gauge["LCD"] = {}
+    obj_UI_start_scene_config_audio_BGM_bar_gauge["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_gauge["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_BGM_bar_gauge["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_BGM_bar_gauge["state"] = "default"
 
     obj_UI_start_scene_config_audio_SFX_bar_gauge = {1055, 426, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["FCT"] = {}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["LCT"] = {}
-    obj_UI_start_scene_config_audio_SFX_bar_gauge["LCD"] = {}
+    obj_UI_start_scene_config_audio_SFX_bar_gauge["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_gauge["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_SFX_bar_gauge["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_SFX_bar_gauge["state"] = "default"
 
     obj_UI_start_scene_config_audio_text = {995, 400, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_audio_text["FCT"] = {}
-    obj_UI_start_scene_config_audio_text["LCT"] = {}
-    obj_UI_start_scene_config_audio_text["LCD"] = {}
+    obj_UI_start_scene_config_audio_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_audio_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_audio_text["state"] = "default"
 
 
     -- config main
     obj_UI_start_scene_config_menu_dabo_trig = {590, 390, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_menu_dabo_trig["FCT"] = {}
-    obj_UI_start_scene_config_menu_dabo_trig["LCT"] = {}
-    obj_UI_start_scene_config_menu_dabo_trig["LCD"] = {}
+    obj_UI_start_scene_config_menu_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_menu_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_menu_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_dabo_trig["state"] = "default"
 
     obj_UI_start_scene_config_menu_text = {640, 390, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_config_menu_text["FCT"] = {}
-    obj_UI_start_scene_config_menu_text["LCT"] = {}
-    obj_UI_start_scene_config_menu_text["LCD"] = {}
+    obj_UI_start_scene_config_menu_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_menu_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_config_menu_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_config_menu_text["state"] = "default"
 
 
     -- shutter 次界面
     obj_UI_start_scene_shutter = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_shutter["FCT"] = {}
-    obj_UI_start_scene_shutter["LCT"] = {}
-    obj_UI_start_scene_shutter["LCD"] = {}
+    obj_UI_start_scene_shutter["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_shutter["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_shutter["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_shutter["state"] = "default"
 
 
     -- console 主界面
     obj_UI_start_scene_up_console_text = {130, 50, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_up_console_text["FCT"] = {}
-    obj_UI_start_scene_up_console_text["LCT"] = {}
-    obj_UI_start_scene_up_console_text["LCD"] = {}
+    obj_UI_start_scene_up_console_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_up_console_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_up_console_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_up_console_text["state"] = "default"
 
     obj_UI_start_scene_down_console_text = {130, 75, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_down_console_text["FCT"] = {}
-    obj_UI_start_scene_down_console_text["LCT"] = {}
-    obj_UI_start_scene_down_console_text["LCD"] = {}
+    obj_UI_start_scene_down_console_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_down_console_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_down_console_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_down_console_text["state"] = "default"
 
     obj_UI_start_scene_console_type_in_mark = {1065, 74, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_console_type_in_mark["FCT"] = {}
-    obj_UI_start_scene_console_type_in_mark["LCT"] = {}
-    obj_UI_start_scene_console_type_in_mark["LCD"] = {}
+    obj_UI_start_scene_console_type_in_mark["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_console_type_in_mark["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_console_type_in_mark["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_console_type_in_mark["state"] = "default"
 
     obj_UI_start_scene_console_dabo_trig = {75, 50, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_console_dabo_trig["FCT"] = {}
-    obj_UI_start_scene_console_dabo_trig["LCT"] = {}
-    obj_UI_start_scene_console_dabo_trig["LCD"] = {}
+    obj_UI_start_scene_console_dabo_trig["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_console_dabo_trig["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_console_dabo_trig["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_console_dabo_trig["state"] = "default"
 
 
     -- option 主界面
     obj_UI_start_scene_option_text = {704, 700, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_option_text["FCT"] = {}
-    obj_UI_start_scene_option_text["LCT"] = {}
-    obj_UI_start_scene_option_text["LCD"] = {}
+    obj_UI_start_scene_option_text["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_option_text["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_option_text["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_option_text["state"] = "default"
 
 
     -- 呼吸灯 主界面
     obj_UI_start_scene_breath_tag = {510, 695, nil, 0, 1, 1, 0, 0}
-    obj_UI_start_scene_breath_tag["FCT"] = {}
-    obj_UI_start_scene_breath_tag["LCT"] = {}
-    obj_UI_start_scene_breath_tag["LCD"] = {}
+    obj_UI_start_scene_breath_tag["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_breath_tag["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_breath_tag["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_breath_tag["state"] = "default"
 
 
     -- logo 主界面
     obj_UI_start_scene_main_logo = {325, 250, nil, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_main_logo["FCT"] = {}
-    obj_UI_start_scene_main_logo["LCT"] = {}
-    obj_UI_start_scene_main_logo["LCD"] = {}
+    obj_UI_start_scene_main_logo["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_main_logo["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_main_logo["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_main_logo["state"] = "default"
 
 
     -- 背景 主界面
     obj_UI_start_scene_noise_bg = {0, 0, nil, 1, 1, 1, 0, 0}
-    obj_UI_start_scene_noise_bg["FCT"] = {}
-    obj_UI_start_scene_noise_bg["LCT"] = {}
-    obj_UI_start_scene_noise_bg["LCD"] = {}
+    obj_UI_start_scene_noise_bg["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_noise_bg["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_start_scene_noise_bg["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_start_scene_noise_bg["state"] = "default"
 
 

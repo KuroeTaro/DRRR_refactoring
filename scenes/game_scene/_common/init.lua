@@ -51,9 +51,14 @@ function load_game_scene_common_shader()
     shader_game_scene_radial_blur = love.graphics.newShader("shaders/radial_blur.glsl")
     shader_game_scene_brightness_contrast = love.graphics.newShader("shaders/brightness_contrast.glsl")
     shader_game_scene_bc7_alpha_fix = love.graphics.newShader("shaders/bc7_alpha_fix.glsl")
-    shader_game_scene_character_shadow_blur = love.graphics.newShader("shaders/character_shadow_blur.glsl")
-    shader_game_scene_character_shadow_blur:send("radius", 1.0 / 1000.0) -- 模糊强度，基于画布分辨率
-    shader_game_scene_character_shadow_blur:send("alpha", 0.5) -- 透明度
+    shader_game_scene_gaussian_blur = love.graphics.newShader("shaders/gaussian_blur.glsl")
+    shader_game_scene_gaussian_blur:send("Directions", 16)
+    shader_game_scene_gaussian_blur:send("Quality", 5)
+    shader_game_scene_gaussian_blur:send("Size", 8)
+    shader_game_scene_gaussian_blur:send("resolution", {love.graphics.getWidth(), love.graphics.getHeight()})
+    shader_game_scene_character_blur = love.graphics.newShader("shaders/character_blur.glsl")
+    shader_game_scene_character_blur:send("radius", 1.0 / 1000.0) -- 模糊强度，基于画布分辨率
+    shader_game_scene_character_blur:send("alpha", 0.5) -- 透明度
     
     CANVAS = love.graphics.newCanvas(1600,900)
     CANVAS_RADIAL_BLUR = love.graphics.newCanvas(1600,900)
@@ -68,46 +73,46 @@ end
 
 function load_game_scene_announcer_HUD_obj()
     obj_update_flow_controller_game_scene_common = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_update_flow_controller_game_scene_common["FCT"] = {}
-    obj_update_flow_controller_game_scene_common["LCT"] = {}
-    obj_update_flow_controller_game_scene_common["LCD"] = {}
+    obj_update_flow_controller_game_scene_common["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_update_flow_controller_game_scene_common["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_update_flow_controller_game_scene_common["LCD"] = {0,0,0,0,0,0,0,0}
     obj_update_flow_controller_game_scene_common["state"] = "before_ease_in"
 
     obj_UI_game_scene_black_solid = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_UI_game_scene_black_solid["FCT"] = {}
-    obj_UI_game_scene_black_solid["LCT"] = {}
-    obj_UI_game_scene_black_solid["LCD"] = {}
+    obj_UI_game_scene_black_solid["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_game_scene_black_solid["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_UI_game_scene_black_solid["LCD"] = {0,0,0,0,0,0,0,0}
     obj_UI_game_scene_black_solid["state"] = "default"
     obj_UI_game_scene_black_solid["rgb"] = {7/255,19/255,31/255}
 
     obj_annoucer_game_scene_act_common = {0, 200, nil, 0, 1, 1, 0, 0}
-    obj_annoucer_game_scene_act_common["FCT"] = {}
-    obj_annoucer_game_scene_act_common["LCT"] = {}
-    obj_annoucer_game_scene_act_common["LCD"] = {}
+    obj_annoucer_game_scene_act_common["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_annoucer_game_scene_act_common["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_annoucer_game_scene_act_common["LCD"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_act_common["state"] = "default"
 
     obj_annoucer_game_scene_act_num = {675, 400, nil, 0, 1, 1, 0, 0}
-    obj_annoucer_game_scene_act_num["FCT"] = {}
-    obj_annoucer_game_scene_act_num["LCT"] = {}
-    obj_annoucer_game_scene_act_num["LCD"] = {}
+    obj_annoucer_game_scene_act_num["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_annoucer_game_scene_act_num["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_annoucer_game_scene_act_num["LCD"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_act_num["state"] = "default"
 
     obj_annoucer_game_scene_lets_dance = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_annoucer_game_scene_lets_dance["FCT"] = {}
-    obj_annoucer_game_scene_lets_dance["LCT"] = {}
-    obj_annoucer_game_scene_lets_dance["LCD"] = {}
+    obj_annoucer_game_scene_lets_dance["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_annoucer_game_scene_lets_dance["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_annoucer_game_scene_lets_dance["LCD"] = {0,0,0,0,0,0,0,0}
     obj_annoucer_game_scene_lets_dance["state"] = "default"
 
     obj_HUD_game_scene_ease_in = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_ease_in["FCT"] = {}
-    obj_HUD_game_scene_ease_in["LCT"] = {}
-    obj_HUD_game_scene_ease_in["LCD"] = {}
+    obj_HUD_game_scene_ease_in["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_ease_in["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_ease_in["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_ease_in["state"] = "default"
 
     obj_HUD_game_scene_timer = {780, 85, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_timer["FCT"] = {}
-    obj_HUD_game_scene_timer["LCT"] = {}
-    obj_HUD_game_scene_timer["LCD"] = {}
+    obj_HUD_game_scene_timer["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_timer["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_timer["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_timer["state"] = "default"
 
     obj_HUD_game_scene_health_bar_LP = {685, 65, nil, 0, -1, 1, 0, 0}
@@ -129,45 +134,45 @@ function load_game_scene_announcer_HUD_obj()
     obj_HUD_game_scene_risk_RP = {1345, 127, nil, 0, -1, 1, 0, 0}
 
     obj_HUD_game_scene_overdrive_text_LP = {205, 102, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_overdrive_text_LP["FCT"] = {}
-    obj_HUD_game_scene_overdrive_text_LP["LCT"] = {}
-    obj_HUD_game_scene_overdrive_text_LP["LCD"] = {}
+    obj_HUD_game_scene_overdrive_text_LP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_text_LP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_text_LP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_overdrive_text_LP["state"] = "default"
 
     obj_HUD_game_scene_overdrive_text_RP = {1250, 102, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_overdrive_text_RP["FCT"] = {}
-    obj_HUD_game_scene_overdrive_text_RP["LCT"] = {}
-    obj_HUD_game_scene_overdrive_text_RP["LCD"] = {}
+    obj_HUD_game_scene_overdrive_text_RP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_text_RP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_text_RP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_overdrive_text_RP["state"] = "default"
 
     obj_HUD_game_scene_overdrive_timer_LP = {192, 149, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_overdrive_timer_LP["FCT"] = {}
-    obj_HUD_game_scene_overdrive_timer_LP["LCT"] = {}
-    obj_HUD_game_scene_overdrive_timer_LP["LCD"] = {}
+    obj_HUD_game_scene_overdrive_timer_LP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_timer_LP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_timer_LP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_overdrive_timer_LP["state"] = "default"
 
     obj_HUD_game_scene_overdrive_timer_RP = {1290, 149, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_overdrive_timer_RP["FCT"] = {}
-    obj_HUD_game_scene_overdrive_timer_RP["LCT"] = {}
-    obj_HUD_game_scene_overdrive_timer_RP["LCD"] = {}
+    obj_HUD_game_scene_overdrive_timer_RP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_timer_RP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_overdrive_timer_RP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_overdrive_timer_RP["state"] = "default"
 
     obj_HUD_game_scene_positive_bouns_LP = {9, 135, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_positive_bouns_LP["FCT"] = {}
-    obj_HUD_game_scene_positive_bouns_LP["LCT"] = {}
-    obj_HUD_game_scene_positive_bouns_LP["LCD"] = {}
+    obj_HUD_game_scene_positive_bouns_LP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_positive_bouns_LP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_positive_bouns_LP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_positive_bouns_LP["state"] = "default"
 
     obj_HUD_game_scene_positive_bouns_RP = {1431, 135, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_positive_bouns_RP["FCT"] = {}
-    obj_HUD_game_scene_positive_bouns_RP["LCT"] = {}
-    obj_HUD_game_scene_positive_bouns_RP["LCD"] = {}
+    obj_HUD_game_scene_positive_bouns_RP["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_positive_bouns_RP["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_positive_bouns_RP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_positive_bouns_RP["state"] = "default"
 
     obj_HUD_game_scene_background_gauge = {0, 0, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_background_gauge["FCT"] = {}
-    obj_HUD_game_scene_background_gauge["LCT"] = {}
-    obj_HUD_game_scene_background_gauge["LCD"] = {}
+    obj_HUD_game_scene_background_gauge["FCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_background_gauge["LCT"] = {0,0,0,0,0,0,0,0}
+    obj_HUD_game_scene_background_gauge["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_background_gauge["state"] = "default"
 
 

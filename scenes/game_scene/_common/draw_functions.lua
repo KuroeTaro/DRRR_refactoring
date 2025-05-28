@@ -16,7 +16,9 @@ function draw_game_scene_main()
     draw_game_scene_char_RP_shadow()
     love.graphics.setCanvas()
 
-    love.graphics.setShader(shader_game_scene_character_shadow_blur)
+    shader_game_scene_character_blur:send("radius", 1.0 / 1000.0) -- 模糊强度，基于画布分辨率
+    shader_game_scene_character_blur:send("alpha", 0.5) -- 透明度
+    love.graphics.setShader(shader_game_scene_character_blur)
     love.graphics.draw(shadow_cavans)
     love.graphics.setShader()
 
@@ -31,12 +33,8 @@ function draw_game_scene_main()
         love.graphics.getWidth(),
         love.graphics.getHeight()
     )
+
     love.graphics.setCanvas(non_UI_canvas)
-
-    draw_game_scene_char_LP_VFX_front()
-    draw_game_scene_char_RP_VFX_front()
-
-    -- draw_projectile
     draw_game_scene_char_LP() -- IZAYA 2 draw calls 3
     draw_game_scene_char_RP() -- IZAYA 2 draw calls 4
     love.graphics.setColor(1,1,1,0.5)
@@ -44,7 +42,13 @@ function draw_game_scene_main()
     love.graphics.setColor(1,1,1,1)
     love.graphics.setCanvas()
 
+    shader_game_scene_gaussian_blur:send("Directions", 16)
+    shader_game_scene_gaussian_blur:send("Quality", 5)
+    shader_game_scene_gaussian_blur:send("Size", 2)
+    shader_game_scene_gaussian_blur:send("resolution", {love.graphics.getWidth(), love.graphics.getHeight()})
+    love.graphics.setShader(shader_game_scene_gaussian_blur)
     love.graphics.draw(non_UI_canvas) -- 1 draw call 5
+    love.graphics.setShader()
 
     -- 绘制上帝光
     draw_game_scene_stage_glow() -- 5 draw calls 10
@@ -221,6 +225,12 @@ function draw_game_scene_main()
     love.graphics.setColor(1,1,1,0.5)
     love.graphics.draw(non_UI_canvas) -- 1 draw call 13
     love.graphics.setColor(1,1,1,1)
+
+    draw_game_scene_char_LP_VFX_front()
+    draw_game_scene_char_RP_VFX_front()
+
+    draw_game_scene_char_LP_projectile()
+    draw_game_scene_char_RP_projectile()
 
     -- 绘制ease_in annoucer 和 HUD ease in
     image_sprite_sheet = image_sprite_sheet_announcer_game_scene_act_common

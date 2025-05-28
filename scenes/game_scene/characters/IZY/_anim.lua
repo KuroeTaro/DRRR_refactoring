@@ -390,9 +390,9 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
         obj_char["current_hurtstop_wiggle_y_animation"] = nil
 
         -- VFX
-        insert_VFX_game_scene_char_overdrive_badge_IZY(obj_char,side)
-        insert_VFX_game_scene_char_overdrive_partical_IZY(obj_char)
-        insert_VFX_game_scene_char_overdrive_black_overlay_IZY(obj_char)
+        insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
+        insert_VFX_game_scene_char_overdrive_partical(obj_char)
+        insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
     end
     res[3] = function() 
         -- state & state_number
@@ -609,7 +609,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
         update_move_overdrive_state()
 
         -- VFX
-        insert_VFX_game_scene_char_overdrive_airflow_IZY(obj_char)
+        insert_VFX_game_scene_char_overdrive_airflow(obj_char)
     end
     res[32] = function() 
         -- state & state_number
@@ -1310,6 +1310,10 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
 
         -- draw_correction
         obj_char[8] = 2
+
+        -- VFX
+        insert_VFX_game_scene_char_IZY_5P_whiff(obj_char,side)
+        
     end
     res[6] = function() 
         -- state & state_number
