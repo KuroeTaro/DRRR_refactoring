@@ -228,6 +228,7 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
 
 end
 
+
 function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
     local res = {}
     local other_side_obj_char = common_game_scene_change_character(side)
