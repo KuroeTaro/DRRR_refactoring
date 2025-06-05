@@ -1,10 +1,14 @@
 function load_game_scene_obj_stage()
     obj_stage_game_scene_camera = {0, 0, -800}
+    obj_stage_game_scene_camera["target_3d_pos_x"] = 0
+    obj_stage_game_scene_camera["target_3d_pos_y"] = 0
+    obj_stage_game_scene_camera["target_3d_pos_z"] = -800
     obj_stage_game_scene_camera["FCT"] = {0,0,0,0,0,0,0,0}
     obj_stage_game_scene_camera["LCT"] = {0,0,0,0,0,0,0,0}
     obj_stage_game_scene_camera["LCD"] = {}
     obj_stage_game_scene_camera["state"] = "main"
     obj_stage_game_scene_camera["enclose_percentage"] = 0.0
+    obj_stage_game_scene_camera["target_enclose_percentage"] = 0.0
     obj_stage_game_scene_camera["non_enclose_position"] = {0, 0, -800}
     obj_stage_game_scene_camera["enclose_position"] = {0, 0, -700}
 
@@ -12,9 +16,9 @@ function load_game_scene_obj_stage()
     obj_stage_game_scene_camera["LCD"]["enclose_percentage"] = 0.0
 
     obj_stage_game_scene_ground = {-2400, 320, 200, 1, 1, 1, 0, 0}
-    obj_stage_game_scene_stair = {-2400, 175, 300, 1, 3, 1, 0, 0}
+    obj_stage_game_scene_stair = {-2400, 175, 300, 1, 1, 1, 0, 0}
     obj_stage_game_scene_glow = {0, 0, -800, 1, 1, 1, 0, 0}
-    obj_stage_game_scene_glow["glow_3d_pos"] = {0,-800}
+    obj_stage_game_scene_glow["glow_3d_pos"] = {0,-1200}
 
     obj_stage_game_scene_shadow_anchor = {0, 515, 800}
 
@@ -53,7 +57,7 @@ function load_game_scene_anim_stage()
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x[55] = {2.18, 57}
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x[57] = {0.00, 78}
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x[78] = {0.00, 78}
-    anim_stage_point_linear_game_scene_camera_overdrive_shake_x["prop"] = 1
+    anim_stage_point_linear_game_scene_camera_overdrive_shake_x["prop"] = "target_3d_pos_x"
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x["length"] = 78
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x["loop"] = false
     anim_stage_point_linear_game_scene_camera_overdrive_shake_x["fix_type"] = false
@@ -91,7 +95,7 @@ function load_game_scene_anim_stage()
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y[55] = {0.50, 57}
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y[57] = {0.00, 78}
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y[78] = {0.00, 78}
-    anim_stage_point_linear_game_scene_camera_overdrive_shake_y["prop"] = 2
+    anim_stage_point_linear_game_scene_camera_overdrive_shake_y["prop"] = "target_3d_pos_y"
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y["length"] = 78
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y["loop"] = false
     anim_stage_point_linear_game_scene_camera_overdrive_shake_y["fix_type"] = false
@@ -120,6 +124,11 @@ function update_game_scene_stage()
     local camera_obj = obj_stage_game_scene_camera
     local char_L_obj = obj_char_game_scene_char_LP
     local char_R_obj = obj_char_game_scene_char_RP
+    camera_obj["target_3d_pos_x"] = (char_L_obj["x"] + char_R_obj["x"])/2
+    camera_obj["target_3d_pos_x"] = math.max(camera_obj["target_3d_pos_x"],-900)
+    camera_obj["target_3d_pos_x"] = math.min(camera_obj["target_3d_pos_x"],900)
+    camera_obj["target_3d_pos_y"] = -(math.abs(char_L_obj["y"] - char_R_obj["y"]))*0.5 + 60
+    camera_obj["target_3d_pos_y"] = math.min(camera_obj["target_3d_pos_y"],0)
     local switch = {
         ["main"] = function()
             if char_L_obj["state"] == "overdrive" or char_R_obj["state"] == "overdrive" then
@@ -141,6 +150,19 @@ function update_game_scene_stage()
     }
     local this_function = switch[camera_obj["state"]]
     if this_function then this_function() end
+    local div_value = 10
+    camera_obj[1] = (camera_obj[1]*(div_value-1)+camera_obj["target_3d_pos_x"])/div_value
+    camera_obj[2] = (camera_obj[2]*(div_value-1)+camera_obj["target_3d_pos_y"])/div_value
+    camera_obj[3] = (camera_obj[3]*(div_value-1)+camera_obj["target_3d_pos_z"])/div_value
+    if math.abs(camera_obj[1]-camera_obj["target_3d_pos_x"]) < 0.05 then
+        camera_obj[1] = camera_obj["target_3d_pos_x"]
+    end
+    if math.abs(camera_obj[2]-camera_obj["target_3d_pos_y"]) < 0.05 then
+        camera_obj[2] = camera_obj["target_3d_pos_y"]
+    end
+    if math.abs(camera_obj[3]-camera_obj["target_3d_pos_z"]) < 0.05 then
+        camera_obj[3] = camera_obj["target_3d_pos_z"]
+    end
 end
 
 
@@ -176,11 +198,11 @@ function draw_game_scene_stage_glow()
 
     local x = obj["glow_3d_pos"][1]
     local y = obj["glow_3d_pos"][2]
-    local z = 0
+    local z = 800
 
-    local camera_x = camera["enclose_percentage"]*camera["enclose_position"][1] + (1-camera["enclose_percentage"])*camera["enclose_position"][1]
-    local camera_y = camera["enclose_percentage"]*camera["enclose_position"][2] + (1-camera["enclose_percentage"])*camera["enclose_position"][2]
-    local camera_z = camera["enclose_percentage"]*camera["enclose_position"][3] + (1-camera["enclose_percentage"])*camera["enclose_position"][3]
+    local camera_x = camera["enclose_percentage"]*camera["enclose_position"][1] + (1-camera["enclose_percentage"])*camera[1]
+    local camera_y = camera["enclose_percentage"]*camera["enclose_position"][2] + (1-camera["enclose_percentage"])*camera[2]
+    local camera_z = camera["enclose_percentage"]*camera["enclose_position"][3] + (1-camera["enclose_percentage"])*camera[3]
 
     local scale = draw_resolution_correction(800)/(z-camera_z)
 
@@ -210,7 +232,7 @@ function draw_game_scene_stage_glow()
     love.graphics.setCanvas(CANVAS)
     love.graphics.setShader(shader_game_scene_fractal_noise)
     shader_game_scene_fractal_noise:send("time", love.timer.getTime())
-    shader_game_scene_fractal_noise:send("input_x", cood_res[1])
+    shader_game_scene_fractal_noise:send("input_x", 0)
     love.graphics.rectangle("fill", 0, 0, width, height)
     love.graphics.setShader()
     love.graphics.setCanvas()

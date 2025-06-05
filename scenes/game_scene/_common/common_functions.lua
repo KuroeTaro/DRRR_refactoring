@@ -80,6 +80,82 @@ function common_game_scene_toggle_ease_in(toggle_value)
 
 end
 
+
+
+
+
+function common_game_scene_check_6_and_4_move(obj_char)
+    local other_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
+    local input = INPUT_SYS_CURRENT_COMMAND_STATE[obj_char["player_side"]]
+    local anim_char_6_walk = common_game_scene_get_character_walk_animation(obj_char["player_side"],"6")
+    local anim_char_4_walk = common_game_scene_get_character_walk_animation(obj_char["player_side"],"4") 
+    if obj_char["x"] < other_side_obj_char["x"] then
+        if test_input_sys_press_or_hold(input["Left"]) then
+            -- 6模组 x数值增加
+            if obj_char[5] == -1 then
+                obj_char[5] = 1
+                obj_char["f"] = 0
+            end
+            obj_char["current_animation"] = anim_char_4_walk
+            character_animator(obj_char,obj_char["current_animation"])
+
+        elseif test_input_sys_press_or_hold(input["Right"]) then
+            -- 4模组 x数值减少
+            if obj_char[5] == -1 then
+                obj_char[5] = 1
+                obj_char["f"] = 0
+            end
+            obj_char["current_animation"] = anim_char_6_walk
+            character_animator(obj_char,obj_char["current_animation"])
+
+        end
+    elseif obj_char["x"] == other_side_obj_char["x"] then
+        if test_input_sys_press_or_hold(input["Left"]) then
+            -- 如果sx == 1 保持正面行走 如果 sx == -1 保持倒着走
+            if obj_char[5] == 1 then
+                obj_char["current_animation"] = anim_char_4_walk
+            elseif obj_char[5] == -1 then
+                obj_char["current_animation"] = anim_char_6_walk
+            end
+            character_animator(obj_char,obj_char["current_animation"])
+
+        elseif test_input_sys_press_or_hold(input["Right"]) then
+            -- 如果sx == 1 保持倒着走 如果 sx == -1 保持正面行走
+            if obj_char[5] == 1 then
+                obj_char["current_animation"] = anim_char_6_walk
+            elseif obj_char[5] == -1 then
+                obj_char["current_animation"] = anim_char_4_walk
+            end
+            character_animator(obj_char,obj_char["current_animation"])
+
+        end
+    elseif obj_char["x"] > other_side_obj_char["x"] then
+        if test_input_sys_press_or_hold(input["Left"]) then
+            -- 6模组 x数值增加
+            if obj_char[5] == 1 then
+                obj_char[5] = -1
+                obj_char["f"] = 0
+            end
+            obj_char["current_animation"] = anim_char_6_walk
+            character_animator(obj_char,obj_char["current_animation"])
+
+        elseif test_input_sys_press_or_hold(input["Right"]) then
+            -- 4模组 x数值减少
+            if obj_char[5] == 1 then
+                obj_char[5] = -1
+                obj_char["f"] = 0
+            end
+            obj_char["current_animation"] = anim_char_4_walk
+            character_animator(obj_char,obj_char["current_animation"])
+
+        end
+    end
+end
+
+
+
+
+
 function common_game_scene_change_character(side)
     if side == "L" then
         return obj_char_game_scene_char_RP
@@ -104,6 +180,30 @@ function common_game_scene_change_character_shadowbox(side)
     end
 end
 
+function common_game_scene_get_character_walk_animation(side,direction)
+    if side == "L" then
+        if direction == "6" then
+            return anim_char_LP_6_walk
+        elseif direction == "4" then
+            return anim_char_LP_4_walk
+        end
+    elseif side == "R" then
+        if direction == "6" then
+            return anim_char_RP_6_walk
+        elseif direction == "4" then
+            return anim_char_RP_4_walk
+        end
+    end
+end
+
+
+
+
+
+function common_game_scene_check_block_direction(side)
+
+end
+
 
 
 
@@ -112,6 +212,7 @@ function common_game_scene_hit_function(obj_char)
     -- 只需要设置hitstop
     obj_char["state_cache"] = obj_char["state"]
     obj_char["state"] = "hitstop"
+    obj_char["hit_cancel"] = true -- 取消链
 
     -- 后续要根据防御设置blockstop之类的
 
@@ -121,12 +222,30 @@ function common_game_scene_hurt_function(obj_char)
     local hit_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
     obj_char["state_cache"] = "hurt"
     obj_char["state"] = "hurtstop"
-    if obj_char["height_state"] == "stand" then
-        obj_char["current_animation"] = hit_side_obj_char["stand_hurt_animation"]
-    elseif obj_char["height_state"] == "crouch" then
-        obj_char["current_animation"] = hit_side_obj_char["crouch_hurt_animation"]
-    elseif obj_char["height_state"] == "air" then
-        obj_char["current_animation"] = hit_side_obj_char["air_hurt_animation"]
+    if obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
+        if obj_char["height_state"] == "stand" then
+            obj_char["current_animation"] = hit_side_obj_char["stand_counter_animation"]
+        elseif obj_char["height_state"] == "crouch" then
+            obj_char["current_animation"] = hit_side_obj_char["crouch_counter_animation"]
+        elseif obj_char["height_state"] == "air" then
+            obj_char["current_animation"] = hit_side_obj_char["air_counter_animation"]
+        end
+    elseif obj_char["hurt_state"] ~= "idle" and common_game_scene_check_block_direction(obj_char["player_side"]) then
+        if obj_char["height_state"] == "stand" then
+            obj_char["current_animation"] = hit_side_obj_char["stand_block_animation"]
+        elseif obj_char["height_state"] == "crouch" then
+            obj_char["current_animation"] = hit_side_obj_char["crouch_block_animation"]
+        elseif obj_char["height_state"] == "air" then
+            obj_char["current_animation"] = hit_side_obj_char["air_block_animation"]
+        end
+    else
+        if obj_char["height_state"] == "stand" then
+            obj_char["current_animation"] = hit_side_obj_char["stand_hurt_animation"]
+        elseif obj_char["height_state"] == "crouch" then
+            obj_char["current_animation"] = hit_side_obj_char["crouch_hurt_animation"]
+        elseif obj_char["height_state"] == "air" then
+            obj_char["current_animation"] = hit_side_obj_char["air_hurt_animation"]
+        end
     end
 
     init_character_anim_with(obj_char,obj_char["current_animation"])

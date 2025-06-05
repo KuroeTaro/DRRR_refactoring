@@ -2,7 +2,7 @@
 -- ASSET_DATA[3] -> ASSET_DATA[3]
 -- "R" -> "R"
 -- obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0} -> obj_char_game_scene_char_RP = {0, 0, 0, 1, -1, 1, 0, 0}
--- obj_char_game_scene_char_RP["x"] = 320 -> obj_char_game_scene_char_RP["x"] = 320
+-- obj_char_game_scene_char_RP["x"] = -320 -> obj_char_game_scene_char_RP["x"] = 320
 
 function load_game_scene_obj_char_RP()
     -- x y z opacity sx sy r f
@@ -27,14 +27,20 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle unblock punish counter GP parry
     obj_char_game_scene_char_RP["move_state"] = "none" -- none startup active recovery
     obj_char_game_scene_char_RP["stand_hurt_animation"] = nil
+    obj_char_game_scene_char_RP["stand_counter_animation"] = nil
     obj_char_game_scene_char_RP["stand_block_animation"] = nil
     obj_char_game_scene_char_RP["crouch_hurt_animation"] = nil
+    obj_char_game_scene_char_RP["crouch_counter_animation"] = nil
     obj_char_game_scene_char_RP["crouch_block_animation"] = nil
     obj_char_game_scene_char_RP["air_hurt_animation"] = nil
+    obj_char_game_scene_char_RP["air_counter_animation"] = nil
     obj_char_game_scene_char_RP["air_block_animation"] = nil
 
     obj_char_game_scene_char_RP["current_animation"] = nil
     obj_char_game_scene_char_RP["current_animation_length"] = 0 -- 如果为0则是循环动画
+
+    obj_char_game_scene_char_RP["hit_cancel"] = false -- 取消链
+    obj_char_game_scene_char_RP["idle_cancel"] = false -- 取消链
 
     obj_char_game_scene_char_RP["strike_active"] = false -- 防止在同一动作的active多次触发
     obj_char_game_scene_char_RP["throw_active"] = false -- 防止在同一动作的active多次触发
@@ -208,6 +214,11 @@ function order_load_game_scene_char_RP_frames(load_order)
                 "asset/game_scene/characters/IZY/_character/IZY_stand_idle.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["stand_idle_sprite_batch"])
             )
+            image_sprite_sheet_table_char_game_scene_RP["6"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_6.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["6_sprite_batch"])
+            )
 
 
 
@@ -237,6 +248,11 @@ function order_load_game_scene_char_RP_frames(load_order)
                 "asset/game_scene/VFX/overdrive_badge/IZY_overdrive_badge.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["overdrive_badge_sprite_batch"])
             )
+            image_sprite_sheet_VFX_game_scene_RP_5P_whiff = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/whiff_VFX/IZY/5P.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["5P_whiff_VFX_sprite_batch"])
+            )
 
         end,
     }
@@ -258,7 +274,10 @@ end
 function load_game_scene_anim_char_RP()
     local obj_char = obj_char_game_scene_char_RP
     -- 站姿待机动画
-    anim_char_RP_stand_idle = load_game_scene_anim_char_IZY_stand_idle(obj_char)
+    anim_char_RP_stand_idle = load_game_scene_anim_char_IZY_stand_idle(obj_char)    
+    -- 行走动画
+    anim_char_RP_6_walk = load_game_scene_anim_char_IZY_6(obj_char)
+    anim_char_RP_4_walk = load_game_scene_anim_char_IZY_4(obj_char)
     -- overdrive启动动画
     anim_char_RP_overdrive = load_game_scene_anim_char_IZY_overdrive(obj_char,"R")
     -- 拳脚动画
@@ -980,20 +999,39 @@ function state_machine_char_game_scene_char_RP()
         end,
         ["stand_idle"] = function()
             character_animator(obj_char,obj_char["current_animation"])
-            if test_input_sys_press_or_hold(input["UP"]) then
+            if test_input_sys_press(input["UP"]) then
                 -- to pre_jump
                 
-            elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+            elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
                 -- to over_drive
                 obj_char["current_animation"] = anim_char_RP_overdrive
                 init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "overdrive"
-            elseif test_input_sys_press_or_hold(input["P"]) then
+            elseif test_input_sys_press(input["P"]) then
                 -- to 5P
                 obj_char["current_animation"] = anim_char_RP_5P
                 init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "5P"
+            elseif test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"]) then
+                common_game_scene_check_6_and_4_move(obj_char)
+                init_character_anim_with(obj_char,obj_char["current_animation"])
+                obj_char["state"] = "6_and_4_walk"
             end
+        end,
+        ["6_and_4_walk"] = function()
+            common_game_scene_check_6_and_4_move(obj_char)
+            if test_input_sys_press_or_hold(input["Down"]) then
+                -- to crouch
+            elseif test_input_sys_press_or_hold(input["UP"]) then
+                -- to prejump
+            elseif not (test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"])) then
+                -- to stand_idle
+                obj_char["current_animation"] = anim_char_RP_stand_idle
+                init_character_anim_with(obj_char,obj_char["current_animation"])
+                obj_char["velocity"] = {0,0}
+                obj_char["state"] = "stand_idle"
+            end
+
         end,
         ["overdrive"] = function()
             character_animator(obj_char,obj_char["current_animation"])
@@ -1001,7 +1039,7 @@ function state_machine_char_game_scene_char_RP()
                 -- to overdrive RC
                 
             elseif obj_char["f"] >= obj_char["current_animation_length"] then
-                -- to idle
+                -- to stand_idle
                 obj_char["current_animation"] = anim_char_RP_stand_idle
                 init_character_anim_with(obj_char,obj_char["current_animation"] )
                 obj_char["state"] = "stand_idle"
@@ -1011,10 +1049,41 @@ function state_machine_char_game_scene_char_RP()
             character_animator(obj_char,obj_char["current_animation"])
             
             if obj_char["f"] >= obj_char["current_animation_length"] then
-                -- to idle
+                -- to stand_idle
                 obj_char["current_animation"] = anim_char_RP_stand_idle
                 init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "stand_idle"
+            elseif obj_char["hit_cancel"] then
+                if test_input_sys_press(input["P"]) then
+                    obj_char["hit_cancel"] = false
+                    -- to 5P
+                    obj_char["current_animation"] = anim_char_RP_5P
+                    init_character_anim_with(obj_char,obj_char["current_animation"])
+                    obj_char["state"] = "5P"
+                end
+            elseif obj_char["idle_cancel"] then
+                if test_input_sys_press_or_hold(input["UP"]) then
+                    obj_char["idle_cancel"] = false
+                    -- to pre_jump
+                
+                elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+                    obj_char["idle_cancel"] = false
+                    -- to over_drive
+                    obj_char["current_animation"] = anim_char_RP_overdrive
+                    init_character_anim_with(obj_char,obj_char["current_animation"])
+                    obj_char["state"] = "overdrive"
+                elseif test_input_sys_press(input["P"]) then
+                    obj_char["idle_cancel"] = false
+                    -- to 5P
+                    obj_char["current_animation"] = anim_char_RP_5P
+                    init_character_anim_with(obj_char,obj_char["current_animation"])
+                    obj_char["state"] = "5P"
+                elseif test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"]) then
+                    obj_char["idle_cancel"] = false
+                    common_game_scene_check_6_and_4_move(obj_char)
+                    init_character_anim_with(obj_char,obj_char["current_animation"])
+                    obj_char["state"] = "6_and_4_walk"
+                end
             end
         end,
     }
@@ -1303,12 +1372,6 @@ function update_game_scene_char_RP_overdrive()
     elseif obj_char["state"] ~= "overdrive" then
         obj_char["overdrive"][3] = "off"
     end
-end
-
-function update_game_scene_char_RP_x_y()
-    local obj = obj_char_game_scene_char_RP
-    obj["x"] = obj["x"] + obj["velocity"][1]
-    obj["y"] = obj["y"] + obj["velocity"][2]
 end
 
 function update_game_scene_char_RP_countdown()

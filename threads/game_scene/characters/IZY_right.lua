@@ -22,6 +22,9 @@ local image_data = {}
 image_data["stand_idle_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_stand_idle.dds")
 
 
+image_data["6_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_6.dds")
+
+
 image_data["5P_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_5P.dds")
 image_data["overdrive_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_overdrive.dds")
 

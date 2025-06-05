@@ -366,3 +366,11 @@ function test_input_sys_press_or_hold(input)
         return false
     end
 end
+
+function test_input_sys_press(input)
+    if input == "Pressing" then
+        return true
+    else
+        return false
+    end
+end

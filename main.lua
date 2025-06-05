@@ -252,8 +252,8 @@ function love.update()
 		update_input()
 		update_record_game_duration()
 		current_update_block()
-		collectgarbage()
 	end
+	collectgarbage()
 	FPS = love.timer.getFPS()
 	FRAMES_DRAWN = FRAMES_DRAWN + 1
 

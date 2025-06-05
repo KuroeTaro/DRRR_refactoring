@@ -344,14 +344,26 @@ function update_game_scene_friction()
     local char_LP = obj_char_game_scene_char_LP
     local char_RP = obj_char_game_scene_char_RP
     if char_LP["velocity"][1] > 0 then
-        char_LP["velocity"][1] = math.max(char_LP["velocity"][1] - char_LP["friction"],0)
+        char_LP["velocity"][1] = math.max(char_LP["velocity"][1] / char_LP["friction"],0)
+        if char_LP["velocity"][1] < 0.05 then
+            char_LP["velocity"][1] = 0
+        end
     elseif char_LP["velocity"][1] < 0 then
-        char_LP["velocity"][1] = math.min(char_LP["velocity"][1] + char_LP["friction"],0)
+        char_LP["velocity"][1] = math.min(char_LP["velocity"][1] / char_LP["friction"],0)
+        if char_LP["velocity"][1] > 0.05 then
+            char_LP["velocity"][1] = 0
+        end
     end
     if char_RP["velocity"][1] > 0 then
-        char_RP["velocity"][1] = math.max(char_RP["velocity"][1] - char_RP["friction"],0)
+        char_RP["velocity"][1] = math.max(char_RP["velocity"][1] / char_RP["friction"],0)
+        if char_RP["velocity"][1] < 0.05 then
+            char_RP["velocity"][1] = 0
+        end
     elseif char_RP["velocity"][1] < 0 then
-        char_RP["velocity"][1] = math.min(char_RP["velocity"][1] + char_RP["friction"],0)
+        char_RP["velocity"][1] = math.min(char_RP["velocity"][1] / char_RP["friction"],0)
+        if char_RP["velocity"][1] > 0.05 then
+            char_RP["velocity"][1] = 0
+        end
     end
 end
 function update_game_scene_HUD()
