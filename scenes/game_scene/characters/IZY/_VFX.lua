@@ -1,6 +1,7 @@
-function insert_VFX_game_scene_char_IZY_5P_whiff(obj_char,side)
+function insert_VFX_game_scene_char_IZY_5P_whiff(obj_char)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     local image_sprite_sheet = nil
+    local side = obj_char["player_side"]
     if side == "L" then
         image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_5P_whiff
     elseif side == "R" then

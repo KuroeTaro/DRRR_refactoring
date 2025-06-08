@@ -275,3 +275,91 @@ function common_game_scene_create_wiggle_animation(length,prop,wiggle_amount)
     res_anim["fix_type"] = true
     return res_anim
 end
+
+
+
+
+
+function common_game_scene_input_sys_cache(INPUT_SYS_CURRENT_COMMAND_STATE,obj_char)
+    if obj_char["command_cache_load_countdown"] == 0 then
+        return
+    end
+
+    -- 上下二选一 "Up","Down","Left","Right",
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Up"] == "Pressing" then
+        obj_char["command_cache"]["Up"] = true
+        obj_char["command_cache"]["Down"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Down"] == "Pressing" then
+        obj_char["command_cache"]["Up"] = false
+        obj_char["command_cache"]["Down"] = true
+    end
+
+    -- 左右二选一
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Left"] == "Pressing" then
+        obj_char["command_cache"]["Left"] = true
+        obj_char["command_cache"]["Right"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Right"] == "Pressing" then
+        obj_char["command_cache"]["Left"] = false
+        obj_char["command_cache"]["Right"] = true
+    end
+
+    -- PKSHL五选一 "P","S","HS","K","Launcher"
+    if INPUT_SYS_CURRENT_COMMAND_STATE["P"] == "Pressing" then
+        obj_char["command_cache"]["P"] = true
+        obj_char["command_cache"]["S"] = false
+        obj_char["command_cache"]["HS"] = false
+        obj_char["command_cache"]["K"] = false
+        obj_char["command_cache"]["Launcher"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["S"] == "Pressing" then
+        obj_char["command_cache"]["P"] = false
+        obj_char["command_cache"]["S"] = true
+        obj_char["command_cache"]["HS"] = false
+        obj_char["command_cache"]["K"] = false
+        obj_char["command_cache"]["Launcher"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["HS"] == "Pressing" then
+        obj_char["command_cache"]["P"] = false
+        obj_char["command_cache"]["S"] = false
+        obj_char["command_cache"]["HS"] = true
+        obj_char["command_cache"]["K"] = false
+        obj_char["command_cache"]["Launcher"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["K"] == "Pressing" then
+        obj_char["command_cache"]["P"] = false
+        obj_char["command_cache"]["S"] = false
+        obj_char["command_cache"]["HS"] = false
+        obj_char["command_cache"]["K"] = true
+        obj_char["command_cache"]["Launcher"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Launcher"] == "Pressing" then
+        obj_char["command_cache"]["P"] = false
+        obj_char["command_cache"]["S"] = false
+        obj_char["command_cache"]["HS"] = false
+        obj_char["command_cache"]["K"] = false
+        obj_char["command_cache"]["Launcher"] = true
+    end
+
+    -- "RC","Dash","Burst","UA" 默认受cache影响
+    if INPUT_SYS_CURRENT_COMMAND_STATE["RC"] == "Pressing" then
+        obj_char["command_cache"]["RC"] = true
+    end
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Dash"] == "Pressing" then
+        obj_char["command_cache"]["Dash"] = true
+    end
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Burst"] == "Pressing" then
+        obj_char["command_cache"]["Burst"] = true
+    end
+    if INPUT_SYS_CURRENT_COMMAND_STATE["UA"] == "Pressing" then
+        obj_char["command_cache"]["UA"] = true
+    end
+    -- "SP","Back","Start" 默认不受cache影响
+
+    -- command缓存应用倒计时
+    obj_char["command_cache_load_countdown"] = obj_char["command_cache_load_countdown"] - 1
+    if obj_char["command_cache_load_countdown"] == 0 then
+        -- pressing 应用
+        for i=1,16 do
+            if obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] == true then
+                INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Pressing"
+                obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
+            end
+        end
+    end
+end

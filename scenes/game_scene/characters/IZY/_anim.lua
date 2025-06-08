@@ -106,7 +106,7 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
         obj_char["current_animation_length"] = 0 -- 如果为0则是循环动画
 
         obj_char["hit_cancel"] = false -- 取消链
-        obj_char["idle_cancel"] = false -- 取消链
+        obj_char["idle_cancel"] = true -- 取消链
 
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
@@ -249,6 +249,7 @@ function load_game_scene_anim_char_IZY_6(obj_char)
         obj_char["current_animation_length"] = 84 -- 如果为0则是循环动画
 
         obj_char["hit_cancel"] = false -- 取消链
+        obj_char["idle_cancel"] = true -- 取消链
 
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
@@ -497,6 +498,7 @@ function load_game_scene_anim_char_IZY_6(obj_char)
 
         -- draw
         obj_char[8] = 1
+        obj_char["anchor_pos"] = {185,520}
     end
     res[14] = function()
         -- state_number
@@ -583,6 +585,7 @@ function load_game_scene_anim_char_IZY_6(obj_char)
 
         -- draw
         obj_char[8] = 2
+        obj_char["anchor_pos"] = {195,520}
     end
     res[21] = function()
         -- state_number
@@ -684,6 +687,7 @@ function load_game_scene_anim_char_IZY_6(obj_char)
 
         -- draw
         obj_char[8] = 3
+        obj_char["anchor_pos"] = {203,520}
     end
     res[28] = function()
         -- state_number
@@ -1477,9 +1481,9 @@ end
 
 
 
-function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
+function load_game_scene_anim_char_IZY_overdrive(obj_char)
     local res = {}
-    local other_side_obj_char = common_game_scene_change_character(side)
+    local other_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
     -- 更新hitbox table 有一个全屏的红框
     -- 更新逻辑为没有伤害 没有硬直 只是速度调为0
 
@@ -1641,7 +1645,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char,side)
         obj_char["current_hurtstop_wiggle_y_animation"] = nil
 
         -- VFX
-        insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
+        insert_VFX_game_scene_char_overdrive_badge(obj_char)
         insert_VFX_game_scene_char_overdrive_partical(obj_char)
         insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
     end
@@ -2379,11 +2383,12 @@ end
 
 
 
-function load_game_scene_anim_char_IZY_5P(obj_char,side)
+function load_game_scene_anim_char_IZY_5P(obj_char)
     local res = {}
     local overdrive_add = 0.05
     local heat_add = 0.05
     local ability_add = 0.05
+    local side = obj_char["player_side"]
     local function add_heat_ability_overdrive()
         if obj_char["overdrive"][1] < obj_char["overdrive"][2] then
             obj_char["overdrive"][1] = 
@@ -2581,7 +2586,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         obj_char[8] = 2
 
         -- VFX
-        insert_VFX_game_scene_char_IZY_5P_whiff(obj_char,side)
+        insert_VFX_game_scene_char_IZY_5P_whiff(obj_char)
         
     end
     res[6] = function() 
@@ -2611,6 +2616,8 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         obj_char[8] = 4
     end
     res[10] = function() 
+        -- input_sys_cache
+        obj_char["command_cache_load_countdown"] = 5
         -- draw_correction
         obj_char[8] = 5
     end
@@ -2618,7 +2625,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
         -- draw_correction
         obj_char[8] = 6
     end
-    res[16] = function() 
+    res[15] = function() 
         obj_char["idle_cancel"] = true
     end
     res[18] = function() 
@@ -2882,11 +2889,12 @@ function load_game_scene_anim_char_IZY_5P(obj_char,side)
 
 end
 
-function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,side)
+function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
     local res = {}
     local overdrive_add = 0.05
     local heat_add = 0.05
     local ability_add = 0.05
+    local side = obj_char["player_side"]
     local other_side_obj_char = common_game_scene_change_character(side)
     local other_side_hurtbox_data = common_game_scene_change_character_hurtbox(side)
     local other_side_shadowbox_data = common_game_scene_change_character_shadowbox(side)

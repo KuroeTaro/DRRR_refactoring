@@ -1,9 +1,9 @@
-function insert_VFX_game_scene_char_overdrive_badge(obj_char,side)
+function insert_VFX_game_scene_char_overdrive_badge(obj_char)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     local image_sprite_sheet = nil
-    if side == "L" then
+    if obj_char["player_side"] == "L" then
         image_sprite_sheet = image_sprite_sheet_VFX_game_scene_LP_overdrive_badge
-    elseif side == "R" then
+    elseif obj_char["player_side"] == "R" then
         image_sprite_sheet = image_sprite_sheet_VFX_game_scene_RP_overdrive_badge
     end 
     

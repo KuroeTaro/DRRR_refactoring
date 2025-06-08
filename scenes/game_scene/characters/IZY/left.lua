@@ -40,7 +40,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["current_animation_length"] = 0 -- 如果为0则是循环动画
 
     obj_char_game_scene_char_LP["hit_cancel"] = false -- 取消链
-    obj_char_game_scene_char_LP["idle_cancel"] = false -- 取消链
+    obj_char_game_scene_char_LP["idle_cancel"] = true -- 取消链
 
     obj_char_game_scene_char_LP["strike_active"] = false -- 防止在同一动作的active多次触发
     obj_char_game_scene_char_LP["throw_active"] = false -- 防止在同一动作的active多次触发
@@ -185,8 +185,10 @@ function load_game_scene_obj_char_LP()
 
     -- command_cache
     obj_char_game_scene_char_LP["command_cache"] = {}
+    for i=1,16 do
+        obj_char_game_scene_char_LP["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
+    end
     obj_char_game_scene_char_LP["command_cache_load_countdown"] = 0
-    obj_char_game_scene_char_LP["block_command_cache_countdown"] = 0
     
     -- draw_correction
     obj_char_game_scene_char_LP[8] = 0
@@ -279,10 +281,10 @@ function load_game_scene_anim_char_LP()
     anim_char_LP_6_walk = load_game_scene_anim_char_IZY_6(obj_char)
     anim_char_LP_4_walk = load_game_scene_anim_char_IZY_4(obj_char)
     -- overdrive启动动画
-    anim_char_LP_overdrive = load_game_scene_anim_char_IZY_overdrive(obj_char,"L")
+    anim_char_LP_overdrive = load_game_scene_anim_char_IZY_overdrive(obj_char)
     -- 拳脚动画
-    anim_char_LP_5P_stand_hurt_high = load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char,"L")
-    anim_char_LP_5P = load_game_scene_anim_char_IZY_5P(obj_char,"L")
+    anim_char_LP_5P_stand_hurt_high = load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
+    anim_char_LP_5P = load_game_scene_anim_char_IZY_5P(obj_char)
 
     obj_char["current_animation"] = anim_char_LP_stand_idle
 
@@ -999,39 +1001,11 @@ function state_machine_char_game_scene_char_LP()
         end,
         ["stand_idle"] = function()
             character_animator(obj_char,obj_char["current_animation"])
-            if test_input_sys_press(input["UP"]) then
-                -- to pre_jump
-                
-            elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
-                -- to over_drive
-                obj_char["current_animation"] = anim_char_LP_overdrive
-                init_character_anim_with(obj_char,obj_char["current_animation"])
-                obj_char["state"] = "overdrive"
-            elseif test_input_sys_press(input["P"]) then
-                -- to 5P
-                obj_char["current_animation"] = anim_char_LP_5P
-                init_character_anim_with(obj_char,obj_char["current_animation"])
-                obj_char["state"] = "5P"
-            elseif test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"]) then
-                common_game_scene_check_6_and_4_move(obj_char)
-                init_character_anim_with(obj_char,obj_char["current_animation"])
-                obj_char["state"] = "6_and_4_walk"
-            end
+            state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
         end,
         ["6_and_4_walk"] = function()
             common_game_scene_check_6_and_4_move(obj_char)
-            if test_input_sys_press_or_hold(input["Down"]) then
-                -- to crouch
-            elseif test_input_sys_press_or_hold(input["UP"]) then
-                -- to prejump
-            elseif not (test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"])) then
-                -- to stand_idle
-                obj_char["current_animation"] = anim_char_LP_stand_idle
-                init_character_anim_with(obj_char,obj_char["current_animation"])
-                obj_char["velocity"] = {0,0}
-                obj_char["state"] = "stand_idle"
-            end
-
+            state_gate_game_scene_char_LP_from_6_and_4_walk(input,obj_char)
         end,
         ["overdrive"] = function()
             character_animator(obj_char,obj_char["current_animation"])
@@ -1040,9 +1014,11 @@ function state_machine_char_game_scene_char_LP()
                 
             elseif obj_char["f"] >= obj_char["current_animation_length"] then
                 -- to stand_idle
+                obj_char["idle_cancel"] = true -- 取消链
                 obj_char["current_animation"] = anim_char_LP_stand_idle
                 init_character_anim_with(obj_char,obj_char["current_animation"] )
                 obj_char["state"] = "stand_idle"
+                state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
             end
         end,
         ["5P"] = function()
@@ -1066,28 +1042,7 @@ function state_machine_char_game_scene_char_LP()
                 end
             end
             if obj_char["idle_cancel"] then
-                if test_input_sys_press_or_hold(input["UP"]) then
-                    obj_char["idle_cancel"] = false
-                    -- to pre_jump
-
-                elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
-                    obj_char["idle_cancel"] = false
-                    -- to over_drive
-                    obj_char["current_animation"] = anim_char_LP_overdrive
-                    init_character_anim_with(obj_char,obj_char["current_animation"])
-                    obj_char["state"] = "overdrive"
-                elseif test_input_sys_press(input["P"]) then
-                    obj_char["idle_cancel"] = false
-                    -- to 5P
-                    obj_char["current_animation"] = anim_char_LP_5P
-                    init_character_anim_with(obj_char,obj_char["current_animation"])
-                    obj_char["state"] = "5P"
-                elseif test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"]) then
-                    obj_char["idle_cancel"] = false
-                    common_game_scene_check_6_and_4_move(obj_char)
-                    init_character_anim_with(obj_char,obj_char["current_animation"])
-                    obj_char["state"] = "6_and_4_walk"
-                end
+                state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
             end
         end,
     }
@@ -1411,5 +1366,58 @@ function update_game_scene_char_LP_inv_state()
     if obj_char["burst_inv_countdown"] < 0 then
         obj_char["burst_inv"] = false
         obj_char["burst_inv_countdown"] = 0
+    end
+end
+
+
+
+
+function state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
+    if test_input_sys_press(input["UP"]) then
+        -- to pre_jump
+        obj_char["idle_cancel"] = true
+    elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+        -- to over_drive
+        obj_char["idle_cancel"] = false
+        obj_char["current_animation"] = anim_char_LP_overdrive
+        init_character_anim_with(obj_char,obj_char["current_animation"])
+        obj_char["state"] = "overdrive"
+    elseif test_input_sys_press(input["P"]) then
+        -- to 5P
+        obj_char["idle_cancel"] = false
+        obj_char["current_animation"] = anim_char_LP_5P
+        init_character_anim_with(obj_char,obj_char["current_animation"])
+        obj_char["state"] = "5P"
+    elseif test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"]) then
+        obj_char["idle_cancel"] = true
+        common_game_scene_check_6_and_4_move(obj_char)
+        init_character_anim_with(obj_char,obj_char["current_animation"])
+        obj_char["state"] = "6_and_4_walk"
+    end
+end
+
+function state_gate_game_scene_char_LP_from_6_and_4_walk(input,obj_char)
+    if test_input_sys_press(input["UP"]) then
+        -- to pre_jump
+        obj_char["idle_cancel"] = true
+    elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+        -- to over_drive
+        obj_char["idle_cancel"] = false
+        obj_char["current_animation"] = anim_char_LP_overdrive
+        init_character_anim_with(obj_char,obj_char["current_animation"])
+        obj_char["state"] = "overdrive"
+    elseif test_input_sys_press(input["P"]) then
+        -- to 5P
+        obj_char["idle_cancel"] = false
+        obj_char["current_animation"] = anim_char_LP_5P
+        init_character_anim_with(obj_char,obj_char["current_animation"])
+        obj_char["state"] = "5P"
+    elseif not(test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"])) then
+        -- to stand_idle
+        obj_char["idle_cancel"] = true
+        obj_char["current_animation"] = anim_char_LP_stand_idle
+        init_character_anim_with(obj_char,obj_char["current_animation"])
+        obj_char["velocity"] = {0,0}
+        obj_char["state"] = "stand_idle"
     end
 end

@@ -140,6 +140,8 @@ function update_game_scene_main_training()
 
             -- 获得输入 更新角色 状态 速度 和 碰撞盒
             -- 会被game_speed限制
+            common_game_scene_input_sys_cache(INPUT_SYS_CURRENT_COMMAND_STATE["L"],char_LP)
+            common_game_scene_input_sys_cache(INPUT_SYS_CURRENT_COMMAND_STATE["R"],char_RP)
             update_game_scene_char()
 
             local char_LP_velocity = char_LP["velocity"]
