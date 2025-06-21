@@ -88,7 +88,9 @@ require("scenes/game_scene/_common/init")
 function love.load()
 
 	DEBUG_PAUSE = false
+	DEBUG_PAUSE_STATE = "Released"
 	DEBUG_HITBOX_SHOWS = false
+	DEBUG_HITBOX_SHOWS_STATE = "Released"
 	DEBUG_BOX_COLOR_YELLOW = {1,1,0,0.5}
 	DEBUG_BOX_COLOR_BLUE = {0,180/255,1,0.5}
 	DEBUG_BOX_COLOR_RED = {1,0,0,0.5}

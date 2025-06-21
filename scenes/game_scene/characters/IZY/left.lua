@@ -35,6 +35,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["air_hurt_animation"] = nil
     obj_char_game_scene_char_LP["air_counter_animation"] = nil
     obj_char_game_scene_char_LP["air_block_animation"] = nil
+    obj_char_game_scene_char_LP["OTG_hurt_animation"] = nil
 
     obj_char_game_scene_char_LP["current_animation"] = nil
     obj_char_game_scene_char_LP["current_animation_length"] = 0 -- 如果为0则是循环动画
@@ -59,6 +60,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["parry_function"] = function() end
 
     obj_char_game_scene_char_LP["knife_state"] = "off"
+    obj_char_game_scene_char_LP["knife_state_change_ability"] = true
     obj_char_game_scene_char_LP["knife_anchor_pos"] = {168,210}
     obj_char_game_scene_char_LP["knife_animation"] = nil
     obj_char_game_scene_char_LP["knife_8"] = 0 -- obj[knife_8]匕首图形上的帧数
@@ -221,6 +223,22 @@ function order_load_game_scene_char_LP_frames(load_order)
                 "asset/game_scene/characters/IZY/_character/IZY_6.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["6_sprite_batch"])
             )
+            image_sprite_sheet_table_char_game_scene_LP["6_stop"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_6_stop.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["6_stop_sprite_batch"])
+            )
+            image_sprite_sheet_table_char_game_scene_LP["4"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_4.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["4_sprite_batch"])
+            )
+            image_sprite_sheet_table_char_game_scene_LP["4_stop"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_4_stop.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["4_stop_sprite_batch"])
+            )
+
 
 
 
@@ -960,6 +978,7 @@ function state_machine_char_game_scene_char_LP()
     local input = INPUT_SYS_CURRENT_COMMAND_STATE["L"]
     local obj_char = obj_char_game_scene_char_LP
     local switch = {
+        -- 通用状态
         ["before_ease_in"] = function()
             character_animator(obj_char,obj_char["current_animation"])
         end,
@@ -999,6 +1018,8 @@ function state_machine_char_game_scene_char_LP()
         ["block"] = function()
             character_animator(obj_char,obj_char["current_animation"])
         end,
+
+        -- 待机状态
         ["stand_idle"] = function()
             character_animator(obj_char,obj_char["current_animation"])
             state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
@@ -1007,9 +1028,13 @@ function state_machine_char_game_scene_char_LP()
             common_game_scene_check_6_and_4_move(obj_char)
             state_gate_game_scene_char_LP_from_6_and_4_walk(input,obj_char)
         end,
+        ["walk_stop"] = function()
+            character_animator(obj_char,obj_char["current_animation"])
+            state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
+        end,
         ["overdrive"] = function()
             character_animator(obj_char,obj_char["current_animation"])
-            if test_input_sys_press_or_hold(input["RC"]) and obj_char["f"] < 29 then
+            if test_input_sys_press_or_hold(input["RC"]) and obj_char["f"] < 30 then
                 -- to overdrive RC
                 
             elseif obj_char["f"] >= obj_char["current_animation_length"] then
@@ -1373,7 +1398,9 @@ end
 
 
 function state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
-    if test_input_sys_press(input["UP"]) then
+    if common_game_scene_get_input_direction(obj_char) == 7 
+    or common_game_scene_get_input_direction(obj_char) == 8
+    or common_game_scene_get_input_direction(obj_char) == 9 then
         -- to pre_jump
         obj_char["idle_cancel"] = true
     elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
@@ -1388,7 +1415,8 @@ function state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
         obj_char["current_animation"] = anim_char_LP_5P
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["state"] = "5P"
-    elseif test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"]) then
+    elseif common_game_scene_get_input_direction(obj_char) == 4
+    or common_game_scene_get_input_direction(obj_char) == 6 then
         obj_char["idle_cancel"] = true
         common_game_scene_check_6_and_4_move(obj_char)
         init_character_anim_with(obj_char,obj_char["current_animation"])
@@ -1397,7 +1425,9 @@ function state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
 end
 
 function state_gate_game_scene_char_LP_from_6_and_4_walk(input,obj_char)
-    if test_input_sys_press(input["UP"]) then
+    if common_game_scene_get_input_direction(obj_char) == 7 
+    or common_game_scene_get_input_direction(obj_char) == 8
+    or common_game_scene_get_input_direction(obj_char) == 9 then
         -- to pre_jump
         obj_char["idle_cancel"] = true
     elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
@@ -1412,12 +1442,12 @@ function state_gate_game_scene_char_LP_from_6_and_4_walk(input,obj_char)
         obj_char["current_animation"] = anim_char_LP_5P
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["state"] = "5P"
-    elseif not(test_input_sys_press_or_hold(input["Left"]) or test_input_sys_press_or_hold(input["Right"])) then
-        -- to stand_idle
+    elseif common_game_scene_get_input_direction(obj_char) == 5 then
+        -- to 6_walk_stop or 4_walk_stop
         obj_char["idle_cancel"] = true
         obj_char["current_animation"] = anim_char_LP_stand_idle
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["velocity"] = {0,0}
-        obj_char["state"] = "stand_idle"
+        obj_char["state"] = "walk_stop"
     end
 end

@@ -124,11 +124,14 @@ function update_game_scene_stage()
     local camera_obj = obj_stage_game_scene_camera
     local char_L_obj = obj_char_game_scene_char_LP
     local char_R_obj = obj_char_game_scene_char_RP
+    local shift_abs = math.max(1000-(math.max(math.abs(char_L_obj["x"]-char_R_obj["x"]),1000)),-450)
     camera_obj["target_3d_pos_x"] = (char_L_obj["x"] + char_R_obj["x"])/2
     camera_obj["target_3d_pos_x"] = math.max(camera_obj["target_3d_pos_x"],-900)
     camera_obj["target_3d_pos_x"] = math.min(camera_obj["target_3d_pos_x"],900)
     camera_obj["target_3d_pos_y"] = -(math.abs(char_L_obj["y"] - char_R_obj["y"]))*0.5 + 60
     camera_obj["target_3d_pos_y"] = math.min(camera_obj["target_3d_pos_y"],0)
+    camera_obj["target_3d_pos_y"] = camera_obj["target_3d_pos_y"]+shift_abs*0.1
+    camera_obj["target_3d_pos_z"] = shift_abs*0.3-800
     local switch = {
         ["main"] = function()
             if char_L_obj["state"] == "overdrive" or char_R_obj["state"] == "overdrive" then

@@ -84,25 +84,78 @@ end
 
 
 
+function common_game_scene_get_input_direction(obj_char)
+    local input = INPUT_SYS_CURRENT_COMMAND_STATE[obj_char["player_side"]]
+    if test_input_sys_press_or_hold(input["Left"]) and test_input_sys_press_or_hold(input["Right"]) then
+        if test_input_sys_press_or_hold(input["Up"]) and test_input_sys_press_or_hold(input["Down"]) then
+            return 5
+        end
+        if test_input_sys_press_or_hold(input["Up"]) then
+            return 8
+        end
+        if test_input_sys_press_or_hold(input["Down"]) then
+            return 2
+        end
+        return 5
+    elseif test_input_sys_press_or_hold(input["Left"]) then
+        if test_input_sys_press_or_hold(input["Up"]) and test_input_sys_press_or_hold(input["Down"]) then
+            return 4
+        end
+        if test_input_sys_press_or_hold(input["Up"]) then
+            return 7
+        end
+        if test_input_sys_press_or_hold(input["Down"]) then
+            return 1
+        end
+        return 4
+    elseif test_input_sys_press_or_hold(input["Right"]) then
+        if test_input_sys_press_or_hold(input["Up"]) and test_input_sys_press_or_hold(input["Down"]) then
+            return 6
+        end
+        if test_input_sys_press_or_hold(input["Up"]) then
+            return 9
+        end
+        if test_input_sys_press_or_hold(input["Down"]) then
+            return 3
+        end
+        return 6
+    end
+    if test_input_sys_press_or_hold(input["Up"]) and test_input_sys_press_or_hold(input["Down"]) then
+        return 5
+    end
+    if test_input_sys_press_or_hold(input["Up"]) then
+        return 8
+    end
+    if test_input_sys_press_or_hold(input["Down"]) then
+        return 2
+    end
+    return 5
+    
+end
+
 function common_game_scene_check_6_and_4_move(obj_char)
     local other_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
     local input = INPUT_SYS_CURRENT_COMMAND_STATE[obj_char["player_side"]]
     local anim_char_6_walk = common_game_scene_get_character_walk_animation(obj_char["player_side"],"6")
     local anim_char_4_walk = common_game_scene_get_character_walk_animation(obj_char["player_side"],"4") 
     if obj_char["x"] < other_side_obj_char["x"] then
-        if test_input_sys_press_or_hold(input["Left"]) then
-            -- 6模组 x数值增加
+        if common_game_scene_get_input_direction(obj_char) == 4 then
             if obj_char[5] == -1 then
                 obj_char[5] = 1
+                obj_char["f"] = 0
+            end
+            if obj_char["sprite_sheet_state"] == "6" then
                 obj_char["f"] = 0
             end
             obj_char["current_animation"] = anim_char_4_walk
             character_animator(obj_char,obj_char["current_animation"])
 
-        elseif test_input_sys_press_or_hold(input["Right"]) then
-            -- 4模组 x数值减少
+        elseif common_game_scene_get_input_direction(obj_char) == 6 then
             if obj_char[5] == -1 then
                 obj_char[5] = 1
+                obj_char["f"] = 0
+            end
+            if obj_char["sprite_sheet_state"] == "4" then
                 obj_char["f"] = 0
             end
             obj_char["current_animation"] = anim_char_6_walk
@@ -110,39 +163,53 @@ function common_game_scene_check_6_and_4_move(obj_char)
 
         end
     elseif obj_char["x"] == other_side_obj_char["x"] then
-        if test_input_sys_press_or_hold(input["Left"]) then
+        if common_game_scene_get_input_direction(obj_char) == 4 then
             -- 如果sx == 1 保持正面行走 如果 sx == -1 保持倒着走
             if obj_char[5] == 1 then
+                if obj_char["sprite_sheet_state"] == "6" then
+                    obj_char["sprite_sheet_state"] = "4"
+                    obj_char["f"] = 0
+                end
                 obj_char["current_animation"] = anim_char_4_walk
             elseif obj_char[5] == -1 then
+                if obj_char["sprite_sheet_state"] == "4" then
+                    obj_char["sprite_sheet_state"] = "6"
+                    obj_char["f"] = 0
+                end
                 obj_char["current_animation"] = anim_char_6_walk
             end
             character_animator(obj_char,obj_char["current_animation"])
 
-        elseif test_input_sys_press_or_hold(input["Right"]) then
+        elseif common_game_scene_get_input_direction(obj_char) == 6 then
             -- 如果sx == 1 保持倒着走 如果 sx == -1 保持正面行走
             if obj_char[5] == 1 then
+                obj_char["sprite_sheet_state"] = "6"
                 obj_char["current_animation"] = anim_char_6_walk
             elseif obj_char[5] == -1 then
+                obj_char["sprite_sheet_state"] = "4"
                 obj_char["current_animation"] = anim_char_4_walk
             end
             character_animator(obj_char,obj_char["current_animation"])
 
         end
     elseif obj_char["x"] > other_side_obj_char["x"] then
-        if test_input_sys_press_or_hold(input["Left"]) then
-            -- 6模组 x数值增加
+        if common_game_scene_get_input_direction(obj_char) == 4 then
             if obj_char[5] == 1 then
                 obj_char[5] = -1
+                obj_char["f"] = 0
+            end
+            if obj_char["sprite_sheet_state"] == "4" then
                 obj_char["f"] = 0
             end
             obj_char["current_animation"] = anim_char_6_walk
             character_animator(obj_char,obj_char["current_animation"])
 
-        elseif test_input_sys_press_or_hold(input["Right"]) then
-            -- 4模组 x数值减少
+        elseif common_game_scene_get_input_direction(obj_char) == 6 then
             if obj_char[5] == 1 then
                 obj_char[5] = -1
+                obj_char["f"] = 0
+            end
+            if obj_char["sprite_sheet_state"] == "6" then
                 obj_char["f"] = 0
             end
             obj_char["current_animation"] = anim_char_4_walk
