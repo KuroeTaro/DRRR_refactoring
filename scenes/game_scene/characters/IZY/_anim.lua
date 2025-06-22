@@ -111,6 +111,7 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
         obj_char["parry_function"] = function() end
+        obj_char["hit_counter_ver_function"] = function() end
 
         -- state_number
         obj_char["gravity"] = 9.8
@@ -208,7 +209,7 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
         }
 
         -- command_cache
-        obj_char["command_cache"] = {}
+        common_game_scene_input_sys_cacahe_init(obj_char)
         obj_char["command_cache_load_countdown"] = 0
 
         -- draw_correction
@@ -254,6 +255,7 @@ function load_game_scene_anim_char_IZY_6(obj_char)
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
         obj_char["parry_function"] = function() end
+        obj_char["hit_counter_ver_function"] = function() end
 
         -- state_number
         obj_char["velocity"] = {obj_char[5]*walk_speed,0}
@@ -363,7 +365,7 @@ function load_game_scene_anim_char_IZY_6(obj_char)
         }
 
         -- command_cache
-        obj_char["command_cache"] = {}
+        common_game_scene_input_sys_cacahe_init(obj_char)
         obj_char["command_cache_load_countdown"] = 0
 
         -- draw_correction
@@ -1475,360 +1477,6 @@ function load_game_scene_anim_char_IZY_6(obj_char)
     return res
 end
 
-function load_game_scene_anim_char_IZY_6_stop(obj_char)
-    local res = {}
-    res[0] = function() 
-        -- state
-        obj_char["sprite_sheet_state"] = "6"
-        obj_char["height_state"] = "stand" -- stand crouch air
-        obj_char["hit_type_state"] = "none" -- none strike throw burst
-        obj_char["hit_guard_type_state"] = "none" -- none all low high
-        obj_char["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
-        obj_char["hurt_state"] = "idle" -- idle unblock punish counter GP parry
-        obj_char["move_state"] = "none" -- none startup active recovery
-
-        obj_char["current_animation_length"] = 84 -- 如果为0则是循环动画
-
-        obj_char["hit_cancel"] = false -- 取消链
-        obj_char["idle_cancel"] = true -- 取消链
-
-        obj_char["hit_function"] = function() end
-        obj_char["hurt_function"] = function() end
-        obj_char["parry_function"] = function() end
-
-        -- state_number
-        obj_char["velocity"] = {0,0}
-        obj_char["gravity"] = 9.8
-        obj_char["friction"] = 1
-        obj_char["hurt_horizontal_velocity_correction"] = 1
-        obj_char["hurt_gravity_correction"] = 1
-        obj_char["hurt_damage_correction"] = 1
-
-        -- collide
-        obj_char["pushbox"] = {0, -185, 130, 370}
-        obj_char["hitbox_table"] = {}
-        obj_char["hurtbox_table"] = {{0, -215, 170, 430},{0, -455, 100, 50}}
-
-        -- sub_obj
-        obj_char["shadow_box_table"] = {
-            {
-                {-6.75, -20.00,
-                -18.88, -4.63}
-                ,
-                {-18.88, -4.63,
-                -18.27, 3.57}
-                ,
-                {-18.27, 3.57,
-                -15.88, 12.75}
-                ,
-                {-15.88, 12.75,
-                -12.71, 17.35}
-                ,
-                {-12.71, 17.35,
-                -7.13, 21.13}
-                ,
-                {-7.13, 21.13,
-                2.50, 22.00}
-                ,
-                {2.50, 22.00,
-                12.24, 20.71}
-                ,
-                {12.24, 20.71,
-                19.13, 17.50}
-                ,
-                {19.13, 17.50,
-                20.59, 13.10}
-                ,
-                {20.59, 13.10,
-                19.63, 5.38}
-                ,
-                {19.63, 5.38,
-                13.71, -8.85}
-                ,
-                {13.71, -8.85,
-                -6.75, -20.00}
-            },
-            {
-                {-22.38, -8.50,
-                -37.50, -2.38}
-                ,
-                {-37.50, -2.38,
-                -37.56, 5.31}
-                ,
-                {-37.56, 5.31,
-                -34.44, 8.81}
-                ,
-                {-34.44, 8.81,
-                -28.51, 10.75}
-                ,
-                {-28.51, 10.75,
-                -18.38, 10.44}
-                ,
-                {-18.38, 10.44,
-                -2.63, 18.94}
-                ,
-                {-2.63, 18.94,
-                8.94, 19.81}
-                ,
-                {8.94, 19.81,
-                26.19, 17.75}
-                ,
-                {26.19, 17.75,
-                34.02, 15.55}
-                ,
-                {34.02, 15.55,
-                37.19, 11.00}
-                ,
-                {37.19, 11.00,
-                36.50, 3.38}
-                ,
-                {36.50, 3.38,
-                31.93, -0.54}
-                ,
-                {31.93, -0.54,
-                25.50, -2.75}
-                ,
-                {25.50, -2.75,
-                12.19, -3.44}
-                ,
-                {12.19, -3.44,
-                7.38, -8.75}
-                ,
-                {7.38, -8.75,
-                -22.38, -8.50}
-            }
-        }
-        obj_char["shadow_box_pos"] = {
-            {123.1,507.25}
-            ,{210.4375,496.1875}
-        }
-
-        -- command_cache
-        obj_char["command_cache"] = {}
-        obj_char["command_cache_load_countdown"] = 0
-
-        -- draw_correction
-        obj_char[8] = 0
-        obj_char["anchor_pos"] = {175,520}
-
-    end
-    res[2] = function()
-        -- state_number
-        obj_char["velocity"] = {0,0}
-
-        -- sub_obj
-        obj_char["shadow_box_table"] = {
-            {
-                {-1.50, -18.75,
-                -25.00, -13.13}
-                ,
-                {-25.00, -13.13,
-                -27.61, -7.43}
-                ,
-                {-27.61, -7.43,
-                -28.20, -2.20}
-                ,
-                {-28.20, -2.20,
-                -25.71, 1.63}
-                ,
-                {-25.71, 1.63,
-                -19.86, 5.40}
-                ,
-                {-19.86, 5.40,
-                -10.13, 6.62}
-                ,
-                {-10.13, 6.62,
-                -7.99, 12.79}
-                ,
-                {-7.99, 12.79,
-                -2.62, 17.80}
-                ,
-                {-2.62, 17.80,
-                7.41, 21.22}
-                ,
-                {7.41, 21.22,
-                18.25, 22.00}
-                ,
-                {18.25, 22.00,
-                35.75, 20.25}
-                ,
-                {35.75, 20.25,
-                38.05, 17.28}
-                ,
-                {38.05, 17.28,
-                39.12, 12.75}
-                ,
-                {39.12, 12.75,
-                38.75, 7.50}
-                ,
-                {38.75, 7.50,
-                36.64, 4.13}
-                ,
-                {36.64, 4.13,
-                34.02, 2.17}
-                ,
-                {34.02, 2.17,
-                25.00, 0.13}
-                ,
-                {25.00, 0.13,
-                18.09, -6.60}
-                ,
-                {18.09, -6.60,
-                -1.50, -18.75}
-            },
-            {
-                {-22.38, -8.50,
-                -37.06, -7.00}
-                ,
-                {-37.06, -7.00,
-                -36.94, 1.31}
-                ,
-                {-36.94, 1.31,
-                -34.69, 4.44}
-                ,
-                {-34.69, 4.44,
-                -28.45, 7.06}
-                ,
-                {-28.45, 7.06,
-                -18.13, 7.81}
-                ,
-                {-18.13, 7.81,
-                -3.94, 17.19}
-                ,
-                {-3.94, 17.19,
-                9.81, 19.31}
-                ,
-                {9.81, 19.31,
-                26.19, 17.75}
-                ,
-                {26.19, 17.75,
-                34.02, 15.55}
-                ,
-                {34.02, 15.55,
-                37.19, 11.00}
-                ,
-                {37.19, 11.00,
-                36.50, 3.38}
-                ,
-                {36.50, 3.38,
-                31.93, -0.54}
-                ,
-                {31.93, -0.54,
-                25.50, -2.75}
-                ,
-                {25.50, -2.75,
-                15.19, -3.25}
-                ,
-                {15.19, -3.25,
-                7.38, -8.75}
-                ,
-                {7.38, -8.75,
-                -22.38, -8.50}
-            }
-        }
-        obj_char["shadow_box_pos"] = {
-            {110.75,500.625}
-            ,{268.9375,499.6875}
-        }
-
-        -- draw
-        obj_char[8] = 1
-        obj_char["anchor_pos"] = {180,520}
-    end
-    res[5] = function()
-        -- state_number
-        obj_char["velocity"] = {0,0}
-
-        -- sub_obj
-        obj_char["shadow_box_table"] = {
-            {
-                {-24.99, -0.46,
-                -19.62, 8.05}
-                ,
-                {-19.62, 8.05,
-                -12.21, 11.22}
-                ,
-                {-12.21, 11.22,
-                -1.38, 13.75}
-                ,
-                {-1.38, 13.75,
-                14.75, 13.63}
-                ,
-                {14.75, 13.63,
-                18.43, 11.53}
-                ,
-                {18.43, 11.53,
-                21.25, 5.25}
-                ,
-                {21.25, 5.25,
-                20.88, -3.38}
-                ,
-                {20.88, -3.38,
-                17.39, -5.99}
-                ,
-                {17.39, -5.99,
-                13.02, -6.96}
-                ,
-                {13.02, -6.96,
-                4.00, -13.88}
-                ,
-                {4.00, -13.88,
-                -24.99, -0.46}
-            },
-            {
-                {-11.88, -13.75,
-                -26.56, -1.75}
-                ,
-                {-26.56, -1.75,
-                -23.44, 13.56}
-                ,
-                {-23.44, 13.56,
-                -18.94, 16.31}
-                ,
-                {-18.94, 16.31,
-                -13.07, 17.06}
-                ,
-                {-13.07, 17.06,
-                -4.63, 13.44}
-                ,
-                {-4.63, 13.44,
-                4.28, 13.42}
-                ,
-                {4.28, 13.42,
-                17.06, 14.56}
-                ,
-                {17.06, 14.56,
-                25.93, 12.45}
-                ,
-                {25.93, 12.45,
-                33.06, 8.81}
-                ,
-                {33.06, 8.81,
-                45.81, 1.13}
-                ,
-                {45.81, 1.13,
-                49.39, -5.08}
-                ,
-                {49.39, -5.08,
-                -11.88, -13.75}
-            }
-        }
-        obj_char["shadow_box_pos"] = {
-            {101.875,509.375}
-            ,{286.0625,500.1875}
-        }
-
-        -- draw
-        obj_char[8] = 2
-        obj_char["anchor_pos"] = {185,520}
-    end
-    res[9] = function()
-        -- animation end
-    end
-    
-    return res
-end
-
 function load_game_scene_anim_char_IZY_4(obj_char)
     local walk_speed = -7.0
     local res = {}
@@ -1850,6 +1498,7 @@ function load_game_scene_anim_char_IZY_4(obj_char)
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
         obj_char["parry_function"] = function() end
+        obj_char["hit_counter_ver_function"] = function() end
 
         -- state_number
         obj_char["velocity"] = {obj_char[5]*walk_speed,0}
@@ -1959,7 +1608,7 @@ function load_game_scene_anim_char_IZY_4(obj_char)
         }
 
         -- command_cache
-        obj_char["command_cache"] = {}
+        common_game_scene_input_sys_cacahe_init(obj_char)
         obj_char["command_cache_load_countdown"] = 0
 
         -- draw_correction
@@ -2832,11 +2481,11 @@ function load_game_scene_anim_char_IZY_4(obj_char)
     return res
 end
 
-function load_game_scene_anim_char_IZY_4_stop(obj_char)
+function load_game_scene_anim_char_IZY_5_walk_stop(obj_char)
     local res = {}
     res[0] = function() 
         -- state
-        obj_char["sprite_sheet_state"] = "6"
+        obj_char["sprite_sheet_state"] = "5_stop"
         obj_char["height_state"] = "stand" -- stand crouch air
         obj_char["hit_type_state"] = "none" -- none strike throw burst
         obj_char["hit_guard_type_state"] = "none" -- none all low high
@@ -2844,7 +2493,7 @@ function load_game_scene_anim_char_IZY_4_stop(obj_char)
         obj_char["hurt_state"] = "idle" -- idle unblock punish counter GP parry
         obj_char["move_state"] = "none" -- none startup active recovery
 
-        obj_char["current_animation_length"] = 84 -- 如果为0则是循环动画
+        obj_char["current_animation_length"] = 9 -- 如果为0则是循环动画
 
         obj_char["hit_cancel"] = false -- 取消链
         obj_char["idle_cancel"] = true -- 取消链
@@ -2852,6 +2501,7 @@ function load_game_scene_anim_char_IZY_4_stop(obj_char)
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
         obj_char["parry_function"] = function() end
+        obj_char["hit_counter_ver_function"] = function() end
 
         -- state_number
         obj_char["velocity"] = {0,0}
@@ -2870,103 +2520,91 @@ function load_game_scene_anim_char_IZY_4_stop(obj_char)
         obj_char["shadow_box_table"] = {
             {
                 {-6.75, -20.00,
-                -18.88, -4.63}
+                -19.38, -3.88}
                 ,
-                {-18.88, -4.63,
-                -18.27, 3.57}
+                {-19.38, -3.88,
+                -16.13, 13.81}
                 ,
-                {-18.27, 3.57,
-                -15.88, 12.75}
+                {-16.13, 13.81,
+                -9.06, 19.81}
                 ,
-                {-15.88, 12.75,
-                -12.71, 17.35}
+                {-9.06, 19.81,
+                12.00, 19.94}
                 ,
-                {-12.71, 17.35,
-                -7.13, 21.13}
+                {12.00, 19.94,
+                18.38, 15.19}
                 ,
-                {-7.13, 21.13,
-                2.50, 22.00}
+                {18.38, 15.19,
+                18.50, 5.75}
                 ,
-                {2.50, 22.00,
-                12.24, 20.71}
+                {18.50, 5.75,
+                12.46, -7.97}
                 ,
-                {12.24, 20.71,
-                19.13, 17.50}
-                ,
-                {19.13, 17.50,
-                20.59, 13.10}
-                ,
-                {20.59, 13.10,
-                19.63, 5.38}
-                ,
-                {19.63, 5.38,
-                13.71, -8.85}
-                ,
-                {13.71, -8.85,
+                {12.46, -7.97,
                 -6.75, -20.00}
             },
             {
-                {-22.38, -8.50,
-                -37.50, -2.38}
+                {-17.83, -13.91,
+                -32.66, -14.17}
                 ,
-                {-37.50, -2.38,
-                -37.56, 5.31}
+                {-32.66, -14.17,
+                -35.65, -8.27}
                 ,
-                {-37.56, 5.31,
-                -34.44, 8.81}
+                {-35.65, -8.27,
+                -34.95, -3.44}
                 ,
-                {-34.44, 8.81,
-                -28.51, 10.75}
+                {-34.95, -3.44,
+                -28.88, 2.01}
                 ,
-                {-28.51, 10.75,
-                -18.38, 10.44}
+                {-28.88, 2.01,
+                -19.77, 4.16}
                 ,
-                {-18.38, 10.44,
-                -2.63, 18.94}
+                {-19.77, 4.16,
+                -6.11, 17.80}
                 ,
-                {-2.63, 18.94,
-                8.94, 19.81}
+                {-6.11, 17.80,
+                5.55, 22.10}
                 ,
-                {8.94, 19.81,
-                26.19, 17.75}
+                {5.55, 22.10,
+                22.97, 25.34}
                 ,
-                {26.19, 17.75,
-                34.02, 15.55}
+                {22.97, 25.34,
+                30.98, 24.68}
                 ,
-                {34.02, 15.55,
-                37.19, 11.00}
+                {30.98, 24.68,
+                34.88, 20.77}
                 ,
-                {37.19, 11.00,
-                36.50, 3.38}
+                {34.88, 20.77,
+                35.75, 13.24}
                 ,
-                {36.50, 3.38,
-                31.93, -0.54}
+                {35.75, 13.24,
+                32.39, 8.24}
                 ,
-                {31.93, -0.54,
-                25.50, -2.75}
+                {32.39, 8.24,
+                26.78, 4.40}
                 ,
-                {25.50, -2.75,
-                12.19, -3.44}
+                {26.78, 4.40,
+                15.51, -0.69}
                 ,
-                {12.19, -3.44,
-                7.38, -8.75}
+                {15.51, -0.69,
+                8.66, -7.59}
                 ,
-                {7.38, -8.75,
-                -22.38, -8.50}
+                {8.66, -7.59,
+                -17.83, -13.91}
             }
         }
         obj_char["shadow_box_pos"] = {
-            {123.1,507.25}
-            ,{210.4375,496.1875}
+            {76.125,516.875}
+            ,{146.3125,500.1875}
         }
 
         -- command_cache
-        obj_char["command_cache"] = {}
+        common_game_scene_input_sys_cacahe_init(obj_char)
         obj_char["command_cache_load_countdown"] = 0
 
         -- draw_correction
         obj_char[8] = 0
-        obj_char["anchor_pos"] = {175,520}
+        obj_char["anchor_pos"] = {115,520}
 
     end
     res[2] = function()
@@ -2976,121 +2614,93 @@ function load_game_scene_anim_char_IZY_4_stop(obj_char)
         -- sub_obj
         obj_char["shadow_box_table"] = {
             {
-                {-1.50, -18.75,
-                -25.00, -13.13}
+                {-6.75, -20.00,
+                -18.94, -3.88}
                 ,
-                {-25.00, -13.13,
-                -27.61, -7.43}
+                {-18.94, -3.88,
+                -15.88, 12.75}
                 ,
-                {-27.61, -7.43,
-                -28.20, -2.20}
+                {-15.88, 12.75,
+                -10.69, 18.88}
                 ,
-                {-28.20, -2.20,
-                -25.71, 1.63}
+                {-10.69, 18.88,
+                -5.31, 20.50}
                 ,
-                {-25.71, 1.63,
-                -19.86, 5.40}
+                {-5.31, 20.50,
+                9.28, 20.38}
                 ,
-                {-19.86, 5.40,
-                -10.13, 6.62}
+                {9.28, 20.38,
+                16.17, 18.08}
                 ,
-                {-10.13, 6.62,
-                -7.99, 12.79}
+                {16.17, 18.08,
+                19.81, 15.25}
                 ,
-                {-7.99, 12.79,
-                -2.62, 17.80}
+                {19.81, 15.25,
+                19.63, 5.38}
                 ,
-                {-2.62, 17.80,
-                7.41, 21.22}
+                {19.63, 5.38,
+                12.46, -7.97}
                 ,
-                {7.41, 21.22,
-                18.25, 22.00}
-                ,
-                {18.25, 22.00,
-                35.75, 20.25}
-                ,
-                {35.75, 20.25,
-                38.05, 17.28}
-                ,
-                {38.05, 17.28,
-                39.12, 12.75}
-                ,
-                {39.12, 12.75,
-                38.75, 7.50}
-                ,
-                {38.75, 7.50,
-                36.64, 4.13}
-                ,
-                {36.64, 4.13,
-                34.02, 2.17}
-                ,
-                {34.02, 2.17,
-                25.00, 0.13}
-                ,
-                {25.00, 0.13,
-                18.09, -6.60}
-                ,
-                {18.09, -6.60,
-                -1.50, -18.75}
+                {12.46, -7.97,
+                -6.75, -20.00}
             },
             {
-                {-22.38, -8.50,
-                -37.06, -7.00}
+                {-20.43, -11.16,
+                -35.15, -9.30}
                 ,
-                {-37.06, -7.00,
-                -36.94, 1.31}
+                {-35.15, -9.30,
+                -37.26, -3.04}
                 ,
-                {-36.94, 1.31,
-                -34.69, 4.44}
+                {-37.26, -3.04,
+                -36.94, 2.02}
                 ,
-                {-34.69, 4.44,
-                -28.45, 7.06}
+                {-36.94, 2.02,
+                -29.09, 6.80}
                 ,
-                {-28.45, 7.06,
-                -18.13, 7.81}
+                {-29.09, 6.80,
+                -19.78, 7.00}
                 ,
-                {-18.13, 7.81,
-                -3.94, 17.19}
+                {-19.78, 7.00,
+                -5.18, 18.74}
                 ,
-                {-3.94, 17.19,
-                9.81, 19.31}
+                {-5.18, 18.74,
+                7.85, 21.15}
                 ,
-                {9.81, 19.31,
-                26.19, 17.75}
+                {7.85, 21.15,
+                25.56, 21.87}
                 ,
-                {26.19, 17.75,
-                34.02, 15.55}
+                {25.56, 21.87,
+                33.39, 20.08}
                 ,
-                {34.02, 15.55,
-                37.19, 11.00}
+                {33.39, 20.08,
+                36.68, 15.65}
                 ,
-                {37.19, 11.00,
-                36.50, 3.38}
+                {36.68, 15.65,
+                36.47, 8.07}
                 ,
-                {36.50, 3.38,
-                31.93, -0.54}
+                {36.47, 8.07,
+                31.75, 4.29}
                 ,
-                {31.93, -0.54,
-                25.50, -2.75}
+                {31.75, 4.29,
+                24.34, 0.79}
                 ,
-                {25.50, -2.75,
-                15.19, -3.25}
+                {24.34, 0.79,
+                13.77, -1.52}
                 ,
-                {15.19, -3.25,
-                7.38, -8.75}
+                {13.77, -1.52,
+                6.69, -8.68}
                 ,
-                {7.38, -8.75,
-                -22.38, -8.50}
+                {6.69, -8.68,
+                -20.43, -11.16}
             }
         }
         obj_char["shadow_box_pos"] = {
-            {110.75,500.625}
-            ,{268.9375,499.6875}
+            {71.75,516.875}
+            ,{164.9375,495.125}
         }
 
         -- draw
         obj_char[8] = 1
-        obj_char["anchor_pos"] = {180,520}
     end
     res[5] = function()
         -- state_number
@@ -3099,85 +2709,93 @@ function load_game_scene_anim_char_IZY_4_stop(obj_char)
         -- sub_obj
         obj_char["shadow_box_table"] = {
             {
-                {-24.99, -0.46,
-                -19.62, 8.05}
+                {-6.75, -20.00,
+                -19.38, -3.88}
                 ,
-                {-19.62, 8.05,
-                -12.21, 11.22}
+                {-19.38, -3.88,
+                -16.31, 14.31}
                 ,
-                {-12.21, 11.22,
-                -1.38, 13.75}
+                {-16.31, 14.31,
+                -8.88, 20.44}
                 ,
-                {-1.38, 13.75,
-                14.75, 13.63}
+                {-8.88, 20.44,
+                2.31, 21.31}
                 ,
-                {14.75, 13.63,
-                18.43, 11.53}
+                {2.31, 21.31,
+                11.16, 19.73}
                 ,
-                {18.43, 11.53,
-                21.25, 5.25}
+                {11.16, 19.73,
+                18.00, 16.81}
                 ,
-                {21.25, 5.25,
-                20.88, -3.38}
+                {18.00, 16.81,
+                18.91, 11.94}
                 ,
-                {20.88, -3.38,
-                17.39, -5.99}
+                {18.91, 11.94,
+                18.06, 4.25}
                 ,
-                {17.39, -5.99,
-                13.02, -6.96}
+                {18.06, 4.25,
+                11.15, -8.41}
                 ,
-                {13.02, -6.96,
-                4.00, -13.88}
-                ,
-                {4.00, -13.88,
-                -24.99, -0.46}
+                {11.15, -8.41,
+                -6.75, -20.00}
             },
             {
-                {-11.88, -13.75,
-                -26.56, -1.75}
+                {-17.41, -8.81,
+                -32.44, -6.16}
                 ,
-                {-26.56, -1.75,
-                -23.44, 13.56}
+                {-32.44, -6.16,
+                -33.78, 0.45}
                 ,
-                {-23.44, 13.56,
-                -18.94, 16.31}
+                {-33.78, 0.45,
+                -33.19, 5.23}
                 ,
-                {-18.94, 16.31,
-                -13.07, 17.06}
+                {-33.19, 5.23,
+                -26.41, 8.89}
                 ,
-                {-13.07, 17.06,
-                -4.63, 13.44}
+                {-26.41, 8.89,
+                -14.91, 9.73}
                 ,
-                {-4.63, 13.44,
-                4.28, 13.42}
+                {-14.91, 9.73,
+                -0.52, 19.55}
                 ,
-                {4.28, 13.42,
-                17.06, 14.56}
+                {-0.52, 19.55,
+                12.37, 21.88}
                 ,
-                {17.06, 14.56,
-                25.93, 12.45}
+                {12.37, 21.88,
+                30.46, 21.09}
                 ,
-                {25.93, 12.45,
-                33.06, 8.81}
+                {30.46, 21.09,
+                36.94, 19.26}
                 ,
-                {33.06, 8.81,
-                45.81, 1.13}
+                {36.94, 19.26,
+                40.81, 15.28}
                 ,
-                {45.81, 1.13,
-                49.39, -5.08}
+                {40.81, 15.28,
+                40.44, 7.35}
                 ,
-                {49.39, -5.08,
-                -11.88, -13.75}
+                {40.44, 7.35,
+                36.40, 3.14}
+                ,
+                {36.40, 3.14,
+                29.49, 0.48}
+                ,
+                {29.49, 0.48,
+                17.88, -0.57}
+                ,
+                {17.88, -0.57,
+                9.81, -7.79}
+                ,
+                {9.81, -7.79,
+                -17.41, -8.81}
             }
         }
         obj_char["shadow_box_pos"] = {
-            {101.875,509.375}
-            ,{286.0625,500.1875}
+            {71.75,516.875}
+            ,{164.9375,495.125}
         }
 
         -- draw
         obj_char[8] = 2
-        obj_char["anchor_pos"] = {185,520}
     end
     res[9] = function()
         -- animation end
@@ -3185,6 +2803,7 @@ function load_game_scene_anim_char_IZY_4_stop(obj_char)
     
     return res
 end
+
 
 
 
@@ -3238,6 +2857,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
         obj_char["parry_function"] = function() end
+        obj_char["hit_counter_ver_function"] = function() end
 
         obj_char["knife_state"] = "off"
         obj_char["knife_anchor_pos"] = {168,210}
@@ -3340,7 +2960,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
         }
 
         -- command_cache
-        obj_char["command_cache"] = {}
+        common_game_scene_input_sys_cacahe_init(obj_char)
         obj_char["command_cache_load_countdown"] = 80
 
         -- draw_correction
@@ -3348,8 +2968,6 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
         obj_char["anchor_pos"] = {169,530}
         obj_char["hurtstop_wiggle_x"] = 0
         obj_char["hurtstop_wiggle_y"] = 0
-        obj_char["current_hurtstop_wiggle_x_animation"] = nil
-        obj_char["current_hurtstop_wiggle_y_animation"] = nil
 
         -- VFX
         insert_VFX_game_scene_char_overdrive_badge(obj_char)
@@ -4163,6 +3781,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["hit_function"] = function() end
         obj_char["hurt_function"] = function() end
         obj_char["parry_function"] = function() end
+        obj_char["hit_counter_ver_function"] = function() end
 
         -- state_number
         add_heat_ability_overdrive()
@@ -4262,9 +3881,8 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["hit_SFX"] = nil
 
         -- command_cache
-        obj_char["command_cache"] = {}
+        common_game_scene_input_sys_cacahe_init(obj_char)
         obj_char["command_cache_load_countdown"] = 0
-        obj_char["block_command_cache_countdown"] = 0
 
         -- draw_correction
         obj_char[8] = 0
@@ -4284,7 +3902,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["hit_function"] = common_game_scene_hit_function
         obj_char["hit_hurt_blockstop_countdown"] = 10
             -- 根据状态设置hitstop状态和动画 存储缓存状态 使得结束hitstop状态后可以回到5p后续动画
-        obj_char["hurt_function"] = common_game_scene_hurt_function
+        obj_char["hurt_function"] = common_game_scene_strike_hurt_function
         add_heat_ability_overdrive()
 
         -- collide
@@ -4655,10 +4273,6 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
         other_side_obj_char["burst_inv"] = false
         other_side_obj_char["burst_inv_countdown"] = 0
 
-        other_side_obj_char["hit_function"] = function() end
-        other_side_obj_char["hurt_function"] = function() end
-        other_side_obj_char["parry_function"] = function() end
-
          -- state_number
         other_side_obj_char["velocity"] = {0,0}
         if other_side_obj_char["x"] < obj_char["x"] then
@@ -4695,18 +4309,6 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
         other_side_obj_char["anchor_pos"] = {209,520}
         other_side_obj_char["hurtstop_wiggle_x"] = 0
         other_side_obj_char["hurtstop_wiggle_y"] = 0
-        other_side_obj_char["current_hurtstop_wiggle_x_animation"] = 
-            common_game_scene_create_wiggle_animation(
-                obj_char["hit_hurt_blockstop_countdown"],
-                "hurtstop_wiggle_x",
-                12
-            )
-        other_side_obj_char["current_hurtstop_wiggle_y_animation"] = 
-            common_game_scene_create_wiggle_animation(
-                obj_char["hit_hurt_blockstop_countdown"],
-                "hurtstop_wiggle_y",
-                4
-            )
     end
     res[2] = function() 
         -- state

@@ -16,7 +16,7 @@ function draw_game_scene_main()
     draw_game_scene_char_RP_shadow()
     love.graphics.setCanvas()
 
-    shader_game_scene_character_blur:send("radius", 1.0 / 1000.0) -- 模糊强度，基于画布分辨率
+    shader_game_scene_character_blur:send("radius", 0.75 / 1000.0) -- 模糊强度，基于画布分辨率
     shader_game_scene_character_blur:send("alpha", 0.5) -- 透明度
     love.graphics.setShader(shader_game_scene_character_blur)
     love.graphics.draw(shadow_cavans)

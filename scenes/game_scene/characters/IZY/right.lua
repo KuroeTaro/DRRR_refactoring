@@ -26,6 +26,8 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
     obj_char_game_scene_char_RP["hurt_state"] = "idle" -- idle unblock punish counter GP parry
     obj_char_game_scene_char_RP["move_state"] = "none" -- none startup active recovery
+
+    obj_char_game_scene_char_RP["hit_SFX"] = nil
     obj_char_game_scene_char_RP["stand_hurt_animation"] = nil
     obj_char_game_scene_char_RP["stand_counter_animation"] = nil
     obj_char_game_scene_char_RP["stand_block_animation"] = nil
@@ -60,7 +62,6 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["parry_function"] = function() end
 
     obj_char_game_scene_char_RP["knife_state"] = "off"
-    obj_char_game_scene_char_RP["knife_state_change_ability"] = true
     obj_char_game_scene_char_RP["knife_anchor_pos"] = {168,210}
     obj_char_game_scene_char_RP["knife_animation"] = nil
     obj_char_game_scene_char_RP["knife_8"] = 0 -- obj[knife_8]匕首图形上的帧数
@@ -184,6 +185,9 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["hit_VFX_insert_function"] = nil
     obj_char_game_scene_char_RP["hit_VFX_insert_function_argument"] = nil
     obj_char_game_scene_char_RP["hit_SFX"] = nil
+    obj_char_game_scene_char_LP["block_VFX_insert_function"] = nil
+    obj_char_game_scene_char_LP["block_VFX_insert_function_argument"] = nil
+    obj_char_game_scene_char_LP["block_SFX"] = nil
 
     -- command_cache
     obj_char_game_scene_char_RP["command_cache"] = {}
@@ -238,7 +242,11 @@ function order_load_game_scene_char_RP_frames(load_order)
                 "asset/game_scene/characters/IZY/_character/IZY_4_stop.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["4_stop_sprite_batch"])
             )
-
+            image_sprite_sheet_table_char_game_scene_RP["5_stop"] = 
+            sprite_sheet_load(
+                "asset/game_scene/characters/IZY/_character/IZY_5_stop.json",
+                love.graphics.newImage(PLAYER_ASSET_DATA["5_stop_sprite_batch"])
+            )
 
 
 
@@ -298,6 +306,7 @@ function load_game_scene_anim_char_RP()
     -- 行走动画
     anim_char_RP_6_walk = load_game_scene_anim_char_IZY_6(obj_char)
     anim_char_RP_4_walk = load_game_scene_anim_char_IZY_4(obj_char)
+    anim_char_RP_5_walk_stop = load_game_scene_anim_char_IZY_5_walk_stop(obj_char)
     -- overdrive启动动画
     anim_char_RP_overdrive = load_game_scene_anim_char_IZY_overdrive(obj_char)
     -- 拳脚动画
@@ -1031,6 +1040,14 @@ function state_machine_char_game_scene_char_RP()
         ["walk_stop"] = function()
             character_animator(obj_char,obj_char["current_animation"])
             state_gate_game_scene_char_RP_from_stand_idle(input,obj_char)
+            if obj_char["f"] >= obj_char["current_animation_length"] then
+                if obj_char["height_state"] == "stand" then
+                    -- to idle
+                    obj_char["current_animation"] = anim_char_RP_stand_idle
+                    init_character_anim_with(obj_char,obj_char["current_animation"])
+                    obj_char["state"] = "stand_idle"
+                end
+            end
         end,
         ["overdrive"] = function()
             character_animator(obj_char,obj_char["current_animation"])
@@ -1280,6 +1297,11 @@ function draw_game_scene_char_RP_projectile()
     end
 end
 
+
+
+
+
+
 function update_game_scene_char_RP_VFX()
     for i = #obj_char_game_scene_char_RP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_RP["VFX_back_character_table"][i]
@@ -1445,9 +1467,86 @@ function state_gate_game_scene_char_RP_from_6_and_4_walk(input,obj_char)
     elseif common_game_scene_get_input_direction(obj_char) == 5 then
         -- to 6_walk_stop or 4_walk_stop
         obj_char["idle_cancel"] = true
-        obj_char["current_animation"] = anim_char_RP_stand_idle
+        obj_char["current_animation"] = anim_char_RP_5_walk_stop
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["velocity"] = {0,0}
         obj_char["state"] = "walk_stop"
+    end
+end
+
+
+
+
+function input_cache_mathod_game_scene_char_RP(INPUT_SYS_CURRENT_COMMAND_STATE,obj_char)
+    if obj_char["command_cache_load_countdown"] == 0 then
+        return
+    end
+
+    -- 上下二选一 "Up","Down","Left","Right",
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Up"] == "Pressing" then
+        obj_char["command_cache"]["Up"] = true
+        obj_char["command_cache"]["Down"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Down"] == "Pressing" then
+        obj_char["command_cache"]["Up"] = false
+        obj_char["command_cache"]["Down"] = true
+    end
+
+    -- 左右二选一
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Left"] == "Pressing" then
+        obj_char["command_cache"]["Left"] = true
+        obj_char["command_cache"]["Right"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Right"] == "Pressing" then
+        obj_char["command_cache"]["Left"] = false
+        obj_char["command_cache"]["Right"] = true
+    end
+
+    -- PKSHL五选一 "P","S","HS","K","Launcher"
+    if INPUT_SYS_CURRENT_COMMAND_STATE["P"] == "Pressing" then
+        obj_char["command_cache"]["P"] = true
+        obj_char["command_cache"]["S"] = false
+        obj_char["command_cache"]["K"] = false
+        obj_char["command_cache"]["Launcher"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["S"] == "Pressing" then
+        obj_char["command_cache"]["P"] = false
+        obj_char["command_cache"]["S"] = true
+        obj_char["command_cache"]["K"] = false
+        obj_char["command_cache"]["Launcher"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["K"] == "Pressing" then
+        obj_char["command_cache"]["P"] = false
+        obj_char["command_cache"]["S"] = false
+        obj_char["command_cache"]["K"] = true
+        obj_char["command_cache"]["Launcher"] = false
+    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Launcher"] == "Pressing" then
+        obj_char["command_cache"]["P"] = false
+        obj_char["command_cache"]["S"] = false
+        obj_char["command_cache"]["K"] = false
+        obj_char["command_cache"]["Launcher"] = true
+    end
+
+    -- "RC","Dash","Burst","UA" 默认受cache影响
+    if INPUT_SYS_CURRENT_COMMAND_STATE["RC"] == "Pressing" then
+        obj_char["command_cache"]["RC"] = true
+    end
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Dash"] == "Pressing" then
+        obj_char["command_cache"]["Dash"] = true
+    end
+    if INPUT_SYS_CURRENT_COMMAND_STATE["Burst"] == "Pressing" then
+        obj_char["command_cache"]["Burst"] = true
+    end
+    if INPUT_SYS_CURRENT_COMMAND_STATE["UA"] == "Pressing" then
+        obj_char["command_cache"]["UA"] = true
+    end
+    -- "SP","Back","Start" 默认不受cache影响
+
+    -- command缓存应用倒计时
+    obj_char["command_cache_load_countdown"] = obj_char["command_cache_load_countdown"] - 1
+    if obj_char["command_cache_load_countdown"] == 0 then
+        -- pressing 应用
+        for i=1,16 do
+            if obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] == true then
+                INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Pressing"
+                obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
+            end
+        end
     end
 end

@@ -171,6 +171,11 @@ function init_character_anim_with(obj,anim)
     character_animator(obj,anim)
 end
 
+function init_character_anim_without(obj,anim)
+    obj["f"] = -1
+end
+
+
 function character_animator(obj,anim)
     obj["f"] = obj["f"] + 1
     
