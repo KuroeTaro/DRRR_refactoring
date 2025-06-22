@@ -60,6 +60,7 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["hit_function"] = function() end
     obj_char_game_scene_char_RP["hurt_function"] = function() end
     obj_char_game_scene_char_RP["parry_function"] = function() end
+    obj_char_game_scene_char_RP["hit_counter_ver_function"] = function() end
 
     obj_char_game_scene_char_RP["knife_state"] = "off"
     obj_char_game_scene_char_RP["knife_anchor_pos"] = {168,210}
@@ -185,9 +186,9 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["hit_VFX_insert_function"] = nil
     obj_char_game_scene_char_RP["hit_VFX_insert_function_argument"] = nil
     obj_char_game_scene_char_RP["hit_SFX"] = nil
-    obj_char_game_scene_char_LP["block_VFX_insert_function"] = nil
-    obj_char_game_scene_char_LP["block_VFX_insert_function_argument"] = nil
-    obj_char_game_scene_char_LP["block_SFX"] = nil
+    obj_char_game_scene_char_RP["block_VFX_insert_function"] = nil
+    obj_char_game_scene_char_RP["block_VFX_insert_function_argument"] = nil
+    obj_char_game_scene_char_RP["block_SFX"] = nil
 
     -- command_cache
     obj_char_game_scene_char_RP["command_cache"] = {}
