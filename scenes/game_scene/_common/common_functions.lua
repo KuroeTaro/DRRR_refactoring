@@ -283,9 +283,18 @@ end
 
 function common_game_scene_hit_function(obj_char)
     -- 只需要设置hitstop
+    local hurt_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
     obj_char["state_cache"] = obj_char["state"]
     obj_char["state"] = "hitstop"
     obj_char["hit_cancel"] = true -- 取消链
+    obj_char["hit_VFX_insert_function"](
+        obj_char["hit_VFX_insert_function_argument"][1],
+        obj_char["hit_VFX_insert_function_argument"][2],
+        obj_char["hit_VFX_insert_function_argument"][3]
+    )
+    if hurt_side_obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
+        obj_char["hit_counter_ver_function"](obj_char,hurt_side_obj_char)
+    end
 
     -- 后续要根据防御设置blockstop之类的
 
@@ -295,7 +304,46 @@ function common_game_scene_strike_hurt_function(obj_char)
     -- idle unblock punish counter GP parry
     -- stand crouch air OTG
     local hit_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
+    local function stand_hurt()
+        obj_char["state_cache"] = "hurt"
+        obj_char["state"] = "hurtstop"
+        obj_char["current_animation"] = hit_side_obj_char["stand_hurt_animation"]
+    end
+    local function crouch_hurt()
+        obj_char["state_cache"] = "hurt"
+        obj_char["state"] = "hurtstop"
+        obj_char["current_animation"] = hit_side_obj_char["crouch_hurt_animation"]
+    end
+    local function air_hurt()
+        obj_char["state_cache"] = "hurt"
+        obj_char["state"] = "hurtstop"
+        obj_char["current_animation"] = hit_side_obj_char["air_hurt_animation"]
+    end
+    local function OTG_hurt()
+        obj_char["state_cache"] = "hurt"
+        obj_char["state"] = "hurtstop"
+        obj_char["current_animation"] = hit_side_obj_char["OTG_hurt_animation"]
+    end
+    local function GP_hurt()
+    end
+    local function sub_block()
+        obj_char["state_cache"] = "block"
+        obj_char["state"] = "blockstop"
+        obj_char["current_animation"] = hit_side_obj_char["stand_block_animation"]
+        obj_char["hit_hurt_blockstop_countdown"] = hit_side_obj_char["hit_hurt_blockstop_countdown"]
+        init_character_anim_with(obj_char,obj_char["current_animation"])
+    end
     local function common_hurt()
+        if obj_char["height_state"] == "stand" then
+            stand_hurt()
+        elseif obj_char["height_state"] == "crouch" then
+            crouch_hurt()
+        elseif obj_char["height_state"] == "air" then
+            air_hurt()
+        elseif obj_char["height_state"] == "OTG" then
+            OTG_hurt()
+        end
+        obj_char["hit_hurt_blockstop_countdown"] = hit_side_obj_char["hit_hurt_blockstop_countdown"]
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["current_hurtstop_wiggle_x_animation"] = 
             common_game_scene_create_wiggle_animation(
@@ -311,84 +359,40 @@ function common_game_scene_strike_hurt_function(obj_char)
             )
         init_point_linear_anim_with(obj_char,obj_char["current_hurtstop_wiggle_x_animation"])
         init_point_linear_anim_with(obj_char,obj_char["current_hurtstop_wiggle_y_animation"])
-        obj_char["hit_hurt_blockstop_countdown"] = hit_side_obj_char["hit_hurt_blockstop_countdown"]
-        hit_side_obj_char["hit_VFX_insert_function"](
-            hit_side_obj_char["hit_VFX_insert_function_argument"][1],
-            hit_side_obj_char["hit_VFX_insert_function_argument"][2],
-            hit_side_obj_char["hit_VFX_insert_function_argument"][3]
-        )
     end
-    local function stand_hurt()
-        obj_char["state_cache"] = "hurt"
-        obj_char["state"] = "hurtstop"
-        obj_char["current_animation"] = hit_side_obj_char["stand_hurt_animation"]
-        common_hurt()
-    end
-    local function crouch_hurt()
-        obj_char["state_cache"] = "hurt"
-        obj_char["state"] = "hurtstop"
-        obj_char["current_animation"] = hit_side_obj_char["crouch_hurt_animation"]
-        common_hurt()
-    end
-    local function air_hurt()
-        obj_char["state_cache"] = "hurt"
-        obj_char["state"] = "hurtstop"
-        obj_char["current_animation"] = hit_side_obj_char["air_hurt_animation"]
-        common_hurt()
-    end
-    local function OTG_hurt()
-        obj_char["state_cache"] = "hurt"
-        obj_char["state"] = "hurtstop"
-        obj_char["current_animation"] = hit_side_obj_char["OTG_hurt_animation"]
-        common_hurt()
-    end
-    local function GP_hurt()
-    end
-    -- idle block
-    if (obj_char["hurt_state"] == "idle" and common_game_scene_check_block_direction(obj_char["player_side"])) then
+    local function common_block()
         if obj_char["height_state"] == "stand" then
             if hit_side_obj_char["hit_guard_type_state"] == "low" then
-                stand_hurt()
+                common_hurt()
             else
-                obj_char["state_cache"] = "block"
-                obj_char["state"] = "blockstop"
-                obj_char["current_animation"] = hit_side_obj_char["stand_block_animation"]
+                sub_block()
             end
         elseif obj_char["height_state"] == "crouch" then
             if hit_side_obj_char["hit_guard_type_state"] == "high" then
-                crouch_hurt()
+                common_hurt()
             else
-                obj_char["state_cache"] = "block"
-                obj_char["state"] = "blockstop"
-                obj_char["current_animation"] = hit_side_obj_char["crouch_block_animation"]
+                sub_block()
             end
         elseif obj_char["height_state"] == "air" then
-            obj_char["state_cache"] = "block"
-            obj_char["state"] = "blockstop"
-            obj_char["current_animation"] = hit_side_obj_char["air_block_animation"]
+            sub_block()
         end
+    end
+    -- idle block
+    if (obj_char["hurt_state"] == "idle" and common_game_scene_check_block_direction(obj_char["player_side"])) then
+        common_block()
     -- punish
     elseif obj_char["hurt_state"] == "punish" then
-        -- insert punish
-        ---- specific code
-        if obj_char["height_state"] == "stand" then
-            stand_hurt()
-        elseif obj_char["height_state"] == "crouch" then
-            crouch_hurt()
-        elseif obj_char["height_state"] == "air" then
-            air_hurt()
-        end
+        -- insert punish VFX
+
+        -- hurt_logic
+        common_hurt()
+
     -- counter
     elseif obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
-        -- insert counter
-        if obj_char["height_state"] == "stand" then
-            stand_hurt()
-        elseif obj_char["height_state"] == "crouch" then
-            crouch_hurt()
-        elseif obj_char["height_state"] == "air" then
-            air_hurt()
-        end
-        hit_side_obj_char["hit_counter_ver_function"]()
+        -- insert counter VFX
+
+        -- hurt_logic
+        common_hurt()
     -- GP
     elseif obj_char["hurt_state"] == "GP" then -- idle unblock punish counter GP parry
         -- insert GP
@@ -397,17 +401,10 @@ function common_game_scene_strike_hurt_function(obj_char)
     elseif obj_char["hurt_state"] == "parry" then -- idle unblock punish counter GP parry
         -- parry function
         hit_side_obj_char["parry_function"](hit_side_obj_char,obj_char)
+
     -- idle and unblock
     else
-        if obj_char["height_state"] == "stand" then
-            stand_hurt()
-        elseif obj_char["height_state"] == "crouch" then
-            crouch_hurt()
-        elseif obj_char["height_state"] == "air" then
-            air_hurt()
-        elseif obj_char["height_state"] == "OTG" then
-            OTG_hurt()
-        end
+        common_hurt()
     end
 
 end
@@ -431,93 +428,66 @@ end
 
 
 
+function common_game_scene_counter_ver_0(hit_obj,hurt_obj)
+    insert_VFX_scene_counter_sign(hit_obj)
+    hit_obj["hit_hurt_blockstop_countdown"] = 0
+    hit_obj["hit_hurt_block_slowdown_countdown"] = 0
+    hurt_obj["hit_hurt_block_slowdown_countdown"] = 0
+    hurt_obj["hit_hurt_blockstop_countdown"] = 0
+end
 
--- function common_game_scene_input_sys_cache(INPUT_SYS_CURRENT_COMMAND_STATE,obj_char)
---     if obj_char["command_cache_load_countdown"] == 0 then
---         return
---     end
+function common_game_scene_counter_ver_1(hit_obj,hurt_obj)
+    insert_VFX_scene_counter_sign(hit_obj)
+    hit_obj["hit_hurt_blockstop_countdown"] = 0
+    hit_obj["hit_hurt_block_slowdown_countdown"] = 0
+    hurt_obj["hit_hurt_block_slowdown_countdown"] = 11
+    hurt_obj["hit_hurt_blockstop_countdown"] = 0
+end
 
---     -- 上下二选一 "Up","Down","Left","Right",
---     if INPUT_SYS_CURRENT_COMMAND_STATE["Up"] == "Pressing" then
---         obj_char["command_cache"]["Up"] = true
---         obj_char["command_cache"]["Down"] = false
---     elseif INPUT_SYS_CURRENT_COMMAND_STATE["Down"] == "Pressing" then
---         obj_char["command_cache"]["Up"] = false
---         obj_char["command_cache"]["Down"] = true
---     end
+function common_game_scene_counter_ver_2(hit_obj,hurt_obj)
+    insert_VFX_scene_counter_sign(hit_obj)
+    hit_obj["hit_hurt_blockstop_countdown"] = 21
+    hit_obj["hit_hurt_block_slowdown_countdown"] = 0
+    hurt_obj["hit_hurt_block_slowdown_countdown"] = 25
+    hurt_obj["hit_hurt_blockstop_countdown"] = 21
+end
 
---     -- 左右二选一
---     if INPUT_SYS_CURRENT_COMMAND_STATE["Left"] == "Pressing" then
---         obj_char["command_cache"]["Left"] = true
---         obj_char["command_cache"]["Right"] = false
---     elseif INPUT_SYS_CURRENT_COMMAND_STATE["Right"] == "Pressing" then
---         obj_char["command_cache"]["Left"] = false
---         obj_char["command_cache"]["Right"] = true
---     end
+function common_game_scene_counter_ver_3(hit_obj,hurt_obj)
+    local camera_obj = obj_stage_game_scene_camera
+    insert_VFX_scene_counter_sign(hit_obj)
+    anim_stage_point_linear_game_scene_camera_enclosing = common_game_scene_counter_ver3_load_camera_anim()
+    init_point_linear_anim_with(camera_obj,anim_stage_point_linear_game_scene_camera_enclosing)
+    camera_obj["enclose_position_offset"] = {0, 80, 100}
+    camera_obj["state"] = "hit_enclosing"
+    hit_obj["hit_hurt_blockstop_countdown"] = 31
+    hit_obj["hit_hurt_block_slowdown_countdown"] = 0
+    hurt_obj["hit_hurt_block_slowdown_countdown"] = 35
+    hurt_obj["hit_hurt_blockstop_countdown"] = 31
+end
 
---     -- PKSHL五选一 "P","S","HS","K","Launcher"
---     if INPUT_SYS_CURRENT_COMMAND_STATE["P"] == "Pressing" then
---         obj_char["command_cache"]["P"] = true
---         obj_char["command_cache"]["S"] = false
---         obj_char["command_cache"]["HS"] = false
---         obj_char["command_cache"]["K"] = false
---         obj_char["command_cache"]["Launcher"] = false
---     elseif INPUT_SYS_CURRENT_COMMAND_STATE["S"] == "Pressing" then
---         obj_char["command_cache"]["P"] = false
---         obj_char["command_cache"]["S"] = true
---         obj_char["command_cache"]["HS"] = false
---         obj_char["command_cache"]["K"] = false
---         obj_char["command_cache"]["Launcher"] = false
---     elseif INPUT_SYS_CURRENT_COMMAND_STATE["HS"] == "Pressing" then
---         obj_char["command_cache"]["P"] = false
---         obj_char["command_cache"]["S"] = false
---         obj_char["command_cache"]["HS"] = true
---         obj_char["command_cache"]["K"] = false
---         obj_char["command_cache"]["Launcher"] = false
---     elseif INPUT_SYS_CURRENT_COMMAND_STATE["K"] == "Pressing" then
---         obj_char["command_cache"]["P"] = false
---         obj_char["command_cache"]["S"] = false
---         obj_char["command_cache"]["HS"] = false
---         obj_char["command_cache"]["K"] = true
---         obj_char["command_cache"]["Launcher"] = false
---     elseif INPUT_SYS_CURRENT_COMMAND_STATE["Launcher"] == "Pressing" then
---         obj_char["command_cache"]["P"] = false
---         obj_char["command_cache"]["S"] = false
---         obj_char["command_cache"]["HS"] = false
---         obj_char["command_cache"]["K"] = false
---         obj_char["command_cache"]["Launcher"] = true
---     end
+function common_game_scene_counter_ver3_load_camera_anim()
+    local anim = {}
+    anim = {}
+    anim[0] = {0.00, 1}
+    anim[1] = {0.56, 2}
+    anim[2] = {0.70, 4}
+    anim[4] = {0.82, 6}
+    anim[6] = {0.86, 8}
+    anim[8] = {0.90, 10}
+    anim[10] = {0.94, 20}
+    anim[20] = {0.98, 30}
+    anim[30] = {0.99, 40}
+    anim[40] = {1.00, 45}
+    anim[45] = {1.00, 50}
+    anim[50] = {0.97, 60}
+    anim[60] = {0.69, 70}
+    anim[70] = {0.20, 80}
+    anim[80] = {0.03, 90}
+    anim[90] = {0.00, 90}
+    anim["prop"] = "enclose_percentage"
+    anim["length"] = 90
+    anim["loop"] = false
+    anim["fix_type"] = false
 
---     -- "RC","Dash","Burst","UA" 默认受cache影响
---     if INPUT_SYS_CURRENT_COMMAND_STATE["RC"] == "Pressing" then
---         obj_char["command_cache"]["RC"] = true
---     end
---     if INPUT_SYS_CURRENT_COMMAND_STATE["Dash"] == "Pressing" then
---         obj_char["command_cache"]["Dash"] = true
---     end
---     if INPUT_SYS_CURRENT_COMMAND_STATE["Burst"] == "Pressing" then
---         obj_char["command_cache"]["Burst"] = true
---     end
---     if INPUT_SYS_CURRENT_COMMAND_STATE["UA"] == "Pressing" then
---         obj_char["command_cache"]["UA"] = true
---     end
---     -- "SP","Back","Start" 默认不受cache影响
-
---     -- command缓存应用倒计时
---     obj_char["command_cache_load_countdown"] = obj_char["command_cache_load_countdown"] - 1
---     if obj_char["command_cache_load_countdown"] == 0 then
---         -- pressing 应用
---         for i=1,16 do
---             if obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] == true then
---                 INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Pressing"
---                 obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
---             end
---         end
---     end
--- end
-
-function common_game_scene_input_sys_cacahe_init(obj_char)
-    for i=1,16 do
-        obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
-    end
+    return anim
 end

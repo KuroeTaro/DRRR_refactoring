@@ -29,13 +29,10 @@ function load_game_scene_obj_char_RP()
 
     obj_char_game_scene_char_RP["hit_SFX"] = nil
     obj_char_game_scene_char_RP["stand_hurt_animation"] = nil
-    obj_char_game_scene_char_RP["stand_counter_animation"] = nil
     obj_char_game_scene_char_RP["stand_block_animation"] = nil
     obj_char_game_scene_char_RP["crouch_hurt_animation"] = nil
-    obj_char_game_scene_char_RP["crouch_counter_animation"] = nil
     obj_char_game_scene_char_RP["crouch_block_animation"] = nil
     obj_char_game_scene_char_RP["air_hurt_animation"] = nil
-    obj_char_game_scene_char_RP["air_counter_animation"] = nil
     obj_char_game_scene_char_RP["air_block_animation"] = nil
     obj_char_game_scene_char_RP["OTG_hurt_animation"] = nil
 
@@ -90,6 +87,7 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["game_speed_subframe"] = 1
     obj_char_game_scene_char_RP["game_speed_abnormal_realtime_countdown"] = 0 -- 只能是game_speed的倍数
     obj_char_game_scene_char_RP["hit_hurt_blockstop_countdown"] = 0
+    obj_char_game_scene_char_RP["hit_hurt_block_slowdown_countdown"] = 0
 
     -- collide
     obj_char_game_scene_char_RP["pushbox"] = {0, -185, 130, 370}
@@ -186,16 +184,12 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["hit_VFX_insert_function"] = nil
     obj_char_game_scene_char_RP["hit_VFX_insert_function_argument"] = nil
     obj_char_game_scene_char_RP["hit_SFX"] = nil
+    obj_char_game_scene_char_RP["counter_VFX_insert_function"] = nil
+    obj_char_game_scene_char_RP["counter_VFX_insert_function_argument"] = nil
+    obj_char_game_scene_char_RP["counter_SFX"] = nil
     obj_char_game_scene_char_RP["block_VFX_insert_function"] = nil
     obj_char_game_scene_char_RP["block_VFX_insert_function_argument"] = nil
     obj_char_game_scene_char_RP["block_SFX"] = nil
-
-    -- command_cache
-    obj_char_game_scene_char_RP["command_cache"] = {}
-    for i=1,16 do
-        obj_char_game_scene_char_RP["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
-    end
-    obj_char_game_scene_char_RP["command_cache_load_countdown"] = 0
     
     -- draw_correction
     obj_char_game_scene_char_RP[8] = 0
@@ -228,20 +222,10 @@ function order_load_game_scene_char_RP_frames(load_order)
                 "asset/game_scene/characters/IZY/_character/IZY_6.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["6_sprite_batch"])
             )
-            image_sprite_sheet_table_char_game_scene_RP["6_stop"] = 
-            sprite_sheet_load(
-                "asset/game_scene/characters/IZY/_character/IZY_6_stop.json",
-                love.graphics.newImage(PLAYER_ASSET_DATA["6_stop_sprite_batch"])
-            )
             image_sprite_sheet_table_char_game_scene_RP["4"] = 
             sprite_sheet_load(
                 "asset/game_scene/characters/IZY/_character/IZY_4.json",
                 love.graphics.newImage(PLAYER_ASSET_DATA["4_sprite_batch"])
-            )
-            image_sprite_sheet_table_char_game_scene_RP["4_stop"] = 
-            sprite_sheet_load(
-                "asset/game_scene/characters/IZY/_character/IZY_4_stop.json",
-                love.graphics.newImage(PLAYER_ASSET_DATA["4_stop_sprite_batch"])
             )
             image_sprite_sheet_table_char_game_scene_RP["5_stop"] = 
             sprite_sheet_load(
@@ -993,22 +977,17 @@ function state_machine_char_game_scene_char_RP()
             character_animator(obj_char,obj_char["current_animation"])
         end,
         ["hitstop"] = function()
-            if obj_char["hit_hurt_blockstop_countdown"] > 0 then
-                obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
-            else
+            update_game_scene_char_RP_hitstop_countdown()
+            if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
                 obj_char["state"] = obj_char["state_cache"]
+                obj_char["hit_hurt_blockstop_countdown"] = 0
             end
         end,
         ["hurtstop"] = function()
-            if obj_char["hit_hurt_blockstop_countdown"] > 0 then
-                obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
-                point_linear_animator(obj_char,obj_char["current_hurtstop_wiggle_x_animation"])
-                point_linear_animator(obj_char,obj_char["current_hurtstop_wiggle_y_animation"])
-            else
+            update_game_scene_char_RP_hurtstop_countdown()
+            if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
                 obj_char["state"] = obj_char["state_cache"]
-                obj_char["velocity"] = obj_char["velocity_cache"]
-                obj_char["hurtstop_wiggle_x"] = 0
-                obj_char["hurtstop_wiggle_y"] = 0
+                obj_char["hit_hurt_blockstop_countdown"] = 0
             end
         end,
         ["blockstop"] = function()
@@ -1074,8 +1053,8 @@ function state_machine_char_game_scene_char_RP()
                 obj_char["state"] = "stand_idle"
                 return
             end
-            if obj_char["hit_cancel"] then
-                if test_input_sys_press(input["P"]) then
+            if obj_char["hit_cancel"] and obj_char["f"] >= 10 then
+                if test_input_sys_press_or_hold(input["P"]) then
                     obj_char["hit_cancel"] = false
                     -- to 5P
                     obj_char["current_animation"] = anim_char_RP_5P
@@ -1089,9 +1068,7 @@ function state_machine_char_game_scene_char_RP()
             end
         end,
     }
-    update_game_scene_char_RP_overdrive()
-    update_game_scene_char_RP_countdown()
-    update_game_scene_char_RP_inv_state()
+    update_game_scene_char_RP_global_countdown()
     local this_function = switch[obj_char["state"]]
     if this_function then this_function() end
 
@@ -1355,12 +1332,40 @@ end
 
 
 
+function update_game_scene_char_RP_hitstop_countdown()
+    local obj_char = obj_char_game_scene_char_RP
+    if obj_char["hit_hurt_blockstop_countdown"] > 1 then
+        obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
+    else
+        obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
+        obj_char["hit_hurt_blockstop_countdown"] = 0 
+        obj_char["hit_hurt_block_slowdown_countdown"] = 0
+        obj_char["game_speed"] = 1
+    end
+end
 
-function update_game_scene_char_RP_overdrive()
+function update_game_scene_char_RP_hurtstop_countdown()
+    local obj_char = obj_char_game_scene_char_RP
+    if obj_char["hit_hurt_blockstop_countdown"] > 1 then
+        obj_char["hit_hurt_blockstop_countdown"] = obj_char["hit_hurt_blockstop_countdown"] - 1
+        point_linear_animator(obj_char,obj_char["current_hurtstop_wiggle_x_animation"])
+        point_linear_animator(obj_char,obj_char["current_hurtstop_wiggle_y_animation"])
+    else
+        obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
+        obj_char["hit_hurt_blockstop_countdown"] = 0 
+        obj_char["hit_hurt_block_slowdown_countdown"] = 0
+        obj_char["game_speed"] = 2
+        obj_char["velocity"] = obj_char["velocity_cache"]
+        obj_char["hurtstop_wiggle_x"] = 0
+        obj_char["hurtstop_wiggle_y"] = 0
+    end
+end
+
+function update_game_scene_char_RP_overdrive_countdown()
     local obj_char = obj_char_game_scene_char_RP
     if obj_char["state"] ~= "overdrive" and 
     obj_char["overdrive_timer"][1] + obj_char["overdrive_timer"][2] +
-    obj_char["overdrive_timer"][3] + obj_char["overdrive_timer"][4] ~= 0
+    obj_char["overdrive_timer"][3] + obj_char["overdrive_timer"][4] >= 1
     then
         if obj_char["overdrive_timer"][4] == 0 and obj_char["overdrive_timer"][3] ~= 0 then 
             obj_char["overdrive_timer"][3] = obj_char["overdrive_timer"][3] - 1
@@ -1376,45 +1381,46 @@ function update_game_scene_char_RP_overdrive()
             obj_char["overdrive_timer"][1] = obj_char["overdrive_timer"][1] - 1
             obj_char["overdrive_timer"][2] = 9
         end
-    elseif obj_char["state"] ~= "overdrive" then
+    elseif obj_char["state"] ~= "overdrive" and 
+    obj_char["overdrive_timer"][1] + obj_char["overdrive_timer"][2] +
+    obj_char["overdrive_timer"][3] + obj_char["overdrive_timer"][4] < 1
+    then
         obj_char["overdrive"][3] = "off"
+        obj_char["overdrive_timer"] = {0,0,0,0}
     end
 end
 
-function update_game_scene_char_RP_countdown()
+function update_game_scene_char_RP_inv_state_countdown()
     local obj_char = obj_char_game_scene_char_RP
-    if obj_char["strike_inv"] then
+    if obj_char["strike_inv_countdown"] > 1 then
         obj_char["strike_inv_countdown"] = obj_char["strike_inv_countdown"] - 1
-    end
-    if obj_char["throw_inv"] then
-        obj_char["throw_inv_countdown"] = obj_char["throw_inv_countdown"] - 1
-    end
-    if obj_char["projectile_inv"] then
-        obj_char["projectile_inv_countdown"] = obj_char["projectile_inv_countdown"] - 1
-    end
-    if obj_char["burst_inv"] then
-        obj_char["burst_inv_countdown"] = obj_char["burst_inv_countdown"] - 1
-    end
-end
-
-function update_game_scene_char_RP_inv_state()
-    local obj_char = obj_char_game_scene_char_RP
-    if obj_char["strike_inv_countdown"] < 0 then
+    else
         obj_char["strike_inv"] = false
         obj_char["strike_inv_countdown"] = 0
     end
-    if obj_char["throw_inv_countdown"] < 0 then
+    if obj_char["throw_inv_countdown"] > 1 then
+        obj_char["throw_inv_countdown"] = obj_char["throw_inv_countdown"] - 1
+    else
         obj_char["throw_inv"] = false
         obj_char["throw_inv_countdown"] = 0
     end
-    if obj_char["projectile_inv_countdown"] < 0 then
+    if obj_char["projectile_inv_countdown"] > 1 then
+        obj_char["projectile_inv_countdown"] = obj_char["projectile_inv_countdown"] - 1
+    else
         obj_char["projectile_inv"] = false
         obj_char["projectile_inv_countdown"] = 0
     end
-    if obj_char["burst_inv_countdown"] < 0 then
+    if obj_char["burst_inv_countdown"] > 1 then
+        obj_char["burst_inv_countdown"] = obj_char["burst_inv_countdown"] - 1
+    else
         obj_char["burst_inv"] = false
         obj_char["burst_inv_countdown"] = 0
     end
+end
+
+function update_game_scene_char_RP_global_countdown()
+    update_game_scene_char_RP_overdrive_countdown()
+    update_game_scene_char_RP_inv_state_countdown()
 end
 
 
@@ -1426,13 +1432,13 @@ function state_gate_game_scene_char_RP_from_stand_idle(input,obj_char)
     or common_game_scene_get_input_direction(obj_char) == 9 then
         -- to pre_jump
         obj_char["idle_cancel"] = true
-    elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+    elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
         -- to over_drive
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_RP_overdrive
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["state"] = "overdrive"
-    elseif test_input_sys_press(input["P"]) then
+    elseif test_input_sys_press_or_hold(input["P"]) then
         -- to 5P
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_RP_5P
@@ -1453,13 +1459,13 @@ function state_gate_game_scene_char_RP_from_6_and_4_walk(input,obj_char)
     or common_game_scene_get_input_direction(obj_char) == 9 then
         -- to pre_jump
         obj_char["idle_cancel"] = true
-    elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+    elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
         -- to over_drive
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_RP_overdrive
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["state"] = "overdrive"
-    elseif test_input_sys_press(input["P"]) then
+    elseif test_input_sys_press_or_hold(input["P"]) then
         -- to 5P
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_RP_5P
@@ -1472,82 +1478,5 @@ function state_gate_game_scene_char_RP_from_6_and_4_walk(input,obj_char)
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["velocity"] = {0,0}
         obj_char["state"] = "walk_stop"
-    end
-end
-
-
-
-
-function input_cache_mathod_game_scene_char_RP(INPUT_SYS_CURRENT_COMMAND_STATE,obj_char)
-    if obj_char["command_cache_load_countdown"] == 0 then
-        return
-    end
-
-    -- 上下二选一 "Up","Down","Left","Right",
-    if INPUT_SYS_CURRENT_COMMAND_STATE["Up"] == "Pressing" then
-        obj_char["command_cache"]["Up"] = true
-        obj_char["command_cache"]["Down"] = false
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Down"] == "Pressing" then
-        obj_char["command_cache"]["Up"] = false
-        obj_char["command_cache"]["Down"] = true
-    end
-
-    -- 左右二选一
-    if INPUT_SYS_CURRENT_COMMAND_STATE["Left"] == "Pressing" then
-        obj_char["command_cache"]["Left"] = true
-        obj_char["command_cache"]["Right"] = false
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Right"] == "Pressing" then
-        obj_char["command_cache"]["Left"] = false
-        obj_char["command_cache"]["Right"] = true
-    end
-
-    -- PKSHL五选一 "P","S","HS","K","Launcher"
-    if INPUT_SYS_CURRENT_COMMAND_STATE["P"] == "Pressing" then
-        obj_char["command_cache"]["P"] = true
-        obj_char["command_cache"]["S"] = false
-        obj_char["command_cache"]["K"] = false
-        obj_char["command_cache"]["Launcher"] = false
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE["S"] == "Pressing" then
-        obj_char["command_cache"]["P"] = false
-        obj_char["command_cache"]["S"] = true
-        obj_char["command_cache"]["K"] = false
-        obj_char["command_cache"]["Launcher"] = false
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE["K"] == "Pressing" then
-        obj_char["command_cache"]["P"] = false
-        obj_char["command_cache"]["S"] = false
-        obj_char["command_cache"]["K"] = true
-        obj_char["command_cache"]["Launcher"] = false
-    elseif INPUT_SYS_CURRENT_COMMAND_STATE["Launcher"] == "Pressing" then
-        obj_char["command_cache"]["P"] = false
-        obj_char["command_cache"]["S"] = false
-        obj_char["command_cache"]["K"] = false
-        obj_char["command_cache"]["Launcher"] = true
-    end
-
-    -- "RC","Dash","Burst","UA" 默认受cache影响
-    if INPUT_SYS_CURRENT_COMMAND_STATE["RC"] == "Pressing" then
-        obj_char["command_cache"]["RC"] = true
-    end
-    if INPUT_SYS_CURRENT_COMMAND_STATE["Dash"] == "Pressing" then
-        obj_char["command_cache"]["Dash"] = true
-    end
-    if INPUT_SYS_CURRENT_COMMAND_STATE["Burst"] == "Pressing" then
-        obj_char["command_cache"]["Burst"] = true
-    end
-    if INPUT_SYS_CURRENT_COMMAND_STATE["UA"] == "Pressing" then
-        obj_char["command_cache"]["UA"] = true
-    end
-    -- "SP","Back","Start" 默认不受cache影响
-
-    -- command缓存应用倒计时
-    obj_char["command_cache_load_countdown"] = obj_char["command_cache_load_countdown"] - 1
-    if obj_char["command_cache_load_countdown"] == 0 then
-        -- pressing 应用
-        for i=1,16 do
-            if obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] == true then
-                INPUT_SYS_CURRENT_COMMAND_STATE[INPUT_SYS_COMMAND_TABLE[i]] = "Pressing"
-                obj_char["command_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
-            end
-        end
     end
 end

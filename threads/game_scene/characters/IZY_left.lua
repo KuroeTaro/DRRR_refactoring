@@ -23,9 +23,7 @@ image_data["stand_idle_sprite_batch"] = compress_module("asset/game_scene/charac
 
 
 image_data["6_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_6.dds")
-image_data["6_stop_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_6_stop.dds")
 image_data["4_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_4.dds")
-image_data["4_stop_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_4_stop.dds")
 image_data["5_stop_sprite_batch"] = compress_module("asset/game_scene/characters/IZY/_character/IZY_5_stop.dds")
 
 

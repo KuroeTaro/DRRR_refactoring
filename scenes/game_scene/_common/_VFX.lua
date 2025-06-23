@@ -260,6 +260,8 @@ end
 
 
 
+
+
 function insert_VFX_game_scene_char_light_blast(obj_char,x,y)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     obj["life"] = 8
@@ -318,4 +320,19 @@ function insert_VFX_game_scene_char_light_blast(obj_char,x,y)
     end
     table.insert(obj_char["VFX_front_character_table"],obj)
     
+end
+
+function insert_VFX_game_scene_char_counter_light_blast(obj_char,x,y)
+end
+
+
+
+
+
+function insert_VFX_scene_counter_sign(obj_char)
+
+end
+
+function insert_VFX_scene_counter_ver3_sign(obj_char)
+
 end

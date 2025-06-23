@@ -208,10 +208,6 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
             ,{146.0625,496.1875}
         }
 
-        -- command_cache
-        common_game_scene_input_sys_cacahe_init(obj_char)
-        obj_char["command_cache_load_countdown"] = 0
-
         -- draw_correction
         obj_char[8] = 0
         obj_char["anchor_pos"] = {90,520}
@@ -363,10 +359,6 @@ function load_game_scene_anim_char_IZY_6(obj_char)
             {123.1,507.25}
             ,{210.4375,496.1875}
         }
-
-        -- command_cache
-        common_game_scene_input_sys_cacahe_init(obj_char)
-        obj_char["command_cache_load_countdown"] = 0
 
         -- draw_correction
         obj_char[8] = 0
@@ -1607,10 +1599,6 @@ function load_game_scene_anim_char_IZY_4(obj_char)
             ,{227.0625,496.1875}
         }
 
-        -- command_cache
-        common_game_scene_input_sys_cacahe_init(obj_char)
-        obj_char["command_cache_load_countdown"] = 0
-
         -- draw_correction
         obj_char[8] = 0
         obj_char["anchor_pos"] = {165,520}
@@ -2598,10 +2586,6 @@ function load_game_scene_anim_char_IZY_5_walk_stop(obj_char)
             ,{146.3125,500.1875}
         }
 
-        -- command_cache
-        common_game_scene_input_sys_cacahe_init(obj_char)
-        obj_char["command_cache_load_countdown"] = 0
-
         -- draw_correction
         obj_char[8] = 0
         obj_char["anchor_pos"] = {115,520}
@@ -2958,10 +2942,6 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
             {111.9,529.5}
             ,{228.6,515.3}
         }
-
-        -- command_cache
-        common_game_scene_input_sys_cacahe_init(obj_char)
-        obj_char["command_cache_load_countdown"] = 80
 
         -- draw_correction
         obj_char[8] = 0
@@ -3749,24 +3729,18 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["move_state"] = "startup" -- none startup active recovery
         if side == "L" then
             obj_char["stand_hurt_animation"] = anim_char_LP_5P_stand_hurt_high
-            obj_char["stand_counter_animation"] = nil
             obj_char["stand_block_animation"] = nil
             obj_char["crouch_hurt_animation"] = nil
-            obj_char["crouch_counter_animation"] = nil
             obj_char["crouch_block_animation"] = nil
             obj_char["air_hurt_animation"] = nil
-            obj_char["air_counter_animation"] = nil
             obj_char["air_block_animation"] = nil
             obj_char["OTG_hurt_animation"] = nil
         elseif side == "R" then
             obj_char["stand_hurt_animation"] = anim_char_RP_5P_stand_hurt_high
-            obj_char["stand_counter_animation"] = nil
             obj_char["stand_block_animation"] = nil
             obj_char["crouch_hurt_animation"] = nil
-            obj_char["crouch_counter_animation"] = nil
             obj_char["crouch_block_animation"] = nil
             obj_char["air_hurt_animation"] = nil
-            obj_char["air_counter_animation"] = nil
             obj_char["air_block_animation"] = nil
             obj_char["OTG_hurt_animation"] = nil
         end
@@ -3880,10 +3854,6 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["hit_VFX_insert_function_argument"] = {obj_char,99,-514}
         obj_char["hit_SFX"] = nil
 
-        -- command_cache
-        common_game_scene_input_sys_cacahe_init(obj_char)
-        obj_char["command_cache_load_countdown"] = 0
-
         -- draw_correction
         obj_char[8] = 0
         obj_char["anchor_pos"] = {193,515}
@@ -3900,9 +3870,10 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["move_state"] = "active" -- none startup active recovery
         obj_char["strike_active"] = true 
         obj_char["hit_function"] = common_game_scene_hit_function
-        obj_char["hit_hurt_blockstop_countdown"] = 10
+        obj_char["hit_hurt_blockstop_countdown"] = 12
             -- 根据状态设置hitstop状态和动画 存储缓存状态 使得结束hitstop状态后可以回到5p后续动画
         obj_char["hurt_function"] = common_game_scene_strike_hurt_function
+        obj_char["hit_counter_ver_function"] = common_game_scene_counter_ver_3
         add_heat_ability_overdrive()
 
         -- collide
@@ -3942,16 +3913,14 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         -- draw_correction
         obj_char[8] = 4
     end
-    res[10] = function() 
-        -- input_sys_cache
-        obj_char["command_cache_load_countdown"] = 5
-    end
     res[11] = function() 
         -- draw_correction
         obj_char[8] = 5
     end
-    res[15] = function() 
+    res[13] = function()
         obj_char["idle_cancel"] = true
+    end
+    res[15] = function() 
         -- draw_correction
         obj_char[8] = 6
     end

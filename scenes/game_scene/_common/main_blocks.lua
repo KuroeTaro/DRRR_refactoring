@@ -140,8 +140,6 @@ function update_game_scene_main_training()
 
             -- 获得输入 更新角色 状态 速度 和 碰撞盒
             -- 会被game_speed限制
-            input_cache_mathod_game_scene_char_LP(INPUT_SYS_CURRENT_COMMAND_STATE["L"],char_LP)
-            input_cache_mathod_game_scene_char_RP(INPUT_SYS_CURRENT_COMMAND_STATE["R"],char_RP)
             update_game_scene_char()
 
             local char_LP_velocity = char_LP["velocity"]
@@ -269,8 +267,14 @@ function update_game_scene_main_training()
                 -- 检测双康
                 if LP_hurt_strike_accur and RP_hurt_strike_accur then
                     -- 删除两边的hitstop 回中摄像头
-                    char_LP["hitstop_countdown"] = 0
-                    char_RP["hitstop_countdown"] = 0
+                    local camera_obj = obj_stage_game_scene_camera
+                    char_LP["hit_hurt_blockstop_countdown"] = 0
+                    char_RP["hit_hurt_blockstop_countdown"] = 0
+                    char_LP["hit_hurt_block_slowdown_countdown"] = 0
+                    char_RP["hit_hurt_block_slowdown_countdown"] = 0
+                    camera_obj["state"] = "main"
+                    camera_obj["enclose_percentage"] = 0.0
+                    camera_obj["enclose_position_offset"] = {0, 0, 0}
                 end
 
                 -- 检测相杀
@@ -440,10 +444,10 @@ function update_game_scene_char()
         char_LP["game_speed_subframe"] = char_LP["game_speed_subframe"] + 1
     end
     if char_LP["game_speed"] ~= 1 then 
-        if char_LP["game_speed_abnormal_realtime_countdown"] > 0 then
+        if char_LP["game_speed_abnormal_realtime_countdown"] > 1 then
             char_LP["game_speed_abnormal_realtime_countdown"] = char_LP["game_speed_abnormal_realtime_countdown"] - 1
         end
-        if char_LP["game_speed_abnormal_realtime_countdown"] <= 0 then
+        if char_LP["game_speed_abnormal_realtime_countdown"] <= 1 then
             char_LP["game_speed_abnormal_realtime_countdown"] = 0
             char_LP["game_speed"] = 1
         end
@@ -453,10 +457,10 @@ function update_game_scene_char()
         char_RP["game_speed_subframe"] = char_RP["game_speed_subframe"] + 1
     end
     if char_RP["game_speed"] ~= 1 then 
-        if char_RP["game_speed_abnormal_realtime_countdown"] > 0 then
+        if char_RP["game_speed_abnormal_realtime_countdown"] > 1 then
             char_RP["game_speed_abnormal_realtime_countdown"] = char_RP["game_speed_abnormal_realtime_countdown"] - 1
         end
-        if char_RP["game_speed_abnormal_realtime_countdown"] <= 0 then
+        if char_RP["game_speed_abnormal_realtime_countdown"] <= 1 then
             char_RP["game_speed_abnormal_realtime_countdown"] = 0
             char_RP["game_speed"] = 1
         end
@@ -464,7 +468,7 @@ function update_game_scene_char()
 
 
     if char_LP["game_speed"] ~= 0 
-    and char_LP["game_speed_subframe"] >= char_LP["game_speed"]
+    and char_LP["game_speed_subframe"] > char_LP["game_speed"]
     then
         update_game_scene_char_LP()
         update_game_scene_char_LP_projectile()
@@ -474,7 +478,7 @@ function update_game_scene_char()
     end
 
     if char_RP["game_speed"] ~= 0 
-    and char_RP["game_speed_subframe"] >= char_RP["game_speed"]
+    and char_RP["game_speed_subframe"] > char_RP["game_speed"]
     then
         update_game_scene_char_RP()
         update_game_scene_char_RP_projectile()
