@@ -268,10 +268,10 @@ function update_game_scene_main_training()
                 if LP_hurt_strike_accur and RP_hurt_strike_accur then
                     -- 删除两边的hitstop 回中摄像头
                     local camera_obj = obj_stage_game_scene_camera
-                    char_LP["hit_hurt_blockstop_countdown"] = 0
-                    char_RP["hit_hurt_blockstop_countdown"] = 0
-                    char_LP["hit_hurt_block_slowdown_countdown"] = 0
-                    char_RP["hit_hurt_block_slowdown_countdown"] = 0
+                    char_LP["hit_hurt_blockstop_countdown"] = 31
+                    char_RP["hit_hurt_blockstop_countdown"] = 31
+                    char_LP["hit_hurt_block_slowdown_countdown"] = 35
+                    char_RP["hit_hurt_block_slowdown_countdown"] = 35
                     camera_obj["state"] = "main"
                     camera_obj["enclose_percentage"] = 0.0
                     camera_obj["enclose_position_offset"] = {0, 0, 0}
