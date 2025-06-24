@@ -278,7 +278,6 @@ function update_game_scene_main_training()
 
                 -- 检测双康
                 if LP_hurt_strike_accur and RP_hurt_strike_accur then
-                    -- 删除两边的hitstop 回中摄像头
                     local obj_camera = obj_stage_game_scene_camera
                     
                     char_LP["hit_hurt_blockstop_countdown"] = 20
