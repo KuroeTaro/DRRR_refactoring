@@ -71,10 +71,10 @@ function insert_VFX_game_scene_char_overdrive_airflow(obj_char)
         end
     end
     obj["draw"] = function(self)
-        local camera_obj = obj_stage_game_scene_camera
+        local obj_camera = obj_stage_game_scene_camera
         local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_overdrive_airflow
         image_sprite_sheet["sprite_batch"]:clear()
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
     
         love.graphics.setBlendMode("add")
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
@@ -86,12 +86,12 @@ end
 
 function insert_VFX_game_scene_char_overdrive_partical(obj_char)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
-    local camera_obj = obj_stage_game_scene_camera
+    local obj_camera = obj_stage_game_scene_camera
     if obj_char["player_side"] == "L" then
         obj["life"] = 80
-        obj[1] = camera_obj[1] - 800
-        obj[2] = camera_obj[2] - 450
-        obj[3] = camera_obj[3] + 800
+        obj[1] = obj_camera[1] - 800
+        obj[2] = obj_camera[2] - 450
+        obj[3] = obj_camera[3] + 800
         obj[4] = 1
         obj[5] = 1
         obj[6] = 1
@@ -100,9 +100,9 @@ function insert_VFX_game_scene_char_overdrive_partical(obj_char)
         obj["f"] = -1
     elseif obj_char["player_side"] == "R" then
         obj["life"] = 80
-        obj[1] = camera_obj[1] + 800
-        obj[2] = camera_obj[2] - 450
-        obj[3] = camera_obj[3] + 800
+        obj[1] = obj_camera[1] + 800
+        obj[2] = obj_camera[2] - 450
+        obj[3] = obj_camera[3] + 800
         obj[4] = 1
         obj[5] = -1
         obj[6] = 1
@@ -122,22 +122,22 @@ function insert_VFX_game_scene_char_overdrive_partical(obj_char)
         end
     end
     obj["draw"] = function(self)
-        local camera_obj = obj_stage_game_scene_camera
+        local obj_camera = obj_stage_game_scene_camera
         local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_overdrive_partical
         image_sprite_sheet["sprite_batch"]:clear()
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
     
         love.graphics.setBlendMode("add")
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
@@ -148,7 +148,7 @@ end
 
 function insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
     local obj = {0, 0, 0, 1, 0, 0, 0, 0}
-    local camera_obj = obj_stage_game_scene_camera
+    local obj_camera = obj_stage_game_scene_camera
     obj["FCT"] = {0,0,0,0,0,0,0,0}
     obj["LCT"] = {0,0,0,0,0,0,0,0}
     obj["LCD"] = {0,0,0,0,0,0,0,0}
@@ -161,7 +161,7 @@ function insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
     obj[6] = 0
     obj[7] = 0
     obj[8] = 0
-    obj["cood_res"] = draw_3d_point_to_2D(camera_obj,obj_char)
+    obj["cood_res"] = draw_3d_point_to_2D(obj_camera,obj_char)
     obj["state"] = "ease_in"
     obj["blur_shader"] = shader_game_scene_gaussian_blur
     obj["blur_shader"]:send("Directions", 16)
@@ -208,7 +208,7 @@ function insert_VFX_game_scene_char_overdrive_black_overlay(obj_char)
         self[1] = obj_char["x"]
         self[2] = obj_char["y"] - obj_char[6]*(300)
         self[3] = obj_char[3]
-        self["cood_res"] = draw_3d_point_to_2D(camera_obj,self)
+        self["cood_res"] = draw_3d_point_to_2D(obj_camera,self)
 
         local switch = {
             -- ease_in 之前的状态 如果达到第10帧则为下一个动画的第0帧 
@@ -304,10 +304,10 @@ function insert_VFX_game_scene_char_light_blast(obj_char,x,y)
         end
     end
     obj["draw"] = function(self)
-        local camera_obj = obj_stage_game_scene_camera
+        local obj_camera = obj_stage_game_scene_camera
         local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_light_blast
         image_sprite_sheet["sprite_batch"]:clear()
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
     
         shader_game_scene_character_blur:send("radius", 1.0 / 1000.0) -- 模糊强度，基于画布分辨率
         shader_game_scene_character_blur:send("alpha", 0.5) -- 透明度
@@ -334,5 +334,119 @@ function insert_VFX_scene_counter_sign(obj_char)
 end
 
 function insert_VFX_scene_counter_ver3_sign(obj_char)
+    -- x y z opacity sx sy r f
+    local obj = {0, 0, 0, 0, 1, 1, 0, 0}
+    obj["x"] = 800
+    obj["y"] = 600
+    obj["LCT"] = {0,0,0,0,0,0,0,0}
+    obj["LCD"] = {0,0,0,0,0,0,0,0}
+    obj["LCT"]["y"] = 0
+    obj["LCD"]["y"] = 0
+    obj["image"] = image_VFX_game_scene_counter_ver3
 
+    
+    obj["life"] = 40
+    obj[1] = obj["x"] - obj[5]*(600)
+    obj[2] = obj["y"] - obj[6]*(200)
+
+-- sx_anim
+    obj["sx_anim"] = {}
+    obj["sx_anim"][0] = {1.000, 1}
+    obj["sx_anim"][1] = {1.134, 2}
+    obj["sx_anim"][2] = {1.176, 3}
+    obj["sx_anim"][3] = {1.199, 4}
+    obj["sx_anim"][4] = {1.213, 5}
+    obj["sx_anim"][5] = {1.220, 7}
+    obj["sx_anim"][7] = {1.228, 9}
+    obj["sx_anim"][9] = {1.234, 10}
+    obj["sx_anim"][10] = {1.236, 12}
+    obj["sx_anim"][12] = {1.240, 14}
+    obj["sx_anim"][14] = {1.245, 16}
+    obj["sx_anim"][16] = {1.246, 18}
+    obj["sx_anim"][18] = {1.247, 20}
+    obj["sx_anim"][20] = {1.248, 25}
+    obj["sx_anim"][25] = {1.249, 30}
+    obj["sx_anim"][30] = {1.250, 32}
+    obj["sx_anim"][32] = {1.251, 33}
+    obj["sx_anim"][33] = {1.252, 34}
+    obj["sx_anim"][34] = {1.253, 35}
+    obj["sx_anim"][35] = {1.256, 36}
+    obj["sx_anim"][36] = {1.258, 37}
+    obj["sx_anim"][37] = {1.263, 38}
+    obj["sx_anim"][38] = {1.270, 39}
+    obj["sx_anim"][39] = {1.281, 40}
+    obj["sx_anim"][40] = {1.300, 40}
+    obj["sx_anim"]["prop"] = 5
+    obj["sx_anim"]["length"] = 40
+    obj["sx_anim"]["loop"] = false
+    obj["sx_anim"]["fix_type"] = true
+
+-- y_anim
+    obj["y_anim"] = {}
+    obj["y_anim"][0] = {600.00, 1}
+    obj["y_anim"][1] = {584.41, 2}
+    obj["y_anim"][2] = {575.88, 3}
+    obj["y_anim"][3] = {571.29, 4}
+    obj["y_anim"][4] = {568.60, 5}
+    obj["y_anim"][5] = {567.10, 7}
+    obj["y_anim"][7] = {565.20, 9}
+    obj["y_anim"][9] = {563.69, 11}
+    obj["y_anim"][11] = {562.51, 14}
+    obj["y_anim"][14] = {561.24, 16}
+    obj["y_anim"][16] = {560.69, 20}
+    obj["y_anim"][20] = {560.00, 30}
+    obj["y_anim"][30] = {560.00, 40}
+    obj["y_anim"][40] = {560.00, 40}
+    obj["y_anim"]["prop"] = "y"
+    obj["y_anim"]["length"] = 40
+    obj["y_anim"]["loop"] = false
+    obj["y_anim"]["fix_type"] = true
+
+-- opacity_anim
+    obj["opacity_anim"] = {}
+    obj["opacity_anim"][0] = {0.00, 1}
+    obj["opacity_anim"][1] = {0.58, 2}
+    obj["opacity_anim"][2] = {0.70, 3}
+    obj["opacity_anim"][3] = {0.77, 4}
+    obj["opacity_anim"][4] = {0.82, 5}
+    obj["opacity_anim"][5] = {0.85, 6}
+    obj["opacity_anim"][6] = {0.88, 7}
+    obj["opacity_anim"][7] = {0.90, 9}
+    obj["opacity_anim"][9] = {0.93, 11}
+    obj["opacity_anim"][11] = {0.95, 13}
+    obj["opacity_anim"][13] = {0.97, 15}
+    obj["opacity_anim"][15] = {0.98, 20}
+    obj["opacity_anim"][20] = {0.99, 30}
+    obj["opacity_anim"][30] = {1.00, 31}
+    obj["opacity_anim"][31] = {1.00, 32}
+    obj["opacity_anim"][32] = {0.99, 33}
+    obj["opacity_anim"][33] = {0.96, 34}
+    obj["opacity_anim"][34] = {0.93, 35}
+    obj["opacity_anim"][35] = {0.89, 36}
+    obj["opacity_anim"][36] = {0.82, 37}
+    obj["opacity_anim"][37] = {0.73, 38}
+    obj["opacity_anim"][38] = {0.60, 39}
+    obj["opacity_anim"][39] = {0.38, 40}
+    obj["opacity_anim"][40] = {0.00, 40}
+    obj["opacity_anim"]["prop"] = 4
+    obj["opacity_anim"]["length"] = 40
+    obj["opacity_anim"]["loop"] = false
+    obj["opacity_anim"]["fix_type"] = true
+
+-- update
+
+    obj["update"] = function(self)
+        point_linear_animator(obj,obj["sx_anim"])
+        point_linear_animator(obj,obj["y_anim"])
+        point_linear_animator(obj,obj["opacity_anim"])
+        self[1] = self["x"] - self[5]*(600)
+        self[2] = self["y"] - self[6]*(200)
+        self["life"] = self["life"] - 1
+    end
+    obj["draw"] = function(self)
+        love.graphics.setBlendMode("add")
+        draw_2d_image(self,self["image"])
+        love.graphics.setBlendMode("alpha")
+    end
+    table.insert(obj_char["VFX_back_character_table"],obj)
 end

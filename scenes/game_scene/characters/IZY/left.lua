@@ -27,6 +27,10 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["hurt_state"] = "idle" -- idle unblock punish counter GP parry
     obj_char_game_scene_char_LP["move_state"] = "none" -- none startup active recovery
 
+    obj_char_game_scene_char_LP["input_sys_state"] = "none" -- none save load
+    obj_char_game_scene_char_LP["input_sys_cache"] = {}
+    init_input_sys_cache(obj_char_game_scene_char_LP)
+
     obj_char_game_scene_char_LP["hit_SFX"] = nil
     obj_char_game_scene_char_LP["stand_hurt_animation"] = nil
     obj_char_game_scene_char_LP["stand_block_animation"] = nil
@@ -202,6 +206,10 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["hurtstop_wiggle_y"] = 0
     obj_char_game_scene_char_LP["current_hurtstop_wiggle_x_animation"] = nil
     obj_char_game_scene_char_LP["current_hurtstop_wiggle_y_animation"] = nil
+
+    obj_char_game_scene_char_LP["camera_x_shake_anim"] = nil
+    obj_char_game_scene_char_LP["camera_y_shake_anim"] = nil
+    obj_char_game_scene_char_LP["camera_enclosing_anim"] = nil
 
 end
 
@@ -978,16 +986,28 @@ function state_machine_char_game_scene_char_LP()
         end,
         ["hitstop"] = function()
             update_game_scene_char_LP_hitstop_countdown()
-            if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
+            state_machine_char_game_scene_char_LP_input_sys_cache()
+            if obj_char["hit_hurt_blockstop_countdown"] <= 1 then
                 obj_char["state"] = obj_char["state_cache"]
-                obj_char["hit_hurt_blockstop_countdown"] = 0
+                obj_char["velocity"] = obj_char["velocity_cache"]
+                obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
+                obj_char["game_speed"] = 1
+                obj_char["hit_hurt_blockstop_countdown"] = 0 
+                obj_char["hit_hurt_block_slowdown_countdown"] = 0
             end
         end,
         ["hurtstop"] = function()
             update_game_scene_char_LP_hurtstop_countdown()
-            if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
+            state_machine_char_game_scene_char_LP_input_sys_cache()
+            if obj_char["hit_hurt_blockstop_countdown"] <= 1 then
                 obj_char["state"] = obj_char["state_cache"]
-                obj_char["hit_hurt_blockstop_countdown"] = 0
+                obj_char["velocity"] = obj_char["velocity_cache"]
+                obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
+                obj_char["game_speed"] = 2
+                obj_char["hit_hurt_blockstop_countdown"] = 0 
+                obj_char["hit_hurt_block_slowdown_countdown"] = 0
+                obj_char["hurtstop_wiggle_x"] = 0
+                obj_char["hurtstop_wiggle_y"] = 0
             end
         end,
         ["blockstop"] = function()
@@ -1001,11 +1021,21 @@ function state_machine_char_game_scene_char_LP()
                     obj_char["current_animation"] = anim_char_LP_stand_idle
                     init_character_anim_with(obj_char,obj_char["current_animation"])
                     obj_char["state"] = "stand_idle"
+                    state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
                 end
             end
         end,
         ["block"] = function()
             character_animator(obj_char,obj_char["current_animation"])
+            if obj_char["f"] >= obj_char["current_animation_length"] then
+                if obj_char["height_state"] == "stand" then
+                    -- to idle
+                    obj_char["current_animation"] = anim_char_LP_stand_idle
+                    init_character_anim_with(obj_char,obj_char["current_animation"])
+                    obj_char["state"] = "stand_idle"
+                    state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
+                end
+            end
         end,
 
         -- 待机状态
@@ -1026,19 +1056,20 @@ function state_machine_char_game_scene_char_LP()
                     obj_char["current_animation"] = anim_char_LP_stand_idle
                     init_character_anim_with(obj_char,obj_char["current_animation"])
                     obj_char["state"] = "stand_idle"
+                    state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
                 end
             end
         end,
         ["overdrive"] = function()
             character_animator(obj_char,obj_char["current_animation"])
-            if test_input_sys_press_or_hold(input["RC"]) and obj_char["f"] < 30 then
+            if test_input_sys_press(input["RC"]) and obj_char["f"] < 30 then
                 -- to overdrive RC
                 
             elseif obj_char["f"] >= obj_char["current_animation_length"] then
                 -- to stand_idle
                 obj_char["idle_cancel"] = true -- 取消链
                 obj_char["current_animation"] = anim_char_LP_stand_idle
-                init_character_anim_with(obj_char,obj_char["current_animation"] )
+                init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "stand_idle"
                 state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
             end
@@ -1051,10 +1082,13 @@ function state_machine_char_game_scene_char_LP()
                 obj_char["current_animation"] = anim_char_LP_stand_idle
                 init_character_anim_with(obj_char,obj_char["current_animation"])
                 obj_char["state"] = "stand_idle"
+                state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
                 return
             end
-            if obj_char["hit_cancel"] and obj_char["f"] >= 10 then
-                if test_input_sys_press_or_hold(input["P"]) then
+            if obj_char["hit_cancel"] and obj_char["f"] >= 8 then
+                obj_char["input_sys_state"] = "load" -- none save load
+                state_machine_char_game_scene_char_LP_input_sys_cache()
+                if test_input_sys_press(input["P"]) then
                     obj_char["hit_cancel"] = false
                     -- to 5P
                     obj_char["current_animation"] = anim_char_LP_5P
@@ -1064,6 +1098,8 @@ function state_machine_char_game_scene_char_LP()
                 end
             end
             if obj_char["idle_cancel"] then
+                obj_char["input_sys_state"] = "load" -- none save load
+                state_machine_char_game_scene_char_LP_input_sys_cache()
                 state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
             end
         end,
@@ -1090,6 +1126,72 @@ function state_machine_char_game_scene_char_LP_knife()
     local this_function = switch[obj["knife_state"]]
     if this_function then this_function() end
 
+end
+
+function state_machine_char_game_scene_char_LP_input_sys_cache()
+    local obj_char = obj_char_game_scene_char_LP
+    local input = INPUT_SYS_CURRENT_COMMAND_STATE["L"]
+    local switch = {
+        ["none"] = function()
+        end,
+        ["save"] = function()
+            if input["UP"] == "Pressing" then
+                obj_char["input_sys_cache"]["Up"] = true
+                obj_char["input_sys_cache"]["Down"] = false
+            elseif input["Down"] == "Pressing" then
+                obj_char["input_sys_cache"]["Up"] = false
+                obj_char["input_sys_cache"]["Down"] = true
+            end
+            if input["Left"] == "Pressing" then
+                obj_char["input_sys_cache"]["Left"] = true
+                obj_char["input_sys_cache"]["Right"] = false
+            elseif input["Right"] == "Pressing" then
+                obj_char["input_sys_cache"]["Left"] = false
+                obj_char["input_sys_cache"]["Right"] = true
+            end
+            if input["P"] == "Pressing" then
+                obj_char["input_sys_cache"]["P"] = true
+                obj_char["input_sys_cache"]["S"] = false
+                obj_char["input_sys_cache"]["K"] = false
+                obj_char["input_sys_cache"]["Launcher"] = false
+            elseif input["S"] == "Pressing" then
+                obj_char["input_sys_cache"]["P"] = false
+                obj_char["input_sys_cache"]["S"] = true
+                obj_char["input_sys_cache"]["K"] = false
+                obj_char["input_sys_cache"]["Launcher"] = false
+            elseif input["K"] == "Pressing" then
+                obj_char["input_sys_cache"]["P"] = false
+                obj_char["input_sys_cache"]["S"] = false
+                obj_char["input_sys_cache"]["K"] = true
+                obj_char["input_sys_cache"]["Launcher"] = false
+            elseif input["Launcher"] == "Pressing" then
+                obj_char["input_sys_cache"]["P"] = false
+                obj_char["input_sys_cache"]["S"] = false
+                obj_char["input_sys_cache"]["K"] = false
+                obj_char["input_sys_cache"]["Launcher"] = true
+            end
+            if input["RC"] == "Pressing" then
+                obj_char["input_sys_cache"]["RC"] = true
+            end
+            if input["Burst"] == "Pressing" then
+                obj_char["input_sys_cache"]["Burst"] = true
+            end
+            if input["UA"] == "Pressing" then
+                obj_char["input_sys_cache"]["UA"] = true
+            end
+        end,
+        ["load"] = function()
+            for i=1,16 do
+                if obj_char["input_sys_cache"][INPUT_SYS_COMMAND_TABLE[i]] then
+                    input[INPUT_SYS_COMMAND_TABLE[i]] = "Pressing"
+                end
+            end
+            obj_char["input_sys_state"] = "none"
+            init_input_sys_cache(obj_char)
+        end,
+    }
+    local this_function = switch[obj_char["input_sys_state"]]
+    if this_function then this_function() end
 end
 
 
@@ -1262,7 +1364,7 @@ function update_game_scene_char_LP_projectile()
     for i = #obj_char_game_scene_char_LP["projectile_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_LP["projectile_table"][i]
         object["update"](object)
-        if object["life"] <= 0 then
+        if object["life"] <= 1 then
             table.remove(obj_char_game_scene_char_LP["projectile_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
@@ -1284,14 +1386,14 @@ function update_game_scene_char_LP_VFX()
     for i = #obj_char_game_scene_char_LP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_LP["VFX_back_character_table"][i]
         object["update"](object)
-        if object["life"] <= 0 then
+        if object["life"] <= 1 then
             table.remove(obj_char_game_scene_char_LP["VFX_back_character_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
     for i = #obj_char_game_scene_char_LP["VFX_front_character_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_LP["VFX_front_character_table"][i]
         object["update"](object)
-        if object["life"] <= 0 then
+        if object["life"] <= 1 then
             table.remove(obj_char_game_scene_char_LP["VFX_front_character_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
@@ -1316,7 +1418,7 @@ function update_game_scene_char_LP_black_overlay()
         local object = obj_char_game_scene_char_LP["black_overlay_table"][i]
         object["life"] = object["life"] - 1 -- 减少寿命
         object["update"](object)
-        if object["life"] <= 0 then
+        if object["life"] <= 1 then
             table.remove(obj_char_game_scene_char_LP["black_overlay_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
@@ -1427,18 +1529,22 @@ end
 
 
 function state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
+    obj_char["input_sys_state"] = "load" -- none save load
+    state_machine_char_game_scene_char_LP_input_sys_cache()
     if common_game_scene_get_input_direction(obj_char) == 7 
     or common_game_scene_get_input_direction(obj_char) == 8
     or common_game_scene_get_input_direction(obj_char) == 9 then
         -- to pre_jump
-        obj_char["idle_cancel"] = true
-    elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+
+    elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
         -- to over_drive
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_LP_overdrive
         init_character_anim_with(obj_char,obj_char["current_animation"])
+        common_game_scene_overdrive_load_camera_anim(obj_char)
+        common_game_scene_nil_load_camera_enclose_anim(obj_char)
         obj_char["state"] = "overdrive"
-    elseif test_input_sys_press_or_hold(input["P"]) then
+    elseif test_input_sys_press(input["P"]) then
         -- to 5P
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_LP_5P
@@ -1454,18 +1560,20 @@ function state_gate_game_scene_char_LP_from_stand_idle(input,obj_char)
 end
 
 function state_gate_game_scene_char_LP_from_6_and_4_walk(input,obj_char)
+    obj_char["input_sys_state"] = "load" -- none save load
+    state_machine_char_game_scene_char_LP_input_sys_cache()
     if common_game_scene_get_input_direction(obj_char) == 7 
     or common_game_scene_get_input_direction(obj_char) == 8
     or common_game_scene_get_input_direction(obj_char) == 9 then
         -- to pre_jump
         obj_char["idle_cancel"] = true
-    elseif test_input_sys_press_or_hold(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
+    elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
         -- to over_drive
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_LP_overdrive
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["state"] = "overdrive"
-    elseif test_input_sys_press_or_hold(input["P"]) then
+    elseif test_input_sys_press(input["P"]) then
         -- to 5P
         obj_char["idle_cancel"] = false
         obj_char["current_animation"] = anim_char_LP_5P

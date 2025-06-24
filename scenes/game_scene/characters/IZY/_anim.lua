@@ -228,8 +228,6 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
 
 end
 
-
-
 function load_game_scene_anim_char_IZY_6(obj_char)
     local walk_speed = 9.0
     local res = {}
@@ -2793,7 +2791,7 @@ end
 
 function load_game_scene_anim_char_IZY_overdrive(obj_char)
     local res = {}
-    local other_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
+    local obj_char_other_side = common_game_scene_change_character(obj_char["player_side"])
     -- 更新hitbox table 有一个全屏的红框
     -- 更新逻辑为没有伤害 没有硬直 只是速度调为0
 
@@ -2804,11 +2802,11 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
         elseif obj_char["overdrive"][1] < 0 then
             obj_char["overdrive"][1] = 0
         end
-        if other_side_obj_char["game_speed_abnormal_realtime_countdown"] == 0 and obj_char["f"] > 3 then
+        if obj_char_other_side["game_speed_abnormal_realtime_countdown"] == 0 and obj_char["f"] > 3 then
             obj_char["move_state"] = "recovery"
         end
     end
-
+    
     for i = 0,79 do
         res[i] = function()
             -- state
@@ -2960,14 +2958,14 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
             -- idle状态下OD 恢复为3+13
             -- 攻击状态下OD 恢复为3+3
             -- block_stun状态下OD 恢复为3+23
-        other_side_obj_char["game_speed"] = 0
-        other_side_obj_char["game_speed_subframe"] = 0
+        obj_char_other_side["game_speed"] = 0
+        obj_char_other_side["game_speed_subframe"] = 0
         if obj_char["hurt_state"] == "idle" or  obj_char["unblock"] == "idle" then
-            other_side_obj_char["game_speed_abnormal_realtime_countdown"] = 80 - 13 ---- 之后对面玩家根据情况不同要改
+            obj_char_other_side["game_speed_abnormal_realtime_countdown"] = 80 - 13 ---- 之后对面玩家根据情况不同要改
         elseif obj_char["state"] == "hitstop" then
-            other_side_obj_char["game_speed_abnormal_realtime_countdown"] = 80 - 3 ---- 之后对面玩家根据情况不同要改
+            obj_char_other_side["game_speed_abnormal_realtime_countdown"] = 80 - 3 ---- 之后对面玩家根据情况不同要改
         elseif obj_char["state"] == "blockstop" then
-            other_side_obj_char["game_speed_abnormal_realtime_countdown"] = 80 - 23 ---- 之后对面玩家根据情况不同要改
+            obj_char_other_side["game_speed_abnormal_realtime_countdown"] = 80 - 23 ---- 之后对面玩家根据情况不同要改
         end
 
         -- sub_obj
@@ -3678,6 +3676,10 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
         -- draw_correction
         obj_char[8] = 14
     end
+    res[75] = function()
+        obj_char["input_sys_state"] = "save" -- none save load
+        init_input_sys_cache(obj_char)
+    end
     res[80] = function()
         -- animation end
     end
@@ -3685,6 +3687,7 @@ function load_game_scene_anim_char_IZY_overdrive(obj_char)
     return res
 
 end
+
 
 
 
@@ -3857,6 +3860,9 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         -- draw_correction
         obj_char[8] = 0
         obj_char["anchor_pos"] = {193,515}
+
+        common_game_scene_hit_load_camera_anim(obj_char,0.2)
+        common_game_scene_nil_load_camera_enclose_anim(obj_char)
     end
     res[2] = function() 
         -- state & state_number
@@ -3873,7 +3879,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["hit_hurt_blockstop_countdown"] = 12
             -- 根据状态设置hitstop状态和动画 存储缓存状态 使得结束hitstop状态后可以回到5p后续动画
         obj_char["hurt_function"] = common_game_scene_strike_hurt_function
-        obj_char["hit_counter_ver_function"] = common_game_scene_counter_ver_3
+        obj_char["hit_counter_ver_function"] = common_game_scene_counter_ver3
         add_heat_ability_overdrive()
 
         -- collide
@@ -3885,6 +3891,9 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
 
         -- VFX
         insert_VFX_game_scene_char_IZY_5P_whiff(obj_char)
+
+        obj_char["input_sys_state"] = "save" -- none save load
+        init_input_sys_cache(obj_char)
         
     end
     res[6] = function() 
@@ -3913,14 +3922,37 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         -- draw_correction
         obj_char[8] = 4
     end
+    res[10] = function()
+        obj_char["input_sys_state"] = "save" -- none save load
+        init_input_sys_cache(obj_char)
+    end
     res[11] = function() 
         -- draw_correction
         obj_char[8] = 5
     end
-    res[13] = function()
-        obj_char["idle_cancel"] = true
-    end
     res[15] = function() 
+        obj_char["height_state"] = "stand" -- stand crouch air
+        obj_char["hit_type_state"] = "none" -- none strike throw burst
+        obj_char["hit_guard_type_state"] = "none" -- none all low high
+        obj_char["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
+        obj_char["hurt_state"] = "idle" -- idle unblock punish counter GP parry
+        obj_char["move_state"] = "none" -- none startup active recovery
+
+        obj_char["hit_cancel"] = false -- 取消链
+        obj_char["idle_cancel"] = true -- 取消链
+
+        obj_char["hit_function"] = function() end
+        obj_char["hurt_function"] = function() end
+        obj_char["parry_function"] = function() end
+        obj_char["hit_counter_ver_function"] = function() end
+
+        -- state_number
+        obj_char["gravity"] = 9.8
+        obj_char["friction"] = 4
+        obj_char["hurt_horizontal_velocity_correction"] = 1
+        obj_char["hurt_gravity_correction"] = 1
+        obj_char["hurt_damage_correction"] = 1
+
         -- draw_correction
         obj_char[8] = 6
     end
@@ -4092,6 +4124,10 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         -- draw_correction
         obj_char[8] = 8
     end
+    res[25] = function()
+        obj_char["input_sys_state"] = "save" -- none save load
+        init_input_sys_cache(obj_char)
+    end
     res[27] = function() 
         -- sub_obj
         obj_char["shadow_box_table"] = {
@@ -4191,25 +4227,25 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
     local heat_add = 0.05
     local ability_add = 0.05
     local side = obj_char["player_side"]
-    local other_side_obj_char = common_game_scene_change_character(side)
+    local obj_char_other_side = common_game_scene_change_character(side)
     local other_side_hurtbox_data = common_game_scene_change_character_hurtbox(side)
     local other_side_shadowbox_data = common_game_scene_change_character_shadowbox(side)
     local function add_heat_ability_overdrive()
-        if other_side_obj_char["overdrive"][1] < other_side_obj_char["overdrive"][2] then
-            other_side_obj_char["overdrive"][1] = 
-            math.min(other_side_obj_char["overdrive"][1] + overdrive_add,other_side_obj_char["overdrive"][2])
+        if obj_char_other_side["overdrive"][1] < obj_char_other_side["overdrive"][2] then
+            obj_char_other_side["overdrive"][1] = 
+            math.min(obj_char_other_side["overdrive"][1] + overdrive_add,obj_char_other_side["overdrive"][2])
         end
-        if other_side_obj_char["heat"][1] < other_side_obj_char["heat"][2] then
-            other_side_obj_char["heat"][1] = 
-            math.min(other_side_obj_char["heat"][1] + heat_add,other_side_obj_char["heat"][2])
+        if obj_char_other_side["heat"][1] < obj_char_other_side["heat"][2] then
+            obj_char_other_side["heat"][1] = 
+            math.min(obj_char_other_side["heat"][1] + heat_add,obj_char_other_side["heat"][2])
         end
-        if other_side_obj_char["ability"][1] < other_side_obj_char["ability"][2] then
-            other_side_obj_char["ability"][1] = 
-            math.min(other_side_obj_char["ability"][1] + ability_add,other_side_obj_char["ability"][2])
+        if obj_char_other_side["ability"][1] < obj_char_other_side["ability"][2] then
+            obj_char_other_side["ability"][1] = 
+            math.min(obj_char_other_side["ability"][1] + ability_add,obj_char_other_side["ability"][2])
         end
     end
 
-    for i = 0,13 do
+    for i = 0,12 do
         res[i] = function()
             -- state
             add_heat_ability_overdrive()
@@ -4218,116 +4254,120 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
 
     res[0] = function()
         local hurt_horizontal_velocity = 44
-        if other_side_obj_char["hurt_state"] == "counter" then
+        if obj_char_other_side["hurt_state"] == "counter" then
             hurt_horizontal_velocity = hurt_horizontal_velocity * 1.5
         end
 
         -- state
-        other_side_obj_char["sprite_sheet_state"] = "stand_hurt_high"
-        other_side_obj_char["height_state"] = "stand" -- stand crouch air
-        other_side_obj_char["hit_type_state"] = "none" -- none strike throw burst
-        other_side_obj_char["hit_guard_type_state"] = "none" -- none all low high
-        other_side_obj_char["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
-        other_side_obj_char["hurt_state"] = "unblock" -- idle unblock punish counter GP parry
-        other_side_obj_char["move_state"] = "none" -- none startup active recovery
+        obj_char_other_side["sprite_sheet_state"] = "stand_hurt_high"
+        obj_char_other_side["height_state"] = "stand" -- stand crouch air
+        obj_char_other_side["hit_type_state"] = "none" -- none strike throw burst
+        obj_char_other_side["hit_guard_type_state"] = "none" -- none all low high
+        obj_char_other_side["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
+        obj_char_other_side["hurt_state"] = "unblock" -- idle unblock punish counter GP parry
+        obj_char_other_side["move_state"] = "none" -- none startup active recovery
 
-        other_side_obj_char["current_animation_length"] = 13
+        obj_char_other_side["current_animation_length"] = 13
 
-        other_side_obj_char["strike_inv"] = false
-        other_side_obj_char["strike_inv_countdown"] = 0
-        other_side_obj_char["throw_inv"] = true
-        other_side_obj_char["throw_inv_countdown"] = 18
-        other_side_obj_char["projectile_inv"] = false
-        other_side_obj_char["projectile_inv_countdown"] = 0
-        other_side_obj_char["burst_inv"] = false
-        other_side_obj_char["burst_inv_countdown"] = 0
+        obj_char_other_side["strike_inv"] = false
+        obj_char_other_side["strike_inv_countdown"] = 0
+        obj_char_other_side["throw_inv"] = true
+        obj_char_other_side["throw_inv_countdown"] = 18
+        obj_char_other_side["projectile_inv"] = false
+        obj_char_other_side["projectile_inv_countdown"] = 0
+        obj_char_other_side["burst_inv"] = false
+        obj_char_other_side["burst_inv_countdown"] = 0
 
          -- state_number
-        other_side_obj_char["velocity"] = {0,0}
-        if other_side_obj_char["x"] < obj_char["x"] then
-            other_side_obj_char["velocity_cache"] = {
+        obj_char_other_side["velocity"] = {0,0}
+        if obj_char_other_side["x"] < obj_char["x"] then
+            obj_char_other_side["velocity_cache"] = {
                 - hurt_horizontal_velocity,
-                other_side_obj_char["velocity"][1]
+                obj_char_other_side["velocity"][1]
             } -- 根据当前敌我x位置变化
-        elseif other_side_obj_char["x"] > obj_char["x"] then
-            other_side_obj_char["velocity_cache"] = {
+        elseif obj_char_other_side["x"] > obj_char["x"] then
+            obj_char_other_side["velocity_cache"] = {
                 hurt_horizontal_velocity,
-                other_side_obj_char["velocity"][1]
+                obj_char_other_side["velocity"][1]
             } -- 根据当前敌我x位置变化
         else
-            other_side_obj_char["velocity_cache"] = {
+            obj_char_other_side["velocity_cache"] = {
                 0,
-                other_side_obj_char["velocity"][1]
+                obj_char_other_side["velocity"][1]
             } -- 根据当前敌我x位置变化
         end
 
-        other_side_obj_char["friction"] = 1.5
+        obj_char_other_side["friction"] = 1.5
         add_heat_ability_overdrive()
 
         -- collide
-        other_side_obj_char["pushbox"] = {0, -185, 130, 370}
-        other_side_obj_char["hitbox_table"] = {}
-        other_side_obj_char["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][0]
+        obj_char_other_side["pushbox"] = {0, -185, 130, 370}
+        obj_char_other_side["hitbox_table"] = {}
+        obj_char_other_side["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][0]
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][0][1]
-        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][0][2]
+        obj_char_other_side["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][0][1]
+        obj_char_other_side["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][0][2]
 
         -- draw_correction
-        other_side_obj_char[8] = 0
-        other_side_obj_char["anchor_pos"] = {209,520}
-        other_side_obj_char["hurtstop_wiggle_x"] = 0
-        other_side_obj_char["hurtstop_wiggle_y"] = 0
+        obj_char_other_side[8] = 0
+        obj_char_other_side["anchor_pos"] = {209,520}
+        obj_char_other_side["hurtstop_wiggle_x"] = 0
+        obj_char_other_side["hurtstop_wiggle_y"] = 0
     end
     res[2] = function() 
         -- state
         add_heat_ability_overdrive()
 
         -- collide
-        other_side_obj_char["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][2]
+        obj_char_other_side["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][2]
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][2][1]
-        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][2][2]
+        obj_char_other_side["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][2][1]
+        obj_char_other_side["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][2][2]
         
         -- draw_correction
-        other_side_obj_char[8] = 2
+        obj_char_other_side[8] = 2
     end
     res[6] = function() 
         -- state
         add_heat_ability_overdrive()
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][3][1]
-        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][3][2]
+        obj_char_other_side["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][3][1]
+        obj_char_other_side["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][3][2]
 
         -- draw_correction
-        other_side_obj_char[8] = 3
+        obj_char_other_side[8] = 3
+    end
+    res[7] = function() 
+        obj_char["input_sys_state"] = "save" -- none save load
+        init_input_sys_cache(obj_char)
     end
     res[9] = function() 
         -- state
         add_heat_ability_overdrive()
 
         -- collide
-        other_side_obj_char["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][4]
+        obj_char_other_side["hurtbox_table"] = other_side_hurtbox_data["stand_hurt_high"][4]
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][4][1]
-        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][4][2]
+        obj_char_other_side["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][4][1]
+        obj_char_other_side["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][4][2]
 
         -- draw_correction
-        other_side_obj_char[8] = 4
+        obj_char_other_side[8] = 4
     end
     res[11] = function() 
         -- state
         add_heat_ability_overdrive()
 
         -- sub_obj
-        other_side_obj_char["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][5][1]
-        other_side_obj_char["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][5][2]
+        obj_char_other_side["shadow_box_table"] = other_side_shadowbox_data["stand_hurt_high"][5][1]
+        obj_char_other_side["shadow_box_pos"] = other_side_shadowbox_data["stand_hurt_high"][5][2]
 
         -- draw_correction
-        other_side_obj_char[8] = 5
+        obj_char_other_side[8] = 5
     end
     res[13] = function() 
         -- animation end

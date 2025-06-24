@@ -212,18 +212,21 @@ function order_load_game_scene_VFX(load_order)
                 "asset/game_scene/VFX/overdrive_airflow.json",
                 love.graphics.newImage(ASSET_DATA[8]["overdrive_airflow_sprite_batch"])
             )
-
             image_sprite_sheet_VFX_game_scene_overdrive_partical = 
             sprite_sheet_load(
                 "asset/game_scene/VFX/overdrive_partical.json",
                 love.graphics.newImage(ASSET_DATA[8]["overdrive_partical_sprite_batch"])
             )
 
+
             image_sprite_sheet_VFX_game_scene_light_blast = 
             sprite_sheet_load(
                 "asset/game_scene/VFX/hit_VFX/light_blast.json",
                 love.graphics.newImage(ASSET_DATA[8]["light_blast_sprite_batch"])
             )
+
+
+            image_VFX_game_scene_counter_ver3 = love.graphics.newImage(ASSET_DATA[8]["counter_ver3"])
 
         end,
     }

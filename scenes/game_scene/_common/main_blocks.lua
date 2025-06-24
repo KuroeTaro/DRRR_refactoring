@@ -95,6 +95,11 @@ function update_game_scene_main_training()
 
             elseif SCENE_TIMER == 175 then
                 obj_annoucer_game_scene_lets_dance[4] = 0
+                -- input_sys save
+                obj_char_game_scene_char_LP["input_sys_state"] = "save"
+                init_input_sys_cache(obj_char_game_scene_char_LP)
+                obj_char_game_scene_char_RP["input_sys_state"] = "save"
+                init_input_sys_cache(obj_char_game_scene_char_RP)
 
             elseif SCENE_TIMER < 180 then
                 -- do nothing
@@ -134,12 +139,19 @@ function update_game_scene_main_training()
             -- 更新HUD
             -- 更新场景
 
+            if SCENE_TIMER == 0 then
+                obj_char_game_scene_char_LP["input_sys_state"] = "load"
+                obj_char_game_scene_char_RP["input_sys_state"] = "load"
+            end
+
             SCENE_TIMER = SCENE_TIMER + 1
             local char_LP = obj_char_game_scene_char_LP
             local char_RP = obj_char_game_scene_char_RP
 
             -- 获得输入 更新角色 状态 速度 和 碰撞盒
             -- 会被game_speed限制
+            state_machine_char_game_scene_char_LP_input_sys_cache()
+            state_machine_char_game_scene_char_RP_input_sys_cache()
             update_game_scene_char()
 
             local char_LP_velocity = char_LP["velocity"]
@@ -168,8 +180,8 @@ function update_game_scene_main_training()
                     -- 飞行道具更新位置 1/10
                     for i = 1,#char_RP["projectile_table"] do
                         local current_projectile = char_LP["projectile_table"][i]
-                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(16* char_RP["game_speed"])
-                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(16* char_RP["game_speed"])
+                        current_projectile["x"] = current_projectile["x"] + current_projectile["velocity"][1]/(16*char_RP["game_speed"])
+                        current_projectile["y"] = current_projectile["y"] + current_projectile["velocity"][2]/(16*char_RP["game_speed"])
                     end
                 end
 
@@ -267,14 +279,17 @@ function update_game_scene_main_training()
                 -- 检测双康
                 if LP_hurt_strike_accur and RP_hurt_strike_accur then
                     -- 删除两边的hitstop 回中摄像头
-                    local camera_obj = obj_stage_game_scene_camera
-                    char_LP["hit_hurt_blockstop_countdown"] = 31
-                    char_RP["hit_hurt_blockstop_countdown"] = 31
-                    char_LP["hit_hurt_block_slowdown_countdown"] = 35
-                    char_RP["hit_hurt_block_slowdown_countdown"] = 35
-                    camera_obj["state"] = "main"
-                    camera_obj["enclose_percentage"] = 0.0
-                    camera_obj["enclose_position_offset"] = {0, 0, 0}
+                    local obj_camera = obj_stage_game_scene_camera
+                    
+                    char_LP["hit_hurt_blockstop_countdown"] = 20
+                    char_RP["hit_hurt_blockstop_countdown"] = 20
+                    char_LP["hit_hurt_block_slowdown_countdown"] = 25
+                    char_RP["hit_hurt_block_slowdown_countdown"] = 25
+                    char_LP["game_speed"] = 2
+                    char_RP["game_speed"] = 2
+                    obj_camera["state"] = "main"
+                    obj_camera["enclose_percentage"] = 0.0
+                    obj_camera["enclose_position_offset"] = {0, 0, 0}
                 end
 
                 -- 检测相杀

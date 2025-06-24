@@ -374,3 +374,13 @@ function test_input_sys_press(input)
         return false
     end
 end
+
+
+
+
+
+function init_input_sys_cache(obj_char)
+    for i=1,16 do
+        obj_char["input_sys_cache"][INPUT_SYS_COMMAND_TABLE[i]] = false
+    end
+end

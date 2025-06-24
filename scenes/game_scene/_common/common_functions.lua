@@ -134,11 +134,11 @@ function common_game_scene_get_input_direction(obj_char)
 end
 
 function common_game_scene_check_6_and_4_move(obj_char)
-    local other_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
+    local obj_char_other_side = common_game_scene_change_character(obj_char["player_side"])
     local input = INPUT_SYS_CURRENT_COMMAND_STATE[obj_char["player_side"]]
     local anim_char_6_walk = common_game_scene_get_character_walk_animation(obj_char["player_side"],"6")
     local anim_char_4_walk = common_game_scene_get_character_walk_animation(obj_char["player_side"],"4") 
-    if obj_char["x"] < other_side_obj_char["x"] then
+    if obj_char["x"] < obj_char_other_side["x"] then
         if common_game_scene_get_input_direction(obj_char) == 4 then
             if obj_char[5] == -1 then
                 obj_char[5] = 1
@@ -162,7 +162,7 @@ function common_game_scene_check_6_and_4_move(obj_char)
             character_animator(obj_char,obj_char["current_animation"])
 
         end
-    elseif obj_char["x"] == other_side_obj_char["x"] then
+    elseif obj_char["x"] == obj_char_other_side["x"] then
         if common_game_scene_get_input_direction(obj_char) == 4 then
             -- 如果sx == 1 保持正面行走 如果 sx == -1 保持倒着走
             if obj_char[5] == 1 then
@@ -198,7 +198,7 @@ function common_game_scene_check_6_and_4_move(obj_char)
             character_animator(obj_char,obj_char["current_animation"])
 
         end
-    elseif obj_char["x"] > other_side_obj_char["x"] then
+    elseif obj_char["x"] > obj_char_other_side["x"] then
         if common_game_scene_get_input_direction(obj_char) == 4 then
             if obj_char[5] == 1 then
                 obj_char[5] = -1
@@ -269,6 +269,14 @@ function common_game_scene_get_character_walk_animation(side,direction)
     end
 end
 
+function common_game_scene_get_character_input_sys_cache_state_machine(side)
+    if side == "L" then
+        return state_machine_char_game_scene_char_LP_input_sys_cache
+    elseif side == "R" then
+        return state_machine_char_game_scene_char_RP_input_sys_cache
+    end
+end
+
 
 
 
@@ -304,6 +312,7 @@ function common_game_scene_strike_hurt_function(obj_char)
     -- idle unblock punish counter GP parry
     -- stand crouch air OTG
     local hit_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
+    local obj_camera = obj_stage_game_scene_camera
     local function stand_hurt()
         obj_char["state_cache"] = "hurt"
         obj_char["state"] = "hurtstop"
@@ -334,6 +343,19 @@ function common_game_scene_strike_hurt_function(obj_char)
         init_character_anim_with(obj_char,obj_char["current_animation"])
     end
     local function common_hurt()
+        
+        obj_camera["state"] = "hit_camera_shake"
+        anim_camera_point_linear_game_scene_camera_shake_x = hit_side_obj_char["camera_x_shake_anim"]
+        anim_camera_point_linear_game_scene_camera_shake_y = hit_side_obj_char["camera_y_shake_anim"]
+
+        init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_shake_x)
+        init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_shake_y)
+
+        if get_point_linear_anim_end_state(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing) then
+            anim_camera_point_linear_game_scene_camera_enclosing = hit_side_obj_char["camera_enclosing_anim"]
+            init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing)
+        end
+
         if obj_char["height_state"] == "stand" then
             stand_hurt()
         elseif obj_char["height_state"] == "crouch" then
@@ -347,15 +369,15 @@ function common_game_scene_strike_hurt_function(obj_char)
         init_character_anim_with(obj_char,obj_char["current_animation"])
         obj_char["current_hurtstop_wiggle_x_animation"] = 
             common_game_scene_create_wiggle_animation(
-                obj_char["hit_hurt_blockstop_countdown"],
+                obj_char["hit_hurt_blockstop_countdown"] - 1,
                 "hurtstop_wiggle_x",
                 5
             )
         obj_char["current_hurtstop_wiggle_y_animation"] = 
             common_game_scene_create_wiggle_animation(
-                obj_char["hit_hurt_blockstop_countdown"],
+                obj_char["hit_hurt_blockstop_countdown"] - 1,
                 "hurtstop_wiggle_y",
-                5
+                2
             )
         init_point_linear_anim_with(obj_char,obj_char["current_hurtstop_wiggle_x_animation"])
         init_point_linear_anim_with(obj_char,obj_char["current_hurtstop_wiggle_y_animation"])
@@ -380,19 +402,6 @@ function common_game_scene_strike_hurt_function(obj_char)
     -- idle block
     if (obj_char["hurt_state"] == "idle" and common_game_scene_check_block_direction(obj_char["player_side"])) then
         common_block()
-    -- punish
-    elseif obj_char["hurt_state"] == "punish" then
-        -- insert punish VFX
-
-        -- hurt_logic
-        common_hurt()
-
-    -- counter
-    elseif obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
-        -- insert counter VFX
-
-        -- hurt_logic
-        common_hurt()
     -- GP
     elseif obj_char["hurt_state"] == "GP" then -- idle unblock punish counter GP parry
         -- insert GP
@@ -428,7 +437,7 @@ end
 
 
 
-function common_game_scene_counter_ver_0(hit_obj,hurt_obj)
+function common_game_scene_counter_ver0(hit_obj,hurt_obj)
     insert_VFX_scene_counter_sign(hit_obj)
     hit_obj["hit_hurt_blockstop_countdown"] = 0
     hit_obj["hit_hurt_block_slowdown_countdown"] = 0
@@ -436,7 +445,7 @@ function common_game_scene_counter_ver_0(hit_obj,hurt_obj)
     hurt_obj["hit_hurt_blockstop_countdown"] = 0
 end
 
-function common_game_scene_counter_ver_1(hit_obj,hurt_obj)
+function common_game_scene_counter_ver1(hit_obj,hurt_obj)
     insert_VFX_scene_counter_sign(hit_obj)
     hit_obj["hit_hurt_blockstop_countdown"] = 0
     hit_obj["hit_hurt_block_slowdown_countdown"] = 0
@@ -444,7 +453,7 @@ function common_game_scene_counter_ver_1(hit_obj,hurt_obj)
     hurt_obj["hit_hurt_blockstop_countdown"] = 0
 end
 
-function common_game_scene_counter_ver_2(hit_obj,hurt_obj)
+function common_game_scene_counter_ver2(hit_obj,hurt_obj)
     insert_VFX_scene_counter_sign(hit_obj)
     hit_obj["hit_hurt_blockstop_countdown"] = 21
     hit_obj["hit_hurt_block_slowdown_countdown"] = 0
@@ -452,22 +461,35 @@ function common_game_scene_counter_ver_2(hit_obj,hurt_obj)
     hurt_obj["hit_hurt_blockstop_countdown"] = 21
 end
 
-function common_game_scene_counter_ver_3(hit_obj,hurt_obj)
-    local camera_obj = obj_stage_game_scene_camera
-    insert_VFX_scene_counter_sign(hit_obj)
-    anim_stage_point_linear_game_scene_camera_enclosing = common_game_scene_counter_ver3_load_camera_anim()
-    init_point_linear_anim_with(camera_obj,anim_stage_point_linear_game_scene_camera_enclosing)
-    camera_obj["enclose_position_offset"] = {0, 80, 100}
-    camera_obj["state"] = "hit_enclosing"
+function common_game_scene_counter_ver3(hit_obj,hurt_obj)
+    local obj_camera = obj_stage_game_scene_camera
+    insert_VFX_scene_counter_ver3_sign(hit_obj)
+    common_game_scene_counter_ver3_load_camera_enclose_anim(hit_obj)
+    anim_camera_point_linear_game_scene_camera_enclosing = hit_obj["camera_enclosing_anim"]
+    init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing)
+    obj_camera["enclose_position_offset"] = {0, 80, 100}
     hit_obj["hit_hurt_blockstop_countdown"] = 31
     hit_obj["hit_hurt_block_slowdown_countdown"] = 0
     hurt_obj["hit_hurt_block_slowdown_countdown"] = 35
     hurt_obj["hit_hurt_blockstop_countdown"] = 31
 end
 
-function common_game_scene_counter_ver3_load_camera_anim()
+
+
+
+function common_game_scene_nil_load_camera_enclose_anim(obj_char)
     local anim = {}
-    anim = {}
+    anim[0] = {0.00, 0}
+    anim["prop"] = "enclose_percentage"
+    anim["length"] = 0
+    anim["loop"] = false
+    anim["fix_type"] = true
+
+    obj_char["camera_enclosing_anim"] = anim
+end
+
+function common_game_scene_counter_ver3_load_camera_enclose_anim(obj_char)
+    local anim = {}
     anim[0] = {0.00, 1}
     anim[1] = {0.56, 2}
     anim[2] = {0.70, 4}
@@ -487,7 +509,135 @@ function common_game_scene_counter_ver3_load_camera_anim()
     anim["prop"] = "enclose_percentage"
     anim["length"] = 90
     anim["loop"] = false
-    anim["fix_type"] = false
+    anim["fix_type"] = true
 
-    return anim
+    obj_char["camera_enclosing_anim"] = anim
+end
+
+function common_game_scene_overdrive_load_camera_anim(obj_char)
+    local anim = {}
+    anim = {}
+    anim[0] = {0.00, 28}
+    anim[28] = {0.00, 29}
+    anim[29] = {3.25, 30}
+    anim[30] = {-10.34, 31}
+    anim[31] = {-3.93, 32}
+    anim[32] = {-1.02, 33}
+    anim[33] = {-12.10, 34}
+    anim[34] = {-6.69, 35}
+    anim[35] = {4.72, 36}
+    anim[36] = {6.47, 37}
+    anim[37] = {-3.78, 38}
+    anim[38] = {2.46, 39}
+    anim[39] = {18.31, 40}
+    anim[40] = {10.65, 41}
+    anim[41] = {11.00, 42}
+    anim[42] = {17.81, 43}
+    anim[43] = {2.63, 44}
+    anim[44] = {11.94, 45}
+    anim[45] = {13.25, 46}
+    anim[46] = {-2.44, 47}
+    anim[47] = {-4.13, 48}
+    anim[48] = {15.69, 49}
+    anim[49] = {13.50, 50}
+    anim[50] = {-2.19, 51}
+    anim[51] = {8.63, 52}
+    anim[52] = {5.44, 53}
+    anim[53] = {1.35, 54}
+    anim[54] = {-2.74, 55}
+    anim[55] = {2.18, 57}
+    anim[57] = {0.00, 78}
+    anim[78] = {0.00, 78}
+    anim["prop"] = "current_3d_pos_x"
+    anim["length"] = 78
+    anim["loop"] = false
+    anim["fix_type"] = false
+    obj_char["camera_x_shake_anim"] = anim
+
+    anim = {}
+    anim[0] = {0.00, 28}
+    anim[28] = {0.00, 29}
+    anim[29] = {0.35, 30}
+    anim[30] = {-0.92, 31}
+    anim[31] = {2.67, 32}
+    anim[32] = {-4.00, 33}
+    anim[33] = {-5.26, 34}
+    anim[34] = {0.60, 35}
+    anim[35] = {-2.15, 36}
+    anim[36] = {0.35, 37}
+    anim[37] = {0.04, 38}
+    anim[38] = {1.75, 39}
+    anim[39] = {1.44, 40}
+    anim[40] = {-2.69, 41}
+    anim[41] = {-4.00, 42}
+    anim[42] = {2.67, 43}
+    anim[43] = {-3.13, 44}
+    anim[44] = {4.11, 45}
+    anim[45] = {4.55, 46}
+    anim[46] = {-1.82, 47}
+    anim[47] = {1.75, 48}
+    anim[48] = {-0.95, 49}
+    anim[49] = {-2.15, 50}
+    anim[50] = {-0.08, 51}
+    anim[51] = {4.11, 52}
+    anim[52] = {0.79, 53}
+    anim[53] = {2.67, 54}
+    anim[54] = {-0.95, 55}
+    anim[55] = {0.50, 57}
+    anim[57] = {0.00, 78}
+    anim[78] = {0.00, 78}
+    anim["prop"] = "current_3d_pos_y"
+    anim["length"] = 78
+    anim["loop"] = false
+    anim["fix_type"] = false
+    obj_char["camera_y_shake_anim"] = anim
+end
+
+function common_game_scene_hit_load_camera_anim(obj_char,multiplyer)
+    local anim = {}
+    anim = {}
+    anim[0] = {3.25*multiplyer, 1}
+    anim[1] = {-10.34*multiplyer, 2}
+    anim[2] = {-3.93*multiplyer, 3}
+    anim[3] = {-1.02*multiplyer, 4}
+    anim[4] = {-12.10*multiplyer, 5}
+    anim[5] = {-6.69*multiplyer, 6}
+    anim[6] = {4.72*multiplyer, 7}
+    anim[7] = {6.47*multiplyer, 8}
+    anim[8] = {-3.78*multiplyer, 9}
+    anim[9] = {2.46*multiplyer, 10}
+    anim[10] = {18.31*multiplyer, 11}
+    anim[11] = {10.65*multiplyer, 12}
+    anim[12] = {11.00*multiplyer, 13}
+    anim[13] = {17.81*multiplyer, 14}
+    anim[14] = {2.63*multiplyer, 15}
+    anim[15] = {0*multiplyer, 15}
+    anim["prop"] = "current_3d_pos_x"
+    anim["length"] = 15
+    anim["loop"] = false
+    anim["fix_type"] = false
+    obj_char["camera_x_shake_anim"] = anim
+
+    anim = {}
+    anim[0] = {-0.92*multiplyer, 1}
+    anim[1] = {2.67*multiplyer, 2}
+    anim[2] = {-4.00*multiplyer, 3}
+    anim[3] = {-5.26*multiplyer, 4}
+    anim[4] = {0.60*multiplyer, 5}
+    anim[5] = {-2.15*multiplyer, 6}
+    anim[6] = {0.35*multiplyer, 7}
+    anim[7] = {0.04*multiplyer, 8}
+    anim[8] = {1.75*multiplyer, 9}
+    anim[9] = {1.44*multiplyer, 10}
+    anim[10] = {-2.69*multiplyer, 11}
+    anim[11] = {-4.00*multiplyer, 12}
+    anim[12] = {2.67*multiplyer, 13}
+    anim[13] = {-3.13*multiplyer, 14}
+    anim[14] = {4.11*multiplyer, 15}
+    anim[15] = {0*multiplyer, 15}
+    anim["prop"] = "current_3d_pos_y"
+    anim["length"] = 15
+    anim["loop"] = false
+    anim["fix_type"] = false
+    obj_char["camera_y_shake_anim"] = anim
 end

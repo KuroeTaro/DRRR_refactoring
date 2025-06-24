@@ -49,9 +49,9 @@ function insert_VFX_game_scene_char_IZY_5P_whiff(obj_char)
         end
     end
     obj["draw"] = function(self)
-        local camera_obj = obj_stage_game_scene_camera
+        local obj_camera = obj_stage_game_scene_camera
         image_sprite_sheet["sprite_batch"]:clear()
-        draw_3d_image_sprite_batch(camera_obj,self,image_sprite_sheet,""..self[8].."")
+        draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
     
         shader_game_scene_character_blur:send("radius", 3.0 / 1000.0) -- 模糊强度，基于画布分辨率
         shader_game_scene_character_blur:send("alpha", 0.5) -- 透明度
