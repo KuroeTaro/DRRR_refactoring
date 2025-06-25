@@ -280,10 +280,10 @@ function update_game_scene_main_training()
                 if LP_hurt_strike_accur and RP_hurt_strike_accur then
                     local obj_camera = obj_stage_game_scene_camera
                     
-                    char_LP["hit_hurt_blockstop_countdown"] = 20
-                    char_RP["hit_hurt_blockstop_countdown"] = 20
-                    char_LP["hit_hurt_block_slowdown_countdown"] = 25
-                    char_RP["hit_hurt_block_slowdown_countdown"] = 25
+                    char_LP["hit_hurt_blockstop_countdown"] = 5
+                    char_RP["hit_hurt_blockstop_countdown"] = 5
+                    char_LP["hit_hurt_block_slowdown_countdown"] = 5
+                    char_RP["hit_hurt_block_slowdown_countdown"] = 5
                     char_LP["game_speed"] = 2
                     char_RP["game_speed"] = 2
                     obj_camera["state"] = "main"

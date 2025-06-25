@@ -21,7 +21,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["state_cache"] = "none"
     obj_char_game_scene_char_LP["sprite_sheet_state"] = "stand_idle"
     obj_char_game_scene_char_LP["height_state"] = "stand" -- stand crouch air
-    obj_char_game_scene_char_LP["hit_type_state"] = "none" -- none strike throw burst
+    obj_char_game_scene_char_LP["hit_type_state"] = "none" -- none strike throw burst projectile
     obj_char_game_scene_char_LP["hit_guard_type_state"] = "none" -- none all low high
     obj_char_game_scene_char_LP["hit_counter_state"] = 0 -- 当前攻击counter等级 0 1 2 3
     obj_char_game_scene_char_LP["hurt_state"] = "idle" -- idle unblock punish counter GP parry

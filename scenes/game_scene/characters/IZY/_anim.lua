@@ -3853,8 +3853,8 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
             {147.625,511.875}
             ,{249.0625,491.1875}
         }
-        obj_char["hit_VFX_insert_function"] = insert_VFX_game_scene_char_light_blast
-        obj_char["hit_VFX_insert_function_argument"] = {obj_char,99,-514}
+        obj_char["hit_VFX_insert_function"] = insert_VFX_game_scene_char_ver0_blast
+        obj_char["hit_VFX_insert_function_argument"] = {obj_char,105,-514}
         obj_char["hit_SFX"] = nil
 
         -- draw_correction
@@ -4341,8 +4341,8 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
         obj_char_other_side[8] = 3
     end
     res[7] = function() 
-        obj_char["input_sys_state"] = "save" -- none save load
-        init_input_sys_cache(obj_char)
+        obj_char_other_side["input_sys_state"] = "save" -- none save load
+        init_input_sys_cache(obj_char_other_side)
     end
     res[9] = function() 
         -- state

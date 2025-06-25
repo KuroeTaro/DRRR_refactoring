@@ -262,7 +262,7 @@ end
 
 
 
-function insert_VFX_game_scene_char_light_blast(obj_char,x,y)
+function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y)
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     obj["life"] = 8
     obj[1] = obj_char["x"] + obj_char[5]*(x)
@@ -322,7 +322,7 @@ function insert_VFX_game_scene_char_light_blast(obj_char,x,y)
     
 end
 
-function insert_VFX_game_scene_char_counter_light_blast(obj_char,x,y)
+function insert_VFX_game_scene_char_counter_ver0_blast(obj_char,x,y)
 end
 
 
