@@ -22,11 +22,9 @@ function draw_game_scene_main()
     love.graphics.draw(shadow_cavans)
     love.graphics.setShader()
 
-    -- 绘制VFX
+    -- 绘制 overlay
     draw_game_scene_char_LP_black_overlay()
     draw_game_scene_char_RP_black_overlay()
-    draw_game_scene_char_LP_VFX_back()
-    draw_game_scene_char_RP_VFX_back()
 
     -- 绘制角色本体
     local non_UI_canvas = love.graphics.newCanvas(
@@ -167,17 +165,6 @@ function draw_game_scene_main()
         image_sprite_sheet,
         "HUD_overdrive_text"
     )
-    -- positive bouns
-    draw_2d_image_sprite_batch(
-        obj_HUD_game_scene_positive_bouns_LP,
-        image_sprite_sheet,
-        "HUD_positive_bouns_LP"
-    )
-    draw_2d_image_sprite_batch(
-        obj_HUD_game_scene_positive_bouns_RP,
-        image_sprite_sheet,
-        "HUD_positive_bouns_RP"
-    )
     -- match point
     draw_2d_image_sprite_batch(
         obj_HUD_game_scene_match_point_LP,
@@ -220,11 +207,16 @@ function draw_game_scene_main()
     )
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
 
+    draw_game_scene_char_LP_VFX_back()
+    draw_game_scene_char_RP_VFX_back()
 
     -- 透过上帝光和HUD
     love.graphics.setColor(1,1,1,0.5)
     love.graphics.draw(non_UI_canvas) -- 1 draw call 13
     love.graphics.setColor(1,1,1,1)
+
+    draw_game_scene_char_LP_VFX_HUD()
+    draw_game_scene_char_RP_VFX_HUD()
 
     draw_game_scene_char_LP_VFX_front()
     draw_game_scene_char_RP_VFX_front()

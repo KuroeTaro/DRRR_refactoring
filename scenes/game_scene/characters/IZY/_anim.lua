@@ -73,7 +73,7 @@
 
 -- -- sub_obj
 -- obj_char["projectile_table"] = {}
--- obj_char["VFX_back_character_table"] = {}
+-- obj_char["VFX_HUD_table"] = {}
 -- obj_char["black_overlay_table"] = {}
 -- obj_char["shadow_box_table"] = {}
 -- obj_char["shadow_box_pos"] = {}
@@ -3875,11 +3875,11 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         -- state & state_number
         obj_char["move_state"] = "active" -- none startup active recovery
         obj_char["strike_active"] = true 
-        obj_char["hit_function"] = common_game_scene_hit_function
+        obj_char["hit_function"] = common_game_scene_strike_hit_function
         obj_char["hit_hurt_blockstop_countdown"] = 12
             -- 根据状态设置hitstop状态和动画 存储缓存状态 使得结束hitstop状态后可以回到5p后续动画
         obj_char["hurt_function"] = common_game_scene_strike_hurt_function
-        obj_char["hit_counter_ver_function"] = common_game_scene_counter_ver3
+        obj_char["hit_counter_ver_function"] = common_game_scene_counter_ver0
         add_heat_ability_overdrive()
 
         -- collide
@@ -3892,9 +3892,9 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         -- VFX
         insert_VFX_game_scene_char_IZY_5P_whiff(obj_char)
 
+        -- input_sys_cache
         obj_char["input_sys_state"] = "save" -- none save load
         init_input_sys_cache(obj_char)
-        
     end
     res[6] = function() 
         -- state & state_number

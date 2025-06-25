@@ -157,18 +157,6 @@ function load_game_scene_announcer_HUD_obj()
     obj_HUD_game_scene_overdrive_timer_RP["LCD"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_overdrive_timer_RP["state"] = "default"
 
-    obj_HUD_game_scene_positive_bouns_LP = {9, 135, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_positive_bouns_LP["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_positive_bouns_LP["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_positive_bouns_LP["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_positive_bouns_LP["state"] = "default"
-
-    obj_HUD_game_scene_positive_bouns_RP = {1431, 135, nil, 0, 1, 1, 0, 0}
-    obj_HUD_game_scene_positive_bouns_RP["FCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_positive_bouns_RP["LCT"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_positive_bouns_RP["LCD"] = {0,0,0,0,0,0,0,0}
-    obj_HUD_game_scene_positive_bouns_RP["state"] = "default"
-
     obj_HUD_game_scene_background_gauge = {0, 0, nil, 0, 1, 1, 0, 0}
     obj_HUD_game_scene_background_gauge["FCT"] = {0,0,0,0,0,0,0,0}
     obj_HUD_game_scene_background_gauge["LCT"] = {0,0,0,0,0,0,0,0}

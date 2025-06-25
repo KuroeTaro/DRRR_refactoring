@@ -62,6 +62,6 @@ function insert_VFX_game_scene_char_IZY_5P_whiff(obj_char)
         love.graphics.setShader()
         love.graphics.setBlendMode("alpha")
     end
-    table.insert(obj_char["VFX_front_character_table"],obj)
+    table.insert(obj_char["VFX_front_table"],obj)
 
 end

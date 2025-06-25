@@ -181,7 +181,6 @@ function strike_hurtbox_test(hit_obj,hurt_obj)
         for j=1,#hurt_obj["hurtbox_table"] do
             local current_hurtbox = collision_box_to_real_world_box(hurt_obj,"hurtbox",hurt_obj["hurtbox_table"][i])
             if collision_box_aabb_detection(current_hitbox,current_hurtbox) then
-                hit_obj["strike_active"] = false
                 return true
             end
         end

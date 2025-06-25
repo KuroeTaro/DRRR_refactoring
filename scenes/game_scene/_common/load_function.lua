@@ -226,6 +226,7 @@ function order_load_game_scene_VFX(load_order)
             )
 
 
+            image_VFX_game_scene_counter_ver0_2 = love.graphics.newImage(ASSET_DATA[8]["counter_ver0_2"])
             image_VFX_game_scene_counter_ver3 = love.graphics.newImage(ASSET_DATA[8]["counter_ver3"])
 
         end,

@@ -101,8 +101,9 @@ function load_game_scene_obj_char_RP()
 
     -- sub_obj
     obj_char_game_scene_char_RP["projectile_table"] = {}
-    obj_char_game_scene_char_RP["VFX_front_character_table"] = {}
-    obj_char_game_scene_char_RP["VFX_back_character_table"] = {}
+    obj_char_game_scene_char_RP["VFX_HUD_table"] = {}
+    obj_char_game_scene_char_RP["VFX_front_table"] = {}
+    obj_char_game_scene_char_RP["VFX_back_table"] = {}
     obj_char_game_scene_char_RP["black_overlay_table"] = {}
     obj_char_game_scene_char_RP["shadow_box_table"] = {
         {
@@ -1098,6 +1099,8 @@ function state_machine_char_game_scene_char_RP()
                 end
             end
             if obj_char["idle_cancel"] then
+                obj_char["input_sys_state"] = "load" -- none save load
+                state_machine_char_game_scene_char_RP_input_sys_cache()
                 state_gate_game_scene_char_RP_from_stand_idle(input,obj_char)
             end
         end,
@@ -1381,32 +1384,46 @@ end
 
 
 function update_game_scene_char_RP_VFX()
-    for i = #obj_char_game_scene_char_RP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
-        local object = obj_char_game_scene_char_RP["VFX_back_character_table"][i]
+    for i = #obj_char_game_scene_char_RP["VFX_HUD_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_HUD_table"][i]
         object["update"](object)
         if object["life"] <= 1 then
-            table.remove(obj_char_game_scene_char_RP["VFX_back_character_table"], i) -- 寿命耗尽，从列表中移除
+            table.remove(obj_char_game_scene_char_RP["VFX_HUD_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
-    for i = #obj_char_game_scene_char_RP["VFX_front_character_table"], 1, -1 do -- 反向遍历，便于删除元素
-        local object = obj_char_game_scene_char_RP["VFX_front_character_table"][i]
+    for i = #obj_char_game_scene_char_RP["VFX_front_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_front_table"][i]
         object["update"](object)
         if object["life"] <= 1 then
-            table.remove(obj_char_game_scene_char_RP["VFX_front_character_table"], i) -- 寿命耗尽，从列表中移除
+            table.remove(obj_char_game_scene_char_RP["VFX_front_table"], i) -- 寿命耗尽，从列表中移除
+        end
+    end
+    for i = #obj_char_game_scene_char_RP["VFX_back_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_back_table"][i]
+        object["update"](object)
+        if object["life"] <= 1 then
+            table.remove(obj_char_game_scene_char_RP["VFX_back_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
 end
 
-function draw_game_scene_char_RP_VFX_back()
-    for i = #obj_char_game_scene_char_RP["VFX_back_character_table"], 1, -1 do -- 反向遍历，便于删除元素
-        local object = obj_char_game_scene_char_RP["VFX_back_character_table"][i]
+function draw_game_scene_char_RP_VFX_HUD()
+    for i = #obj_char_game_scene_char_RP["VFX_HUD_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_HUD_table"][i]
         object["draw"](object)
     end
 end
 
 function draw_game_scene_char_RP_VFX_front()
-    for i = #obj_char_game_scene_char_RP["VFX_front_character_table"], 1, -1 do -- 反向遍历，便于删除元素
-        local object = obj_char_game_scene_char_RP["VFX_front_character_table"][i]
+    for i = #obj_char_game_scene_char_RP["VFX_front_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_front_table"][i]
+        object["draw"](object)
+    end
+end
+
+function draw_game_scene_char_RP_VFX_back()
+    for i = #obj_char_game_scene_char_RP["VFX_back_table"], 1, -1 do -- 反向遍历，便于删除元素
+        local object = obj_char_game_scene_char_RP["VFX_back_table"][i]
         object["draw"](object)
     end
 end
@@ -1533,7 +1550,7 @@ function state_gate_game_scene_char_RP_from_stand_idle(input,obj_char)
     or common_game_scene_get_input_direction(obj_char) == 8
     or common_game_scene_get_input_direction(obj_char) == 9 then
         -- to pre_jump
-        obj_char["idle_cancel"] = true
+
     elseif test_input_sys_press(input["Burst"]) and obj_char["overdrive"][1] == obj_char["overdrive"][2] then
         -- to over_drive
         obj_char["idle_cancel"] = false

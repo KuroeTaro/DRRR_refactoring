@@ -289,11 +289,12 @@ end
 
 
 
-function common_game_scene_hit_function(obj_char)
+function common_game_scene_strike_hit_function(obj_char)
     -- 只需要设置hitstop
     local hurt_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
     obj_char["state_cache"] = obj_char["state"]
     obj_char["state"] = "hitstop"
+    obj_char["strike_active"] = false
     obj_char["hit_cancel"] = true -- 取消链
     obj_char["hit_VFX_insert_function"](
         obj_char["hit_VFX_insert_function_argument"][1],
@@ -438,23 +439,16 @@ end
 
 
 function common_game_scene_counter_ver0(hit_obj,hurt_obj)
-    insert_VFX_scene_counter_sign(hit_obj)
-    hit_obj["hit_hurt_blockstop_countdown"] = 0
-    hit_obj["hit_hurt_block_slowdown_countdown"] = 0
-    hurt_obj["hit_hurt_block_slowdown_countdown"] = 0
-    hurt_obj["hit_hurt_blockstop_countdown"] = 0
+    insert_VFX_scene_counter_ver0_2(hit_obj)
 end
 
 function common_game_scene_counter_ver1(hit_obj,hurt_obj)
-    insert_VFX_scene_counter_sign(hit_obj)
-    hit_obj["hit_hurt_blockstop_countdown"] = 0
-    hit_obj["hit_hurt_block_slowdown_countdown"] = 0
+    insert_VFX_scene_counter_ver0_2(hit_obj)
     hurt_obj["hit_hurt_block_slowdown_countdown"] = 11
-    hurt_obj["hit_hurt_blockstop_countdown"] = 0
 end
 
 function common_game_scene_counter_ver2(hit_obj,hurt_obj)
-    insert_VFX_scene_counter_sign(hit_obj)
+    insert_VFX_scene_counter_ver0_2(hit_obj)
     hit_obj["hit_hurt_blockstop_countdown"] = 21
     hit_obj["hit_hurt_block_slowdown_countdown"] = 0
     hurt_obj["hit_hurt_block_slowdown_countdown"] = 25
@@ -463,7 +457,7 @@ end
 
 function common_game_scene_counter_ver3(hit_obj,hurt_obj)
     local obj_camera = obj_stage_game_scene_camera
-    insert_VFX_scene_counter_ver3_sign(hit_obj)
+    insert_VFX_scene_counter_ver3(hit_obj)
     common_game_scene_counter_ver3_load_camera_enclose_anim(hit_obj)
     anim_camera_point_linear_game_scene_camera_enclosing = hit_obj["camera_enclosing_anim"]
     init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing)

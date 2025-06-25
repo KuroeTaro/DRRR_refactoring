@@ -184,22 +184,6 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":144,"h":20},
 	"sourceSize": {"w":144,"h":20}
 },
-"HUD_positive_bouns_LP":
-{
-	"frame": {"x":0,"y":180,"w":160,"h":70},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":160,"h":70},
-	"sourceSize": {"w":160,"h":70}
-},
-"HUD_positive_bouns_RP":
-{
-	"frame": {"x":160,"y":180,"w":160,"h":70},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":160,"h":70},
-	"sourceSize": {"w":160,"h":70}
-},
 "HUD_risk_bar":
 {
 	"frame": {"x":159,"y":20,"w":23,"h":23},
@@ -215,6 +199,14 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":20},
 	"sourceSize": {"w":15,"h":20}
-}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "-",
+	"format": "RGBA8888",
+	"size": {"w":510,"h":180},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:5232ab7ced40847286fff805663fcd6a:2d955721981cad663b693e1d747b0832:fa6357ca9b94727214381b07ee3f9bc1$"
 }
 }
