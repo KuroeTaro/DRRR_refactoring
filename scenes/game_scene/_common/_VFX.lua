@@ -262,7 +262,8 @@ end
 
 
 
-function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y)
+function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,r)
+    -- x y z opacity sx sy r f
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
     obj["life"] = 8
     obj[1] = obj_char["x"] + obj_char[5]*(x)
@@ -271,7 +272,7 @@ function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y)
     obj[4] = 1
     obj[5] = obj_char[5]
     obj[6] = obj_char[6]
-    obj[7] = obj_char[7]
+    obj[7] = r
     obj[8] = -1
     obj["FCT"] = {0,0,0,0,0,0,0,0}
     obj["LCT"] = {0,0,0,0,0,0,0,0}
@@ -295,7 +296,7 @@ function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y)
         self[4] = 1
         self[5] = obj_char[5]
         self[6] = obj_char[6]
-        self[7] = obj_char[7]
+        self[7] = r
         frame_animator(self,self["animation"])
         if obj_char["state"] == "5P" or obj_char["state"] == "hitstop" then
             self["life"] = self["life"] - 1

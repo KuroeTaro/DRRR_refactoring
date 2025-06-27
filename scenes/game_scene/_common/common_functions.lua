@@ -299,7 +299,8 @@ function common_game_scene_strike_hit_function(obj_char)
     obj_char["hit_VFX_insert_function"](
         obj_char["hit_VFX_insert_function_argument"][1],
         obj_char["hit_VFX_insert_function_argument"][2],
-        obj_char["hit_VFX_insert_function_argument"][3]
+        obj_char["hit_VFX_insert_function_argument"][3],
+        obj_char["hit_VFX_insert_function_argument"][4]
     )
     if hurt_side_obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
         obj_char["hit_counter_ver_function"](obj_char,hurt_side_obj_char)
