@@ -219,10 +219,10 @@ function order_load_game_scene_VFX(load_order)
             )
 
 
-            image_sprite_sheet_VFX_game_scene_light_blast = 
+            image_sprite_sheet_VFX_game_scene_ver0_blast = 
             sprite_sheet_load(
-                "asset/game_scene/VFX/hit_VFX/light_blast.json",
-                love.graphics.newImage(ASSET_DATA[8]["light_blast_sprite_batch"])
+                "asset/game_scene/VFX/hit_VFX/ver0_blast.json",
+                love.graphics.newImage(ASSET_DATA[8]["ver0_blast_sprite_batch"])
             )
 
 

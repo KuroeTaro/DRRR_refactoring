@@ -296,17 +296,16 @@ function common_game_scene_strike_hit_function(obj_char)
     obj_char["state"] = "hitstop"
     obj_char["strike_active"] = false
     obj_char["hit_cancel"] = true -- 取消链
-    obj_char["hit_VFX_insert_function"](
-        obj_char["hit_VFX_insert_function_argument"][1],
-        obj_char["hit_VFX_insert_function_argument"][2],
-        obj_char["hit_VFX_insert_function_argument"][3],
-        obj_char["hit_VFX_insert_function_argument"][4]
-    )
     if hurt_side_obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
         obj_char["hit_counter_ver_function"](obj_char,hurt_side_obj_char)
+    else
+        obj_char["hit_VFX_insert_function"](
+            obj_char["hit_VFX_insert_function_argument"][1],
+            obj_char["hit_VFX_insert_function_argument"][2],
+            obj_char["hit_VFX_insert_function_argument"][3],
+            obj_char["hit_VFX_insert_function_argument"][4]
+        )
     end
-
-    -- 后续要根据防御设置blockstop之类的
 
 end
 
@@ -440,16 +439,16 @@ end
 
 
 function common_game_scene_counter_ver0(hit_obj,hurt_obj)
-    insert_VFX_scene_counter_ver0_2(hit_obj)
+    insert_VFX_HUD_game_scene_counter_ver0_2(hit_obj)
 end
 
 function common_game_scene_counter_ver1(hit_obj,hurt_obj)
-    insert_VFX_scene_counter_ver0_2(hit_obj)
+    insert_VFX_HUD_game_scene_counter_ver0_2(hit_obj)
     hurt_obj["hit_hurt_block_slowdown_countdown"] = 11
 end
 
 function common_game_scene_counter_ver2(hit_obj,hurt_obj)
-    insert_VFX_scene_counter_ver0_2(hit_obj)
+    insert_VFX_HUD_game_scene_counter_ver0_2(hit_obj)
     hit_obj["hit_hurt_blockstop_countdown"] = 21
     hit_obj["hit_hurt_block_slowdown_countdown"] = 0
     hurt_obj["hit_hurt_block_slowdown_countdown"] = 25
@@ -458,7 +457,7 @@ end
 
 function common_game_scene_counter_ver3(hit_obj,hurt_obj)
     local obj_camera = obj_stage_game_scene_camera
-    insert_VFX_scene_counter_ver3(hit_obj)
+    insert_VFX_HUD_game_scene_counter_ver3(hit_obj)
     common_game_scene_counter_ver3_load_camera_enclose_anim(hit_obj)
     anim_camera_point_linear_game_scene_camera_enclosing = hit_obj["camera_enclosing_anim"]
     init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing)

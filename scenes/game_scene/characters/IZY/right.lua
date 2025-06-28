@@ -988,7 +988,7 @@ function state_machine_char_game_scene_char_RP()
         ["hitstop"] = function()
             update_game_scene_char_RP_hitstop_countdown()
             state_machine_char_game_scene_char_RP_input_sys_cache()
-            if obj_char["hit_hurt_blockstop_countdown"] <= 1 then
+            if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
                 obj_char["state"] = obj_char["state_cache"]
                 obj_char["velocity"] = obj_char["velocity_cache"]
                 obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
@@ -1000,7 +1000,7 @@ function state_machine_char_game_scene_char_RP()
         ["hurtstop"] = function()
             update_game_scene_char_RP_hurtstop_countdown()
             state_machine_char_game_scene_char_RP_input_sys_cache()
-            if obj_char["hit_hurt_blockstop_countdown"] <= 1 then
+            if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
                 obj_char["state"] = obj_char["state_cache"]
                 obj_char["velocity"] = obj_char["velocity_cache"]
                 obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
@@ -1365,7 +1365,7 @@ function update_game_scene_char_RP_projectile()
     for i = #obj_char_game_scene_char_RP["projectile_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_RP["projectile_table"][i]
         object["update"](object)
-        if object["life"] <= 1 then
+        if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_RP["projectile_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
@@ -1387,21 +1387,21 @@ function update_game_scene_char_RP_VFX()
     for i = #obj_char_game_scene_char_RP["VFX_HUD_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_RP["VFX_HUD_table"][i]
         object["update"](object)
-        if object["life"] <= 1 then
+        if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_RP["VFX_HUD_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
     for i = #obj_char_game_scene_char_RP["VFX_front_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_RP["VFX_front_table"][i]
         object["update"](object)
-        if object["life"] <= 1 then
+        if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_RP["VFX_front_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
     for i = #obj_char_game_scene_char_RP["VFX_back_table"], 1, -1 do -- 反向遍历，便于删除元素
         local object = obj_char_game_scene_char_RP["VFX_back_table"][i]
         object["update"](object)
-        if object["life"] <= 1 then
+        if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_RP["VFX_back_table"], i) -- 寿命耗尽，从列表中移除
         end
     end
@@ -1433,7 +1433,7 @@ function update_game_scene_char_RP_black_overlay()
         local object = obj_char_game_scene_char_RP["black_overlay_table"][i]
         object["life"] = object["life"] - 1 -- 减少寿命
         object["update"](object)
-        if object["life"] <= 1 then
+        if object["life"] <= 0 then
             table.remove(obj_char_game_scene_char_RP["black_overlay_table"], i) -- 寿命耗尽，从列表中移除
         end
     end

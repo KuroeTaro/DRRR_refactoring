@@ -261,17 +261,19 @@ end
 
 
 
-
+-- blast slash directional ray_impact
 function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,r)
     -- x y z opacity sx sy r f
-    local obj = {0, 0, 0, 1, 1, 1, 0, 0}
-    obj["life"] = 8
+    local obj = {0, 0, 0, 1, 0.9, 0.9, 0, 0}
+    local sx = 0.9
+    local sy = 0.9
+    obj["life"] = 27
     obj[1] = obj_char["x"] + obj_char[5]*(x)
     obj[2] = obj_char["y"] + obj_char[6]*(y)
     obj[3] = obj_char[3]
-    obj[4] = 1
-    obj[5] = obj_char[5]
-    obj[6] = obj_char[6]
+    obj[4] = 0.25
+    obj[5] = obj_char[5]*sx
+    obj[6] = obj_char[6]*sy
     obj[7] = r
     obj[8] = -1
     obj["FCT"] = {0,0,0,0,0,0,0,0}
@@ -279,26 +281,29 @@ function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,r)
     obj["LCD"] = {0,0,0,0,0,0,0,0}
     obj["animation"] = {}
     obj["animation"][0] = 0
-    obj["animation"][2] = 1
-    obj["animation"][4] = 2
-    obj["animation"][6] = 3
+    obj["animation"][11] = 1
+    obj["animation"][15] = 2
+    obj["animation"][19] = 3
+    obj["animation"][23] = 4
+    obj["animation"][27] = 4
     obj["animation"]["prop"] = 8
-    obj["animation"]["length"] = 6
+    obj["animation"]["length"] = 27
     obj["animation"]["loop"] = false
     obj["animation"]["fix_type"] = true
     init_frame_anim_with(obj,obj["animation"])
     obj["update"] = function(self)
-        -- self[1] = obj_char["x"] + obj_char[5]*(-860)/2
-        -- self[2] = obj_char["y"] + obj_char[6]*(840)
         self[1] = obj_char["x"] + obj_char[5]*(x)
         self[2] = obj_char["y"] + obj_char[6]*(y)
         self[3] = obj_char[3]
-        self[4] = 1
-        self[5] = obj_char[5]
-        self[6] = obj_char[6]
+        self[4] = 0.25
+        self[5] = obj_char[5]*sx
+        self[6] = obj_char[6]*sy
         self[7] = r
         frame_animator(self,self["animation"])
-        if obj_char["state"] == "5P" or obj_char["state"] == "hitstop" then
+        if obj_char["state"] == "5P" 
+        or obj_char["state"] == "2P"
+        or obj_char["state"] == "jP" 
+        or obj_char["state"] == "hitstop" then
             self["life"] = self["life"] - 1
         else
             self["life"] = 0
@@ -306,31 +311,28 @@ function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,r)
     end
     obj["draw"] = function(self)
         local obj_camera = obj_stage_game_scene_camera
-        local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_light_blast
+        local image_sprite_sheet = image_sprite_sheet_VFX_game_scene_ver0_blast
         image_sprite_sheet["sprite_batch"]:clear()
         draw_3d_image_sprite_batch(obj_camera,self,image_sprite_sheet,""..self[8].."")
-    
-        shader_game_scene_character_blur:send("radius", 1.0 / 1000.0) -- 模糊强度，基于画布分辨率
-        shader_game_scene_character_blur:send("alpha", 0.5) -- 透明度
 
         love.graphics.setBlendMode("add")
-        love.graphics.setShader(shader_game_scene_character_blur)
         love.graphics.draw(image_sprite_sheet["sprite_batch"])
-        love.graphics.setShader()
         love.graphics.setBlendMode("alpha")
     end
     table.insert(obj_char["VFX_front_table"],obj)
     
 end
 
-function insert_VFX_game_scene_char_counter_ver0_blast(obj_char,x,y)
+function insert_VFX_game_scene_char_counter_ver0_blast(obj_char,x,y,r)
+    
 end
 
 
 
 
 
-function insert_VFX_scene_counter_ver0_2(obj_char)
+
+function insert_VFX_HUD_game_scene_counter_ver0_2(obj_char)
     local side = obj_char["player_side"]
     local obj = {0, 0, 0, 0, 1, 1, 0, 0}
     obj["LCT"] = {0,0,0,0,0,0,0,0}
@@ -394,7 +396,7 @@ function insert_VFX_scene_counter_ver0_2(obj_char)
     table.insert(obj_char["VFX_HUD_table"],obj)
 end
 
-function insert_VFX_scene_counter_ver3(obj_char)
+function insert_VFX_HUD_game_scene_counter_ver3(obj_char)
     -- x y z opacity sx sy r f
     local obj = {0, 0, 0, 0, 1, 1, 0, 0}
     obj["LCT"] = {0,0,0,0,0,0,0,0}
