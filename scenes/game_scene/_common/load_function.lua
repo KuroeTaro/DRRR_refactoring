@@ -224,10 +224,14 @@ function order_load_game_scene_VFX(load_order)
                 "asset/game_scene/VFX/hit_VFX/ver0_blast.json",
                 love.graphics.newImage(ASSET_DATA[8]["ver0_blast_sprite_batch"])
             )
+            image_sprite_sheet_VFX_game_scene_counter_ver0_blast = 
+            sprite_sheet_load(
+                "asset/game_scene/VFX/hit_VFX/counter_ver0_blast.json",
+                love.graphics.newImage(ASSET_DATA[8]["counter_ver0_blast_sprite_batch"])
+            )
 
-
-            image_VFX_game_scene_counter_ver0_2 = love.graphics.newImage(ASSET_DATA[8]["counter_ver0_2"])
-            image_VFX_game_scene_counter_ver3 = love.graphics.newImage(ASSET_DATA[8]["counter_ver3"])
+            image_VFX_HUD_game_scene_counter_ver0_2 = love.graphics.newImage(ASSET_DATA[8]["HUD_counter_ver0_2"])
+            image_VFX_HUD_game_scene_counter_ver3 = love.graphics.newImage(ASSET_DATA[8]["HUD_counter_ver0_3"])
 
         end,
     }

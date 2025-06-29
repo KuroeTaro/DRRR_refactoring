@@ -84,7 +84,7 @@
 -- obj_char["contrast"] = 1
 -- obj_char["brightness"] = 0
 -- obj_char["brightness_const"] = 0
--- obj_char["brightness_end_const"] = 0.2
+-- obj_char["brightness_overdrive_const"] = 0.2
 -- obj_char["hurtstop_wiggle_x"] = 0
 -- obj_char["hurtstop_wiggle_y"] = 0
 -- obj_char["current_hurtstop_wiggle_x_animation"] = nil
@@ -119,7 +119,6 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
         obj_char["hurt_horizontal_velocity_correction"] = 1
         obj_char["hurt_gravity_correction"] = 1
         obj_char["hurt_damage_correction"] = 1
-
 
         -- collide
         obj_char["pushbox"] = {0, -185, 130, 370}
@@ -254,7 +253,7 @@ function load_game_scene_anim_char_IZY_6(obj_char)
         -- state_number
         obj_char["velocity"] = {obj_char[5]*walk_speed,0}
         obj_char["gravity"] = 9.8
-        obj_char["friction"] = 1
+        obj_char["friction"] = 4
         obj_char["hurt_horizontal_velocity_correction"] = 1
         obj_char["hurt_gravity_correction"] = 1
         obj_char["hurt_damage_correction"] = 1
@@ -1493,7 +1492,7 @@ function load_game_scene_anim_char_IZY_4(obj_char)
         -- state_number
         obj_char["velocity"] = {obj_char[5]*walk_speed,0}
         obj_char["gravity"] = 9.8
-        obj_char["friction"] = 1
+        obj_char["friction"] = 4
         obj_char["hurt_horizontal_velocity_correction"] = 1
         obj_char["hurt_gravity_correction"] = 1
         obj_char["hurt_damage_correction"] = 1
@@ -2492,7 +2491,7 @@ function load_game_scene_anim_char_IZY_5_walk_stop(obj_char)
         -- state_number
         obj_char["velocity"] = {0,0}
         obj_char["gravity"] = 9.8
-        obj_char["friction"] = 1
+        obj_char["friction"] = 4
         obj_char["hurt_horizontal_velocity_correction"] = 1
         obj_char["hurt_gravity_correction"] = 1
         obj_char["hurt_damage_correction"] = 1
@@ -3696,6 +3695,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
     local overdrive_add = 0.05
     local heat_add = 0.05
     local ability_add = 0.05
+    local friction = 0.2
     local side = obj_char["player_side"]
     local function add_heat_ability_overdrive()
         if obj_char["overdrive"][1] < obj_char["overdrive"][2] then
@@ -3711,8 +3711,6 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
             math.min(obj_char["ability"][1] + ability_add,obj_char["ability"][2])
         end
     end
-
-    local friction = 4
 
     for i = 0,29 do
         res[i] = function()
@@ -3854,7 +3852,13 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
             ,{249.0625,491.1875}
         }
         obj_char["hit_VFX_insert_function"] = insert_VFX_game_scene_char_ver0_blast
-        obj_char["hit_VFX_insert_function_argument"] = {obj_char,-10,-635,0}
+        obj_char["hit_VFX_insert_function_argument"] = {obj_char,-10,-635,0.5,0.9,0.9,0}
+        obj_char["counter_VFX_insert_function"] = insert_VFX_game_scene_char_counter_ver0_blast
+        obj_char["counter_VFX_insert_function_argument"] = {obj_char,-2,-855,1,0.9,0.9,0}
+        obj_char["counter_SFX"] = nil
+        obj_char["block_VFX_insert_function"] = nil
+        obj_char["block_VFX_insert_function_argument"] = nil
+        obj_char["block_SFX"] = nil
         obj_char["hit_SFX"] = nil
 
         -- draw_correction
@@ -3879,7 +3883,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
         obj_char["hit_hurt_blockstop_countdown"] = 12
             -- 根据状态设置hitstop状态和动画 存储缓存状态 使得结束hitstop状态后可以回到5p后续动画
         obj_char["hurt_function"] = common_game_scene_strike_hurt_function
-        obj_char["hit_counter_ver_function"] = common_game_scene_counter_ver0
+        obj_char["hit_counter_ver_function"] = common_game_scene_counter_ver1
         add_heat_ability_overdrive()
 
         -- collide
@@ -3948,7 +3952,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
 
         -- state_number
         obj_char["gravity"] = 9.8
-        obj_char["friction"] = 4
+        obj_char["friction"] = friction
         obj_char["hurt_horizontal_velocity_correction"] = 1
         obj_char["hurt_gravity_correction"] = 1
         obj_char["hurt_damage_correction"] = 1
@@ -4253,10 +4257,8 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
     end
 
     res[0] = function()
-        local hurt_horizontal_velocity = 44
-        if obj_char_other_side["hurt_state"] == "counter" then
-            hurt_horizontal_velocity = hurt_horizontal_velocity * 1.5
-        end
+        local hurt_horizontal_velocity = 22
+        local hurt_horizontal_friction = 2.2
 
         -- state
         obj_char_other_side["sprite_sheet_state"] = "stand_hurt_high"
@@ -4280,24 +4282,42 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
 
          -- state_number
         obj_char_other_side["velocity"] = {0,0}
-        if obj_char_other_side["x"] < obj_char["x"] then
-            obj_char_other_side["velocity_cache"] = {
-                - hurt_horizontal_velocity,
-                obj_char_other_side["velocity"][1]
-            } -- 根据当前敌我x位置变化
-        elseif obj_char_other_side["x"] > obj_char["x"] then
-            obj_char_other_side["velocity_cache"] = {
-                hurt_horizontal_velocity,
-                obj_char_other_side["velocity"][1]
-            } -- 根据当前敌我x位置变化
+        if obj_char["x"] < obj_char_other_side["x"] then
+            if obj_char_other_side["collision_move_available"][2] == 1 then
+                obj_char_other_side["velocity_cache"] = {
+                    obj_char_other_side["velocity"][1] + hurt_horizontal_velocity,
+                    obj_char_other_side["velocity"][2]
+                } -- 根据当前敌我x位置变化
+                obj_char_other_side["friction"] = hurt_horizontal_friction
+            elseif obj_char_other_side["collision_move_available"][2] == 0 then
+                obj_char["velocity_cache"] = {
+                    obj_char["velocity"][1] - hurt_horizontal_velocity,
+                    obj_char["velocity"][2]
+                } -- 根据当前敌我x位置变化
+                obj_char["friction"] = hurt_horizontal_friction
+            end
+        elseif obj_char["x"] > obj_char_other_side["x"] then
+            if obj_char_other_side["collision_move_available"][1] == 1 then
+                obj_char_other_side["velocity_cache"] = {
+                    obj_char_other_side["velocity"][1] - hurt_horizontal_velocity,
+                    obj_char_other_side["velocity"][2]
+                } -- 根据当前敌我x位置变化
+                obj_char_other_side["friction"] = hurt_horizontal_friction
+            elseif obj_char_other_side["collision_move_available"][1] == 0 then
+                obj_char["velocity_cache"] = {
+                    obj_char["velocity"][1] + hurt_horizontal_velocity,
+                    obj_char["velocity"][2]
+                } -- 根据当前敌我x位置变化
+                obj_char["friction"] = hurt_horizontal_friction
+            end
         else
             obj_char_other_side["velocity_cache"] = {
                 0,
-                obj_char_other_side["velocity"][1]
+                obj_char_other_side["velocity"][2]
             } -- 根据当前敌我x位置变化
+            obj_char_other_side["friction"] = hurt_horizontal_friction
         end
-
-        obj_char_other_side["friction"] = 1.5
+        
         add_heat_ability_overdrive()
 
         -- collide

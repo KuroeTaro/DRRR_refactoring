@@ -99,7 +99,7 @@ function update_game_scene_stage()
                 init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_shake_y)
             end
         end,
-        ["hit_camera_shake"] = function()
+        ["hit_camera_move"] = function()
             point_linear_animator(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing)
             point_linear_animator(obj_camera,anim_camera_point_linear_game_scene_camera_shake_x)
             point_linear_animator(obj_camera,anim_camera_point_linear_game_scene_camera_shake_y)

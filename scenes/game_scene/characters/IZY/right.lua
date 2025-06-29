@@ -202,7 +202,7 @@ function load_game_scene_obj_char_RP()
     obj_char_game_scene_char_RP["contrast"] = 1
     obj_char_game_scene_char_RP["brightness"] = 0
     obj_char_game_scene_char_RP["brightness_const"] = 0
-    obj_char_game_scene_char_RP["brightness_end_const"] = 0.2
+    obj_char_game_scene_char_RP["brightness_overdrive_const"] = 0.2
     obj_char_game_scene_char_RP["hurtstop_wiggle_x"] = 0
     obj_char_game_scene_char_RP["hurtstop_wiggle_y"] = 0
     obj_char_game_scene_char_RP["current_hurtstop_wiggle_x_animation"] = nil
@@ -991,10 +991,6 @@ function state_machine_char_game_scene_char_RP()
             if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
                 obj_char["state"] = obj_char["state_cache"]
                 obj_char["velocity"] = obj_char["velocity_cache"]
-                obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
-                obj_char["game_speed"] = 1
-                obj_char["hit_hurt_blockstop_countdown"] = 0 
-                obj_char["hit_hurt_block_slowdown_countdown"] = 0
             end
         end,
         ["hurtstop"] = function()
@@ -1003,10 +999,6 @@ function state_machine_char_game_scene_char_RP()
             if obj_char["hit_hurt_blockstop_countdown"] <= 0 then
                 obj_char["state"] = obj_char["state_cache"]
                 obj_char["velocity"] = obj_char["velocity_cache"]
-                obj_char["game_speed_abnormal_realtime_countdown"] = obj_char["hit_hurt_block_slowdown_countdown"]
-                obj_char["game_speed"] = 2
-                obj_char["hit_hurt_blockstop_countdown"] = 0 
-                obj_char["hit_hurt_block_slowdown_countdown"] = 0
                 obj_char["hurtstop_wiggle_x"] = 0
                 obj_char["hurtstop_wiggle_y"] = 0
             end
@@ -1472,7 +1464,6 @@ function update_game_scene_char_RP_hurtstop_countdown()
         obj_char["hit_hurt_blockstop_countdown"] = 0 
         obj_char["hit_hurt_block_slowdown_countdown"] = 0
         obj_char["game_speed"] = 2
-        obj_char["velocity"] = obj_char["velocity_cache"]
         obj_char["hurtstop_wiggle_x"] = 0
         obj_char["hurtstop_wiggle_y"] = 0
     end

@@ -9,8 +9,9 @@ image_data["overdrive_airflow_sprite_batch"] = compress_module("asset/game_scene
 image_data["overdrive_partical_sprite_batch"] = compress_module("asset/game_scene/VFX/overdrive_partical.dds")
 
 image_data["ver0_blast_sprite_batch"] = compress_module("asset/game_scene/VFX/hit_VFX/ver0_blast.dds")
+image_data["counter_ver0_blast_sprite_batch"] = compress_module("asset/game_scene/VFX/hit_VFX/counter_ver0_blast.dds")
 
-image_data["counter_ver0_2"] = compress_module("asset/game_scene/VFX/HUD_VFX/counter_VFX/ver0_2.dds")
-image_data["counter_ver3"] = compress_module("asset/game_scene/VFX/HUD_VFX/counter_VFX/ver3.dds")
+image_data["HUD_counter_ver0_2"] = compress_module("asset/game_scene/VFX/HUD_VFX/counter_VFX/ver0_2.dds")
+image_data["HUD_counter_ver0_3"] = compress_module("asset/game_scene/VFX/HUD_VFX/counter_VFX/ver3.dds")
 
 love.thread.getChannel( 'image_8' ):push( image_data )

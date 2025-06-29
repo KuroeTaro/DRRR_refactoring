@@ -298,12 +298,24 @@ function common_game_scene_strike_hit_function(obj_char)
     obj_char["hit_cancel"] = true -- 取消链
     if hurt_side_obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
         obj_char["hit_counter_ver_function"](obj_char,hurt_side_obj_char)
+        obj_char["counter_VFX_insert_function"](
+            obj_char["counter_VFX_insert_function_argument"][1],
+            obj_char["counter_VFX_insert_function_argument"][2],
+            obj_char["counter_VFX_insert_function_argument"][3],
+            obj_char["counter_VFX_insert_function_argument"][4],
+            obj_char["counter_VFX_insert_function_argument"][5],
+            obj_char["counter_VFX_insert_function_argument"][6],
+            obj_char["counter_VFX_insert_function_argument"][7]
+        )
     else
         obj_char["hit_VFX_insert_function"](
             obj_char["hit_VFX_insert_function_argument"][1],
             obj_char["hit_VFX_insert_function_argument"][2],
             obj_char["hit_VFX_insert_function_argument"][3],
-            obj_char["hit_VFX_insert_function_argument"][4]
+            obj_char["hit_VFX_insert_function_argument"][4],
+            obj_char["hit_VFX_insert_function_argument"][5],
+            obj_char["hit_VFX_insert_function_argument"][6],
+            obj_char["hit_VFX_insert_function_argument"][7]
         )
     end
 
@@ -344,18 +356,12 @@ function common_game_scene_strike_hurt_function(obj_char)
         init_character_anim_with(obj_char,obj_char["current_animation"])
     end
     local function common_hurt()
-        
-        obj_camera["state"] = "hit_camera_shake"
+        obj_camera["state"] = "hit_camera_move"
         anim_camera_point_linear_game_scene_camera_shake_x = hit_side_obj_char["camera_x_shake_anim"]
         anim_camera_point_linear_game_scene_camera_shake_y = hit_side_obj_char["camera_y_shake_anim"]
 
         init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_shake_x)
         init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_shake_y)
-
-        if get_point_linear_anim_end_state(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing) then
-            anim_camera_point_linear_game_scene_camera_enclosing = hit_side_obj_char["camera_enclosing_anim"]
-            init_point_linear_anim_with(obj_camera,anim_camera_point_linear_game_scene_camera_enclosing)
-        end
 
         if obj_char["height_state"] == "stand" then
             stand_hurt()

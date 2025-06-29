@@ -280,12 +280,12 @@ function update_game_scene_main_training()
                 if LP_hurt_strike_accur and RP_hurt_strike_accur then
                     local obj_camera = obj_stage_game_scene_camera
                     
-                    char_LP["hit_hurt_blockstop_countdown"] = 5
-                    char_RP["hit_hurt_blockstop_countdown"] = 5
-                    char_LP["hit_hurt_block_slowdown_countdown"] = 5
-                    char_RP["hit_hurt_block_slowdown_countdown"] = 5
-                    char_LP["game_speed"] = 2
-                    char_RP["game_speed"] = 2
+                    char_LP["hit_hurt_blockstop_countdown"] = 0
+                    char_RP["hit_hurt_blockstop_countdown"] = 0
+                    char_LP["hit_hurt_block_slowdown_countdown"] = 0
+                    char_RP["hit_hurt_block_slowdown_countdown"] = 0
+                    char_LP["game_speed"] = 1
+                    char_RP["game_speed"] = 1
                     obj_camera["state"] = "main"
                     obj_camera["enclose_percentage"] = 0.0
                     obj_camera["enclose_position_offset"] = {0, 0, 0}
@@ -365,26 +365,37 @@ end
 function update_game_scene_friction()
     local char_LP = obj_char_game_scene_char_LP
     local char_RP = obj_char_game_scene_char_RP
-    if char_LP["velocity"][1] > 0 then
-        char_LP["velocity"][1] = math.max(char_LP["velocity"][1] / char_LP["friction"],0)
-        if char_LP["velocity"][1] < 0.05 then
-            char_LP["velocity"][1] = 0
-        end
-    elseif char_LP["velocity"][1] < 0 then
-        char_LP["velocity"][1] = math.min(char_LP["velocity"][1] / char_LP["friction"],0)
-        if char_LP["velocity"][1] > 0.05 then
-            char_LP["velocity"][1] = 0
+    local LP_game_speed = char_LP["game_speed"]
+    local RP_game_speed = char_LP["game_speed"]
+    local horizontal_velocity_cache = 0
+    if char_LP["game_speed"] ~= 0 then
+        if char_LP["velocity"][1] > 0 then
+            horizontal_velocity_cache = math.max(0,char_LP["velocity"][1] - char_LP["friction"])
+            char_LP["velocity"][1] = (char_LP["velocity"][1]*(LP_game_speed-1) + horizontal_velocity_cache)/LP_game_speed
+            if char_LP["velocity"][1] < 0.05 then
+                char_LP["velocity"][1] = 0
+            end
+        elseif char_LP["velocity"][1] < 0 then
+            horizontal_velocity_cache = math.min(0,char_LP["velocity"][1] + char_LP["friction"])
+            char_LP["velocity"][1] = (char_LP["velocity"][1]*(LP_game_speed-1) + horizontal_velocity_cache)/LP_game_speed
+            if char_LP["velocity"][1] > 0.05 then
+                char_LP["velocity"][1] = 0
+            end
         end
     end
-    if char_RP["velocity"][1] > 0 then
-        char_RP["velocity"][1] = math.max(char_RP["velocity"][1] / char_RP["friction"],0)
-        if char_RP["velocity"][1] < 0.05 then
-            char_RP["velocity"][1] = 0
-        end
-    elseif char_RP["velocity"][1] < 0 then
-        char_RP["velocity"][1] = math.min(char_RP["velocity"][1] / char_RP["friction"],0)
-        if char_RP["velocity"][1] > 0.05 then
-            char_RP["velocity"][1] = 0
+    if char_RP["game_speed"] ~= 0 then
+        if char_RP["velocity"][1] > 0 then
+            horizontal_velocity_cache = math.max(0,char_RP["velocity"][1] - char_RP["friction"])
+            char_RP["velocity"][1] = (char_RP["velocity"][1]*(RP_game_speed-1) + horizontal_velocity_cache)/RP_game_speed
+            if char_RP["velocity"][1] < 0.05 then
+                char_RP["velocity"][1] = 0
+            end
+        elseif char_RP["velocity"][1] < 0 then
+            horizontal_velocity_cache = math.min(0,char_RP["velocity"][1] + char_RP["friction"])
+            char_RP["velocity"][1] = (char_RP["velocity"][1]*(RP_game_speed-1) + horizontal_velocity_cache)/RP_game_speed
+            if char_RP["velocity"][1] > 0.05 then
+                char_RP["velocity"][1] = 0
+            end
         end
     end
 end
@@ -415,10 +426,10 @@ function update_game_scene_HUD_overdrive_timer(obj_char,timer_obj)
             if get_point_linear_anim_end_state(timer_obj,anim_UI_point_linear_game_scene_timer_ease_in_opacity_0_1) 
             and get_point_linear_anim_end_state(obj_char,anim_char_point_linear_overdrive_brightness_ease_in) then
                 timer_obj["state"] = "active"
-                obj_char["brightness"] = obj_char["brightness_end_const"]
+                obj_char["brightness"] = obj_char["brightness_overdrive_const"]
             elseif obj_char["overdrive"][3] == "off" then
                 timer_obj["state"] = "ease_out"
-                obj_char["brightness"] = obj_char["brightness_end_const"]
+                obj_char["brightness"] = obj_char["brightness_overdrive_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
                 init_point_linear_anim_with(obj_char,anim_char_point_linear_overdrive_brightness_ease_out)
             end
@@ -426,7 +437,7 @@ function update_game_scene_HUD_overdrive_timer(obj_char,timer_obj)
         ["active"] = function()
             if obj_char["overdrive"][3] == "off" then
                 timer_obj["state"] = "ease_out"
-                obj_char["brightness"] = obj_char["brightness_end_const"]
+                obj_char["brightness"] = obj_char["brightness_overdrive_const"]
                 init_point_linear_anim_with(timer_obj,anim_UI_point_linear_game_scene_timer_ease_out_opacity_1_0)
                 init_point_linear_anim_with(obj_char,anim_char_point_linear_overdrive_brightness_ease_out)
             end
