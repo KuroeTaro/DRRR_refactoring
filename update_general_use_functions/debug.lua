@@ -71,3 +71,40 @@ function set_show_hitbox()
     local this_function = switch[DEBUG_HITBOX_SHOWS_STATE]
     if this_function then this_function() end
 end
+
+function set_show_info()
+    local switch = 
+    {
+        ["Released"] = function()
+            if love.keyboard.isDown("f3") then 
+                DEBUG_INFO_SHOWS_STATE = "Pressing"
+            end
+        end,
+        ["Releasing"] = function()
+            if love.keyboard.isDown("f3") then 
+                DEBUG_INFO_SHOWS_STATE = "Pressing"
+            else
+                DEBUG_INFO_SHOWS_STATE = "Released"
+            end
+        end,
+        ["Pressing"] = function()
+            if DEBUG_INFO_SHOWS == false then 
+                DEBUG_INFO_SHOWS = true
+            elseif DEBUG_INFO_SHOWS == true then 
+                DEBUG_INFO_SHOWS = false
+            end
+            if love.keyboard.isDown("f3") then 
+                DEBUG_INFO_SHOWS_STATE = "Holding"
+            else
+                DEBUG_INFO_SHOWS_STATE = "Releasing"
+            end
+        end,
+        ["Holding"] = function()
+            if not love.keyboard.isDown("f3") then 
+                DEBUG_INFO_SHOWS_STATE = "Releasing"
+            end
+        end
+    }
+    local this_function = switch[DEBUG_INFO_SHOWS_STATE]
+    if this_function then this_function() end
+end

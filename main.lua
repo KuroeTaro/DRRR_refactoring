@@ -91,6 +91,8 @@ function love.load()
 	DEBUG_PAUSE_STATE = "Released"
 	DEBUG_HITBOX_SHOWS = false
 	DEBUG_HITBOX_SHOWS_STATE = "Released"
+	DEBUG_INFO_SHOWS = false
+	DEBUG_INFO_SHOWS_STATE = "Released"
 	DEBUG_BOX_COLOR_YELLOW = {1,1,0,0.5}
 	DEBUG_BOX_COLOR_BLUE = {0,180/255,1,0.5}
 	DEBUG_BOX_COLOR_RED = {1,0,0,0.5}
@@ -250,6 +252,7 @@ function love.update()
 	require("lovebird").update()
 	set_pause()
 	set_show_hitbox()
+	set_show_info()
 	if not DEBUG_PAUSE then
 		update_input()
 		update_record_game_duration()
@@ -263,22 +266,23 @@ end
 function love.draw()
 	love.graphics.clear(7/255,19/255,31/255,1)
 	current_draw_block()
-	love.graphics.setColor(1, 0, 0, 1)
-	draw_input_sys()
-	love.graphics.print( "FRAMES_DRAWN", 0, 240)
-	love.graphics.print( "GRAPHICIAL_FPS", 0, 255)
-	love.graphics.print( "SCENE_TIMER", 0, 270)
-	love.graphics.print( FRAMES_DRAWN, 110, 240)
-	love.graphics.print( FPS, 110, 255)
-	love.graphics.print( SCENE_TIMER, 110, 270)
-	-- 获取统计信息
-	local stats = love.graphics.getStats()
-	-- 显示统计信息
-	love.graphics.print("Draw Calls: " .. stats.drawcalls, 250, 150)
-	love.graphics.print("Canvas Switches: " .. stats.canvasswitches, 250, 30)
-	love.graphics.print("Texture Memory: " .. stats.texturememory / 1024 / 1024 .. " MB", 250, 50)
-	love.graphics.print("Images Loaded: " .. stats.images, 250, 70)
+	if DEBUG_INFO_SHOWS then
+		love.graphics.setColor(1, 0, 0, 1)
+		draw_input_sys()
+		love.graphics.print( "FRAMES_DRAWN", 0, 240)
+		love.graphics.print( "GRAPHICIAL_FPS", 0, 255)
+		love.graphics.print( "SCENE_TIMER", 0, 270)
+		love.graphics.print( FRAMES_DRAWN, 110, 240)
+		love.graphics.print( FPS, 110, 255)
+		love.graphics.print( SCENE_TIMER, 110, 270)
+		-- 获取统计信息
+		local stats = love.graphics.getStats()
+		-- 显示统计信息
+		love.graphics.print("Draw Calls: " .. stats.drawcalls, 250, 150)
+		love.graphics.print("Canvas Switches: " .. stats.canvasswitches, 250, 30)
+		love.graphics.print("Texture Memory: " .. stats.texturememory / 1024 / 1024 .. " MB", 250, 50)
+		love.graphics.print("Images Loaded: " .. stats.images, 250, 70)
 
-	love.graphics.setColor(1, 1, 1, 1)
-	
+		love.graphics.setColor(1, 1, 1, 1)
+	end
 end

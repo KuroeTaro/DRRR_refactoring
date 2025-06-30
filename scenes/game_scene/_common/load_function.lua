@@ -230,6 +230,8 @@ function order_load_game_scene_VFX(load_order)
                 love.graphics.newImage(ASSET_DATA[8]["counter_ver0_blast_sprite_batch"])
             )
 
+            image_VFX_HUD_game_scene_punish = love.graphics.newImage(ASSET_DATA[8]["HUD_punish"])
+
             image_VFX_HUD_game_scene_counter_ver0_2 = love.graphics.newImage(ASSET_DATA[8]["HUD_counter_ver0_2"])
             image_VFX_HUD_game_scene_counter_ver3 = love.graphics.newImage(ASSET_DATA[8]["HUD_counter_ver0_3"])
 

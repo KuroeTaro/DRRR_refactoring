@@ -228,7 +228,7 @@ function load_game_scene_anim_char_IZY_stand_idle(obj_char)
 end
 
 function load_game_scene_anim_char_IZY_6(obj_char)
-    local walk_speed = 9.0
+    local walk_speed = 9.0 -- 20
     local res = {}
     res[0] = function() 
         -- state
@@ -3695,7 +3695,7 @@ function load_game_scene_anim_char_IZY_5P(obj_char)
     local overdrive_add = 0.05
     local heat_add = 0.05
     local ability_add = 0.05
-    local friction = 0.2
+    local friction = 1
     local side = obj_char["player_side"]
     local function add_heat_ability_overdrive()
         if obj_char["overdrive"][1] < obj_char["overdrive"][2] then
@@ -4288,13 +4288,19 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
                     obj_char_other_side["velocity"][1] + hurt_horizontal_velocity,
                     obj_char_other_side["velocity"][2]
                 } -- 根据当前敌我x位置变化
+                obj_char_other_side["velocity"] = {0,0}
                 obj_char_other_side["friction"] = hurt_horizontal_friction
+                obj_char["velocity_cache"] = obj_char["velocity"]
+                obj_char["velocity"] = {0,0}
             elseif obj_char_other_side["collision_move_available"][2] == 0 then
                 obj_char["velocity_cache"] = {
                     obj_char["velocity"][1] - hurt_horizontal_velocity,
                     obj_char["velocity"][2]
                 } -- 根据当前敌我x位置变化
+                obj_char["velocity"] = {0,0}
                 obj_char["friction"] = hurt_horizontal_friction
+                obj_char_other_side["velocity_cache"] = obj_char_other_side["velocity"]
+                obj_char_other_side["velocity"] = {0,0}
             end
         elseif obj_char["x"] > obj_char_other_side["x"] then
             if obj_char_other_side["collision_move_available"][1] == 1 then
@@ -4302,20 +4308,29 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
                     obj_char_other_side["velocity"][1] - hurt_horizontal_velocity,
                     obj_char_other_side["velocity"][2]
                 } -- 根据当前敌我x位置变化
+                obj_char_other_side["velocity"] = {0,0}
                 obj_char_other_side["friction"] = hurt_horizontal_friction
+                obj_char["velocity_cache"] = obj_char["velocity"]
+                obj_char["velocity"] = {0,0}
             elseif obj_char_other_side["collision_move_available"][1] == 0 then
                 obj_char["velocity_cache"] = {
                     obj_char["velocity"][1] + hurt_horizontal_velocity,
                     obj_char["velocity"][2]
                 } -- 根据当前敌我x位置变化
+                obj_char["velocity"] = {0,0}
                 obj_char["friction"] = hurt_horizontal_friction
+                obj_char_other_side["velocity_cache"] = obj_char_other_side["velocity"]
+                obj_char_other_side["velocity"] = {0,0}
             end
         else
             obj_char_other_side["velocity_cache"] = {
                 0,
                 obj_char_other_side["velocity"][2]
             } -- 根据当前敌我x位置变化
+            obj_char_other_side["velocity"] = {0,0}
             obj_char_other_side["friction"] = hurt_horizontal_friction
+            obj_char["velocity_cache"] = obj_char["velocity"]
+            obj_char["velocity"] = {0,0}
         end
         
         add_heat_ability_overdrive()

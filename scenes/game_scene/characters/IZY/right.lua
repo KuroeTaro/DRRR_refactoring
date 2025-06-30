@@ -1211,6 +1211,11 @@ function draw_game_scene_char_RP()
     local r = obj[7]
     local f = obj[8]
 
+    local shader = shader_game_scene_brightness_contrast
+    shader:send("contrast", obj["contrast"])
+    shader:send("brightness", obj["brightness"])
+    love.graphics.setShader(shader)
+
     local knife_state = obj["knife_state"]
 
     if knife_state == "on" then
@@ -1238,10 +1243,6 @@ function draw_game_scene_char_RP()
     image_sprite_sheet["sprite_batch"]:clear()
     draw_3d_image_sprite_batch(camera,obj,image_sprite_sheet,""..f.."")
 
-    local shader = shader_game_scene_brightness_contrast
-    shader:send("contrast", obj["contrast"])
-    shader:send("brightness", obj["brightness"])
-    love.graphics.setShader(shader)
     love.graphics.draw(image_sprite_sheet["sprite_batch"])
     love.graphics.setShader()
 

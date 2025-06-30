@@ -392,6 +392,41 @@ end
 
 
 
+function insert_VFX_game_scene_char_GP(obj_char)
+    -- x y z opacity sx sy r f
+    local obj = {0, 0, 0, 1, 1, 1, 0, 0}
+    obj["life"] = 42
+    obj["update"] = function(self)
+        self["life"] = 42
+        if obj_char["state"] ~= "hurtstop" then
+            self["life"] = 0
+        end
+    end
+    obj["draw"] = function(self)
+        local opacity_cache = obj_char[4]
+        local contrast_cache = obj_char["contrast"]
+        local brightness_cache = obj_char["brightness"]
+        obj_char[4] = 0.2
+        obj_char["contrast"] = 1
+        obj_char["brightness"] = 1
+
+        love.graphics.setBlendMode("add")
+        if obj_char["player_side"] == "L" then
+            draw_game_scene_char_LP()
+        elseif obj_char["player_side"] == "R" then
+            draw_game_scene_char_RP()
+        end
+        love.graphics.setBlendMode("alpha")
+
+        obj_char[4] = opacity_cache
+        obj_char["contrast"] = contrast_cache
+        obj_char["brightness"] = brightness_cache
+    end
+    table.insert(obj_char["VFX_back_table"],obj)
+    
+end
+
+
 
 
 function insert_VFX_HUD_game_scene_counter_ver0_2(obj_char)
@@ -400,34 +435,33 @@ function insert_VFX_HUD_game_scene_counter_ver0_2(obj_char)
     obj["LCT"] = {0,0,0,0,0,0,0,0}
     obj["LCD"] = {0,0,0,0,0,0,0,0}
     obj["image"] = image_VFX_HUD_game_scene_counter_ver0_2
-    obj["life"] = 50
+    obj["life"] = 70
     if side == "L" then
-        obj[1] = 178
+        obj[1] = 182
     elseif side == "R" then
-        obj[1] = 1319
+        obj[1] = 1212
     end
-    obj[2] = 36
+    obj[2] = 150
 
 -- y_anim
     obj["y_anim"] = {}
-    obj["y_anim"][0] = {36.00, 1}
-    obj["y_anim"][1] = {38.00, 2}
-    obj["y_anim"][2] = {34.00, 3}
-    obj["y_anim"][3] = {37.00, 5}
-    obj["y_anim"][5] = {36.00, 35}
-    obj["y_anim"][35] = {36.00, 40}
-    obj["y_anim"][40] = {36.07, 45}
-    obj["y_anim"][45] = {36.45, 47}
-    obj["y_anim"][47] = {36.85, 49}
-    obj["y_anim"][49] = {37.87, 50}
-    obj["y_anim"][50] = {40.00, 50}
+    obj["y_anim"][0] = {150.00, 1}
+    obj["y_anim"][1] = {152.00, 2}
+    obj["y_anim"][2] = {148.00, 3}
+    obj["y_anim"][3] = {151.00, 5}
+    obj["y_anim"][5] = {150.00, 35}
+    obj["y_anim"][35] = {150.00, 40}
+    obj["y_anim"][40] = {150.07, 45}
+    obj["y_anim"][45] = {150.45, 47}
+    obj["y_anim"][47] = {150.85, 49}
+    obj["y_anim"][49] = {151.87, 50}
+    obj["y_anim"][50] = {154.00, 50}
     obj["y_anim"]["prop"] = 2
     obj["y_anim"]["length"] = 50
     obj["y_anim"]["loop"] = false
     obj["y_anim"]["fix_type"] = true
 
 -- opacity_anim
-    obj["opacity_anim"] = {}
     obj["opacity_anim"] = {}
     obj["opacity_anim"][0] = {0.00, 1}
     obj["opacity_anim"][1] = {0.87, 2}
@@ -576,6 +610,72 @@ function insert_VFX_HUD_game_scene_counter_ver3(obj_char)
         love.graphics.setBlendMode("add")
         draw_2d_image(self,self["image"])
         love.graphics.setBlendMode("alpha")
+    end
+    table.insert(obj_char["VFX_HUD_table"],obj)
+end
+
+
+
+
+function insert_VFX_HUD_game_scene_punish(obj_char)
+    local side = obj_char["player_side"]
+    local obj = {0, 0, 0, 0, 1, 1, 0, 0}
+    obj["LCT"] = {0,0,0,0,0,0,0,0}
+    obj["LCD"] = {0,0,0,0,0,0,0,0}
+    obj["image"] = image_VFX_HUD_game_scene_punish
+    obj["life"] = 70
+    if side == "L" then
+        obj[1] = 182
+    elseif side == "R" then
+        obj[1] = 1239
+    end
+    obj[2] = 150
+
+-- y_anim
+    obj["y_anim"] = {}
+    obj["y_anim"][0] = {150.00, 1}
+    obj["y_anim"][1] = {152.00, 2}
+    obj["y_anim"][2] = {148.00, 3}
+    obj["y_anim"][3] = {151.00, 5}
+    obj["y_anim"][5] = {150.00, 35}
+    obj["y_anim"][35] = {150.00, 40}
+    obj["y_anim"][40] = {150.07, 45}
+    obj["y_anim"][45] = {150.45, 47}
+    obj["y_anim"][47] = {150.85, 49}
+    obj["y_anim"][49] = {151.87, 50}
+    obj["y_anim"][50] = {154.00, 50}
+    obj["y_anim"]["prop"] = 2
+    obj["y_anim"]["length"] = 50
+    obj["y_anim"]["loop"] = false
+    obj["y_anim"]["fix_type"] = true
+
+-- opacity_anim
+    obj["opacity_anim"] = {}
+    obj["opacity_anim"][0] = {0.00, 1}
+    obj["opacity_anim"][1] = {0.87, 2}
+    obj["opacity_anim"][2] = {1.00, 5}
+    obj["opacity_anim"][5] = {1.00, 15}
+    obj["opacity_anim"][15] = {0.99, 25}
+    obj["opacity_anim"][25] = {0.95, 35}
+    obj["opacity_anim"][35] = {0.84, 40}
+    obj["opacity_anim"][40] = {0.75, 45}
+    obj["opacity_anim"][45] = {0.57, 47}
+    obj["opacity_anim"][47] = {0.45, 49}
+    obj["opacity_anim"][49] = {0.25, 50}
+    obj["opacity_anim"][50] = {0.00, 50}
+    obj["opacity_anim"]["prop"] = 4
+    obj["opacity_anim"]["length"] = 50
+    obj["opacity_anim"]["loop"] = false
+    obj["opacity_anim"]["fix_type"] = true
+
+-- update
+    obj["update"] = function(self)
+        point_linear_animator(obj,obj["y_anim"])
+        point_linear_animator(obj,obj["opacity_anim"])
+        self["life"] = self["life"] - 1
+    end
+    obj["draw"] = function(self)
+        draw_2d_image(self,self["image"])
     end
     table.insert(obj_char["VFX_HUD_table"],obj)
 end
