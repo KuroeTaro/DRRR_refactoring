@@ -291,31 +291,33 @@ end
 
 function common_game_scene_strike_hit_function(obj_char)
     -- 只需要设置hitstop
-    local hurt_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
-    obj_char["state_cache"] = obj_char["state"]
-    obj_char["state"] = "hitstop"
-    obj_char["strike_active"] = false
-    obj_char["hit_cancel"] = true -- 取消链
-    if hurt_side_obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
-        obj_char["hit_counter_ver_function"](obj_char,hurt_side_obj_char)
-        obj_char["counter_VFX_insert_function"](
-            obj_char["counter_VFX_insert_function_argument"][1],
-            obj_char["counter_VFX_insert_function_argument"][2],
-            obj_char["counter_VFX_insert_function_argument"][3],
-            obj_char["counter_VFX_insert_function_argument"][4],
-            obj_char["counter_VFX_insert_function_argument"][5],
-            obj_char["counter_VFX_insert_function_argument"][6],
-            obj_char["counter_VFX_insert_function_argument"][7]
+    local hit_side_obj_char = common_game_scene_change_character(obj_char["player_side"])
+    hit_side_obj_char["state_cache"] = hit_side_obj_char["state"]
+    hit_side_obj_char["state"] = "hitstop"
+    hit_side_obj_char["strike_active"] = false
+    hit_side_obj_char["hit_cancel"] = true -- 取消链
+    if obj_char["hurt_state"] == "counter" then -- idle unblock punish counter GP parry
+        hit_side_obj_char["hit_counter_ver_function"](hit_side_obj_char,obj_char)
+        local counter_VFX_insert_function_argument = hit_side_obj_char["counter_VFX_insert_function_argument"]
+        hit_side_obj_char["counter_VFX_insert_function"](
+            counter_VFX_insert_function_argument[1],
+            counter_VFX_insert_function_argument[2],
+            counter_VFX_insert_function_argument[3],
+            counter_VFX_insert_function_argument[4],
+            counter_VFX_insert_function_argument[5],
+            counter_VFX_insert_function_argument[6],
+            counter_VFX_insert_function_argument[7]
         )
     else
-        obj_char["hit_VFX_insert_function"](
-            obj_char["hit_VFX_insert_function_argument"][1],
-            obj_char["hit_VFX_insert_function_argument"][2],
-            obj_char["hit_VFX_insert_function_argument"][3],
-            obj_char["hit_VFX_insert_function_argument"][4],
-            obj_char["hit_VFX_insert_function_argument"][5],
-            obj_char["hit_VFX_insert_function_argument"][6],
-            obj_char["hit_VFX_insert_function_argument"][7]
+        local hit_VFX_insert_function_argument = hit_side_obj_char["hit_VFX_insert_function_argument"]
+        hit_side_obj_char["hit_VFX_insert_function"](
+            hit_VFX_insert_function_argument[1],
+            hit_VFX_insert_function_argument[2],
+            hit_VFX_insert_function_argument[3],
+            hit_VFX_insert_function_argument[4],
+            hit_VFX_insert_function_argument[5],
+            hit_VFX_insert_function_argument[6],
+            hit_VFX_insert_function_argument[7]
         )
     end
 

@@ -205,10 +205,10 @@ function update_game_scene_main_training()
 
                 -- 检测打击受击盒交互
                 if LP_hurt_throw_accur then
-                    char_RP["hit_function"](char_RP) -- RP更新主动攻击状态
+                    char_RP["hit_function"](char_LP) -- RP更新主动攻击状态
                 end
                 if RP_hurt_throw_accur then
-                    char_LP["hit_function"](char_LP) -- LP更新主动攻击状态
+                    char_LP["hit_function"](char_RP) -- LP更新主动攻击状态
                 end
                 if LP_hurt_throw_accur then
                     char_RP["hurt_function"](char_LP) -- RP更新被攻击状态
@@ -221,14 +221,14 @@ function update_game_scene_main_training()
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if strike_hurtbox_test(char_LP,current_projectile) then
-                        char_LP["hit_function"](char_LP)
+                        char_LP["hit_function"](char_RP)
                         current_projectile["hurt_function"](char_LP)
                     end
                 end
                 for i = 1,#char_LP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if strike_hurtbox_test(char_RP,current_projectile) then
-                        char_RP["hit_function"](char_RP)
+                        char_RP["hit_function"](char_LP)
                         current_projectile["hurt_function"](char_RP)
                     end
                 end
@@ -246,14 +246,14 @@ function update_game_scene_main_training()
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if projectile_hurtbox_test(current_projectile,char_LP) then
-                        current_projectile["hit_function"](current_projectile) -- 飞行道具更新主动攻击状态
+                        current_projectile["hit_function"](char_LP) -- 飞行道具更新主动攻击状态
                         char_LP["hurt_function"](current_projectile) --LP更新
                     end
                 end
                 for i = 1,#char_LP["projectile_table"] do
                     local current_projectile = char_LP["projectile_table"][i]
                     if projectile_hurtbox_test(current_projectile,char_RP) then
-                        current_projectile["hit_function"](current_projectile)
+                        current_projectile["hit_function"](char_RP)
                         char_RP["hurt_function"](current_projectile)
                     end
                 end
@@ -264,10 +264,10 @@ function update_game_scene_main_training()
 
                 -- 检测打击受击盒交互
                 if LP_hurt_strike_accur then
-                    char_RP["hit_function"](char_RP) -- RP更新主动攻击状态
+                    char_RP["hit_function"](char_LP) -- RP更新主动攻击状态
                 end
                 if RP_hurt_strike_accur then
-                    char_LP["hit_function"](char_LP) -- LP更新主动攻击状态
+                    char_LP["hit_function"](char_RP) -- LP更新主动攻击状态
                 end
                 if LP_hurt_strike_accur then
                     char_RP["hurt_function"](char_LP) -- RP更新被攻击状态
@@ -368,34 +368,20 @@ function update_game_scene_friction()
     local LP_game_speed = char_LP["game_speed"]
     local RP_game_speed = char_LP["game_speed"]
     local horizontal_velocity_cache = 0
+    char_LP["velocity_debug"][1] = char_LP["velocity"][1]
+    char_LP["velocity_debug"][2] = char_LP["velocity"][2]
+    char_RP["velocity_debug"][1] = char_RP["velocity"][1]
+    char_RP["velocity_debug"][2] = char_RP["velocity"][2]
     if char_LP["game_speed"] ~= 0 then
-        if char_LP["velocity"][1] > 0 then
-            horizontal_velocity_cache = math.max(0,char_LP["velocity"][1] - char_LP["friction"])
-            char_LP["velocity"][1] = (char_LP["velocity"][1]*(LP_game_speed-1) + horizontal_velocity_cache)/LP_game_speed
-            if char_LP["velocity"][1] < 0.05 then
-                char_LP["velocity"][1] = 0
-            end
-        elseif char_LP["velocity"][1] < 0 then
-            horizontal_velocity_cache = math.min(0,char_LP["velocity"][1] + char_LP["friction"])
-            char_LP["velocity"][1] = (char_LP["velocity"][1]*(LP_game_speed-1) + horizontal_velocity_cache)/LP_game_speed
-            if char_LP["velocity"][1] > 0.05 then
-                char_LP["velocity"][1] = 0
-            end
+        char_LP["velocity"][1] = char_LP["velocity"][1] - (char_LP["velocity"][1] / char_LP["friction"])
+        if math.abs(char_LP["velocity"][1]) < 0.001 then
+            char_LP["velocity"][1] = 0
         end
     end
     if char_RP["game_speed"] ~= 0 then
-        if char_RP["velocity"][1] > 0 then
-            horizontal_velocity_cache = math.max(0,char_RP["velocity"][1] - char_RP["friction"])
-            char_RP["velocity"][1] = (char_RP["velocity"][1]*(RP_game_speed-1) + horizontal_velocity_cache)/RP_game_speed
-            if char_RP["velocity"][1] < 0.05 then
-                char_RP["velocity"][1] = 0
-            end
-        elseif char_RP["velocity"][1] < 0 then
-            horizontal_velocity_cache = math.min(0,char_RP["velocity"][1] + char_RP["friction"])
-            char_RP["velocity"][1] = (char_RP["velocity"][1]*(RP_game_speed-1) + horizontal_velocity_cache)/RP_game_speed
-            if char_RP["velocity"][1] > 0.05 then
-                char_RP["velocity"][1] = 0
-            end
+        char_RP["velocity"][1] = char_RP["velocity"][1] - (char_RP["velocity"][1] / char_RP["friction"])
+        if math.abs(char_RP["velocity"][1]) < 0.001 then
+            char_RP["velocity"][1] = 0
         end
     end
 end

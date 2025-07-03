@@ -71,9 +71,10 @@ function load_game_scene_obj_char_RP()
 
     -- state_number
     obj_char_game_scene_char_RP["velocity"] = {0,0}
+    obj_char_game_scene_char_RP["velocity_debug"] = {0,0}
     obj_char_game_scene_char_RP["velocity_cache"] = {0,0}
     obj_char_game_scene_char_RP["gravity"] = 9.8
-    obj_char_game_scene_char_RP["friction"] = 4
+    obj_char_game_scene_char_RP["friction"] = 1
     obj_char_game_scene_char_RP["health"] = {11500, 11500, 11500, "fade_off"}
     obj_char_game_scene_char_RP["heat"] = {0.0, 200.0} -- 0.0 - 200.0
     obj_char_game_scene_char_RP["ability"] = {600.0, 600.0} -- 0.0 - 600.0

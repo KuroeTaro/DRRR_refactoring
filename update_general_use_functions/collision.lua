@@ -131,7 +131,6 @@ function pushbox_dynamic_normal_aabb_relocate_x(obj_L,obj_R)
                 else
                     branch_flag = 0
                 end
-                
             end
             if obj_L["y"] > obj_R["y"] or branch_flag == 1 then
                 obj_R["x"] = box_L[1]+box_L[3]/2+box_R[3]/2
