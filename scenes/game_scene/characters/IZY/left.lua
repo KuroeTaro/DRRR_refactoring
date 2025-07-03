@@ -73,6 +73,7 @@ function load_game_scene_obj_char_LP()
     obj_char_game_scene_char_LP["velocity"] = {0,0}
     obj_char_game_scene_char_LP["velocity_debug"] = {0,0}
     obj_char_game_scene_char_LP["velocity_cache"] = {0,0}
+    obj_char_game_scene_char_LP["acceleration"] = {0,0}
     obj_char_game_scene_char_LP["gravity"] = 9.8
     obj_char_game_scene_char_LP["friction"] = 1
     obj_char_game_scene_char_LP["health"] = {11500, 11500, 11500, "fade_off"}

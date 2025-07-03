@@ -221,14 +221,14 @@ function update_game_scene_main_training()
                 for i = 1,#char_RP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if strike_hurtbox_test(char_LP,current_projectile) then
-                        char_LP["hit_function"](char_RP)
+                        char_LP["hit_function"](current_projectile)
                         current_projectile["hurt_function"](char_LP)
                     end
                 end
                 for i = 1,#char_LP["projectile_table"] do
                     local current_projectile = char_RP["projectile_table"][i]
                     if strike_hurtbox_test(char_RP,current_projectile) then
-                        char_RP["hit_function"](char_LP)
+                        char_RP["hit_function"](current_projectile)
                         current_projectile["hurt_function"](char_RP)
                     end
                 end
@@ -310,6 +310,15 @@ function update_game_scene_main_training()
             -- 检测pushbox 更新X位置 dynamic_relocate_x
             pushbox_dynamic_normal_aabb_relocate_x(char_LP,char_RP)
 
+            for i = 1,#char_LP["projectile_table"] do
+                local current_projectile = char_LP["projectile_table"][i]
+                current_projectile["interact_function"]()
+            end
+            for i = 1,#char_RP["projectile_table"] do
+                local current_projectile = char_RP["projectile_table"][i]
+                current_projectile["interact_function"]()
+            end
+
             -- 删除已经到寿命的飞行道具
             for i = #char_LP["projectile_table"], 1, -1 do -- 反向遍历，便于删除元素
                 local object = char_LP["projectile_table"][i]
@@ -373,13 +382,13 @@ function update_game_scene_friction()
     char_RP["velocity_debug"][1] = char_RP["velocity"][1]
     char_RP["velocity_debug"][2] = char_RP["velocity"][2]
     if char_LP["game_speed"] ~= 0 then
-        char_LP["velocity"][1] = char_LP["velocity"][1] - (char_LP["velocity"][1] / char_LP["friction"])
+        char_LP["velocity"][1] = char_LP["velocity"][1] + char_LP["acceleration"][1] - (char_LP["velocity"][1] / char_LP["friction"])
         if math.abs(char_LP["velocity"][1]) < 0.001 then
             char_LP["velocity"][1] = 0
         end
     end
     if char_RP["game_speed"] ~= 0 then
-        char_RP["velocity"][1] = char_RP["velocity"][1] - (char_RP["velocity"][1] / char_RP["friction"])
+        char_RP["velocity"][1] = char_RP["velocity"][1] + char_RP["acceleration"][1] - (char_RP["velocity"][1] / char_RP["friction"])
         if math.abs(char_RP["velocity"][1]) < 0.001 then
             char_RP["velocity"][1] = 0
         end
