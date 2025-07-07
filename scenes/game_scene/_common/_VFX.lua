@@ -593,9 +593,9 @@ function insert_VFX_HUD_game_scene_counter_ver3(obj_char)
 -- update
 
     obj["update"] = function(self)
-        point_linear_animator(obj,obj["sx_anim"])
-        point_linear_animator(obj,obj["y_anim"])
-        point_linear_animator(obj,obj["opacity_anim"])
+        point_linear_animator(self,self["sx_anim"])
+        point_linear_animator(self,self["y_anim"])
+        point_linear_animator(self,self["opacity_anim"])
         self[1] = self["x"] - self[5]*(600)
         self[2] = self["y"] - self[6]*(200)
         self["life"] = self["life"] - 1
