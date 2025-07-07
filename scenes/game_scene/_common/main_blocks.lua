@@ -381,14 +381,16 @@ function update_game_scene_friction()
     char_LP["velocity_debug"][2] = char_LP["velocity"][2]
     char_RP["velocity_debug"][1] = char_RP["velocity"][1]
     char_RP["velocity_debug"][2] = char_RP["velocity"][2]
-    if char_LP["game_speed"] ~= 0 then
+    if char_LP["game_speed"] ~= 0 and char_LP["game_speed_subframe"] > char_LP["game_speed"] then
         char_LP["velocity"][1] = char_LP["velocity"][1] + char_LP["acceleration"][1] - (char_LP["velocity"][1] / char_LP["friction"])
+        char_LP["game_speed_subframe"] = 1
         if math.abs(char_LP["velocity"][1]) < 0.001 then
             char_LP["velocity"][1] = 0
         end
     end
-    if char_RP["game_speed"] ~= 0 then
+    if char_RP["game_speed"] ~= 0 and char_RP["game_speed_subframe"] > char_RP["game_speed"] then
         char_RP["velocity"][1] = char_RP["velocity"][1] + char_RP["acceleration"][1] - (char_RP["velocity"][1] / char_RP["friction"])
+        char_RP["game_speed_subframe"] = 1
         if math.abs(char_RP["velocity"][1]) < 0.001 then
             char_RP["velocity"][1] = 0
         end
@@ -487,6 +489,7 @@ function update_game_scene_char()
     end
 
 
+    -- 计算摩擦力时再将game_speed_subframe初始化
     if char_LP["game_speed"] ~= 0 
     and char_LP["game_speed_subframe"] > char_LP["game_speed"]
     then
@@ -494,7 +497,7 @@ function update_game_scene_char()
         update_game_scene_char_LP_projectile()
         update_game_scene_char_LP_VFX()
         update_game_scene_char_LP_black_overlay()
-        char_LP["game_speed_subframe"] = 1
+        -- char_LP["game_speed_subframe"] = 1
     end
 
     if char_RP["game_speed"] ~= 0 
@@ -504,6 +507,6 @@ function update_game_scene_char()
         update_game_scene_char_RP_projectile()
         update_game_scene_char_RP_VFX()
         update_game_scene_char_RP_black_overlay()
-        char_RP["game_speed_subframe"] = 1
+        -- char_RP["game_speed_subframe"] = 1
     end
 end

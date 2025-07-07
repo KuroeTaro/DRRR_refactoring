@@ -4256,7 +4256,7 @@ function load_game_scene_anim_char_IZY_5P_stand_hurt_high(obj_char)
     end
 
     res[0] = function()
-        local hurt_horizontal_velocity = 24
+        local hurt_horizontal_velocity = 30
         local hurt_horizontal_friction = 5
 
         -- state

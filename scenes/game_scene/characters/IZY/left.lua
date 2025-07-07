@@ -316,12 +316,12 @@ end
 function load_game_scene_hurtbox_shadowbox_data_LP()
     obj_hurtboxs_data_game_scene_char_LP = {}
     obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"] = {}
-    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][0] = {{-10, -200, 195, 400},{-27, -430, 100, 60}}
-    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][1] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
-    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][2] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
-    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][3] = {{-28, -200, 260, 400},{-80, -415, 160, 30}}
-    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][4] = {{-9, -200, 200, 400},{-34, -425, 115, 50}}
-    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][5] = {{-9, -200, 200, 400},{-34, -425, 115, 50}}
+    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][0] = {{-10, -200, 270, 400},{-27, -430, 100, 60}}
+    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][1] = {{5, -200, 330, 400},{-80, -415, 160, 30}}
+    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][2] = {{5, -200, 330, 400},{-80, -415, 160, 30}}
+    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][3] = {{5, -200, 330, 400},{-80, -415, 160, 30}}
+    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][4] = {{-10, -200, 270, 400},{-34, -425, 115, 50}}
+    obj_hurtboxs_data_game_scene_char_LP["stand_hurt_high"][5] = {{-10, -200, 270, 400},{-34, -425, 115, 50}}
 
     obj_shadowboxs_data_game_scene_char_LP = {}
     obj_shadowboxs_data_game_scene_char_LP["stand_hurt_high"] = {}
