@@ -265,7 +265,7 @@ end
 function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,opacity,sx,sy,r)
     -- x y z opacity sx sy r f
     local obj = {0, 0, 0, 1, 1, 1, 0, 0}
-    obj["life"] = 27
+    obj["life"] = 17
     obj[1] = obj_char["x"] + obj_char[5]*(x)
     obj[2] = obj_char["y"] + obj_char[6]*(y)
     obj[3] = obj_char[3]
@@ -279,13 +279,13 @@ function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,opacity,sx,sy,r)
     obj["LCD"] = {0,0,0,0,0,0,0,0}
     obj["animation"] = {}
     obj["animation"][0] = 0
-    obj["animation"][11] = 1
-    obj["animation"][15] = 2
-    obj["animation"][19] = 3
-    obj["animation"][23] = 4
-    obj["animation"][27] = 4
+    obj["animation"][1] = 1
+    obj["animation"][5] = 2
+    obj["animation"][9] = 3
+    obj["animation"][13] = 4
+    obj["animation"][17] = 4
     obj["animation"]["prop"] = 8
-    obj["animation"]["length"] = 27
+    obj["animation"]["length"] = 17
     obj["animation"]["loop"] = false
     obj["animation"]["fix_type"] = true
     init_frame_anim_with(obj,obj["animation"])
@@ -294,15 +294,17 @@ function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,opacity,sx,sy,r)
         self[5] = obj_char[5]*sx
         self[6] = obj_char[6]*sy
         self[7] = r
-        frame_animator(self,self["animation"])
         if obj_char["state"] == "5P" 
         or obj_char["state"] == "2P"
         or obj_char["state"] == "jP" 
-        or obj_char["state"] == "hitstop" 
-        -- or obj_char["state"] == "hurt" 
-        -- or obj_char["state"] == "hurtstop" 
+        or obj_char["state"] == "hurt" 
         then
+            frame_animator(self,self["animation"])
             self["life"] = self["life"] - 1
+        elseif obj_char["state"] == "hitstop"
+        or obj_char["state"] == "hurtstop" 
+        then
+            -- do nothing
         else
             self["life"] = 0
         end
@@ -322,7 +324,7 @@ function insert_VFX_game_scene_char_ver0_blast(obj_char,x,y,opacity,sx,sy,r)
 end
 
 function insert_VFX_game_scene_char_counter_ver0_blast(obj_char,x,y,opacity,sx,sy,r)
-    insert_VFX_game_scene_char_ver0_blast(obj_char,x+45,y+263,0.5,0.75,0.75,0)
+    insert_VFX_game_scene_char_ver0_blast(obj_char,x+45,y+263,0.5,0.55,0.55,0)
     -- x y z opacity sx sy r f
     local obj = {0, 0, 0, 1, 0.9, 0.9, 0, 0}
     local sx = 1
@@ -363,14 +365,14 @@ function insert_VFX_game_scene_char_counter_ver0_blast(obj_char,x,y,opacity,sx,s
         self[5] = obj_char[5]*sx
         self[6] = obj_char[6]*sy
         self[7] = r
-        frame_animator(self,self["animation"])
         if obj_char["state"] == "5P" 
         or obj_char["state"] == "2P"
         or obj_char["state"] == "jP" 
         or obj_char["state"] == "hitstop"
-        -- or obj_char["state"] == "hurt" 
-        -- or obj_char["state"] == "hurtstop" 
+        or obj_char["state"] == "hurt" 
+        or obj_char["state"] == "hurtstop" 
         then
+            frame_animator(self,self["animation"])
             self["life"] = self["life"] - 1
         else
             self["life"] = 0
